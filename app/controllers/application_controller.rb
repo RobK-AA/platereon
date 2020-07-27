@@ -23,4 +23,5 @@ class ApplicationController < ActionController::Base
 
   def require_logged_in
     redirect_to new_api_session_url unless logged_in?
+  end
 end
