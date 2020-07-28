@@ -5,9 +5,11 @@ import {
 
 const SessionErrorsReducer = (oldState = [], action) => {
   Object.freeze(oldState);
+  let newState = oldState.slice(0);
   switch (action.type) {
     case RECEIVE_SESSION_ERRORS:
-      return action.errors;
+      newState.concat(action.errors);
+      return newState;
     case RECEIVE_CURRENT_USER:
       return [];
     default:

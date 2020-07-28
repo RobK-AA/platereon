@@ -109,10 +109,10 @@ __webpack_require__.r(__webpack_exports__);
 var RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 var LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 var RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
-var receiveCurrentUser = function receiveCurrentUser(currentUser) {
+var receiveCurrentUser = function receiveCurrentUser(user) {
   return {
     type: RECEIVE_CURRENT_USER,
-    currentUser: currentUser
+    user: user
   };
 };
 var logoutCurrentUser = function logoutCurrentUser() {
@@ -129,9 +129,9 @@ var receiveErrors = function receiveErrors(errors) {
 var signup = function signup(user) {
   return function (dispatch) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["signup"](user).then(function (user) {
-      return dispatch(receiveCurrentUser(user));
+      dispatch(receiveCurrentUser(user));
     }, function (error) {
-      return dispatch(receiveErrors(error.responseJSON));
+      dispatch(receiveErrors(error.responseJSON));
     });
   };
 };
@@ -217,13 +217,12 @@ __webpack_require__.r(__webpack_exports__);
 var Greeting = function Greeting(_ref) {
   var currentUser = _ref.currentUser,
       logout = _ref.logout;
-  debugger;
 
   var sessionLinks = function sessionLinks() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
       className: "login-signup"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-      to: "/login"
+      to: "/signup"
     }, "Get started"));
   };
 
@@ -294,9 +293,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var Header = function Header(_ref) {
   var currentUser = _ref.currentUser;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "/assets/platereonIMGblack.png"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "/"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "/assets/platereonlogo.png"
+  }), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "header-login",
     to: "/login"
   }, "Log in"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -436,7 +437,8 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       email: '',
       password: ''
     };
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this)); // this.renderErrors = this.renderErrors.bind(this);
+
     return _this;
   }
 
@@ -453,13 +455,11 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      var user = Object.assign({}, this.state);
-      this.props.submitForm(user);
+      this.props.submitForm(this.state);
     }
   }, {
     key: "renderErrors",
     value: function renderErrors() {
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: "error-".concat(i)
@@ -470,24 +470,24 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "login-form-container"
+        className: "".concat(this.props.formType, "-form-container")
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit,
         className: "login-form-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: this.props.formType
       }, this.props.formName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "login-form"
+        className: "".concat(this.props.formType, "-form")
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Email", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.email,
         onChange: this.update('email'),
-        className: "login-input"
+        className: "".concat(this.props.formType, "-input")
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Password", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "password",
         value: this.state.password,
         onChange: this.update('password'),
-        className: "login-input"
+        className: "".concat(this.props.formType, "-input")
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "session-submit",
         type: "submit",
@@ -590,7 +590,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var root = document.getElementById('root');
   window.getState = store.getState();
   window.currentUser = store.currentUser;
-  window.login = react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_2__["default"], {
     store: store
   }), root);
 });
@@ -659,10 +659,12 @@ var SessionErrorsReducer = function SessionErrorsReducer() {
   var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(oldState);
+  var newState = oldState.slice(0);
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SESSION_ERRORS"]:
-      return action.errors;
+      newState.concat(action.errors);
+      return newState;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
       return [];
@@ -833,7 +835,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
 var signup = function signup(user) {
   return $.ajax({
-    url: '/api/users',
+    url: 'api/users',
     method: 'POST',
     data: {
       user: user
@@ -842,7 +844,7 @@ var signup = function signup(user) {
 };
 var login = function login(user) {
   return $.ajax({
-    url: '/api/session',
+    url: 'api/session',
     method: 'POST',
     data: {
       user: user
@@ -851,7 +853,7 @@ var login = function login(user) {
 };
 var logout = function logout() {
   return $.ajax({
-    url: '/api/session',
+    url: 'api/session',
     method: 'DELETE'
   });
 };

@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
   window.getState = store.getState()
   window.currentUser = store.currentUser
 
-  window.login = 
 
   ReactDOM.render(<Root store={store}/>, root);
 });

@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import SessionForm from '../session_form/session_form';
 const Greeting = ({ currentUser, logout }) => {
 
-debugger
+
 
   const sessionLinks = () => (
 
     <nav className="login-signup">
-      <Link to="/login">Get started</Link>
+      <Link to="/signup">Get started</Link>
       {/* <SessionForm /> */}
       {/* <p>New to Plate-reon?</p>
       <Link to="/signup">Sign up</Link> */}
