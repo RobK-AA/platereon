@@ -17,12 +17,12 @@ const App = () => (
     <header> 
       <h1>Plate-reon!</h1>
     </header>
-      {/*<GreetingContainer />}
-    </header>
-     {/* <Switch>
+    <GreetingContainer />
+    
+     <Switch>
       <AuthRoute exact path="/login" component={LogInFormContainer} />
       <AuthRoute exact path="/signup" component={SignUpFormContainer} />
-    </Switch>  */}
+    </Switch> 
   </div>
 );
 export default App;

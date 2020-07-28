@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import SessionForm from '../session_form/session_form';
 const Greeting = ({ currentUser, logout }) => {
 
 debugger
@@ -9,9 +9,9 @@ debugger
 
     <nav className="login-signup">
       <Link to="/login">Log in</Link>
-      <SessionForm />
-      <p>New to Plate-reon?</p>
-      <Link to="/signup">Sign up</Link>
+      {/* <SessionForm /> */}
+      {/* <p>New to Plate-reon?</p>
+      <Link to="/signup">Sign up</Link> */}
     </nav>
   );
 
