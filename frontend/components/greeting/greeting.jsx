@@ -8,7 +8,7 @@ debugger
   const sessionLinks = () => (
 
     <nav className="login-signup">
-      <Link to="/login">Log in</Link>
+      <Link to="/login">Get started</Link>
       {/* <SessionForm /> */}
       {/* <p>New to Plate-reon?</p>
       <Link to="/signup">Sign up</Link> */}

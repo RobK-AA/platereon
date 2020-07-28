@@ -11,11 +11,16 @@ import { AuthRoute } from '../util/route_util';
 import GreetingContainer from './greeting/greeting_container';
 import SignUpFormContainer from './session_form/signup_form_container';
 import LogInFormContainer from './session_form/login_form_container';
+import Header from './header/header'
 
 const App = () => (
   <div>
+    <Header />
     <header> 
-      <h1>Plate-reon!</h1>
+      <h1>Change the way cooking is valued</h1>
+      <p>Let your most passionate diners support your culinary creations
+        via monthly membership
+      </p>
     </header>
     <GreetingContainer />
     

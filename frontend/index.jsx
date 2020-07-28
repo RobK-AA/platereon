@@ -18,5 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore();
   }
   const root = document.getElementById('root');
+
+  window.getState = store.getState()
+  window.currentUser = store.currentUser
+
+  window.login = 
+
   ReactDOM.render(<Root store={store}/>, root);
 });
