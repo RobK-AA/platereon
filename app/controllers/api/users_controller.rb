@@ -22,13 +22,8 @@ class Api::UsersController < ApplicationController
       
 
       flash.now[:errors] = @user.errors.full_messages
-      render :new
+      render :show
     end
-  end
-
-  def new
-    @user = User.new
-    render :new
   end
 
   def show
