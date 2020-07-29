@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   const root = document.getElementById('root');
 
-  window.getState = store.getState()
+  window.getState = store.getState
   window.currentUser = store.currentUser
 
 

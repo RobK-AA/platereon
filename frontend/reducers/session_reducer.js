@@ -8,6 +8,9 @@ const _nullUser = Object.freeze({
 });
 
 const SessionReducer = (oldState = _nullUser, action) => {
+
+  
+
   Object.freeze(oldState);
   let newState = Object.assign({}, oldState);
   switch (action.type) {
@@ -21,7 +24,7 @@ const SessionReducer = (oldState = _nullUser, action) => {
 
       
             
-      return oldState;
+      return _nullUser;
     default:
       return oldState;
   }

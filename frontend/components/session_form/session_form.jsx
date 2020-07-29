@@ -16,6 +16,8 @@ class SessionForm extends React.Component {
 
   update(field) {
 
+    
+
     return e => this.setState({
       [field]: e.currentTarget.value
     });
@@ -31,15 +33,18 @@ class SessionForm extends React.Component {
 
   renderErrors() {
     
-    return (
-      <ul>
-        {this.props.errors.map((error, i) => (
-          <li key={`error-${i}`}>
-            {error}
-          </li>
-        ))}
-      </ul>
-    );
+    if (this.props.errors) {
+      return (
+        <ul>
+          {this.props.errors.map((error, i) => (
+            <li key={`error-${i}`}>
+              {error}
+            </li>
+          ))}
+        </ul>
+      );
+    }
+    
   }
 
   render() {
@@ -52,6 +57,7 @@ class SessionForm extends React.Component {
             <br />
             <label>Email
               <input type="text"
+                autoComplete={this.state.email}
                 value={this.state.email}
                 onChange={this.update('email')}
                 className={`${this.props.formType}-input`}
@@ -60,12 +66,13 @@ class SessionForm extends React.Component {
             <br />
             <label>Password
               <input type="password"
+                autoComplete={this.state.password}
                 value={this.state.password}
                 onChange={this.update('password')}
                 className={`${this.props.formType}-input`}
               />
             </label>
-            {/* {this.renderErrors()} */}
+            {this.renderErrors()}
             <br />
             <input className="session-submit" type="submit" value={this.props.formType} />
             {
