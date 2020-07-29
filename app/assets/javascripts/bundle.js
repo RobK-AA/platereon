@@ -345,7 +345,7 @@ var Header = /*#__PURE__*/function (_React$Component) {
       }), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "header-login",
         to: "/login"
-      }, "Log in"), "Nobody signed in - how to make this change when state is updated to reflect there is a current user?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, "Log in"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "header-signup",
         to: "/signup"
       }, "Create on Platereon")));

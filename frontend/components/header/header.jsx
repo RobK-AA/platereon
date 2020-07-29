@@ -32,7 +32,7 @@ class Header extends React.Component {
             <a href='/'>
               <img src={"assets/platereonlogoimg.png"} /> </a>
             <Link className="header-login" to="/login">Log in</Link>
-            Nobody signed in - how to make this change when state is updated to reflect there is a current user?
+             
             <Link className="header-signup" to="/signup">Create on Platereon</Link>
           </nav>
         </div>
