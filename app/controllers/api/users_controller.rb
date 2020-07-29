@@ -5,21 +5,21 @@ class Api::UsersController < ApplicationController
 
   def create
 
-    debugger
+    
 
     @user = User.new(user_params)
 
-    debugger
+    
 
     if @user.save
 
-      debugger
+      
 
       login!(@user)
       render "api/users/show"
     else
 
-      debugger
+      
 
       flash.now[:errors] = @user.errors.full_messages
       render :new

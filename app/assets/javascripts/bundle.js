@@ -110,7 +110,6 @@ var RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 var LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 var RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
 var receiveCurrentUser = function receiveCurrentUser(user) {
-  debugger;
   return {
     type: RECEIVE_CURRENT_USER,
     user: user
@@ -129,12 +128,9 @@ var receiveErrors = function receiveErrors(errors) {
 };
 var signup = function signup(user) {
   return function (dispatch) {
-    debugger;
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["signup"](user).then(function (user) {
-      debugger;
       dispatch(receiveCurrentUser(user));
     }, function (error) {
-      debugger;
       dispatch(receiveErrors(error.responseJSON));
     });
   };
@@ -150,9 +146,7 @@ var login = function login(user) {
 };
 var logout = function logout() {
   return function (dispatch) {
-    debugger;
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["logout"]().then(function () {
-      debugger;
       dispatch(logoutCurrentUser());
     });
   };
@@ -302,7 +296,7 @@ var Header = function Header(_ref) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "/"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "/assets/platereonlogoimg.png"
+    src: "assets/platereonlogoimg.png"
   }), " "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "header-login",
     to: "/login"
@@ -640,7 +634,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-debugger;
 var RootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   entities: _entities_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   session: _session_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
@@ -709,12 +702,10 @@ var SessionReducer = function SessionReducer() {
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      debugger;
       newState['id'] = action.user.id;
       return newState;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
-      debugger;
       return oldState;
 
     default:
@@ -746,7 +737,6 @@ var UsersReducer = function UsersReducer() {
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      debugger;
       newState[action.user.id] = action.user;
       return newState;
 
