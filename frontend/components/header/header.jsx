@@ -6,7 +6,7 @@ const Header = ({ currentUser }) => {
     <div>
       <nav>
         <a href='/'>
-          <img src={"/assets/platereonlogo.png"} /> </a>
+          <img src={"/assets/platereonlogoimg.png"} /> </a>
         <Link className="header-login" to="/login">Log in</Link>
         <Link className="header-signup" to="/signup">Create on Platereon</Link>
       </nav>

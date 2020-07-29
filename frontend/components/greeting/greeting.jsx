@@ -17,7 +17,7 @@ const Greeting = ({ currentUser, logout }) => {
 
   const personalGreeting = () => (
     <div>
-      <h2 className="header-name">{currentUser.username}</h2>
+      <h6 className="header-name">{currentUser.email} is logged in</h6>
       <ul>
         <li>
           <button className="header-button" onClick={logout}>Log Out</button>
