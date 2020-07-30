@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import GreetingContainer from '../greeting/greeting_container';
 import DemoContainer from '../demo/demo_container';
 import Demo from '../demo/demo';
 
@@ -12,8 +11,8 @@ class MainPage extends React.Component {
       <div className='main'>
         <div className='main-text'>
           <div>
-            <h1 className="change-header">Change the way cooking is valued</h1>
-            <p>Let your most passionate diners support your culinary creations
+            <h1 className="main-header">Change the way food is valued</h1>
+            <p className="main-description">Let your most passionate diners support your culinary creations
             via monthly membership
             </p>
           </div>
@@ -21,10 +20,28 @@ class MainPage extends React.Component {
             <div className="get-started">
               <Link to="/signup">Get started</Link>
             </div>
-            <DemoContainer />
+            <div className="demo-button">
+              <DemoContainer />
+            </div>
           </div>
         </div>
-        <div className="main-video"></div>
+        <div className="main-video" >
+          {/* <button data-test='video'> */}
+            <div className="food-video">
+              <img src='https://media.giphy.com/media/3oEjHC7al4GfnudR7y/giphy.gif'/>
+              <span>
+                {/* <svg width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg"> */}
+                  {/* <circle cx="38.5" cy="38.5" r="38.5" data-fill='1'></circle>
+                  <path d="M29.5 26.917L53.25 38 29.5 49.083V26.917z" data-stroke="1"
+                    strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path> */}
+                {/* </svg> */}
+              </span>
+            </div>
+            <div>
+              
+            </div>
+          {/* </button> */}
+        </div>
       </div>
     )
   }

@@ -12,10 +12,10 @@ class Demo extends React.Component {
   render() {
     return (
       <div>
-        <button 
+        <p 
           onClick={() => {this.props.demoLogin(this.demoUser)}}>
-            Sign in as a Demo User
-        </button>
+            Demo Sign In
+        </p>
       </div>
     );
   }

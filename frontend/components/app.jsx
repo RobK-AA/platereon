@@ -16,16 +16,14 @@ import UserShowContainer from './user_show/user_show_container';
 import BodyContainer from './body/body_container';
 const App = ({ currentUser }) => (
   <div>
-    <HeaderContainer />
-    
-    <BodyContainer />
-    
-   
+    <Route component={HeaderContainer} />
+    <Route component={BodyContainer} />
     
      <Switch>
       <AuthRoute exact path="/login" component={LogInFormContainer} />
       <AuthRoute exact path="/signup" component={SignUpFormContainer} />
       <ProtectedRoute exact path="/users/:userId" component={UserShowContainer} />
+      <Route path='login' component={HeaderContainer}/>
     </Switch> 
   </div>
 );

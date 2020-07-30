@@ -9,7 +9,7 @@ const SessionErrorsReducer = (oldState = [], action) => {
   switch (action.type) {
     case RECEIVE_SESSION_ERRORS:
 
-      
+      debugger
 
       newState.concat(action.errors);
       return newState;

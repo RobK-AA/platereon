@@ -21,13 +21,37 @@
    margin-bottom: 19px;
  }
 
- .change-header {
+ .header-login, .header-signup {
+    color: rgb(36, 30, 18);
+    font-family: aktiv-grotesk, sans-serif;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizelegibility;
+    text-decoration: none;
+ }
+
+ .main-header {
    margin-top: 0;
+ }
+
+ .main-description {
+    color: white;
+    font-family: aktiv-grotesk, sans-serif;
+    position: relative;
+    font-size: 1.25rem;
+    line-height: 1.75;
+    font-weight: 400 !important;
+    margin: 0px;
+    transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
  }
 
  .main {
    display: flex;
+   padding-top: 100px;
+   padding-bottom: 100px;
+   background-color: rgb(20, 21, 24);
  }
+
  .main-text {
     position: relative;
     margin: 0;
@@ -39,11 +63,29 @@
     font-size: 1.75rem ;
     line-height: 1.25 ;
     -webkit-font-smoothing: antialiased;  
-    background-color: rgb(20, 21, 24)
+    background-color: rgb(20, 21, 24);
+    width: 50%;
+    padding: 0rem 0.5rem;
+    left: 40px;
+    right: 40px;
+    padding-left: 40px;
+    margin-right: 40px;
  }
 
  .main-video {
-   position: absolute;
+   position: relative;
+   margin: 0;
+   overflow: hidden;
+   color: white;
+   width: 50%;
+   background-color:  rgb(20, 21, 24);
+   height: 100%;
+   -webkit-font-smoothing: antialiased;  
+   padding: 0rem 0.5rem;
+    left: 40px;
+    right: 40px;
+    padding-left: 40px;
+    margin-right: 40px;
  }
 
  .get-started {
@@ -58,7 +100,7 @@
     position: relative;
     text-align: center;
     text-transform: none;
-    color: rgb(255, 255, 255) !important;
+    color: rgb(255, 255, 255);
     font-size: 1rem ;
     border-radius: 9999px;
     border-width: 1px;
@@ -66,8 +108,65 @@
     border-color: #ff0000ee;
     padding: 0.78125rem 1.5rem;
     text-decoration: none;
+    color: white;
+ }
+
+ .get-started > a {
+   text-decoration: none;
+   color: white;
+ }
+
+ .demo-button {
+   background-color:  #ff0000ee;;
+    -webkit-box-align: center;
+    align-items: center;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-flex;
+    font-weight: 500;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    text-transform: none;
+    color: rgb(255, 255, 255);
+    font-size: 1rem ;
+    border-radius: 9999px;
+    border-width: 0px;
+    border-left: 5px;
+    border-right: 5px;
+    border-style: solid;
+    border-color: #ff0000ee;
+    margin-bottom: 3px;
+    text-decoration: none;
+    padding: 0;
+    left: 20px;
+ }
+
+ .login-signup {
+  margin-top: 40px;
  }
 
  .user-page {
    border-top: solid lightgray 1px;
+ }
+
+ .login, .signup {
+   border-top: solid lightgray 1px;
+ }
+
+ nav.NavBar {
+   display: flex;
+   justify-content: space-between;
+ }
+
+ svg {
+  width: 100%;
+  height: 100%;
+ }
+
+ .food-video {
+   margin: 0;
+   padding: 0;
+   border: none;
+   size: 100%;
  }

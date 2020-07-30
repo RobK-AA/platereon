@@ -1,7 +1,6 @@
 import React from 'react';
 import MainPageContainer from '../main_page/main_page_container';
 import UserShowContainer from '../user_show/user_show_container';
-import GreetingContainer from '../greeting/greeting_container';
 
 class Body extends React.Component {
 
@@ -10,12 +9,15 @@ class Body extends React.Component {
   };
 
   render() {
-    const { currentUser } = this.props;
+    const { currentUser, location } = this.props;
 
     return (
+
       <div>
-        {/* <GreetingContainer /> */}
-        {currentUser ? <UserShowContainer /> : <MainPageContainer />}
+        {(location.pathname === "/login") || (location.pathname === "/signup") ?
+        null :
+        currentUser ? <UserShowContainer /> : <MainPageContainer />
+        }
       </div>
     )
   }
