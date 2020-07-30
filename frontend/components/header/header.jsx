@@ -7,19 +7,17 @@ class Header extends React.Component {
     super(props)
   }
   render() {
-    const { currentUser } = this.props;
+    const { currentUser, logout } = this.props;
 
   
     return currentUser ?
-
       (
         <div>
-          <GreetingContainer />
           <nav className='NavBar'>
             <a href='/'>
               <img src={"assets/platereonlogoimg.png"} /> </a>
-            <Link className="header-login" to="/logout">Log out</Link>
-            <h4>{currentUser.email}</h4>
+            <Link className="header-logout" to="/" onClick={logout}>Log out</Link>
+            {currentUser.email}
           </nav>
         </div>
       )
@@ -39,37 +37,5 @@ class Header extends React.Component {
       )
   }
 }
-
-// const Header = ({ currentUser }) => {
-
-//   return currentUser ? 
-
-//   (
-//     <div>
-//       <nav className='NavBar'>
-//         <a href='/'>
-//           <img src={"assets/platereonlogoimg.png"} /> </a>
-//         <Link className="header-login" to="/logout">Log out</Link>
-//         <h4>{currentUser.email}</h4>
-//       </nav>
-//     </div>
-//   )
-
-//   :
-
-//   (
-//     <div>
-//       <nav className='NavBar'>
-//         <a href='/'>
-//           <img src={"assets/platereonlogoimg.png"} /> </a>
-//         <Link className="header-login" to="/login">Log in</Link>
-//         <Link className="header-signup" to="/signup">Create on Platereon</Link>
-//       </nav>
-//     </div>
-//   )
-
-  
-  
-// };
 
 export default Header;

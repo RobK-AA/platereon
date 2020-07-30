@@ -8,7 +8,7 @@ const UsersReducer = (oldState = {}, action) => {
 
       
 
-      newState[action.user.id] = action.user;
+      newState[action.currentUser.id] = action.currentUser;
       return newState;
     default:
       return oldState;
