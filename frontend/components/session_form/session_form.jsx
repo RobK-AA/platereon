@@ -25,7 +25,7 @@ class SessionForm extends React.Component {
 
   renderErrors() {
     
-    debugger
+    
 
     if (this.props.errors) {
       return (
@@ -43,7 +43,7 @@ class SessionForm extends React.Component {
 
   render() {
 
-    debugger
+    
 
     return (
       <div className={`${this.props.formType}-form-container`}>
