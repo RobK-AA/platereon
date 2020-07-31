@@ -1,6 +1,6 @@
 import React from 'react';
 
-class SessionForm extends React.Component {
+class LoginForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -48,41 +48,45 @@ class SessionForm extends React.Component {
     return (
       <div className={`${this.props.formType}-form-container`}>
         <form onSubmit={this.handleSubmit} className="login-form-box">
-          <h3 className={this.props.formType}>{this.props.formName}</h3>
+          <h3 className={`${this.props.formType}-form-header`} >{this.props.formName}</h3>
           <br />
           <div className={`${this.props.formType}-form`}>
             <br />
-            <label>Email
-              <input type="text"
+            <label htmlFor="email">Email</label>
+              <input 
+                id="email"
+                type="text"
                 autoComplete={this.state.email}
                 value={this.state.email}
                 onChange={this.update('email')}
-                className={`${this.props.formType}-input`}
+                className={`${this.props.formType}-email-input`}
               />
-            </label>
+            
             <br />
-            <label>Password
-              <input type="password"
+            <label htmlFor="password">Password</label>
+              <input 
+                id="password"
+                type="password"
                 autoComplete={this.state.password}
                 value={this.state.password}
                 onChange={this.update('password')}
-                className={`${this.props.formType}-input`}
+                className={`${this.props.formType}-password-input`}
               />
-            </label>
+            
             {this.renderErrors()}
             <br />
-            <input className="session-submit" type="submit" value={this.props.formType} />
-            {
-            this.props.formType === 'login' ? 
-                <p>New to Platereon? {this.props.navLink}</p>  :
-                <p>Already have an account? {this.props.navLink}</p> 
-            }
+            <input className="session-submit" type="submit" value={this.props.formName} />
             
           </div>
         </form>
+          <div className="other-form-link">
+            <span className="signup-link-text">New to Platereon? 
+              {this.props.navLink}
+            </span> 
+          </div>
       </div>
     );
   }
 }
 
-export default SessionForm;
+export default LoginForm;

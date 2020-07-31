@@ -16,8 +16,14 @@ class Header extends React.Component {
             <a href='/'>
               <img src={window.platereonlogoimg} /> </a>
             <div className="signed-in-user-nav">
-              <Link className="header-logout" to="/" onClick={logout}>Log out</Link>
-              {currentUser.email}
+              
+              <div className="current-user-menu">
+                {currentUser.email}'s Logo
+                  <ul>
+                    <li><Link className="header-logout" to="/" onClick={logout}>
+                    Log out</Link></li>
+                  </ul>
+              </div>
             </div>
           </nav>
         </div>
