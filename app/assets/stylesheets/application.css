@@ -14,11 +14,14 @@
  *= require_self
  */
 
+
  .NavBar {
    background-color: white;
    position: sticky;
    margin-top: 19px;
    margin-bottom: 19px;
+   display: flex;
+   justify-content: space-between;
  }
 
  .header-login, .header-signup {
@@ -52,7 +55,7 @@
     line-height: 1.75;
     font-weight: 400;
     margin: 0px;
-    transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+    
  }
 
  .main {
@@ -60,9 +63,13 @@
    padding-top: 100px;
    padding-bottom: 100px;
    background-color: rgb(20, 21, 24);
-   background-size: cover;
+   width: 100%;
+   position: absolute;
+   left: 0;
+   justify-content: space-evenly;
  }
 
+ 
  .main-text {
     position: relative;
     margin: 0;
@@ -94,7 +101,8 @@
     left: 40px;
     right: 40px;
     padding-left: 40px;
-    margin-right: 40px;
+    margin-right: 80px;
+    padding-top: 15px;
  }
 
  .get-started {
@@ -164,10 +172,7 @@
    border-top: solid lightgray 1px;
  }
 
- nav.NavBar {
-   display: flex;
-   justify-content: space-between;
- }
+ 
 
  svg {
   width: 100%;
@@ -319,7 +324,9 @@
     font-size: 1rem;
     line-height: 1.5;
     margin: 0px;
-    
+    background: none;
+    border: none;
+    outline: none;
 }
 
 .login-link-text > a, .signup-link-text > a {
@@ -354,4 +361,14 @@
 
 .DemoUser-page {
   text-align: center;
+}
+
+.session-errors {
+  list-style: none;
+  color: rgb(232, 91, 70);
+  text-align: left;
+}
+
+.other-form a:active .session-errors-list {
+  display: none;
 }

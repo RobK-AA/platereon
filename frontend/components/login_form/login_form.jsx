@@ -9,7 +9,7 @@ class LoginForm extends React.Component {
       password: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    
+    this.removeErrors = this.removeErrors.bind(this);
   }
 
   update(field) {
@@ -23,15 +23,16 @@ class LoginForm extends React.Component {
     this.props.submitForm(this.state);
   }
 
-  renderErrors() {
-    
-    
 
-    if (this.props.errors) {
+
+  renderErrors() {
+  
+    if (this.props.errors && this.props.location.pathname === "/login") {
+
       return (
-        <ul>
+        <ul id="session-errors-list">
           {this.props.errors.map((error, i) => (
-            <li key={`error-${i}`}>
+            <li className="session-errors" key={`error-${i}`}>
               {error}
             </li>
           ))}
@@ -41,9 +42,14 @@ class LoginForm extends React.Component {
     
   }
 
+
+  removeErrors() {
+    const errors = document.getElementById('session-errors-list')
+    if (errors) { errors.style.display = "none" };
+  };
+
   render() {
 
-    
 
     return (
       <div className={`${this.props.formType}-form-container`}>
@@ -80,8 +86,10 @@ class LoginForm extends React.Component {
           </div>
         </form>
           <div className="other-form-link">
-            <span className="signup-link-text">New to Platereon? 
-              {this.props.navLink}
+            <span className="signup-link-text" >New to Platereon? 
+              {/* <button className="signup-link-text" onClick={this.removeErrors()}> */}
+                {this.props.navLink}
+                {/* </button> */}
             </span> 
           </div>
       </div>

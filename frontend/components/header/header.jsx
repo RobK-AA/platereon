@@ -20,7 +20,9 @@ class Header extends React.Component {
               <div className="current-user-menu">
                 {currentUser.email}'s Logo
                   <ul>
-                    <li><Link className="header-logout" to="/" onClick={logout}>
+                    <li><Link className="header-menu-creator" to="/communitytopic" >
+                    Become a Creator</Link></li>
+                    <li><Link className="header-menu-logout" to="/" onClick={logout}>
                     Log out</Link></li>
                   </ul>
               </div>
