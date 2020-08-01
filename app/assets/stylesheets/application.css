@@ -249,7 +249,7 @@
 }
 
 
-#password, #email {
+#password, #email, #name, #confirm-password {
     margin-top: 10px;
     resize: none;
     min-width: 0px;
@@ -349,21 +349,31 @@
 .current-user-menu > ul {
   display: none;
   list-style: none;
+  position: absolute;
 }
 
-.current-user-menu:hover > ul {
+.current-user-menu:hover > ul, 
+.current-user-menu:hover > ul:hover {
   display: block;
   position: absolute;
-  text-align: left;
+  float: left;
+  justify-content: left;
   font-weight: 400;
   margin-top: 0;
+  right: 50px;
+  width: fit-content;
+  border: solid lightgray 1px;
+  background-color: white;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 .DemoUser-page {
   text-align: center;
 }
 
-.session-errors {
+.session-errors, .confirm-password-errors {
   list-style: none;
   color: rgb(232, 91, 70);
   text-align: left;

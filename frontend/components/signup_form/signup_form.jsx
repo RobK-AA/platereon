@@ -1,16 +1,17 @@
 import React from 'react';
 
-class LoginForm extends React.Component {
+class SignupForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      name: '',
+      confirmPassword: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.removeErrors = this.removeErrors.bind(this);
-
   }
 
   update(field) {
@@ -20,14 +21,24 @@ class LoginForm extends React.Component {
   }
 
   handleSubmit(e) {
+    const { password, confirmPassword } = this.state;
     e.preventDefault();
-    this.props.submitForm(this.state);
-  }
+    if (password === confirmPassword) {
+      this.props.submitForm(this.state) 
+      } else {
+        return (
+          <div>
+            <ul className='confirm-password-errors'>
+              <alert>Passwords must match</alert>
+            </ul>
+          </div>
+        )
+  
+      }
+  };
+  
 
   renderErrors() {
-
-
-
     if (this.props.errors && this.props.location.pathname === "/signup") {
       return (
         <ul>
@@ -39,8 +50,8 @@ class LoginForm extends React.Component {
         </ul>
       );
     }
-
-  }
+    
+  };
 
   removeErrors() {
     const errors = document.getElementById('session-errors-list')
@@ -56,7 +67,17 @@ class LoginForm extends React.Component {
           <br />
           <div className={`${this.props.formType}-form`}>
             <br />
-            <label htmlFor="password">Email</label>
+            <label htmlFor="name">Name</label>
+              <input
+                id="name"
+                type="text"
+                autoComplete={this.state.name}
+                value={this.state.name}
+                onChange={this.update('name')}
+                className={`${this.props.formType}-input`}
+            />
+            <br />
+            <label htmlFor="email">Email</label>
               <input 
                 id="email"
                 type="text"
@@ -76,7 +97,17 @@ class LoginForm extends React.Component {
                 onChange={this.update('password')}
                 className={`${this.props.formType}-input`}
               />
-            
+
+            <br />
+            <label htmlFor="confirm-password">Confirm Password</label>
+            <input
+              id="confirm-password"
+              type="password"
+              autoComplete={this.state.confirmPassword}
+              value={this.state.confirmPassword}
+              onChange={this.update('confirmPassword')}
+              className={`${this.props.formType}-input`}
+            />
             {this.renderErrors()}
             <br />
             <input className="session-submit" type="submit" value={this.props.formName} />
@@ -93,6 +124,6 @@ class LoginForm extends React.Component {
       </div>
     );
   }
-}
+};
 
-export default LoginForm;
+export default SignupForm;

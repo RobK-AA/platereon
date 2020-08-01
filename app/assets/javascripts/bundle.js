@@ -220,7 +220,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _header_header_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./header/header_container */ "./frontend/components/header/header_container.jsx");
 /* harmony import */ var _user_show_user_show_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./user_show/user_show_container */ "./frontend/components/user_show/user_show_container.jsx");
 /* harmony import */ var _body_body_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./body/body_container */ "./frontend/components/body/body_container.jsx");
-/* harmony import */ var _community_form_community_form_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./community_form/community_form_container */ "./frontend/components/community_form/community_form_container.jsx");
+/* harmony import */ var _community_form_community_form_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./community_form/community_form_container */ "./frontend/components/community_form/community_form_container.jsx");
 
 
 
@@ -253,7 +253,7 @@ var App = function App(_ref) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_3__["ProtectedRoute"], {
     exact: true,
     path: "/communityform",
-    component: _community_form_community_form_container__WEBPACK_IMPORTED_MODULE_10__["default"]
+    component: _community_form_community_form_container__WEBPACK_IMPORTED_MODULE_9__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "login",
     component: _header_header_container__WEBPACK_IMPORTED_MODULE_6__["default"]
@@ -663,9 +663,9 @@ var Header = /*#__PURE__*/function (_React$Component) {
         className: "signed-in-user-nav"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "current-user-menu"
-      }, currentUser.email, "'s Logo", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, currentUser.name, "'s Logo", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "header-menu-creator",
-        to: "/communitytopic"
+        to: "/createform"
       }, "Become a Creator")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "header-menu-logout",
         to: "/",
@@ -1099,27 +1099,29 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var LoginForm = /*#__PURE__*/function (_React$Component) {
-  _inherits(LoginForm, _React$Component);
+var SignupForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(SignupForm, _React$Component);
 
-  var _super = _createSuper(LoginForm);
+  var _super = _createSuper(SignupForm);
 
-  function LoginForm(props) {
+  function SignupForm(props) {
     var _this;
 
-    _classCallCheck(this, LoginForm);
+    _classCallCheck(this, SignupForm);
 
     _this = _super.call(this, props);
     _this.state = {
       email: '',
-      password: ''
+      password: '',
+      name: '',
+      confirmPassword: ''
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.removeErrors = _this.removeErrors.bind(_assertThisInitialized(_this));
     return _this;
   }
 
-  _createClass(LoginForm, [{
+  _createClass(SignupForm, [{
     key: "update",
     value: function update(field) {
       var _this2 = this;
@@ -1131,8 +1133,18 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      var _this$state = this.state,
+          password = _this$state.password,
+          confirmPassword = _this$state.confirmPassword;
       e.preventDefault();
-      this.props.submitForm(this.state);
+
+      if (password === confirmPassword) {
+        this.props.submitForm(this.state);
+      } else {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+          className: "confirm-password-errors"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("alert", null, "Passwords must match")));
+      }
     }
   }, {
     key: "renderErrors",
@@ -1170,7 +1182,16 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
       }, this.props.formName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "".concat(this.props.formType, "-form")
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "password"
+        htmlFor: "name"
+      }, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "name",
+        type: "text",
+        autoComplete: this.state.name,
+        value: this.state.name,
+        onChange: this.update('name'),
+        className: "".concat(this.props.formType, "-input")
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "email"
       }, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "email",
         type: "text",
@@ -1187,6 +1208,15 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
         value: this.state.password,
         onChange: this.update('password'),
         className: "".concat(this.props.formType, "-input")
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "confirm-password"
+      }, "Confirm Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "confirm-password",
+        type: "password",
+        autoComplete: this.state.confirmPassword,
+        value: this.state.confirmPassword,
+        onChange: this.update('confirmPassword'),
+        className: "".concat(this.props.formType, "-input")
       }), this.renderErrors(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "session-submit",
         type: "submit",
@@ -1199,10 +1229,11 @@ var LoginForm = /*#__PURE__*/function (_React$Component) {
     }
   }]);
 
-  return LoginForm;
+  return SignupForm;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (LoginForm);
+;
+/* harmony default export */ __webpack_exports__["default"] = (SignupForm);
 
 /***/ }),
 
@@ -1302,8 +1333,8 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var currentUser = this.props.currentUser;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "".concat(currentUser.email, "-page user-page")
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, currentUser.email, "'s Page! Content Coming Soon!"));
+        className: "".concat(currentUser.id, "-page user-page")
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, currentUser.name, "'s Page! Content Coming Soon!"));
     }
   }]);
 

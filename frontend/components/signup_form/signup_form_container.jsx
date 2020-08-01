@@ -5,9 +5,6 @@ import { signup } from '../../actions/session_actions';
 import SignupForm from './signup_form';
 
 const msp = ({ errors }) => {
-
-  
-
   return {
     errors: errors,
     formType: 'signup',
@@ -17,9 +14,6 @@ const msp = ({ errors }) => {
 };
 
 const mdp = dispatch => {
-
-  
-
   return {
     submitForm: user => dispatch(signup(user)),
   };
