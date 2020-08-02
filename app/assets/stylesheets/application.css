@@ -14,14 +14,49 @@
  *= require_self
  */
 
-
  .NavBar {
    background-color: white;
-   position: sticky;
+   display: block;
+   text-size-adjust: 100%;
+   margin-top: 0;
+   top: 0;
+   width: 100%;
+   z-index: 1;
+   position: absolute;
+   border-bottom: solid lightgray 1px;
+ }
+
+ .NavBar header {
+   background-color: white;
+   position: fixed;
+   left: 0;
+   display: inline-flex;
+   width: 100%;
+   z-index: 2;
+   justify-content: space-between;
+   
+ }
+
+ .NavBar-nav {
+   background-color: white;
+   position: relative;
+   display: inline-flex;
+   width: 100%;
+   justify-content: space-between;
+   align-items: center;
    margin-top: 19px;
    margin-bottom: 19px;
-   display: flex;
-   justify-content: space-between;
+ }
+
+  .NavBar-nav > a {
+    position: relative;
+    left: 16px;
+ }
+
+ .NavBar-login-signup {
+    position: relative;
+    display: inline-block;
+    right: 16px;
  }
 
  .header-login, .header-signup {
@@ -31,6 +66,7 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizelegibility;
     text-decoration: none;
+    
  }
 
  .header-signup {
@@ -47,6 +83,11 @@
    margin-top: 0;
  }
 
+ .main {
+   display: block;
+   
+   width: 100%;
+ }
  .main-description {
     color: white;
     font-family: aktiv-grotesk, sans-serif;
@@ -85,8 +126,8 @@
     width: 50%;
     left: 40px;
     right: 40px;
-    padding-left: 40px;
-    margin-right: 40px;
+    padding-left: 200px;
+    margin-right: 80px;
  }
 
  .main-video {
@@ -100,9 +141,57 @@
    -webkit-font-smoothing: antialiased;  
     left: 40px;
     right: 40px;
-    padding-left: 40px;
+    padding-right: 160px;
+    margin-left: 40px;
     margin-right: 80px;
     padding-top: 15px;
+    -webkit-box-align: center;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+ }
+
+ .video-button {
+    box-shadow: none;
+    position: relative;
+    transform: none;
+    width: 100%;
+    background: none;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+    transition: all 500ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+    cursor: pointer;
+ }
+
+ .inner-video circle {
+    fill: rgb(255, 66, 77);
+    transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+    align-self: center;
+    stroke-width: 1.2px;
+    position: absolute;
+    overflow: hidden;
+    display: inline;
+ }
+
+.inner-video svg{
+    overflow: hidden;
+    align-self: center;
+    fill: transparent;
+    stroke-width: 1.2px;
+    height: 4.8rem;
+    width: 4.8rem;
+    cursor: pointer;
+    position: relative;
+ }
+
+ .inner-video {
+   position: relative;
+   display: inline;
  }
 
  .get-started {
@@ -172,23 +261,20 @@
    border-top: solid lightgray 1px;
  }
 
- 
-
- svg {
-  width: 100%;
-  height: 100%;
- }
 
  .food-video {
    margin: 0;
    padding: 0;
    border: none;
    size: 100%;
+   position: relative;
+   float: left;
  }
 
 .login-form-container, .signup-form-container  {
   display: block;
-  text-align:  center;
+  text-align: center;
+  position: relative;
 }
 
 .login-form-header, .signup-form-header {
@@ -212,6 +298,7 @@
   display: block;
   width: 100%;
   text-align: center;
+  position: relative;
 }
 
 .login-form, .signup-form {
@@ -338,6 +425,7 @@
   margin-top: 22px;
 }
 
+
 .current-user-menu {
   cursor: pointer;
   background-color: rgb(232, 91, 70);
@@ -381,4 +469,14 @@
 
 .other-form a:active .session-errors-list {
   display: none;
+}
+
+Header {
+  position: absolute;
+  border-bottom: solid lightgray 1px;
+}
+
+Body {
+  display: block;
+  margin-top: 68px;
 }

@@ -11,42 +11,47 @@ class Header extends React.Component {
 
     return currentUser ?
       (
-        <div>
-          <nav className='NavBar'>
-            <a href='/'>
-              <img src={window.platereonlogoimg} /> </a>
-            <div className="signed-in-user-nav">
-              
-              <div className="current-user-menu">
-                {currentUser.name}'s Logo
-                  <ul>
-                    <li><Link className="header-menu-creator" to="/createform" >
-                    Become a Creator</Link></li>
-                    <li><Link className="header-menu-logout" to="/" onClick={logout}>
-                    Log out</Link></li>
-                  </ul>
+      
+        <div className='NavBar'>
+          <header>
+            <nav className='NavBar-nav'>
+              <a href='/'>
+                <img src={window.platereonlogoimg} /> </a>
+              <div className="signed-in-user-nav">
+                
+                <div className="current-user-menu">
+                  {currentUser.name}'s Logo
+                    <ul>
+                      <li><Link className="header-menu-creator" to="/createform" >
+                      Become a Creator</Link></li>
+                      <li><Link className="header-menu-logout" to="/" onClick={logout}>
+                      Log out</Link></li>
+                    </ul>
+                </div>
               </div>
-            </div>
-          </nav>
+            </nav>
+          </header>
         </div>
       )
 
       :
 
       (
-        <div>
-          <nav className='NavBar'>
-            <a href='/'>
-              <img src={window.platereonlogoimg} /> </a>
+        <div className='NavBar'>
+          <header>
+            <nav className='NavBar-nav'>
+              <a href='/'>
+                <img src={window.platereonlogoimg} /> </a>
 
-            {(location.pathname === "/login") || (location.pathname === "/signup") ?
-              null :
-             <div className="NavBar-login-signup">
-              <Link className="header-login" to="/login">Log in</Link> 
-              <Link className="header-signup" to="/signup">Create on Platereon</Link>
-             </div>
-            }
-          </nav>
+              {(location.pathname === "/login") || (location.pathname === "/signup") ?
+                null :
+              <div className="NavBar-login-signup">
+                <Link className="header-login" to="/login">Log in</Link> 
+                <Link className="header-signup" to="/signup">Create on Platereon</Link>
+              </div>
+              }
+            </nav>
+          </header>
         </div>
       )
   }

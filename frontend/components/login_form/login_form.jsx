@@ -53,8 +53,9 @@ class LoginForm extends React.Component {
 
     return (
       <div className={`${this.props.formType}-form-container`}>
+        <h3 className={`${this.props.formType}-form-header`} >{this.props.formName}</h3>
         <form onSubmit={this.handleSubmit} className="login-form-box">
-          <h3 className={`${this.props.formType}-form-header`} >{this.props.formName}</h3>
+          
           <br />
           <div className={`${this.props.formType}-form`}>
             <br />

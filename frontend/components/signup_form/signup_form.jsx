@@ -23,7 +23,7 @@ class SignupForm extends React.Component {
   handleSubmit(e) {
     const { password, confirmPassword } = this.state;
     e.preventDefault();
-    if (password === confirmPassword) {
+    if (password === confirmPassword ) {
       this.props.submitForm(this.state) 
       } else {
         return (
@@ -62,8 +62,9 @@ class SignupForm extends React.Component {
 
     return (
       <div className={`${this.props.formType}-form-container`}>
-        <form onSubmit={this.handleSubmit} className="login-form-box">
-          <h3 className={`${this.props.formType}-form-header`} >{this.props.formName}</h3>
+        <h3 className={`${this.props.formType}-form-header`} >{this.props.formName}</h3>
+        <form onSubmit={this.handleSubmit} className="signup-form-box">
+          
           <br />
           <div className={`${this.props.formType}-form`}>
             <br />
@@ -103,8 +104,8 @@ class SignupForm extends React.Component {
             <input
               id="confirm-password"
               type="password"
-              autoComplete={this.state.confirmPassword}
-              value={this.state.confirmPassword}
+              autoComplete={this.state.confirmPassword }
+              value={this.state.confirmPassword }
               onChange={this.update('confirmPassword')}
               className={`${this.props.formType}-input`}
             />

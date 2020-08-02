@@ -26,16 +26,20 @@ class MainPage extends React.Component {
           </div>
         </div>
         <div className="main-video" >
-          {/* <button data-test='video'> */}
+          {/* <button data-test='video' className="video-button"> */}
             <div className="food-video">
-              <img src='https://media.giphy.com/media/3oEjHC7al4GfnudR7y/giphy.gif'/>
-              <span>
-                {/* <svg width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg"> */}
-                  {/* <circle cx="38.5" cy="38.5" r="38.5" data-fill='1'></circle>
-                  <path d="M29.5 26.917L53.25 38 29.5 49.083V26.917z" data-stroke="1"
-                    strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path> */}
-                {/* </svg> */}
-              </span>
+              <img src='https://media.giphy.com/media/3oEjHC7al4GfnudR7y/giphy.gif' />
+              <svg width="100%" height="100%" fill="none" >
+                <circle cx="38.5" cy="38.5" r="38.5" data-fill='1'></circle>
+                <path d="M29.5 26.917L53.25 38 29.5 49.083V26.917z" data-stroke="1"
+                strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"></path> 
+              </svg>
+              <div className="inner-video">
+                <span>
+                  
+                    
+                </span>
+              </div>
             </div>
             <div>
               
