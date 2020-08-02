@@ -320,7 +320,9 @@ var Body = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
           location = _this$props.location;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, location.pathname === "/login" || location.pathname === "/signup" ? null : currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_show_user_show_container__WEBPACK_IMPORTED_MODULE_2__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_main_page_main_page_container__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "outer-main"
+      }, location.pathname === "/login" || location.pathname === "/signup" ? null : currentUser ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_show_user_show_container__WEBPACK_IMPORTED_MODULE_2__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_main_page_main_page_container__WEBPACK_IMPORTED_MODULE_1__["default"], null));
     }
   }]);
 

@@ -13,7 +13,7 @@ class Body extends React.Component {
 
     return (
 
-      <div>
+      <div className="outer-main">
         {(location.pathname === "/login") || (location.pathname === "/signup") ?
         null :
         currentUser ? <UserShowContainer /> : <MainPageContainer />

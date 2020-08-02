@@ -24,6 +24,7 @@
    z-index: 1;
    position: absolute;
    border-bottom: solid lightgray 1px;
+   overflow: hidden;
  }
 
  .NavBar header {
@@ -83,11 +84,6 @@
    margin-top: 0;
  }
 
- .main {
-   display: block;
-   
-   width: 100%;
- }
  .main-description {
     color: white;
     font-family: aktiv-grotesk, sans-serif;
@@ -99,6 +95,22 @@
     
  }
 
+ body {
+   left: 0;
+   right: 0;
+   width: 100%;
+   margin: 0;
+ }
+
+ .outer-main {
+  position: relative;
+  float: left;
+  display: flex;
+  width: 100%;
+  left: 0;
+  overflow: visible;
+}
+
  .main {
    display: flex;
    padding-top: 100px;
@@ -106,17 +118,17 @@
    background-color: rgb(20, 21, 24);
    width: 100%;
    position: absolute;
-   left: 0;
    justify-content: space-evenly;
+   overflow: hidden;
+   
  }
 
  
  .main-text {
     position: relative;
-    margin: 0;
     color: #ff0000ee;
     font-family: Walsheim, sans-serif;
-    position: relative;
+    overflow: visible;
     text-align: left;
     font-weight: 700 ;
     font-size: 1.75rem ;
@@ -124,10 +136,11 @@
     -webkit-font-smoothing: antialiased;  
     background-color: rgb(20, 21, 24);
     width: 50%;
-    left: 40px;
+    margin-left: 240px;
     right: 40px;
-    padding-left: 200px;
+    
     margin-right: 80px;
+    display: inline-block;
  }
 
  .main-video {
@@ -140,7 +153,7 @@
    height: 100%;
    -webkit-font-smoothing: antialiased;  
     left: 40px;
-    right: 40px;
+    
     padding-right: 160px;
     margin-left: 40px;
     margin-right: 80px;
@@ -192,6 +205,7 @@
  .inner-video {
    position: relative;
    display: inline;
+   overflow: hidden;
  }
 
  .get-started {
@@ -269,12 +283,14 @@
    size: 100%;
    position: relative;
    float: left;
+   
  }
 
 .login-form-container, .signup-form-container  {
   display: block;
   text-align: center;
   position: relative;
+  overflow: hidden;
 }
 
 .login-form-header, .signup-form-header {
@@ -292,6 +308,7 @@
     margin-inline-end: 0px;
     padding-top: 21px;
     display: block;
+    overflow: hidden;
 }
 
 .login-form-box, .signup-form-box {
@@ -299,6 +316,7 @@
   width: 100%;
   text-align: center;
   position: relative;
+  overflow: hidden;
 }
 
 .login-form, .signup-form {
@@ -474,9 +492,14 @@
 Header {
   position: absolute;
   border-bottom: solid lightgray 1px;
+  width: 100%;
 }
 
 Body {
   display: block;
-  margin-top: 68px;
+  margin-top: 55px;
+  width: 100%;
+  left: 0;
+  
 }
+
