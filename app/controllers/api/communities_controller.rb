@@ -27,6 +27,7 @@ class Api::CommunitiesController < ApplicationController
       short_description: params[:community][:short_description],
       plural: params[:community][:plural]
     )
+
     if @community.update
       render "api/communities/show"
     else

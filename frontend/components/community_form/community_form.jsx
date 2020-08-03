@@ -105,11 +105,17 @@ class CommunityForm extends React.Component {
                     <div className="inner-plural-div">
                       <div className="is-div">
                         <input name="isOrAre" id="is-creating" type="radio" readOnly className="is-creating" value="false" />
-                        <label htmlFor="">{`${this.props.currentUser.name} is creating`}</label>
+
+                        <div className="is-label">
+                          <label htmlFor="">{`${this.props.currentUser.name}`}</label> <span className="isare">is creating</span>
+                        </div>
                       </div>
                       <div className="are-div">
                         <input name="isOrAre" id="are-creating" type="radio" readOnly className="are-creating" value="true" />
-                        <label htmlFor="">{`${this.props.currentUser.name} are creating`}</label>
+                        <div className="are-label">
+
+                          <label>{`${this.props.currentUser.name}`}</label> <span className="isare">are creating</span>
+                        </div>
                       </div>
                     </div>
                   </fieldset>
