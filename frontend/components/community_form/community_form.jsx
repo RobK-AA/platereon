@@ -12,7 +12,7 @@ class CommunityForm extends React.Component {
       silverPerks: '',
       goldPerks: '',
       shortDesc: '',
-      isOrAre: 'is'
+      isPlural: false
     };
   };
 
@@ -77,31 +77,44 @@ class CommunityForm extends React.Component {
                   type="text"
                   id="name"
                   autoComplete={this.state.name}
-                  value={this.state.name}
+                  defaultValue={`${this.props.currentUser.name}`}
                   onChange={this.update('name')}
                   className={`${this.props.formType}-name-input`}
                     />
               </div>
               <div className="short-desc-div">
-                <label className="create-form-short-desc">What are you creating?</label>
-                <span>Required</span>
+                <div className="short-desc-col">
+                  <label className="create-form-short-desc">What are you creating?</label>
+                  <span>Required</span>
+                </div>
                 <input
                   type="text"
                   id="short-desc"
                   autoComplete={this.state.shortDesc}
-                  value={this.state.shortDesc}
+                  defaultValue={`Cooking with ${this.props.currentUser.name} tutorials, pasta recipes, etc.`}
                   onChange={this.update('shortDesc')}
-                  classshortDesc={`${this.props.formType}-short-desc-input`}
+                  className={`${this.props.formType}-short-desc-input`}
                 />
               </div>
-              <label htmlFor="">Which sounds more correct?</label>
-              <input
-                type="radio"
-                id="short-desc"
-                value="hi"
-                onChange={this.update('isOrAre')}
-                classshortDesc={`${this.props.formType}-isorare-input`}
-              />
+              <div className="plural-div">
+                <div className="plural-label-div">
+                  <label className="plural-label">Which sounds more correct?</label>
+                </div>
+                <div className="plural-radio-div">
+                  <fieldset name="isPlural">
+                    <div className="inner-plural-div">
+                      <div className="is-div">
+                        <input name="isOrAre" id="is-creating" type="radio" readOnly className="is-creating" value="false" />
+                        <label htmlFor="">{`${this.props.currentUser.name} is creating`}</label>
+                      </div>
+                      <div className="are-div">
+                        <input name="isOrAre" id="are-creating" type="radio" readOnly className="are-creating" value="true" />
+                        <label htmlFor="">{`${this.props.currentUser.name} are creating`}</label>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
               <input type="submit" id="submit-form" />
             </form>
           </div>

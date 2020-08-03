@@ -2,9 +2,8 @@ import { connect } from "react-redux";
 import CommunityForm from './community_form';
 import { createCommunity } from '../../actions/community_actions'
 
-const msp = ({ name, creatorId }) => ({
-  name,
-  creatorId
+const msp = state => ({
+  currentUser: state.entities.users[state.session.id]
 });
 
 const mdp = dispatch => ({

@@ -424,7 +424,7 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       silverPerks: '',
       goldPerks: '',
       shortDesc: '',
-      isOrAre: 'is'
+      isPlural: false
     };
     return _this;
   }
@@ -494,29 +494,57 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
         type: "text",
         id: "name",
         autoComplete: this.state.name,
-        value: this.state.name,
+        defaultValue: "".concat(this.props.currentUser.name),
         onChange: this.update('name'),
         className: "".concat(this.props.formType, "-name-input")
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "short-desc-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "short-desc-col"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "create-form-short-desc"
-      }, "What are you creating?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Required"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "What are you creating?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Required")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         id: "short-desc",
         autoComplete: this.state.shortDesc,
-        value: this.state.shortDesc,
+        defaultValue: "Cooking with ".concat(this.props.currentUser.name, " tutorials, pasta recipes, etc."),
         onChange: this.update('shortDesc'),
-        classshortDesc: "".concat(this.props.formType, "-short-desc-input")
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: ""
-      }, "Which sounds more correct?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "".concat(this.props.formType, "-short-desc-input")
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "plural-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "plural-label-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "plural-label"
+      }, "Which sounds more correct?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "plural-radio-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("fieldset", {
+        name: "isPlural"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "inner-plural-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "is-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "isOrAre",
+        id: "is-creating",
         type: "radio",
-        id: "short-desc",
-        value: "hi",
-        onChange: this.update('isOrAre'),
-        classshortDesc: "".concat(this.props.formType, "-isorare-input")
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        readOnly: true,
+        className: "is-creating",
+        value: "false"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: ""
+      }, "".concat(this.props.currentUser.name, " is creating"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "are-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "isOrAre",
+        id: "are-creating",
+        type: "radio",
+        readOnly: true,
+        className: "are-creating",
+        value: "true"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: ""
+      }, "".concat(this.props.currentUser.name, " are creating"))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "submit",
         id: "submit-form"
       }))));
@@ -547,12 +575,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var msp = function msp(_ref) {
-  var name = _ref.name,
-      creatorId = _ref.creatorId;
+var msp = function msp(state) {
   return {
-    name: name,
-    creatorId: creatorId
+    currentUser: state.entities.users[state.session.id]
   };
 };
 

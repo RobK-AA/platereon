@@ -23,7 +23,9 @@ class Api::CommunitiesController < ApplicationController
       description: params[:community][:description],
       bronze_perks: params[:community[:bronze_perks],
       silver_perks: params[:community][:silver_perks],
-      gold_perks: params[:community][:gold_perks]
+      gold_perks: params[:community][:gold_perks],
+      short_description: params[:community][:short_description],
+      plural: params[:community][:plural]
     )
     if @community.update
       render "api/communities/show"
@@ -41,6 +43,8 @@ class Api::CommunitiesController < ApplicationController
       :creator_id,
       :bronze_perks,
       :silver_perks,
-      :gold_perks) 
+      :gold_perks,
+      :short_description,
+      :plural) 
   end
 end
