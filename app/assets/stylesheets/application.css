@@ -45,8 +45,8 @@
    width: 100%;
    justify-content: space-between;
    align-items: center;
-   margin-top: 19px;
-   margin-bottom: 19px;
+   margin-top: 17px;
+   margin-bottom: 17px;
  }
 
   .NavBar-nav > a {
@@ -105,10 +105,11 @@
  .outer-main {
   position: relative;
   float: left;
-  display: flex;
+  display: block;
   width: 100%;
   left: 0;
   overflow: visible;
+  text-align: center;
 }
 
  .main {
@@ -126,7 +127,7 @@
  
  .main-text {
     position: relative;
-    color: #ff0000ee;
+    color: rgb(255, 66, 77);
     font-family: Walsheim, sans-serif;
     overflow: visible;
     text-align: left;
@@ -137,9 +138,7 @@
     background-color: rgb(20, 21, 24);
     width: 50%;
     margin-left: 240px;
-    right: 40px;
     
-    margin-right: 80px;
     display: inline-block;
  }
 
@@ -209,7 +208,7 @@
  }
 
  .get-started {
-    background-color:  #ff0000ee;;
+    background-color:  rgb(255, 66, 77);
     -webkit-box-align: center;
     align-items: center;
     box-sizing: border-box;
@@ -225,7 +224,7 @@
     border-radius: 9999px;
     border-width: 1px;
     border-style: solid;
-    border-color: #ff0000ee;
+    border-color: rgb(255, 66, 77);
     padding: 0.78125rem 1.5rem;
     text-decoration: none;
     color: white;
@@ -237,7 +236,7 @@
  }
 
  .demo-button {
-   background-color:  #ff0000ee;;
+   background-color:  rgb(255, 66, 77);
     -webkit-box-align: center;
     align-items: center;
     box-sizing: border-box;
@@ -255,7 +254,7 @@
     border-left: 5px;
     border-right: 5px;
     border-style: solid;
-    border-color: #ff0000ee;
+    border-color: rgb(255, 66, 77);
     margin-bottom: 3px;
     text-decoration: none;
     padding: 0;
@@ -266,8 +265,7 @@
   margin-top: 40px;
  }
 
- .user-page {
-   border-top: solid lightgray 1px;
+ .user-page, .Demo-page {
    text-align: center;
  }
 
@@ -447,9 +445,12 @@
 .current-user-menu {
   cursor: pointer;
   background-color: rgb(232, 91, 70);
-  border-radius: 10%;
+  border-radius: 5%;
+  padding: 5px;
   font-weight: 700;
   position: relative;
+  margin-right: 17px;
+
 }
 
 .current-user-menu > ul {
@@ -475,9 +476,7 @@
   padding: 0;
 }
 
-.DemoUser-page {
-  text-align: center;
-}
+
 
 .session-errors, .confirm-password-errors {
   list-style: none;

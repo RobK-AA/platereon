@@ -9,7 +9,7 @@ class UserShow extends React.Component {
     const { currentUser } = this.props;
 
     return (
-      <div className={`${currentUser.id}-page user-page`}>
+      <div className={`${currentUser.name}-page user-page`}>
         <h2>{currentUser.name}'s Page! Content Coming Soon!</h2>
       </div>
     );
