@@ -1,0 +1,1 @@
+json.extract! user, :id, :creator_id, :name, :description, :bronze_perks, :silver_perks, :gold_perks

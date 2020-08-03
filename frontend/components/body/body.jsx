@@ -1,6 +1,7 @@
 import React from 'react';
 import MainPageContainer from '../main_page/main_page_container';
 import UserShowContainer from '../user_show/user_show_container';
+import { ProtectedRoute } from '../../util/route_util';
 
 class Body extends React.Component {
 
@@ -16,7 +17,7 @@ class Body extends React.Component {
       <div className="outer-main">
         {(location.pathname === "/login") || (location.pathname === "/signup") ?
         null :
-        currentUser ? <UserShowContainer /> : <MainPageContainer />
+        currentUser ? <ProtectedRoute component={UserShowContainer} /> : <MainPageContainer />
         }
       </div>
     )

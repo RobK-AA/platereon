@@ -1,4 +1,5 @@
 import React from 'react';
+import CommunityFormContainer from '../community_form/community_form_container'
 
 class UserShow extends React.Component {
   constructor(props) {
@@ -6,12 +7,19 @@ class UserShow extends React.Component {
   };
 
   render () {
-    const { currentUser } = this.props;
+    const { currentUser, location } = this.props;
 
-    return (
-      <div className={`${currentUser.name}-page user-page`}>
-        <h2>{currentUser.name}'s Page! Content Coming Soon!</h2>
+    return (location.pathname === "/createform") ?
+      (<CommunityFormContainer />) :
+
+      (<div className={`${currentUser.name}-page user-page`}>
+       
+          <div>
+            <h2>{currentUser.name}'s Page! Content Coming Soon!</h2>
+          </div>
+      
       </div>
+      
     );
   }
 };

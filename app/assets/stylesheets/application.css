@@ -255,9 +255,10 @@
     border-right: 5px;
     border-style: solid;
     border-color: rgb(255, 66, 77);
-    margin-bottom: 3px;
+    margin-bottom: 2px;
     text-decoration: none;
-    padding: 0;
+    padding-left: 15px;
+    padding-right: 15px;
     left: 20px;
  }
 
@@ -267,10 +268,6 @@
 
  .user-page, .Demo-page {
    text-align: center;
- }
-
- .login, .signup {
-   border-top: solid lightgray 1px;
  }
 
 
@@ -299,7 +296,6 @@
     font-weight: 700;
     font-size: 21px;
     line-height: 1.25;
-    border-top: solid lightgray 1px;
     margin-block-start: 0.67em;
     margin-block-end: 0.67em;
     margin-inline-start: 0px;
@@ -502,3 +498,89 @@ Body {
   
 }
 
+.create-form {
+  -webkit-box-align: center;
+    align-items: center;
+    align-content: flex-start;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+    width: 100%;
+    padding-top: 2rem;
+    padding-right: 0rem;
+    padding-bottom: 0rem;
+    padding-left: 0rem;
+    margin-top: 0rem;
+    margin-right: 0rem;
+    margin-bottom: 0rem;
+    margin-left: 0rem;
+    transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+    align-items: space-between;
+}
+
+.create-form-nav {
+    box-sizing: border-box;
+    display: flex;
+    padding-top: 0rem;
+    padding-right: 0rem;
+    padding-bottom: 1rem;
+    padding-left: 0rem;
+    margin-top: 0rem;
+    margin-right: 0rem;
+    margin-left: 0rem;
+    margin-bottom: -1px;
+    transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+    border-bottom: 1px solid lightgray;
+    align-items: center;
+    justify-content: center;
+    color: rgb(106, 103, 95);
+    font-family: aktiv-grotesk, sans-serif;
+}
+
+.create-form-nav-left {
+  justify-content: flex-start;
+  display: block;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.create-form-nav-left > div, .create-form-nav-right > button {
+  display: inline-block;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.create-form-nav-right {
+  justify-content: flex-end;
+  -webkit-box-align: baseline;
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    padding-top: 0rem;
+    padding-right: 0rem;
+    padding-bottom: 0rem;
+    padding-left: 0rem;
+    margin-top: -0.5rem;
+    margin-right: 0rem;
+    margin-bottom: 0rem;
+    margin-left: 0.5rem;
+    transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+}
+
+.create-form-nav-right > button {
+  align-items: center;
+}
+.create-form-launch {
+  justify-content: flex-end;
+  display: block;
+}
