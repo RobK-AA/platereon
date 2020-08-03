@@ -422,7 +422,9 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       creatorId: '',
       bronzePerks: '',
       silverPerks: '',
-      goldPerks: ''
+      goldPerks: '',
+      shortDesc: '',
+      isOrAre: 'is'
     };
     return _this;
   }
@@ -469,9 +471,55 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
         className: "create-form-nav-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-form-launch"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "submit"
-      }, "Launch")))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        type: "submit",
+        htmlFor: "submit-form"
+      }, "Launch")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-form-intro"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "create-form-basics-tiers"
+      }, "Basics and Tiers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "create-form-set-details"
+      }, "Set your creator details and choose what to offer your subscribers")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-form-case"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "name-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "name-col"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "create-form-name"
+      }, "Name of Platereon page"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Required")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        id: "name",
+        autoComplete: this.state.name,
+        value: this.state.name,
+        onChange: this.update('name'),
+        className: "".concat(this.props.formType, "-name-input")
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "short-desc-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "create-form-short-desc"
+      }, "What are you creating?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Required"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        id: "short-desc",
+        autoComplete: this.state.shortDesc,
+        value: this.state.shortDesc,
+        onChange: this.update('shortDesc'),
+        classshortDesc: "".concat(this.props.formType, "-short-desc-input")
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: ""
+      }, "Which sounds more correct?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "radio",
+        id: "short-desc",
+        value: "hi",
+        onChange: this.update('isOrAre'),
+        classshortDesc: "".concat(this.props.formType, "-isorare-input")
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "submit",
+        id: "submit-form"
+      }))));
     }
   }]);
 
