@@ -121,6 +121,30 @@ class CommunityForm extends React.Component {
                   </fieldset>
                 </div>
               </div>
+              <div className="outer-about-div">
+                <div className="about-div">
+                  <div className="inner-about-div">
+                    <span className="about-span">About your Platereon page</span>
+                    <div className="about-required">Required</div>
+                    <div className="about-description-div">
+                      <p className="about-description">This is the first thing potential patrons will see 
+                        when they land on your page, so make sure you paint a 
+                        compelling picture of how they can join you on this journey.
+                      </p>
+                    </div>
+                    <div className="about-input">
+                      <div className="about-editor-container">
+                        <div className="editor-box">
+                          <div contentEditable="true" dir="ltr" ></div>
+                          <textarea name="" id="" cols="30" rows="10"></textarea> 
+
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <input type="submit" id="submit-form" />
             </form>
           </div>

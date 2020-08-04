@@ -6,6 +6,7 @@ import SessionErrorsReducer from './session_errors_reducer';
 
 
 
+
 const RootReducer = combineReducers({
   entities: EntitiesReducer,
   session: SessionReducer,
