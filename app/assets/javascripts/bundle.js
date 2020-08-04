@@ -551,6 +551,48 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "".concat(this.props.currentUser.name)), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "isare"
       }, "are creating"))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "bronze-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "bronze-col"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "create-form-short-desc"
+      }, "What are your perks for Bronze tier subscribers?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        id: "short-desc",
+        autoComplete: this.state.bronzePerks,
+        defaultValue: "Subscriber-only posts and messages",
+        onChange: this.update('bronzePerks'),
+        className: "bronze-input"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "silver-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "silver-col"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "create-form-short-desc"
+      }, "What are your perks for Silver tier subscribers?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        id: "short-desc",
+        autoComplete: this.state.silverPerks,
+        defaultValue: "Early access to content, subscriber-only voting power, all Bronze perks",
+        onChange: this.update('silverPerks'),
+        className: "silver-input"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "gold-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "gold-col"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "create-form-short-desc"
+      }, "What are your perks for Gold tier subscribers?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        id: "short-desc",
+        autoComplete: this.state.goldPerks,
+        defaultValue: "Full library access plus all Silver perks",
+        onChange: this.update('goldPerks'),
+        className: "gold-input"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "submit",
+        id: "submit-form"
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "outer-about-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "about-div"
@@ -564,7 +606,7 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
         className: "about-description-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "about-description"
-      }, "This is the first thing potential patrons will see when they land on your page, so make sure you paint a compelling picture of how they can join you on this journey.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "This is the first thing potential supporters will see when they land on your page, so make sure you cook up a delicious description of how they can join you on this adventure.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "about-input"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "about-editor-container"
@@ -574,14 +616,12 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
         contentEditable: "true",
         dir: "ltr"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        name: "",
-        id: "",
+        name: "about",
+        id: "about",
         cols: "30",
-        rows: "10"
-      }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "submit",
-        id: "submit-form"
-      }))));
+        rows: "10",
+        className: "about-textarea"
+      }))))))));
     }
   }]);
 

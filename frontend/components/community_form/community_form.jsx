@@ -121,34 +121,71 @@ class CommunityForm extends React.Component {
                   </fieldset>
                 </div>
               </div>
-              <div className="outer-about-div">
-                <div className="about-div">
-                  <div className="inner-about-div">
-                    <span className="about-span">About your Platereon page</span>
-                    <div className="about-required">Required</div>
-                    <div className="about-description-div">
-                      <p className="about-description">This is the first thing potential patrons will see 
-                        when they land on your page, so make sure you paint a 
-                        compelling picture of how they can join you on this journey.
+              <div className="bronze-div">
+                <div className="bronze-col">
+                  <label className="create-form-short-desc">What are your perks for Bronze tier subscribers?</label>
+                </div>
+                <input
+                  type="text"
+                  id="short-desc"
+                  autoComplete={this.state.bronzePerks}
+                  defaultValue="Subscriber-only posts and messages"
+                  onChange={this.update('bronzePerks')}
+                  className="bronze-input"
+                />
+              </div>
+              <div className="silver-div">
+                <div className="silver-col">
+                  <label className="create-form-short-desc">What are your perks for Silver tier subscribers?</label>
+                </div>
+                <input
+                  type="text"
+                  id="short-desc"
+                  autoComplete={this.state.silverPerks}
+                  defaultValue="Early access to content, subscriber-only voting power, all Bronze perks"
+                  onChange={this.update('silverPerks')}
+                  className="silver-input"
+                />
+              </div>
+              <div className="gold-div">
+                <div className="gold-col">
+                  <label className="create-form-short-desc">What are your perks for Gold tier subscribers?</label>
+                </div>
+                <input
+                  type="text"
+                  id="short-desc"
+                  autoComplete={this.state.goldPerks}
+                  defaultValue="Full library access plus all Silver perks"
+                  onChange={this.update('goldPerks')}
+                  className="gold-input"
+                />
+              </div>
+              <input type="submit" id="submit-form" />
+            </form>
+            
+          </div>
+          <div className="outer-about-div">
+            <div className="about-div">
+              <div className="inner-about-div">
+                <span className="about-span">About your Platereon page</span>
+                <div className="about-required">Required</div>
+                <div className="about-description-div">
+                  <p className="about-description">This is the first thing potential supporters will see
+                  when they land on your page, so make sure you cook up a delicious
+                  description of how they can join you on this adventure.
                       </p>
-                    </div>
-                    <div className="about-input">
-                      <div className="about-editor-container">
-                        <div className="editor-box">
-                          <div contentEditable="true" dir="ltr" ></div>
-                          <textarea name="" id="" cols="30" rows="10"></textarea> 
-
-                        </div>
-
-                      </div>
+                </div>
+                <div className="about-input">
+                  <div className="about-editor-container">
+                    <div className="editor-box">
+                      <div contentEditable="true" dir="ltr" ></div>
+                      <textarea name="about" id="about" cols="30" rows="10" className="about-textarea"></textarea>
                     </div>
                   </div>
                 </div>
               </div>
-              <input type="submit" id="submit-form" />
-            </form>
+            </div>
           </div>
-          
         </div>
       )
     }
