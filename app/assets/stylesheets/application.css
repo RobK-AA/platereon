@@ -896,6 +896,31 @@ html {
   left: -20px;
 }
 
+.is-creating, .are-creating {
+  display: inline-block;
+  transform: scale(1.5);
+  position: relative;
+  justify-content: space-between;
+}
+
+.is-label, .are-label {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 10px;
+  left: 12px
+}
+
+.isare {
+  font-weight: 700 !important;
+  color: rgb(36, 30, 18) !important;
+    font-family: aktiv-grotesk, sans-serif !important;
+    position: relative;
+}
+
+.inner-plural-div input {
+  cursor: pointer;
+}
+
 .outer-about-div {
     box-sizing: border-box;
     padding-top: 0rem;
