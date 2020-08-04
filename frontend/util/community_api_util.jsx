@@ -1,3 +1,9 @@
+export const fetchCommunities = () => (
+  $.ajax({
+    url: 'api/communities/'
+  })
+);
+
 export const fetchCommunity = communityId => (
   $.ajax({
     url: `api/communities/${communityId}`

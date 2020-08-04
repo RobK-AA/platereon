@@ -14,7 +14,7 @@ import LogInFormContainer from './login_form/login_form_container';
 import HeaderContainer from './header/header_container';
 import UserShowContainer from './user_show/user_show_container';
 import BodyContainer from './body/body_container';
-import CommunityFormContainer from './community_form/community_form_container';
+import CommunityContainer from './community/community_container';
 
 const App = ({ currentUser }) => (
   <div>
@@ -27,6 +27,7 @@ const App = ({ currentUser }) => (
       <ProtectedRoute exact path="/users/:userId" component={UserShowContainer} />
       {/* <ProtectedRoute exact path="/createform" component={CommunityFormContainer} /> */}
       <Route path='login' component={HeaderContainer}/>
+      <Route path='community' component={CommunityContainer} />
       {/* <Route path='createform' component={UserShowContainer} /> */}
     </Switch> 
   </div>

@@ -90,23 +90,40 @@
 /*!***********************************************!*\
   !*** ./frontend/actions/community_actions.js ***!
   \***********************************************/
-/*! exports provided: RECEIVE_COMMUNITY, receiveCommunity, fetchCommunity, createCommunity, updateCommunity */
+/*! exports provided: RECEIVE_COMMUNITIES, RECEIVE_COMMUNITY, receiveCommunities, receiveCommunity, fetchCommunities, fetchCommunity, createCommunity, updateCommunity */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COMMUNITIES", function() { return RECEIVE_COMMUNITIES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COMMUNITY", function() { return RECEIVE_COMMUNITY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCommunities", function() { return receiveCommunities; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCommunity", function() { return receiveCommunity; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCommunities", function() { return fetchCommunities; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCommunity", function() { return fetchCommunity; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCommunity", function() { return createCommunity; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCommunity", function() { return updateCommunity; });
 /* harmony import */ var _util_community_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/community_api_util */ "./frontend/util/community_api_util.jsx");
 
+var RECEIVE_COMMUNITIES = 'RECEIVE_COMMUNITIES';
 var RECEIVE_COMMUNITY = 'RECEIVE_COMMUNITY';
+var receiveCommunities = function receiveCommunities(communities) {
+  return {
+    type: RECEIVE_COMMUNITIES,
+    communities: communities
+  };
+};
 var receiveCommunity = function receiveCommunity(community) {
   return {
     type: RECEIVE_COMMUNITY,
     community: community
+  };
+};
+var fetchCommunities = function fetchCommunities() {
+  return function (dispatch) {
+    return _util_community_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchCommunities"]().then(function (communities) {
+      return dispatch(receiveCommunities(communities));
+    });
   };
 };
 var fetchCommunity = function fetchCommunity(communityId) {
@@ -220,7 +237,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _header_header_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./header/header_container */ "./frontend/components/header/header_container.jsx");
 /* harmony import */ var _user_show_user_show_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./user_show/user_show_container */ "./frontend/components/user_show/user_show_container.jsx");
 /* harmony import */ var _body_body_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./body/body_container */ "./frontend/components/body/body_container.jsx");
-/* harmony import */ var _community_form_community_form_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./community_form/community_form_container */ "./frontend/components/community_form/community_form_container.jsx");
+/* harmony import */ var _community_community_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./community/community_container */ "./frontend/components/community/community_container.jsx");
 
 
 
@@ -253,6 +270,9 @@ var App = function App(_ref) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "login",
     component: _header_header_container__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    path: "community",
+    component: _community_community_container__WEBPACK_IMPORTED_MODULE_9__["default"]
   })));
 };
 
@@ -368,6 +388,93 @@ var mdp = function mdp(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/community/community.jsx":
+/*!*****************************************************!*\
+  !*** ./frontend/components/community/community.jsx ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var Community = /*#__PURE__*/function (_React$Component) {
+  _inherits(Community, _React$Component);
+
+  var _super = _createSuper(Community);
+
+  function Community() {
+    _classCallCheck(this, Community);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(Community, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This is a community page"));
+    }
+  }]);
+
+  return Community;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Community);
+
+/***/ }),
+
+/***/ "./frontend/components/community/community_container.jsx":
+/*!***************************************************************!*\
+  !*** ./frontend/components/community/community_container.jsx ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _community__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./community */ "./frontend/components/community/community.jsx");
+/* harmony import */ var _actions_community_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/community_actions */ "./frontend/actions/community_actions.js");
+
+
+
+
+var msp = function msp(state, ownProps) {
+  return {
+    currentUser: state.entities.users[state.session.id],
+    community: state.entities.communities[ownProps.match.params.communityId]
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp)(_community__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
 /***/ "./frontend/components/community_form/community_form.jsx":
 /*!***************************************************************!*\
   !*** ./frontend/components/community_form/community_form.jsx ***!
@@ -379,6 +486,8 @@ var mdp = function mdp(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _community_community_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../community/community_container */ "./frontend/components/community/community_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -405,6 +514,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
 var CommunityForm = /*#__PURE__*/function (_React$Component) {
   _inherits(CommunityForm, _React$Component);
 
@@ -416,26 +527,25 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, CommunityForm);
 
     _this = _super.call(this, props);
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleOptionChange = _this.handleOptionChange.bind(_assertThisInitialized(_this));
+    _this.redirectToCommunity = _this.redirectToCommunity.bind(_assertThisInitialized(_this));
+    _this.copyContent = _this.copyContent.bind(_assertThisInitialized(_this));
+    _this.isChecked = _this.isChecked.bind(_assertThisInitialized(_this));
     _this.state = {
-      name: '',
-      description: '',
-      creatorId: '',
-      bronzePerks: '',
-      silverPerks: '',
-      goldPerks: '',
-      shortDesc: '',
+      name: _this.props.currentUser.name,
+      description: 'A page for supporters of all my delicious culinary creations!',
+      creatorId: _this.props.currentUser.id,
+      bronzePerks: 'Subscriber-only posts and messages',
+      silverPerks: 'Early access to content, subscriber-only voting power, all Bronze perks',
+      goldPerks: 'Full library access plus all Silver perks',
+      shortDesc: "Cooking with ".concat(_this.props.currentUser.name, " tutorials, pasta recipes, etc."),
       isPlural: false
     };
     return _this;
   }
 
   _createClass(CommunityForm, [{
-    key: "handleSubmit",
-    value: function handleSubmit(e) {
-      e.preventDefault();
-      this.props.submitCommunity(this.state);
-    }
-  }, {
     key: "update",
     value: function update(field) {
       var _this2 = this;
@@ -443,6 +553,51 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       return function (e) {
         return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
       };
+    }
+  }, {
+    key: "handleOptionChange",
+    value: function handleOptionChange(e) {
+      var value = e.target.value;
+      this.setState(_defineProperty({}, 'isPlural', value));
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      var formData = {
+        name: this.state.name,
+        description: this.state.description,
+        creator_id: this.state.creatorId,
+        bronze_perks: this.state.bronzePerks,
+        silver_perks: this.state.silverPerks,
+        gold_perks: this.state.goldPerks,
+        short_description: this.state.shortDesc,
+        plural: this.state.isPlural
+      };
+
+      if (this.props.submitCommunity(formData)) {
+        return this.redirectToCommunity();
+      }
+    }
+  }, {
+    key: "redirectToCommunity",
+    value: function redirectToCommunity() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
+        to: "/community/".concat(this.state.name)
+      });
+    }
+  }, {
+    key: "isChecked",
+    value: function isChecked() {
+      if (this.state.isPlural === false) {
+        return true;
+      }
+    }
+  }, {
+    key: "copyContent",
+    value: function copyContent() {
+      document.getElementById("textdiv").value = document.getElementById("about").innerHTML;
+      return true;
     }
   }, {
     key: "render",
@@ -471,9 +626,9 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
         className: "create-form-nav-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-form-launch"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        type: "submit",
-        htmlFor: "submit-form"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        form: "community-form",
+        type: "submit"
       }, "Launch")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-form-intro"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
@@ -483,7 +638,8 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       }, "Set your creator details and choose what to offer your subscribers")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-form-case"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit
+        id: "community-form",
+        onSubmit: this.copyContent && this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "name-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -496,7 +652,7 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
         autoComplete: this.state.name,
         defaultValue: "".concat(this.props.currentUser.name),
         onChange: this.update('name'),
-        className: "".concat(this.props.formType, "-name-input")
+        className: "name-input"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "short-desc-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -509,7 +665,7 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
         autoComplete: this.state.shortDesc,
         defaultValue: "Cooking with ".concat(this.props.currentUser.name, " tutorials, pasta recipes, etc."),
         onChange: this.update('shortDesc'),
-        className: "".concat(this.props.formType, "-short-desc-input")
+        className: "short-desc-input"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "plural-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -525,6 +681,8 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "is-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        checked: this.isChecked(),
+        onChange: this.handleOptionChange,
         name: "isOrAre",
         id: "is-creating",
         type: "radio",
@@ -540,6 +698,7 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       }, "is creating"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "are-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.handleOptionChange,
         name: "isOrAre",
         id: "are-creating",
         type: "radio",
@@ -589,10 +748,7 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
         defaultValue: "Full library access plus all Silver perks",
         onChange: this.update('goldPerks'),
         className: "gold-input"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "submit",
-        id: "submit-form"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "outer-about-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "about-div"
@@ -614,14 +770,19 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
         className: "editor-box"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         contentEditable: "true",
+        id: "textdiv",
+        type: "submit",
         dir: "ltr"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        onChange: this.update("description"),
         name: "about",
         id: "about",
-        cols: "30",
-        rows: "10",
-        className: "about-textarea"
-      }))))))));
+        className: "about-textarea",
+        defaultValue: "A page for supporters of all my delicious culinary creations!"
+      }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "submit",
+        id: "submit-form"
+      }))));
     }
   }]);
 
@@ -1631,6 +1792,9 @@ var CommunitiesReducer = function CommunitiesReducer() {
   var newState = Object.assign({}, oldState);
 
   switch (action.type) {
+    case _actions_community_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMUNITIES"]:
+      return action.communities;
+
     case _actions_community_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMUNITY"]:
       newState[action.community.id] = action.community;
       return newState;
@@ -1830,14 +1994,20 @@ var configureStore = function configureStore() {
 /*!**********************************************!*\
   !*** ./frontend/util/community_api_util.jsx ***!
   \**********************************************/
-/*! exports provided: fetchCommunity, createCommunity, updateCommunity */
+/*! exports provided: fetchCommunities, fetchCommunity, createCommunity, updateCommunity */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCommunities", function() { return fetchCommunities; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCommunity", function() { return fetchCommunity; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCommunity", function() { return createCommunity; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCommunity", function() { return updateCommunity; });
+var fetchCommunities = function fetchCommunities() {
+  return $.ajax({
+    url: 'api/communities/'
+  });
+};
 var fetchCommunity = function fetchCommunity(communityId) {
   return $.ajax({
     url: "api/communities/".concat(communityId)

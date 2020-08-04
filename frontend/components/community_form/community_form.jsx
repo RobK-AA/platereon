@@ -1,24 +1,36 @@
 import React from 'react';
+import {
+  Route,
+  Redirect,
+  Switch,
+  Link,
+  HashRouter
+} from 'react-router-dom';
+import CommunityContainer from '../community/community_container'
 
 class CommunityForm extends React.Component {
 
   constructor(props) {
+
+    
+
     super(props);
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleOptionChange = this.handleOptionChange.bind(this);
+    this.redirectToCommunity = this.redirectToCommunity.bind(this);
+    this.copyContent = this.copyContent.bind(this);
+    this.isChecked = this.isChecked.bind(this);
     this.state = {
-      name: '',
-      description: '',
-      creatorId: '',
-      bronzePerks: '',
-      silverPerks: '',
-      goldPerks: '',
-      shortDesc: '',
+      name: this.props.currentUser.name,
+      description: 'A page for supporters of all my delicious culinary creations!',
+      creatorId: this.props.currentUser.id,
+      bronzePerks: 'Subscriber-only posts and messages',
+      silverPerks: 'Early access to content, subscriber-only voting power, all Bronze perks',
+      goldPerks: 'Full library access plus all Silver perks',
+      shortDesc: `Cooking with ${this.props.currentUser.name} tutorials, pasta recipes, etc.`,
       isPlural: false
     };
-  };
-
-  handleSubmit(e) {
-    e.preventDefault();
-    this.props.submitCommunity(this.state)
   };
 
   update(field) {
@@ -27,7 +39,53 @@ class CommunityForm extends React.Component {
     })
   };
 
+  handleOptionChange(e) {
+    let { value } = e.target;
+    this.setState({ ['isPlural']: value });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    const formData = { 
+      name: this.state.name,
+      description: this.state.description,
+      creator_id: this.state.creatorId,
+      bronze_perks: this.state.bronzePerks,
+      silver_perks: this.state.silverPerks,
+      gold_perks: this.state.goldPerks,
+      short_description: this.state.shortDesc,
+      plural: this.state.isPlural
+    }
+
+    
+    if (this.props.submitCommunity(formData)) {
+      return this.redirectToCommunity();
+    }
+
+  };
+
+  redirectToCommunity() {
+    return (
+      <Redirect to={`/community/${this.state.name}`} />
+    )
+  }
+
+  isChecked() {
+    if (this.state.isPlural === false) {
+      return true
+    } 
+  };
+
+  copyContent() {
+    document.getElementById("textdiv").value =
+      document.getElementById("about").innerHTML;
+    return true;
+  }
+
   render() {
+    
+      
       return (
         <div className="create-form">
           <div className="create-form-nav">
@@ -56,7 +114,7 @@ class CommunityForm extends React.Component {
             </div>
             <div className="create-form-nav-right">
               <div className="create-form-launch">
-                <label type="submit" htmlFor="submit-form">Launch</label>
+                <button form="community-form" type="submit" >Launch</button>
               </div>
             </div>
           </div>
@@ -67,7 +125,7 @@ class CommunityForm extends React.Component {
             </p>
           </div>
           <div className="create-form-case">
-            <form onSubmit={this.handleSubmit}>
+            <form id="community-form" onSubmit={this.copyContent && this.handleSubmit}>
               <div className="name-div">
                 <div className="name-col">
                   <label className="create-form-name">Name of Platereon page</label>
@@ -79,7 +137,7 @@ class CommunityForm extends React.Component {
                   autoComplete={this.state.name}
                   defaultValue={`${this.props.currentUser.name}`}
                   onChange={this.update('name')}
-                  className={`${this.props.formType}-name-input`}
+                  className="name-input"
                     />
               </div>
               <div className="short-desc-div">
@@ -93,7 +151,7 @@ class CommunityForm extends React.Component {
                   autoComplete={this.state.shortDesc}
                   defaultValue={`Cooking with ${this.props.currentUser.name} tutorials, pasta recipes, etc.`}
                   onChange={this.update('shortDesc')}
-                  className={`${this.props.formType}-short-desc-input`}
+                  className="short-desc-input"
                 />
               </div>
               <div className="plural-div">
@@ -104,14 +162,14 @@ class CommunityForm extends React.Component {
                   <fieldset name="isPlural">
                     <div className="inner-plural-div">
                       <div className="is-div">
-                        <input name="isOrAre" id="is-creating" type="radio" readOnly className="is-creating" value="false" />
+                        <input checked={this.isChecked()} onChange={this.handleOptionChange} name="isOrAre" id="is-creating" type="radio" readOnly className="is-creating" value="false" />
 
                         <div className="is-label">
                           <label htmlFor="">{`${this.props.currentUser.name}`}</label> <span className="isare">is creating</span>
                         </div>
                       </div>
                       <div className="are-div">
-                        <input name="isOrAre" id="are-creating" type="radio" readOnly className="are-creating" value="true" />
+                        <input onChange={this.handleOptionChange} name="isOrAre" id="are-creating" type="radio" readOnly className="are-creating" value="true" />
                         <div className="are-label">
 
                           <label>{`${this.props.currentUser.name}`}</label> <span className="isare">are creating</span>
@@ -160,35 +218,38 @@ class CommunityForm extends React.Component {
                   className="gold-input"
                 />
               </div>
-              <input type="submit" id="submit-form" />
-            </form>
-            
-          </div>
-          <div className="outer-about-div">
-            <div className="about-div">
-              <div className="inner-about-div">
-                <span className="about-span">About your Platereon page</span>
-                <div className="about-required">Required</div>
-                <div className="about-description-div">
-                  <p className="about-description">This is the first thing potential supporters will see
-                  when they land on your page, so make sure you cook up a delicious
-                  description of how they can join you on this adventure.
+              <div className="outer-about-div">
+                <div className="about-div">
+                  <div className="inner-about-div">
+                    <span className="about-span">About your Platereon page</span>
+                    <div className="about-required">Required</div>
+                    <div className="about-description-div">
+                      <p className="about-description">This is the first thing potential supporters will see
+                      when they land on your page, so make sure you cook up a delicious
+                      description of how they can join you on this adventure.
                       </p>
-                </div>
-                <div className="about-input">
-                  <div className="about-editor-container">
-                    <div className="editor-box">
-                      <div contentEditable="true" dir="ltr" ></div>
-                      <textarea name="about" id="about" cols="30" rows="10" className="about-textarea"></textarea>
+                    </div>
+                    <div className="about-input">
+                      <div className="about-editor-container">
+                        <div className="editor-box">
+                          <div contentEditable="true" id="textdiv" type="submit" dir="ltr" ></div>
+                          <textarea onChange={this.update("description")} name="about" id="about" className="about-textarea" 
+                            defaultValue="A page for supporters of all my delicious culinary creations!">
+                          </textarea>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+              <input type="submit" id="submit-form" />
+            </form>
           </div>
+          
         </div>
       )
     }
+    
 };
 
 export default CommunityForm;
