@@ -7,6 +7,8 @@ class MainPage extends React.Component {
 
   render() {
 
+    
+
     return (
       <div className="outer-main">
         <div className='main'>

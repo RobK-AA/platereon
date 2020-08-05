@@ -15,8 +15,8 @@ class Header extends React.Component {
         <div className='NavBar'>
           <header>
             <nav className='NavBar-nav'>
-              <a href='/'>
-                <img src={window.platereonlogoimg} /> </a>
+              <Link to='/'>
+                <img src={window.platereonlogoimg} /> </Link>
               <div className="signed-in-user-nav">
                 
                 <div className="current-user-menu">

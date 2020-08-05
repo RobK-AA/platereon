@@ -58,12 +58,9 @@ class CommunityForm extends React.Component {
       plural: this.state.isPlural
     }
 
-    debugger
-    
     this.props.submitCommunity(formData).then(
       (action) => {
-      // debugger
-      return this.props.history.push(`/community/${action.community.id}`)});
+      return this.props.history.push(`/community/${action.community.id}`, this.state)});
     };
 
   // redirectToCommunity(community) {

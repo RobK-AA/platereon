@@ -11,6 +11,7 @@ class UserShow extends React.Component {
   render () {
     const { currentUser, location } = this.props;
 
+    
     return (location.pathname === "/createform") 
       ?
       (<Route component={CommunityFormContainer} />) 
@@ -20,7 +21,7 @@ class UserShow extends React.Component {
         ?
         <div className="community-page">
             <div>
-              <Route path="/community" component={CommunityContainer} />
+              <Route path="/community/:communityId" component={CommunityContainer} />
             </div>
         </div>
         :

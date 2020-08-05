@@ -13,21 +13,39 @@ class Body extends React.Component {
   render() {
     const { currentUser, location } = this.props;
 
+    
+
     return (
 
       <div className="outer-main">
-        {(location.pathname === "/login") || (location.pathname === "/signup") 
-        ?
-          <>
-            <AuthRoute exact path="/login" component={LogInFormContainer} />
-            <AuthRoute exact path="/signup" component={SignUpFormContainer} />
-          </>
-        :
-        currentUser ? <ProtectedRoute component={UserShowContainer} /> : <MainPageContainer />
-        }
+        
+        <AuthRoute exact path="/login" component={LogInFormContainer} />
+        <AuthRoute exact path="/signup" component={SignUpFormContainer} />
+        <AuthRoute exact path="/" component={MainPageContainer} />
+        <ProtectedRoute path="/" component={UserShowContainer} />
+        
       </div>
     )
   }
+
+  // render() {
+  //   const { currentUser, location } = this.props;
+
+  //   return (
+
+  //     <div className="outer-main">
+  //       {(location.pathname === "/login") || (location.pathname === "/signup") 
+  //       ?
+  //         <>
+  //           <AuthRoute exact path="/login" component={LogInFormContainer} />
+  //           <AuthRoute exact path="/signup" component={SignUpFormContainer} />
+  //         </>
+  //       :
+  //       currentUser ? <ProtectedRoute component={UserShowContainer} /> : <MainPageContainer />
+  //       }
+  //     </div>
+  //   )
+  // }
 };
 
 export default Body;
