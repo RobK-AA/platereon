@@ -3,6 +3,9 @@ import React from 'react';
 class Community extends React.Component {
   
   render() {
+
+    debugger
+    
     return(
       <div>
         <h3>COMMUNITY PAGE</h3>

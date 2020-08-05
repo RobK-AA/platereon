@@ -18,7 +18,7 @@ class CommunityForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleOptionChange = this.handleOptionChange.bind(this);
-    this.redirectToCommunity = this.redirectToCommunity.bind(this);
+    // this.redirectToCommunity = this.redirectToCommunity.bind(this);
     this.copyContent = this.copyContent.bind(this);
     this.isChecked = this.isChecked.bind(this);
     this.state = {
@@ -59,17 +59,17 @@ class CommunityForm extends React.Component {
     }
 
     debugger
-
+    
     this.props.submitCommunity(formData).then(
-      this.props.history.push('/api/communities/:id', this.state)
-    )
-  };
+      (action) => {
+      // debugger
+      return this.props.history.push(`/community/${action.community.id}`)});
+    };
 
-  redirectToCommunity() {
-    return (
-      <Link to={`/community/${this.state.name}`} />
-    )
-  }
+  // redirectToCommunity(community) {
+  //     community = this.props.community;
+  //     this.props.history.push(`/community/${community.id}`);
+  // }
 
   isChecked() {
     if (this.state.isPlural === false) {
@@ -83,9 +83,22 @@ class CommunityForm extends React.Component {
     return true;
   }
 
+  renderErrors() {
+    if (this.props.errors) {
+      return (
+        <ul>
+          {this.props.errors.map((error, i) => (
+            <li className="session-errors" key={`error-${i}`}>
+              {error}
+            </li>
+          ))}
+        </ul>
+      );
+    }
+  };
+
   render() {
     
-      
       return (
         <div className="create-form">
           <div className="create-form-nav">
@@ -124,6 +137,8 @@ class CommunityForm extends React.Component {
               Set your creator details and choose what to offer your subscribers
             </p>
           </div>
+          {this.renderErrors()}
+          <br/>
           <div className="create-form-case">
             <form id="community-form" onSubmit={this.copyContent && this.handleSubmit}>
               <div className="name-div">

@@ -50,7 +50,6 @@ class SignupForm extends React.Component {
         </ul>
       );
     }
-    
   };
 
   removeErrors() {

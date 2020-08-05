@@ -2,6 +2,7 @@ import * as CommunityApiUtil from '../util/community_api_util';
 
 export const RECEIVE_COMMUNITIES = 'RECEIVE_COMMUNITIES';
 export const RECEIVE_COMMUNITY = 'RECEIVE_COMMUNITY';
+export const RECEIVE_COMMUNITY_ERRORS = 'RECEIVE_COMMUNITY_ERRORS';
 
 export const receiveCommunities = communities => {
   return {

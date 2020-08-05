@@ -20,16 +20,6 @@ const App = ({ currentUser }) => (
   <div>
     <Route component={HeaderContainer} />
     <Route component={BodyContainer} />
-    
-     <Switch>
-      <AuthRoute exact path="/login" component={LogInFormContainer} />
-      <AuthRoute exact path="/signup" component={SignUpFormContainer} />
-      <ProtectedRoute exact path="/users/:userId" component={UserShowContainer} />
-      {/* <ProtectedRoute exact path="/createform" component={CommunityFormContainer} /> */}
-      <Route path='login' component={HeaderContainer}/>
-      <Route path='community' component={CommunityContainer} />
-      {/* <Route path='createform' component={UserShowContainer} /> */}
-    </Switch> 
   </div>
 );
 export default App;
