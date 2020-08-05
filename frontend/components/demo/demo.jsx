@@ -3,7 +3,7 @@ import React from 'react';
 class Demo extends React.Component {
   constructor(props) {
     super(props);
-    this.demoUser = {
+    this.state = {
       email: 'DemoUser',
       password: '123456'
     };
@@ -14,7 +14,7 @@ class Demo extends React.Component {
       
       <div>
         <p 
-          onClick={() => {this.props.demoLogin(this.demoUser)}}>
+          onClick={() => {this.props.demoLogin(this.state)}}>
             Demo Sign In
         </p>
       </div>

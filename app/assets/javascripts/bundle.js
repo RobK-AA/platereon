@@ -90,7 +90,7 @@
 /*!***********************************************!*\
   !*** ./frontend/actions/community_actions.js ***!
   \***********************************************/
-/*! exports provided: RECEIVE_COMMUNITIES, RECEIVE_COMMUNITY, receiveCommunities, receiveCommunity, fetchCommunities, fetchCommunity, createCommunity, updateCommunity */
+/*! exports provided: RECEIVE_COMMUNITIES, RECEIVE_COMMUNITY, receiveCommunities, receiveCommunity, receiveErrors, fetchCommunities, fetchCommunity, createCommunity, updateCommunity */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -99,6 +99,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COMMUNITY", function() { return RECEIVE_COMMUNITY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCommunities", function() { return receiveCommunities; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCommunity", function() { return receiveCommunity; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCommunities", function() { return fetchCommunities; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCommunity", function() { return fetchCommunity; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCommunity", function() { return createCommunity; });
@@ -119,31 +120,45 @@ var receiveCommunity = function receiveCommunity(community) {
     community: community
   };
 };
+var receiveErrors = function receiveErrors(errors) {
+  return {
+    type: RECEIVE_COMMUNITY_ERRORS,
+    errors: errors
+  };
+};
 var fetchCommunities = function fetchCommunities() {
   return function (dispatch) {
     return _util_community_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchCommunities"]().then(function (communities) {
-      return dispatch(receiveCommunities(communities));
+      return dispatch(receiveCommunities(communities), function (error) {
+        dispatch(receiveErrors(error.responseJSON));
+      });
     });
   };
 };
 var fetchCommunity = function fetchCommunity(communityId) {
   return function (dispatch) {
     return _util_community_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchCommunity"](communityId).then(function (community) {
-      return dispatch(receiveCommunity(community));
+      return dispatch(receiveCommunity(community), function (error) {
+        dispatch(receiveErrors(error.responseJSON));
+      });
     });
   };
 };
 var createCommunity = function createCommunity(community) {
   return function (dispatch) {
     return _util_community_api_util__WEBPACK_IMPORTED_MODULE_0__["createCommunity"](community).then(function (community) {
-      return dispatch(receiveCommunity(community));
+      return dispatch(receiveCommunity(community), function (error) {
+        dispatch(receiveErrors(error.responseJSON));
+      });
     });
   };
 };
 var updateCommunity = function updateCommunity(community) {
   return function (dispatch) {
     return _util_community_api_util__WEBPACK_IMPORTED_MODULE_0__["updateCommunity"](community).then(function (community) {
-      return dispatch(receiveCommunity(community));
+      return dispatch(receiveCommunity(community), function (error) {
+        dispatch(receiveErrors(error.responseJSON));
+      });
     });
   };
 };
@@ -437,7 +452,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
   _createClass(Community, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This is a community page"));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "COMMUNITY PAGE"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This is a community page"));
     }
   }]);
 
@@ -574,15 +589,13 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
         short_description: this.state.shortDesc,
         plural: this.state.isPlural
       };
-
-      if (this.props.submitCommunity(formData)) {
-        return this.redirectToCommunity();
-      }
+      debugger;
+      this.props.submitCommunity(formData).then(this.props.history.push('/api/communities/:id', this.state));
     }
   }, {
     key: "redirectToCommunity",
     value: function redirectToCommunity() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/community/".concat(this.state.name)
       });
     }
@@ -874,7 +887,7 @@ var Demo = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Demo);
 
     _this = _super.call(this, props);
-    _this.demoUser = {
+    _this.state = {
       email: 'DemoUser',
       password: '123456'
     };
@@ -888,7 +901,7 @@ var Demo = /*#__PURE__*/function (_React$Component) {
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         onClick: function onClick() {
-          _this2.props.demoLogin(_this2.demoUser);
+          _this2.props.demoLogin(_this2.state);
         }
       }, "Demo Sign In"));
     }
@@ -1238,7 +1251,7 @@ __webpack_require__.r(__webpack_exports__);
 var msp = function msp(_ref) {
   var errors = _ref.errors;
   return {
-    errors: errors,
+    errors: errors.session,
     formType: 'login',
     formName: 'Log in',
     navLink: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
@@ -1315,6 +1328,8 @@ var MainPage = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "outer-main"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "main"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "main-text"
@@ -1338,7 +1353,17 @@ var MainPage = /*#__PURE__*/function (_React$Component) {
         src: "https://media.giphy.com/media/3oEjHC7al4GfnudR7y/giphy.gif"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "inner-video"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "mid-main"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "title-mid-main"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "title-mid"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "title"
+      }, "What's Platereon?")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "outer-footer"
+      }));
     }
   }]);
 
@@ -1602,7 +1627,7 @@ __webpack_require__.r(__webpack_exports__);
 var msp = function msp(_ref) {
   var errors = _ref.errors;
   return {
-    errors: errors,
+    errors: errors.session,
     formType: 'signup',
     formName: 'Sign up',
     navLink: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
@@ -1635,6 +1660,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _community_form_community_form_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../community_form/community_form_container */ "./frontend/components/community_form/community_form_container.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _community_community_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../community/community_container */ "./frontend/components/community/community_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1660,6 +1687,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
 var UserShow = /*#__PURE__*/function (_React$Component) {
   _inherits(UserShow, _React$Component);
 
@@ -1677,9 +1706,14 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
           location = _this$props.location;
-      return location.pathname === "/createform" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_community_form_community_form_container__WEBPACK_IMPORTED_MODULE_1__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return location.pathname === "/createform" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        component: _community_form_community_form_container__WEBPACK_IMPORTED_MODULE_1__["default"]
+      }) : location.pathname.includes('communities') ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "".concat(currentUser.name, "-page user-page")
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, currentUser.name, "'s Page! Content Coming Soon!")));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        path: "/api/communities",
+        component: _community_community_container__WEBPACK_IMPORTED_MODULE_3__["default"]
+      }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, currentUser.name, ", welcome to Platereon.");
     }
   }]);
 
@@ -1808,6 +1842,36 @@ var CommunitiesReducer = function CommunitiesReducer() {
 
 /***/ }),
 
+/***/ "./frontend/reducers/community_errors_reducer.js":
+/*!*******************************************************!*\
+  !*** ./frontend/reducers/community_errors_reducer.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_community_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/community_actions */ "./frontend/actions/community_actions.js");
+
+
+var CommunityErrorsReducer = function CommunityErrorsReducer() {
+  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(oldState);
+
+  switch (action.type) {
+    case _actions_community_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMUNITY_ERRORS"]:
+      return action.errors || [];
+
+    default:
+      return oldState;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (CommunityErrorsReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/entities_reducer.js":
 /*!***********************************************!*\
   !*** ./frontend/reducers/entities_reducer.js ***!
@@ -1831,6 +1895,29 @@ var EntitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers
 
 /***/ }),
 
+/***/ "./frontend/reducers/errors_reducer.js":
+/*!*********************************************!*\
+  !*** ./frontend/reducers/errors_reducer.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _session_errors_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./session_errors_reducer */ "./frontend/reducers/session_errors_reducer.js");
+/* harmony import */ var _community_errors_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./community_errors_reducer */ "./frontend/reducers/community_errors_reducer.js");
+
+
+
+var ErrorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
+  session: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  communities: _community_errors_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+});
+/* harmony default export */ __webpack_exports__["default"] = (ErrorsReducer);
+
+/***/ }),
+
 /***/ "./frontend/reducers/root_reducer.js":
 /*!*******************************************!*\
   !*** ./frontend/reducers/root_reducer.js ***!
@@ -1843,7 +1930,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _entities_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./entities_reducer */ "./frontend/reducers/entities_reducer.js");
 /* harmony import */ var _session_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./session_reducer */ "./frontend/reducers/session_reducer.js");
-/* harmony import */ var _session_errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./session_errors_reducer */ "./frontend/reducers/session_errors_reducer.js");
+/* harmony import */ var _errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./errors_reducer */ "./frontend/reducers/errors_reducer.js");
 
 
 
@@ -1851,7 +1938,7 @@ __webpack_require__.r(__webpack_exports__);
 var RootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   entities: _entities_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   session: _session_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
-  errors: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
+  errors: _errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (RootReducer);
 

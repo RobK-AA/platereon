@@ -17,26 +17,43 @@ export const receiveCommunity = community => {
   }
 };
 
+export const receiveErrors = errors => ({
+  type: RECEIVE_COMMUNITY_ERRORS,
+  errors
+});
+
 export const fetchCommunities = () => dispatch => {
   return CommunityApiUtil.fetchCommunities().then(
-    communities => dispatch(receiveCommunities(communities))
+    communities => dispatch(receiveCommunities(communities), 
+      error => {
+        dispatch(receiveErrors(error.responseJSON))
+      })
   )
 };
 
 export const fetchCommunity = communityId => dispatch => {
   return CommunityApiUtil.fetchCommunity(communityId).then(
-    community => dispatch(receiveCommunity(community))
+    community => dispatch(receiveCommunity(community), 
+      error => {
+        dispatch(receiveErrors(error.responseJSON))
+      })
   )
 };
 
 export const createCommunity = community => dispatch => {
   return CommunityApiUtil.createCommunity(community).then(
-    community => dispatch(receiveCommunity(community))
+    community => dispatch(receiveCommunity(community), 
+      error => {
+        dispatch(receiveErrors(error.responseJSON))
+      })
   )
 };
 
 export const updateCommunity = community => dispatch => {
   return CommunityApiUtil.updateCommunity(community).then(
-    community => dispatch(receiveCommunity(community))
+    community => dispatch(receiveCommunity(community), 
+    error => {
+        dispatch(receiveErrors(error.responseJSON))
+      })
   )
 };

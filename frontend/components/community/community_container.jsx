@@ -7,4 +7,4 @@ const msp = (state, ownProps) => ({
   community: state.entities.communities[ownProps.match.params.communityId]
 });
 
-export default connect(msp)(Community)
+export default connect(msp)(Community);

@@ -58,16 +58,16 @@ class CommunityForm extends React.Component {
       plural: this.state.isPlural
     }
 
-    
-    if (this.props.submitCommunity(formData)) {
-      return this.redirectToCommunity();
-    }
+    debugger
 
+    this.props.submitCommunity(formData).then(
+      this.props.history.push('/api/communities/:id', this.state)
+    )
   };
 
   redirectToCommunity() {
     return (
-      <Redirect to={`/community/${this.state.name}`} />
+      <Link to={`/community/${this.state.name}`} />
     )
   }
 
