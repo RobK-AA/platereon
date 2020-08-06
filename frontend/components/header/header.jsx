@@ -19,15 +19,22 @@ class Header extends React.Component {
                 <img src={window.platereonlogoimg} /> </Link>
               <div className="signed-in-user-nav">
                 
-                <div className="current-user-menu">
-                  {currentUser.name}'s Logo
-                    <ul>
-                      <li><Link className="header-menu-creator" to="/createform" >
-                      Become a Creator</Link></li>
-                      <li><Link className="header-menu-logout" to="/" onClick={logout}>
-                      Log out</Link></li>
-                    </ul>
-                </div>
+                  <div className="current-user-menu">
+                    <div className="logo-container">
+                      <button className="user-logo" src="https://c8.patreon.com/2/200/7025471" ></button>
+                    
+                      {/* {currentUser.name}'s Logo */}
+                      <div className="list-container">
+                        <ul className="user-nav-list">
+                          <li><Link className="header-menu-creator" to="/createform" >
+                          Become a Creator</Link></li>
+                          <li><Link className="header-menu-logout" to="/" onClick={logout}>
+                          Log out</Link></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                
               </div>
             </nav>
           </header>

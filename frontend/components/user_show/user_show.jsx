@@ -2,6 +2,7 @@ import React from 'react';
 import CommunityFormContainer from '../community_form/community_form_container'
 import {Route } from 'react-router-dom';
 import CommunityContainer from '../community/community_container'
+import UserMainContainer from '../user_main/user_main_container'
 
 class UserShow extends React.Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class UserShow extends React.Component {
             </div>
         </div>
         :
-        <h3>{currentUser.name}, welcome to Platereon.</h3>
+        <UserMainContainer currentUser={currentUser} />
     );
   }
 };

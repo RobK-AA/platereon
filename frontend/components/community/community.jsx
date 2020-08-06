@@ -1,8 +1,13 @@
 import React from 'react';
 import {BrowserRouter } from 'react-router-dom';
+import ls from 'local-storage'
+
 
 class Community extends React.Component {
+
+  
   constructor(props) {
+    
     super(props);
     const name = this.props.community.name || "";
     const description = this.props.community.description || "";
@@ -34,6 +39,7 @@ class Community extends React.Component {
   // }
 
   componentDidMount() {
+    
     this.props.fetchCommunity(this.props.match.params.communityId)
   };
 
@@ -58,13 +64,45 @@ class Community extends React.Component {
     
 
     return(
-      <div>
-        <h3>COMMUNITY PAGE</h3>
-          <p>{`This is a community page for ${name}`}</p>
-          <p>{`Description: ${description}`}</p>
-          <p>{`Bronze Perks: ${bronzePerks}`}</p>
-          <p>{`Silver Perks: ${silverPerks}`}</p>
-          <p>{`Gold Perks: ${goldPerks}`}</p>
+      <div className="community-body-outer">
+        <div className="community-body-mid">
+          <div className="community-body-inner">
+            <div className="community-banner">
+              <div className="community-banner-top">
+                <div className="creator-logo-outer">
+                  <div className="creator-logo">
+                  </div>
+                </div>
+                  {/* <h3>COMMUNITY PAGE</h3>
+                    <p>{`This is a community page for ${name}`}</p>
+                    <p>{`Description: ${description}`}</p>
+                    <p>{`Bronze Perks: ${bronzePerks}`}</p>
+                    <p>{`Silver Perks: ${silverPerks}`}</p>
+                    <p>{`Gold Perks: ${goldPerks}`}</p> */}
+              </div>
+            </div>
+            <div className="community-main-outer">
+              <div className="community-main">
+                  <div className="creator-title">
+                    <div className="creator-title-inner">
+                      <h1 className="creator-title-text">{name}</h1>
+                        {
+                        isPlural ?
+                        <span className="community-short-desc">{`are creating ${shortDesc}`}</span>
+                        :
+                        <span className= "community-short-desc">{`is creating ${shortDesc}`}</span>
+                        }
+                    </div>
+                  </div>
+                  <div className="perks-outer">
+                    <div className="perks-title">
+                      <h2 className="perks-title-text">Select a membership level</h2>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

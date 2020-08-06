@@ -12,12 +12,10 @@ class CommunityForm extends React.Component {
 
   constructor(props) {
 
-    
-
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleOptionChange = this.handleOptionChange.bind(this);
+    // this.handleOptionChange = this.handleOptionChange.bind(this);
     // this.redirectToCommunity = this.redirectToCommunity.bind(this);
     this.copyContent = this.copyContent.bind(this);
     this.isChecked = this.isChecked.bind(this);
@@ -36,13 +34,18 @@ class CommunityForm extends React.Component {
   update(field) {
     return e => this.setState({
       [field]: e.currentTarget.value
-    })
+    }).then(
+        localStorage.setItem('community', JSON.stringify(this.state))
+      );
+    
   };
 
-  handleOptionChange(e) {
-    let { value } = e.target;
-    this.setState({ ['isPlural']: value });
-  }
+ 
+
+  // handleOptionChange(e) {
+  //   let { value } = e.target;
+  //   this.setState({ ['isPlural']: value });
+  // }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -81,6 +84,7 @@ class CommunityForm extends React.Component {
   }
 
   renderErrors() {
+
     if (this.props.errors) {
       return (
         <ul>
@@ -155,13 +159,13 @@ class CommunityForm extends React.Component {
               <div className="short-desc-div">
                 <div className="short-desc-col">
                   <label className="create-form-short-desc">What are you creating?</label>
-                  <span>Required</span>
+                  {/* <span>Required</span> */}
                 </div>
                 <input
                   type="text"
                   id="short-desc"
                   autoComplete={this.state.shortDesc}
-                  defaultValue={`Cooking with ${this.props.currentUser.name} tutorials, pasta recipes, etc.`}
+                  defaultValue={`Cooking with ${this.state.name} tutorials, pasta recipes, etc.`}
                   onChange={this.update('shortDesc')}
                   className="short-desc-input"
                 />
@@ -174,17 +178,17 @@ class CommunityForm extends React.Component {
                   <fieldset name="isPlural">
                     <div className="inner-plural-div">
                       <div className="is-div">
-                        <input checked={this.isChecked()} onChange={this.handleOptionChange} name="isOrAre" id="is-creating" type="radio" readOnly className="is-creating" value="false" />
+                        <input checked={this.isChecked()} onChange={this.update('isPlural')} name="isOrAre" id="is-creating" type="radio" readOnly className="is-creating" value="false" />
 
                         <div className="is-label">
-                          <label htmlFor="">{`${this.props.currentUser.name}`}</label> <span className="isare">is creating</span>
+                          <label htmlFor="">{`${this.state.name}`}</label> <span className="isare">is creating</span>
                         </div>
                       </div>
                       <div className="are-div">
-                        <input onChange={this.handleOptionChange} name="isOrAre" id="are-creating" type="radio" readOnly className="are-creating" value="true" />
+                        <input onChange={this.update('isPlural')} name="isOrAre" id="are-creating" type="radio" readOnly className="are-creating" value="true" />
                         <div className="are-label">
 
-                          <label>{`${this.props.currentUser.name}`}</label> <span className="isare">are creating</span>
+                          <label>{`${this.state.name}`}</label> <span className="isare">are creating</span>
                         </div>
                       </div>
                     </div>

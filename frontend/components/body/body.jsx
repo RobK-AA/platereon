@@ -17,7 +17,7 @@ class Body extends React.Component {
 
     return (
 
-      <div className="outer-main">
+      <div className="body-container">
         
         <AuthRoute exact path="/login" component={LogInFormContainer} />
         <AuthRoute exact path="/signup" component={SignUpFormContainer} />
