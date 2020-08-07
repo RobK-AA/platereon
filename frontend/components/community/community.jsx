@@ -45,24 +45,15 @@ class Community extends React.Component {
 
   render() {
     
-    
-    // const name = this.props.community.name || "";
-    // const description = this.props.community.description || "";
-    // const gold = this.props.community.gold_perks || "";
-    // const silver = this.props.community.silver_perks || "";
-    // const bronze = this.props.community.bronze_perks || "";
     const { name, 
             description, 
             shortDesc, 
             goldPerks, 
             bronzePerks, 
             silverPerks,
-            isPlural, 
-            creatorId 
+            isPlural
     } = this.state
    
-    
-
     return(
       <div className="community-body-outer">
         <div className="community-body-mid">

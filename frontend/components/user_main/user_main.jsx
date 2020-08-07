@@ -12,7 +12,38 @@ class UserMain extends React.Component {
     const { currentUser, location } = this.props;
 
     return (
-          <h3>{currentUser.name}, welcome to Platereon, you awesome awesome person!</h3>
+          <div className="user-main5">
+            <div className="user-main4">
+              <div className="user-main3">
+                <div className="user-main2">
+                  <div className="user-main1">
+                    <div className="left-panel5">
+                     <div className="left-panel4">
+                        <div className="left-panel3">
+                          <div className="left-panel2">
+                            <div className="left-panel1">
+                              <div className="main-logo-outer-frame">
+                                <div className="main-logo-outer">
+                                  <div className="main-logo-container">
+                                    <div className="main-logo">
+                                    </div>
+                                    <div className="user-main-name-container">
+                                      <span className="user-main-name">{currentUser.name}</span>
+                                    </div>
+                                    
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
       )
   }
 };
