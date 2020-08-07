@@ -755,7 +755,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "face3"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://icon-library.com/images/facebook-icon-transparent-background/facebook-icon-transparent-background-1.jpg",
+        src: "https://toppng.com/uploads/preview/facebook-logo-black-11549681824hmcxyqtxds.png",
         alt: ""
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "insta"
@@ -1821,7 +1821,7 @@ var MainPage = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "face3"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://icon-library.com/images/facebook-icon-transparent-background/facebook-icon-transparent-background-1.jpg",
+        src: "https://toppng.com/uploads/preview/facebook-logo-black-11549681824hmcxyqtxds.png",
         alt: ""
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "insta"
@@ -2327,7 +2327,7 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "face3"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://icon-library.com/images/facebook-icon-transparent-background/facebook-icon-transparent-background-1.jpg",
+        src: "https://toppng.com/uploads/preview/facebook-logo-black-11549681824hmcxyqtxds.png",
         alt: ""
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "insta"

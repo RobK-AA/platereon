@@ -128,7 +128,7 @@ class UserMain extends React.Component {
                             <div className="face">
                               <div className="face2">
                                 <div className="face3">
-                                  <img src="https://icon-library.com/images/facebook-icon-transparent-background/facebook-icon-transparent-background-1.jpg" alt="" />
+                                  <img src="https://toppng.com/uploads/preview/facebook-logo-black-11549681824hmcxyqtxds.png" alt="" />
                                 </div>
                               </div>
                             </div>
