@@ -4,6 +4,8 @@ Welcome to [Platereon](https://platereon.herokuapp.com/)! Originally conceived a
 culinary artists to get rewarded by their supporters for doing what they love - making great food and 
 sharing it with the world.
 
+Platereon was built with React, Redux, JavaScript, HTML, CSS and Ruby on Rails.
+
 Platereon offers both creators and supporters a number of exciting features:
   * Full session control
     * The ability to log in and log out
@@ -18,3 +20,8 @@ Platereon offers both creators and supporters a number of exciting features:
   * Create engaging communities 
     * Share your content 
     * Customize your membership levels to offer perks for your supporters
+    
+ ## Welcome Page:
+ [logo]: https://github.com/RobK-AA/platereon/blob/master/platereon_main_page.png "Main Page"
+
+ 
