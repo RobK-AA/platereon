@@ -153,7 +153,7 @@ class UserMain extends React.Component {
                           <li className="footer-ul11">About</li>
                           <li className="footer-ul12">GitHub</li>
                           <li className="footer-ul13">LinkedIn</li>
-                          <li className="footer-ul14">App Accademy</li>
+                          <li className="footer-ul14">App Academy</li>
                         </ul>
                       </div>
                     </div>
