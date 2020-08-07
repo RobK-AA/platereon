@@ -678,7 +678,119 @@ var Community = /*#__PURE__*/function (_React$Component) {
         className: "gold-desc2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "gold-desc1"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "This tier gives you:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, goldPerks))))))))))))))))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "This tier gives you:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, goldPerks))))))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "about1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "about2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "about3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "about4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "about-title"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "about-title1"
+      }, "About")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "about-body"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "about-body1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "about-body2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "about-body3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "about-body4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "about-body5"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "about-body6"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "about-body7"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "about-body8"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "about-body9"
+      }, description))))))))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "outer-footer1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "outer-footer2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "outer-footer3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "outer-footer4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer-1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer1-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer1-div2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "platereon-logo",
+        src: "https://images.ctfassets.net/tfws0ki30xlo/5sTKkW3wiqoJVTK6KZreMb/2e2537c00ecb82d7eb074da3a435f720/2020-GTM-Blog-FightingForJustice-V2.jpg?w=767&h=431&q=90&fit=thumb&f=top"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer22"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer23"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer24"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer25"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "twit"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "twit2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "twit3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAH0AAAB9CAMAAAC4XpwXAAAAZlBMVEUAAAD////6+vrX19c3NzdxcXFUVFRsbGyYmJgXFxe6urrd3d2Kioo9PT0dHR0ZGRknJyfz8/MICAiEhIRfX19aWlqrq6uysrLp6enBwcFKSkrPz8/IyMgPDw9mZmagoKB5eXkuLi4WL1DUAAAEzUlEQVRogc2bZ9uqMAyGw1ZApA6mKO///5OHqQgdKRR7nq969aYrTZMUDHmRIE9Cx7Wj6gKXKrJdJ0zygKxoCSTBVurEZ6DpHDupJfkJMvTM904VlTyqOnl+tgedpF7MJY+KvRQ9Aki6daUPN13Hq6WObvquBLqX65tK6KZvS7Nb2Qi+iG7mxSp2q0LIF9CD22p2q1uwhR5uYrcKV9Mfl83wxgQ8VtHNqwJ2qyt79pn04KQIDnBizj6Lnh+VwRvrk8vRDwrZrQ4SdNNRDAdwqJNPo5vyhlUsl4an0Ml9BzjAnXLyLek7wan4Bd3cC97gF4O/oO8x56NcEV39ap/K4dNV7/O5Djx6vjMcIGfTA5Xmla5jwKKb6g4Wtk4mg67qSOXrSqc/fgIHeFDpKjwZjCoafbsPh1W4pAc/gwMEc7q5zXWW082c0f0fwgH8b7q5/sayRoX5Rf9t19+d7+nmuovietnmhP7rro+d7+l7uhR0FR+6paTBS8UP6nzLetMVHC+nwyPIgjJBm43rSCcy30zV/XNqk3dXooS3jSsy0FNh65HH+7Xyjamszk24J0bJbTMd6NymO9VGzf7xrzS+RW63V2CK1rLX0zNxHK7kNTWHj3rx24yzji7e7DbhXO4SBrxzVng+g9/RxQP/7Jqr6V/GgDeL6Z5yu++1dCL2JWvOUPp0uB/mxLC4m+lEGjr/L51GZ6RcrpCYE5IL+KdHZTV08X4b+94s0MUseWx4JhrUtKGLp32Y934tzZp8MeFEuJWcho6Ie9vTm3f6xWdMO8o/jw0gmND395bOn59fWNGoLBK3eiaA8mXrWdtBch+GLN1ABwtQ19ZqGe3PHoenHbFCYTi6DwmGDncWhJWFCTA3owSQV5grg8ISymEJARMqqesjHDCZjo/4p+sgBzAu3cHI/Jq1vuhC2DBo2Bhfer7kEUJNqA2YtXmSz3Ki/LsIUD4dMr32UfaHabbinv9vSQ89atHh2ABH2c4LvCpJ/iLGKRDuSnzBzbustUEGQirUmpfGIwOuEWq/dxLlFadCDqiNsnW9jldsdQM23Oui7Hyr87OwixfO2GN75GDPOAC8vUNHukPk+Q6ifO5E+GBzgvNtOmEtDtbSNE4hzq/rVODGPsBXaAQ4n7bXE7Xm8DmtxqfF+POjCgReIrMT4+4yHyUivkzszcHd4yb6e5WEM/9S0a8Ud4f9VsQuJrAkprG/wyLu799iGzwL5dGM6u7vchMPNbuKq5QbRQ8Zt3krPnAqyNBWc5CPilkN3k/khg/OestkM7hDzEo09G7qJ2leZtzNJl+MNcTrhHvOZUXk3gqegiYoGmOV4jitywoS9Oxang3HMU6LiVFXCcOxIsm67O07Ro2zUJfiNV91xEpuMjWHU33i82hXyHbrV15allU+/Fd9t9cnTye5Cc15Gb05Kb35OM25yB/Ue0w1mo//IwetN/+uufYAffHcLGrdheaaE731NpprjfTWWWmuMdNcX6e5tnCfWtpRwrpKzTWleutpNdcSa66jNvZY+fPVzqNrrZ83NL8d0PxuQvObkUYPFd7OyvcyrXS+FTI0v5Pa+EYs3/hGzND7Pq7n63sb2EnuXeRZ5bvITjrfhHbS+B62F7GaIdDzFvj9CcreQf8DIOI9qO84jv0AAAAASUVORK5CYII=",
+        alt: ""
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "face"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "face2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "face3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://icon-library.com/images/facebook-icon-transparent-background/facebook-icon-transparent-background-1.jpg",
+        alt: ""
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "insta"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "insta2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "insta3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://toppng.com/uploads/preview/black-instagram-logo-11549505060y8xxtph5nz.png",
+        alt: ""
+      }))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer31"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer32"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "footer-ul1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "footer-ul10"
+      }, "FOR CREATORS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "footer-ul11"
+      }, "About"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "footer-ul12"
+      }, "GitHub"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "footer-ul13"
+      }, "LinkedIn"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "footer-ul14"
+      }, "App Accademy")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer5"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer6"
+      })))))))))))));
     }
   }]);
 
@@ -776,9 +888,7 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, CommunityForm);
 
     _this = _super.call(this, props);
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this)); // this.handleOptionChange = this.handleOptionChange.bind(this);
-    // this.redirectToCommunity = this.redirectToCommunity.bind(this);
-
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.copyContent = _this.copyContent.bind(_assertThisInitialized(_this));
     _this.isChecked = _this.isChecked.bind(_assertThisInitialized(_this));
     _this.state = {
@@ -800,15 +910,11 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       return function (e) {
-        return _this2.setState(_defineProperty({}, field, e.currentTarget.value)).then(localStorage.setItem('community', JSON.stringify(_this2.state)));
+        return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
       };
     }
   }, {
     key: "handleSubmit",
-    // handleOptionChange(e) {
-    //   let { value } = e.target;
-    //   this.setState({ ['isPlural']: value });
-    // }
     value: function handleSubmit(e) {
       var _this3 = this;
 
@@ -829,10 +935,6 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "isChecked",
-    // redirectToCommunity(community) {
-    //     community = this.props.community;
-    //     this.props.history.push(`/community/${community.id}`);
-    // }
     value: function isChecked() {
       if (this.state.isPlural === false) {
         return true;
@@ -1636,17 +1738,125 @@ var MainPage = /*#__PURE__*/function (_React$Component) {
         src: "https://media.giphy.com/media/3oEjHC7al4GfnudR7y/giphy.gif"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "inner-video"
-      })))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "mid-main"
+      }))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "mid-main1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "title-mid-main"
+        className: "mid-main2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "title-mid"
+        className: "mid-main3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "mid-main4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "title-mid1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "title-mid2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "title-mid3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "title-mid4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "title-mid5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "title"
-      }, "What's Platereon?")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "outer-footer"
-      })))))));
+      }, "What's Platereon?"))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "main-desc1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "main-desc2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "main-desc3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "main-desc4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "main-desc5"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "main-desc6"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "main-desc7"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "main-desc8"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "main-desc9"
+      }, "On Platereon, you can let your fans become active participants in the food they love by offering them a monthly membership. You give them access to exclusive content, community, and insight into your culinary process. In exchange, you get the freedom to create your most delicious meals, and the stability you need to build an independent creative career.")))))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "outer-footer1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "outer-footer2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "outer-footer3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "outer-footer4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer-1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer1-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer1-div2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "platereon-logo",
+        src: "https://images.ctfassets.net/tfws0ki30xlo/5sTKkW3wiqoJVTK6KZreMb/2e2537c00ecb82d7eb074da3a435f720/2020-GTM-Blog-FightingForJustice-V2.jpg?w=767&h=431&q=90&fit=thumb&f=top"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer22"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer23"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer24"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer25"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "twit"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "twit2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "twit3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAH0AAAB9CAMAAAC4XpwXAAAAZlBMVEUAAAD////6+vrX19c3NzdxcXFUVFRsbGyYmJgXFxe6urrd3d2Kioo9PT0dHR0ZGRknJyfz8/MICAiEhIRfX19aWlqrq6uysrLp6enBwcFKSkrPz8/IyMgPDw9mZmagoKB5eXkuLi4WL1DUAAAEzUlEQVRogc2bZ9uqMAyGw1ZApA6mKO///5OHqQgdKRR7nq969aYrTZMUDHmRIE9Cx7Wj6gKXKrJdJ0zygKxoCSTBVurEZ6DpHDupJfkJMvTM904VlTyqOnl+tgedpF7MJY+KvRQ9Aki6daUPN13Hq6WObvquBLqX65tK6KZvS7Nb2Qi+iG7mxSp2q0LIF9CD22p2q1uwhR5uYrcKV9Mfl83wxgQ8VtHNqwJ2qyt79pn04KQIDnBizj6Lnh+VwRvrk8vRDwrZrQ4SdNNRDAdwqJNPo5vyhlUsl4an0Ml9BzjAnXLyLek7wan4Bd3cC97gF4O/oO8x56NcEV39ap/K4dNV7/O5Djx6vjMcIGfTA5Xmla5jwKKb6g4Wtk4mg67qSOXrSqc/fgIHeFDpKjwZjCoafbsPh1W4pAc/gwMEc7q5zXWW082c0f0fwgH8b7q5/sayRoX5Rf9t19+d7+nmuovietnmhP7rro+d7+l7uhR0FR+6paTBS8UP6nzLetMVHC+nwyPIgjJBm43rSCcy30zV/XNqk3dXooS3jSsy0FNh65HH+7Xyjamszk24J0bJbTMd6NymO9VGzf7xrzS+RW63V2CK1rLX0zNxHK7kNTWHj3rx24yzji7e7DbhXO4SBrxzVng+g9/RxQP/7Jqr6V/GgDeL6Z5yu++1dCL2JWvOUPp0uB/mxLC4m+lEGjr/L51GZ6RcrpCYE5IL+KdHZTV08X4b+94s0MUseWx4JhrUtKGLp32Y934tzZp8MeFEuJWcho6Ie9vTm3f6xWdMO8o/jw0gmND395bOn59fWNGoLBK3eiaA8mXrWdtBch+GLN1ABwtQ19ZqGe3PHoenHbFCYTi6DwmGDncWhJWFCTA3owSQV5grg8ISymEJARMqqesjHDCZjo/4p+sgBzAu3cHI/Jq1vuhC2DBo2Bhfer7kEUJNqA2YtXmSz3Ki/LsIUD4dMr32UfaHabbinv9vSQ89atHh2ABH2c4LvCpJ/iLGKRDuSnzBzbustUEGQirUmpfGIwOuEWq/dxLlFadCDqiNsnW9jldsdQM23Oui7Hyr87OwixfO2GN75GDPOAC8vUNHukPk+Q6ifO5E+GBzgvNtOmEtDtbSNE4hzq/rVODGPsBXaAQ4n7bXE7Xm8DmtxqfF+POjCgReIrMT4+4yHyUivkzszcHd4yb6e5WEM/9S0a8Ud4f9VsQuJrAkprG/wyLu799iGzwL5dGM6u7vchMPNbuKq5QbRQ8Zt3krPnAqyNBWc5CPilkN3k/khg/OestkM7hDzEo09G7qJ2leZtzNJl+MNcTrhHvOZUXk3gqegiYoGmOV4jitywoS9Oxang3HMU6LiVFXCcOxIsm67O07Ro2zUJfiNV91xEpuMjWHU33i82hXyHbrV15allU+/Fd9t9cnTye5Cc15Gb05Kb35OM25yB/Ue0w1mo//IwetN/+uufYAffHcLGrdheaaE731NpprjfTWWWmuMdNcX6e5tnCfWtpRwrpKzTWleutpNdcSa66jNvZY+fPVzqNrrZ83NL8d0PxuQvObkUYPFd7OyvcyrXS+FTI0v5Pa+EYs3/hGzND7Pq7n63sb2EnuXeRZ5bvITjrfhHbS+B62F7GaIdDzFvj9CcreQf8DIOI9qO84jv0AAAAASUVORK5CYII=",
+        alt: ""
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "face"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "face2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "face3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://icon-library.com/images/facebook-icon-transparent-background/facebook-icon-transparent-background-1.jpg",
+        alt: ""
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "insta"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "insta2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "insta3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://toppng.com/uploads/preview/black-instagram-logo-11549505060y8xxtph5nz.png",
+        alt: ""
+      }))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer31"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer32"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "footer-ul1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "footer-ul10"
+      }, "FOR CREATORS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "footer-ul11"
+      }, "About"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "footer-ul12"
+      }, "GitHub"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "footer-ul13"
+      }, "LinkedIn"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "footer-ul14"
+      }, "App Accademy")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer5"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer6"
+      }))))))))))));
     }
   }]);
 
@@ -2021,7 +2231,138 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
         className: "user-main-name-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "user-main-name"
-      }, currentUser.name)))))))))))))));
+      }, currentUser.name))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "lower-left1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "lower-left2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "lower-left3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "lower-left4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "lower-left5"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "supporting1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "supporting2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "supporting3"
+      }, "SUPPORTING"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "lower-left6"
+      }, "Go support other Platereon communities or create one yourself!"))))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "mid-panel1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "mid-panel2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "mid-panel3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "mid-pane4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "mid-panel5"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "mid-pane6"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "upper-right-title"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "ur-title1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "ur-title2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "ur-title"
+      }, "Become a creator")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "upper-right-text"
+      }, "Build a membership for your fans and get paid to create on your own terms."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "get-started-link"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+        className: "main-create-link",
+        to: "/createform"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "main-create2"
+      }, " Get started"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "main-create1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "main-create2"
+      })))))))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "outer-footer1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "outer-footer2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "outer-footer3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "outer-footer4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer-1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer1-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer1-div2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "platereon-logo",
+        src: "https://images.ctfassets.net/tfws0ki30xlo/5sTKkW3wiqoJVTK6KZreMb/2e2537c00ecb82d7eb074da3a435f720/2020-GTM-Blog-FightingForJustice-V2.jpg?w=767&h=431&q=90&fit=thumb&f=top"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer22"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer23"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer24"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer25"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "twit"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "twit2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "twit3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAH0AAAB9CAMAAAC4XpwXAAAAZlBMVEUAAAD////6+vrX19c3NzdxcXFUVFRsbGyYmJgXFxe6urrd3d2Kioo9PT0dHR0ZGRknJyfz8/MICAiEhIRfX19aWlqrq6uysrLp6enBwcFKSkrPz8/IyMgPDw9mZmagoKB5eXkuLi4WL1DUAAAEzUlEQVRogc2bZ9uqMAyGw1ZApA6mKO///5OHqQgdKRR7nq969aYrTZMUDHmRIE9Cx7Wj6gKXKrJdJ0zygKxoCSTBVurEZ6DpHDupJfkJMvTM904VlTyqOnl+tgedpF7MJY+KvRQ9Aki6daUPN13Hq6WObvquBLqX65tK6KZvS7Nb2Qi+iG7mxSp2q0LIF9CD22p2q1uwhR5uYrcKV9Mfl83wxgQ8VtHNqwJ2qyt79pn04KQIDnBizj6Lnh+VwRvrk8vRDwrZrQ4SdNNRDAdwqJNPo5vyhlUsl4an0Ml9BzjAnXLyLek7wan4Bd3cC97gF4O/oO8x56NcEV39ap/K4dNV7/O5Djx6vjMcIGfTA5Xmla5jwKKb6g4Wtk4mg67qSOXrSqc/fgIHeFDpKjwZjCoafbsPh1W4pAc/gwMEc7q5zXWW082c0f0fwgH8b7q5/sayRoX5Rf9t19+d7+nmuovietnmhP7rro+d7+l7uhR0FR+6paTBS8UP6nzLetMVHC+nwyPIgjJBm43rSCcy30zV/XNqk3dXooS3jSsy0FNh65HH+7Xyjamszk24J0bJbTMd6NymO9VGzf7xrzS+RW63V2CK1rLX0zNxHK7kNTWHj3rx24yzji7e7DbhXO4SBrxzVng+g9/RxQP/7Jqr6V/GgDeL6Z5yu++1dCL2JWvOUPp0uB/mxLC4m+lEGjr/L51GZ6RcrpCYE5IL+KdHZTV08X4b+94s0MUseWx4JhrUtKGLp32Y934tzZp8MeFEuJWcho6Ie9vTm3f6xWdMO8o/jw0gmND395bOn59fWNGoLBK3eiaA8mXrWdtBch+GLN1ABwtQ19ZqGe3PHoenHbFCYTi6DwmGDncWhJWFCTA3owSQV5grg8ISymEJARMqqesjHDCZjo/4p+sgBzAu3cHI/Jq1vuhC2DBo2Bhfer7kEUJNqA2YtXmSz3Ki/LsIUD4dMr32UfaHabbinv9vSQ89atHh2ABH2c4LvCpJ/iLGKRDuSnzBzbustUEGQirUmpfGIwOuEWq/dxLlFadCDqiNsnW9jldsdQM23Oui7Hyr87OwixfO2GN75GDPOAC8vUNHukPk+Q6ifO5E+GBzgvNtOmEtDtbSNE4hzq/rVODGPsBXaAQ4n7bXE7Xm8DmtxqfF+POjCgReIrMT4+4yHyUivkzszcHd4yb6e5WEM/9S0a8Ud4f9VsQuJrAkprG/wyLu799iGzwL5dGM6u7vchMPNbuKq5QbRQ8Zt3krPnAqyNBWc5CPilkN3k/khg/OestkM7hDzEo09G7qJ2leZtzNJl+MNcTrhHvOZUXk3gqegiYoGmOV4jitywoS9Oxang3HMU6LiVFXCcOxIsm67O07Ro2zUJfiNV91xEpuMjWHU33i82hXyHbrV15allU+/Fd9t9cnTye5Cc15Gb05Kb35OM25yB/Ue0w1mo//IwetN/+uufYAffHcLGrdheaaE731NpprjfTWWWmuMdNcX6e5tnCfWtpRwrpKzTWleutpNdcSa66jNvZY+fPVzqNrrZ83NL8d0PxuQvObkUYPFd7OyvcyrXS+FTI0v5Pa+EYs3/hGzND7Pq7n63sb2EnuXeRZ5bvITjrfhHbS+B62F7GaIdDzFvj9CcreQf8DIOI9qO84jv0AAAAASUVORK5CYII=",
+        alt: ""
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "face"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "face2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "face3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://icon-library.com/images/facebook-icon-transparent-background/facebook-icon-transparent-background-1.jpg",
+        alt: ""
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "insta"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "insta2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "insta3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://toppng.com/uploads/preview/black-instagram-logo-11549505060y8xxtph5nz.png",
+        alt: ""
+      }))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer31"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer32"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "footer-ul1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "footer-ul10"
+      }, "FOR CREATORS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "footer-ul11"
+      }, "About"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "footer-ul12"
+      }, "GitHub"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "footer-ul13"
+      }, "LinkedIn"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "footer-ul14"
+      }, "App Accademy")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer5"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "footer6"
+      }))))))))));
     }
   }]);
 

@@ -15,8 +15,6 @@ class CommunityForm extends React.Component {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleOptionChange = this.handleOptionChange.bind(this);
-    // this.redirectToCommunity = this.redirectToCommunity.bind(this);
     this.copyContent = this.copyContent.bind(this);
     this.isChecked = this.isChecked.bind(this);
     this.state = {
@@ -34,18 +32,8 @@ class CommunityForm extends React.Component {
   update(field) {
     return e => this.setState({
       [field]: e.currentTarget.value
-    }).then(
-        localStorage.setItem('community', JSON.stringify(this.state))
-      );
-    
+    })
   };
-
- 
-
-  // handleOptionChange(e) {
-  //   let { value } = e.target;
-  //   this.setState({ ['isPlural']: value });
-  // }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -65,11 +53,6 @@ class CommunityForm extends React.Component {
       (action) => {
       return this.props.history.push(`/community/${action.community.id}`, this.state)});
     };
-
-  // redirectToCommunity(community) {
-  //     community = this.props.community;
-  //     this.props.history.push(`/community/${community.id}`);
-  // }
 
   isChecked() {
     if (this.state.isPlural === false) {
