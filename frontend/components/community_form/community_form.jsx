@@ -244,8 +244,8 @@ class CommunityForm extends React.Component {
               <input type="submit" id="submit-form" />
             </form>
           </div>
-          
         </div>
+        
       )
     }
     

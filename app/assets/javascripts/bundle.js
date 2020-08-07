@@ -563,7 +563,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
         className: "bronze-img-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "bronze-img",
-        src: "https://c10.patreonusercontent.com/3/eyJ3Ijo0MDB9/patreon-media/p/reward/3632132/b46d56d576804170ade9a76bcceced80/4.png?token-time=2145916800&token-hash=AweIqi9rAC797oEvwqaHIL73pzukFXWAUF7gxLRx7zw%3D"
+        src: "https://media.istockphoto.com/photos/red-apple-fruit-with-green-leaf-isolated-on-white-picture-id925389178?k=6&m=925389178&s=612x612&w=0&h=8RfLre7Q0R5eimVJj0L97B9U0OHg6iz9MD4FbwEeeuA="
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "bronze-amt-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -608,7 +608,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
         className: "silver-img-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "silver-img",
-        src: "https://c10.patreonusercontent.com/3/eyJ3Ijo0MDB9/patreon-media/p/reward/3632635/7fcf0f4750494a8b9544765884915b33/2.png?token-time=2145916800&token-hash=FdROyIqYsl_blfA6ZF-rvp3A7IoqQerOiyQgwjXkYO8%3D"
+        src: "https://storage.needpix.com/rsynced_images/grilled-vegetables-3329075_1280.png"
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "silver-amt-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -653,7 +653,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
         className: "gold-img-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "gold-img",
-        src: "https://c10.patreonusercontent.com/3/eyJ3Ijo0MDB9/patreon-media/p/reward/3632663/3b471375f8f943ca8b9596a5d0327072/2.png?token-time=2145916800&token-hash=4au40v64PmBTu-skbgQ__9SfOaHZzZmxH82ga2l-6xU%3D"
+        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/1920px-Good_Food_Display_-_NCI_Visuals_Online.jpg"
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "gold-amt-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

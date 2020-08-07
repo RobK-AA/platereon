@@ -94,7 +94,7 @@ class Community extends React.Component {
                                       <div className="bronze-banner">
                                         <div className="bronze-title">Bronze
                                         <div className="bronze-img-container">
-                                          <img className="bronze-img" src="https://c10.patreonusercontent.com/3/eyJ3Ijo0MDB9/patreon-media/p/reward/3632132/b46d56d576804170ade9a76bcceced80/4.png?token-time=2145916800&token-hash=AweIqi9rAC797oEvwqaHIL73pzukFXWAUF7gxLRx7zw%3D" />
+                                        <img className="bronze-img" src="https://media.istockphoto.com/photos/red-apple-fruit-with-green-leaf-isolated-on-white-picture-id925389178?k=6&m=925389178&s=612x612&w=0&h=8RfLre7Q0R5eimVJj0L97B9U0OHg6iz9MD4FbwEeeuA=" />
                                         </div>
                                         </div>
                                       </div>
@@ -145,7 +145,7 @@ class Community extends React.Component {
                                       <div className="silver-banner">
                                         <div className="silver-title">Silver
                                         <div className="silver-img-container">
-                                      <img className="silver-img" src="https://c10.patreonusercontent.com/3/eyJ3Ijo0MDB9/patreon-media/p/reward/3632635/7fcf0f4750494a8b9544765884915b33/2.png?token-time=2145916800&token-hash=FdROyIqYsl_blfA6ZF-rvp3A7IoqQerOiyQgwjXkYO8%3D" />
+                                        <img className="silver-img" src="https://storage.needpix.com/rsynced_images/grilled-vegetables-3329075_1280.png" />
                                       </div>
                                         </div>
                                       </div>
@@ -196,7 +196,7 @@ class Community extends React.Component {
                                       <div className="gold-banner">
                                         <div className="gold-title">Gold
                                             <div className="gold-img-container">
-                                      <img className="gold-img" src="https://c10.patreonusercontent.com/3/eyJ3Ijo0MDB9/patreon-media/p/reward/3632663/3b471375f8f943ca8b9596a5d0327072/2.png?token-time=2145916800&token-hash=4au40v64PmBTu-skbgQ__9SfOaHZzZmxH82ga2l-6xU%3D" />
+                                        <img className="gold-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/1920px-Good_Food_Display_-_NCI_Visuals_Online.jpg" />
                                       </div>
                                         </div>
                                       </div>

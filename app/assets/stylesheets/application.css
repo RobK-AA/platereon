@@ -2231,6 +2231,7 @@ Header {
 
 .about-body1 {
   display: block;
+  text-align: justify;
   box-sizing: border-box;
     padding-top: 1.5rem;
     padding-right: 1.5rem;
