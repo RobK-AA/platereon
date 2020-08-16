@@ -21,7 +21,5 @@ Platereon offers both creators and supporters a number of exciting features:
     * Share your content 
     * Customize your membership levels to offer perks for your supporters
     
- ## Welcome Page:
- [logo]: https://github.com/RobK-AA/platereon/blob/master/platereon_main_page1.png "Main Page"
 
  
