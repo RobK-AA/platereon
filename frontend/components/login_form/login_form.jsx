@@ -6,16 +6,24 @@ class LoginForm extends React.Component {
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      errors: {}
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.removeErrors = this.removeErrors.bind(this);
+    this.highlightErrors = this.highlightErrors.bind(this);
   }
 
   update(field) {
-    return e => this.setState({
-      [field]: e.currentTarget.value
-    });
+    return (e) => {
+      if (this.props.errors) this.props.clearErrors();
+      this.setState({
+        [field]: e.currentTarget.value,
+      });
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ errors: nextProps.errors });
   }
 
   handleSubmit(e) {
@@ -23,30 +31,31 @@ class LoginForm extends React.Component {
     this.props.submitForm(this.state);
   }
 
-
-
   renderErrors() {
-  
-    if (this.props.errors && this.props.location.pathname === "/login") {
-
-      return (
-        <ul id="session-errors-list">
-          {this.props.errors.map((error, i) => (
-            <li className="session-errors" key={`error-${i}`}>
-              {error}
-            </li>
-          ))}
-        </ul>
-      );
-    }
-    
+    this.highlightErrors();
+    return (
+      <ul id="session-errors-list" className="rendered-errors-list">
+        {Object.keys(this.state.errors).map((error, i) => (
+          <li className="session-errors" key={`error-${i}`}>
+            {this.state.errors[error]}
+          </li>
+        ))}
+      </ul>
+    );
   }
 
-
-  removeErrors() {
-    const errors = document.getElementById('session-errors-list')
-    if (errors) { errors.style.display = "none" };
-  };
+  highlightErrors() {
+    if (Object.keys(this.state.errors).length > 0) {
+      $('#session-form').css('border-color', 'red');
+      $('#email').css('color', 'red')
+      $('#password').css('color', 'red')
+    }
+    else {
+      $('#session-form').css('border-color', '');
+      $('#email').css('color', '')
+      $('#password').css('color', '')
+    };
+  }
 
   render() {
 
@@ -57,7 +66,7 @@ class LoginForm extends React.Component {
         <form onSubmit={this.handleSubmit} className="login-form-box">
           
           <br />
-          <div className={`${this.props.formType}-form`}>
+          <div id="session-form" className={`${this.props.formType}-form`}>
             <br />
             <label htmlFor="email">Email</label>
               <input 

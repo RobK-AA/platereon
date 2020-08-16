@@ -8,16 +8,24 @@ class SignupForm extends React.Component {
       email: '',
       password: '',
       name: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      errors: {}
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.removeErrors = this.removeErrors.bind(this);
+    this.highlightErrors = this.highlightErrors.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ errors: nextProps.errors });
   }
 
   update(field) {
-    return e => this.setState({
-      [field]: e.currentTarget.value
-    });
+    return (e) => {
+      if (this.props.errors) this.props.clearErrors();
+      this.setState({
+        [field]: e.currentTarget.value,
+      });
+    };
   }
 
   handleSubmit(e) {
@@ -37,25 +45,35 @@ class SignupForm extends React.Component {
       }
   };
   
-
   renderErrors() {
-    if (this.props.errors && this.props.location.pathname === "/signup") {
-      return (
-        <ul>
-          {this.props.errors.map((error, i) => (
-            <li className="session-errors" key={`error-${i}`}>
-              {error}
-            </li>
-          ))}
-        </ul>
-      );
+    this.highlightErrors();
+    return (
+      <ul className="rendered-errors-list">
+        {Object.keys(this.state.errors).map((error, i) => (
+          <li className="session-errors" key={`error-${i}`}>
+            {this.state.errors[error]}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+  
+  highlightErrors() {
+    if (Object.keys(this.state.errors).length > 0) {
+      $('#session-form').css('border-color', 'red');
+      $('#name').css('color', 'red')
+      $('#email').css('color', 'red')
+      $('#password').css('color', 'red')
+      $('#confirm-password').css('color', 'red')
     }
-  };
-
-  removeErrors() {
-    const errors = document.getElementById('session-errors-list')
-    if (errors) { errors.style.display = "none"};
-  };
+    else {
+      $('#session-form').css('border-color', '');
+      $('#name').css('color', '')
+      $('#email').css('color', '')
+      $('#password').css('color', '')
+      $('#confirm-password').css('color', '')
+    };
+  }
 
   render() {
 
@@ -65,7 +83,7 @@ class SignupForm extends React.Component {
         <form onSubmit={this.handleSubmit} className="signup-form-box">
           
           <br />
-          <div className={`${this.props.formType}-form`}>
+          <div id="session-form" className={`${this.props.formType}-form`}>
             <br />
             <label htmlFor="name">Name</label>
               <input
