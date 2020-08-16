@@ -1,4 +1,5 @@
 import React from 'react';
+import DemoContainer from '../demo/demo_container';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -47,13 +48,15 @@ class LoginForm extends React.Component {
   highlightErrors() {
     if (Object.keys(this.state.errors).length > 0) {
       $('#session-form').css('border-color', 'red');
-      $('#email').css('color', 'red')
-      $('#password').css('color', 'red')
+      $('#session-form').css('background-color', 'lightgray');
+      $('#email').css('color', 'red');
+      $('#password').css('color', 'red');
     }
     else {
       $('#session-form').css('border-color', '');
-      $('#email').css('color', '')
-      $('#password').css('color', '')
+      $('#session-form').css('background-color', '');
+      $('#email').css('color', '');
+      $('#password').css('color', '');
     };
   }
 
@@ -90,6 +93,10 @@ class LoginForm extends React.Component {
               />
             
             {this.renderErrors()}
+            <br />
+            <div className="session-submit">
+              <DemoContainer />
+            </div>
             <br />
             <input className="session-submit" type="submit" value={this.props.formName} />
             

@@ -492,6 +492,10 @@ html {
   width: 100%;
 }
 
+.session-submit {
+  height: 45px !important;
+}
+
 
 #password, #email, #name, #confirm-password {
     margin-top: 10px;
