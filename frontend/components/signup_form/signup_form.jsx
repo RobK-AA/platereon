@@ -61,20 +61,32 @@ class SignupForm extends React.Component {
   
   highlightErrors() {
     if (Object.keys(this.state.errors).length > 0) {
-      $('#session-form').css('border-color', 'red');
-      $('#session-form').css('background-color', 'lightgray');
-      $('#name').css('color', 'red')
-      $('#email').css('color', 'red')
-      $('#password').css('color', 'red')
-      $('#confirm-password').css('color', 'red')
+      $('#email').css('border-color', 'rgb(204, 50, 63)');
+      $('#email').css('background-color', 'rgb(250, 233, 234)');
+      $('#email').css('color', 'rgb(204, 50, 63)');
+      $('#password').css('color', 'rgb(204, 50, 63)');
+      $('#password').css('border-color', 'rgb(204, 50, 63)');
+      $('#password').css('background-color', 'rgb(250, 233, 234)');
+      $('#name').css('border-color', 'rgb(204, 50, 63)');
+      $('#name').css('background-color', 'rgb(250, 233, 234)');
+      $('#name').css('color', 'rgb(204, 50, 63)');
+      $('#confirm-password').css('color', 'rgb(204, 50, 63)');
+      $('#confirm-password').css('border-color', 'rgb(204, 50, 63)');
+      $('#confirm-password').css('background-color', 'rgb(250, 233, 234)');
     }
     else {
-      $('#session-form').css('border-color', '');
-      $('#session-form').css('background-color', '');
-      $('#name').css('color', '')
-      $('#email').css('color', '')
-      $('#password').css('color', '')
-      $('#confirm-password').css('color', '')
+      $('#email').css('border-color', '');
+      $('#email').css('background-color', '');
+      $('#email').css('color', '');
+      $('#password').css('color', '');
+      $('#password').css('border-color', '');
+      $('#password').css('background-color', '');
+      $('#name').css('border-color', '');
+      $('#name').css('background-color', '');
+      $('#name').css('color', '');
+      $('#confirm-password').css('color', '');
+      $('#confirm-password').css('border-color', '');
+      $('#confirm-password').css('background-color', '');
     };
   }
 
