@@ -616,7 +616,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
         className: "silver-img-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "silver-img",
-        src: "https://storage.needpix.com/rsynced_images/grilled-vegetables-3329075_1280.png"
+        src: "https://images.freeimages.com/images/large-previews/fcf/food-4-1324994.jpg"
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "silver-amt-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
