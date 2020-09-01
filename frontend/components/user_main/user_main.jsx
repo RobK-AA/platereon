@@ -2,15 +2,34 @@ import React from 'react';
 import CommunityFormContainer from '../community_form/community_form_container'
 import { Route, Link } from 'react-router-dom';
 import CommunityContainer from '../community/community_container'
+import CommunitiesReducer from '../../reducers/communities_reducer';
+import community_container from '../community/community_container';
 
 class UserMain extends React.Component {
   constructor(props) {
     super(props);
+    this.renderCommunities = this.renderCommunities.bind(this);
   };
 
-  render() {
-    const { currentUser, location } = this.props;
+  componentWillReceiveProps() {
+    
+  }
 
+  renderCommunities() {
+    return (
+      this.props.communities.map((community) => {
+        <ul>
+          <li>{community.name}
+            <Link to={`/api/communities/${community.id}`}></Link>
+          </li>
+        </ul>
+      })
+    )
+  }
+
+  render() {
+    const { currentUser, communities } = this.props;
+    debugger
     return (
           <div className="user-main5">
             <div className="user-main4">
@@ -46,6 +65,7 @@ class UserMain extends React.Component {
                                         <span className="lower-left6">
                                           Go support other Platereon communities
                                           or create one yourself!
+                                          {/* {communities[0].name} */}
                                         </span>
                                       </div>
                                     </div>
@@ -81,7 +101,7 @@ class UserMain extends React.Component {
                                       
                                 
                                       <div className="main-create2">
-                                    
+                                        
                                       </div>
                                     </div>
                                   </Link>
@@ -96,6 +116,9 @@ class UserMain extends React.Component {
                 </div>
               </div>
             </div>
+            <div>
+              
+            </div> 
         <div className="outer-footer1">
           <div className="outer-footer2">
             <div className="outer-footer3">

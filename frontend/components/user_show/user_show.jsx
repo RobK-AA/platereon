@@ -9,6 +9,11 @@ class UserShow extends React.Component {
     super(props);
   };
 
+  componentDidMount() {
+    debugger
+    this.props.getCommunities();
+  }
+
   render () {
     const { currentUser, location } = this.props;
 
@@ -18,11 +23,11 @@ class UserShow extends React.Component {
       (<Route component={CommunityFormContainer} />) 
       :
       (
-        (location.pathname.includes('community')) 
+        (location.pathname.includes('communities')) 
         ?
         <div className="community-page">
             <div>
-              <Route path="/community/:communityId" component={CommunityContainer} />
+              <Route path="/api/communities/:communityId" component={CommunityContainer} />
             </div>
         </div>
         :

@@ -7,7 +7,7 @@ class Community extends React.Component {
 
   
   constructor(props) {
-    
+    debugger
     super(props);
     const name = this.props.community.name || "";
     const description = this.props.community.description || "";
@@ -18,16 +18,16 @@ class Community extends React.Component {
     const isPlural = this.props.community.plural || "";
     const creatorId = this.props.community.creator_id || "";
 
-    this.state = {
-      name,
-      description,
-      shortDesc,
-      goldPerks,
-      silverPerks,
-      bronzePerks,
-      isPlural,
-      creatorId
-    }
+    // this.state = {
+    //   name,
+    //   description,
+    //   shortDesc,
+    //   goldPerks,
+    //   silverPerks,
+    //   bronzePerks,
+    //   isPlural,
+    //   creatorId
+    // }
   };
 
   // componentDidUpdate(prevProps, prevState) {
@@ -38,13 +38,17 @@ class Community extends React.Component {
   //   }
   // }
 
-  componentDidMount() {
-    
+  componentWillReceiveProps() {
+    debugger
     this.props.fetchCommunity(this.props.match.params.communityId)
   };
 
+  // shouldComponentUpdate() {
+  //   this.props.fetchCommunity(this.props.communityId)
+  // }
+
   render() {
-    
+    debugger
     const { name, 
             description, 
             shortDesc, 
@@ -52,7 +56,7 @@ class Community extends React.Component {
             bronzePerks, 
             silverPerks,
             isPlural
-    } = this.state
+    } = this.props.community
    
     return (
       <div className="community-body-outer">

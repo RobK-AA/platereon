@@ -33,6 +33,7 @@ export const fetchCommunities = () => dispatch => {
 };
 
 export const fetchCommunity = communityId => dispatch => {
+  debugger
   return CommunityApiUtil.fetchCommunity(communityId).then(
     community => dispatch(receiveCommunity(community), 
       error => {

@@ -2,6 +2,10 @@ class Api::CommunitiesController < ApplicationController
 
   # before_action :require_logged_in, only: [:show]
 
+  def index
+    @communities = Community.all
+  end
+
   def create
     @community = Community.new(community_params)
     if @community.save
@@ -12,8 +16,9 @@ class Api::CommunitiesController < ApplicationController
   end
 
   def show
+    debugger
     @community = Community.find(params[:id])
-    render :show
+    render "api/communities/show"
   end
 
   def update

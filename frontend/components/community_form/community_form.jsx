@@ -51,7 +51,7 @@ class CommunityForm extends React.Component {
 
     this.props.submitCommunity(formData).then(
       (action) => {
-      return this.props.history.push(`/community/${action.community.id}`, this.state)});
+      return this.props.history.push(`api/communities/${action.community.id}`)});
     };
 
   isChecked() {
