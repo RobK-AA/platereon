@@ -5,7 +5,7 @@ import UserMain from './user_main';
 const msp = state => {
   debugger
   return  {
-    communities: Object.values(state.entities.communities),
+    communities: Object.values(Object.values(state.entities.communities)),
     currentUser: state.entities.users[state.session.id]
 
 }};

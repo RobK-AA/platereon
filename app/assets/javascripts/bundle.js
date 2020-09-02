@@ -335,6 +335,12 @@ var Body = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Body, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      debugger;
+      this.props.getCommunities(); // localStorage.setItem('communities', this.props.communities)
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -396,14 +402,17 @@ var Body = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _body__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./body */ "./frontend/components/body/body.jsx");
+/* harmony import */ var _actions_community_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/community_actions */ "./frontend/actions/community_actions.js");
+/* harmony import */ var _body__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./body */ "./frontend/components/body/body.jsx");
+
 
 
 
 
 var msp = function msp(state) {
   return {
-    currentUser: state.entities.users[state.session.id]
+    currentUser: state.entities.users[state.session.id],
+    communities: Object.values(state.entities.communities)
   };
 };
 
@@ -411,11 +420,14 @@ var mdp = function mdp(dispatch) {
   return {
     logout: function logout() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["logout"])());
+    },
+    getCommunities: function getCommunities() {
+      return dispatch(Object(_actions_community_actions__WEBPACK_IMPORTED_MODULE_2__["fetchCommunities"])());
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_body__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_body__WEBPACK_IMPORTED_MODULE_3__["default"]));
 
 /***/ }),
 
@@ -478,22 +490,12 @@ var Community = /*#__PURE__*/function (_React$Component) {
     _this.silverPerks = _this.props.community.silver_perks || "";
     _this.bronzePerks = _this.props.community.bronze_perks || "";
     _this.isPlural = _this.props.community.plural || "";
-    _this.creatorId = _this.props.community.creator_id || ""; // this.state = {
-    //   name,
-    //   description,
-    //   shortDesc,
-    //   goldPerks,
-    //   silverPerks,
-    //   bronzePerks,
-    //   isPlural,
-    //   creatorId
-    // }
-
+    _this.creatorId = _this.props.community.creator_id || "";
     return _this;
   }
 
   _createClass(Community, [{
-    key: "componentWillReceiveProps",
+    key: "componentWillMount",
     // componentDidUpdate(prevProps, prevState) {
     //   if (prevState !== this.state) {
     //     this.setState({
@@ -501,7 +503,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
     //     })
     //   }
     // }
-    value: function componentWillReceiveProps() {
+    value: function componentWillMount() {
       debugger;
       this.props.fetchCommunity(this.props.match.params.communityId);
     }
@@ -2286,28 +2288,40 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.renderCommunities = _this.renderCommunities.bind(_assertThisInitialized(_this));
+    _this.renderCommunity = _this.renderCommunity.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(UserMain, [{
-    key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps() {}
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      this.renderCommunity();
+      this.renderCommunities();
+    }
   }, {
     key: "renderCommunities",
     value: function renderCommunities() {
-      return this.props.communities.map(function (community) {
-        /*#__PURE__*/
-        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, community.name, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+      return Object.values(this.props.communities).map(function (community) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
           to: "/api/communities/".concat(community.id)
-        })));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, community.name)));
       });
+    }
+  }, {
+    key: "renderCommunity",
+    value: function renderCommunity() {
+      if (this.props.communities[0]) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this.renderCommunities());
+      }
     }
   }, {
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          currentUser = _this$props.currentUser,
-          communities = _this$props.communities;
+      var currentUser = this.props.currentUser;
+
+      var _ref = this.props || [],
+          communities = _ref.communities;
+
       debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-main5"
@@ -2359,7 +2373,7 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
         className: "supporting3"
       }, "SUPPORTING"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "lower-left6"
-      }, "Go support other Platereon communities or create one yourself!"))))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Go support other Platereon communities or create one yourself!", this.renderCommunity()))))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "mid-panel1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "mid-panel2"
@@ -2503,7 +2517,7 @@ __webpack_require__.r(__webpack_exports__);
 var msp = function msp(state) {
   debugger;
   return {
-    communities: Object.values(state.entities.communities),
+    communities: Object.values(Object.values(state.entities.communities)),
     currentUser: state.entities.users[state.session.id]
   };
 };
@@ -2575,12 +2589,6 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(UserShow, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      debugger;
-      this.props.getCommunities();
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -2591,6 +2599,7 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
       }) : location.pathname.includes('communities') ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "community-page"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+        communities: this.props.communities,
         path: "/api/communities/:communityId",
         component: _community_community_container__WEBPACK_IMPORTED_MODULE_3__["default"]
       }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_main_user_main_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
@@ -2627,7 +2636,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var msp = function msp(state) {
   return {
-    currentUser: state.entities.users[state.session.id]
+    currentUser: state.entities.users[state.session.id],
+    communites: Object.values(state.entities.communities)
   };
 };
 

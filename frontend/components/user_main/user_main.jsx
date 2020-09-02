@@ -9,26 +9,41 @@ class UserMain extends React.Component {
   constructor(props) {
     super(props);
     this.renderCommunities = this.renderCommunities.bind(this);
+    this.renderCommunity = this.renderCommunity.bind(this);
   };
 
-  componentWillReceiveProps() {
-    
+  componentDidUpdate() {
+    this.renderCommunity();
+    this.renderCommunities();
   }
 
   renderCommunities() {
     return (
-      this.props.communities.map((community) => {
+      Object.values(this.props.communities).map((community) => (
         <ul>
-          <li>{community.name}
-            <Link to={`/api/communities/${community.id}`}></Link>
-          </li>
+          
+          <Link to={`/api/communities/${community.id}`}>
+            <li>{community.name}</li>
+          </Link>
+          
         </ul>
-      })
+      ))
     )
   }
 
+  renderCommunity() {
+    if (this.props.communities[0]) {
+      return (
+        <>
+        {this.renderCommunities()}
+        </>
+      )
+    }
+  }
+
   render() {
-    const { currentUser, communities } = this.props;
+    const { currentUser } = this.props;
+    const { communities } = this.props || [];
     debugger
     return (
           <div className="user-main5">
@@ -65,7 +80,11 @@ class UserMain extends React.Component {
                                         <span className="lower-left6">
                                           Go support other Platereon communities
                                           or create one yourself!
-                                          {/* {communities[0].name} */}
+                                             {this.renderCommunity()}
+                                             {/* { 
+                                             communities[0].name
+                                            }  */}
+                                            {/* {this.renderCommunities()}                                         */}
                                         </span>
                                       </div>
                                     </div>

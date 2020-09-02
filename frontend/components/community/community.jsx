@@ -19,16 +19,6 @@ class Community extends React.Component {
     this.isPlural = this.props.community.plural || "";
     this.creatorId = this.props.community.creator_id || "";
 
-    // this.state = {
-    //   name,
-    //   description,
-    //   shortDesc,
-    //   goldPerks,
-    //   silverPerks,
-    //   bronzePerks,
-    //   isPlural,
-    //   creatorId
-    // }
   };
 
   // componentDidUpdate(prevProps, prevState) {
@@ -39,7 +29,7 @@ class Community extends React.Component {
   //   }
   // }
 
-  componentWillReceiveProps() {
+  componentWillMount() {
     debugger
     this.props.fetchCommunity(this.props.match.params.communityId)
   };

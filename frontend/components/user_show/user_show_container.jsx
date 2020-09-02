@@ -4,7 +4,8 @@ import UserShow from './user_show';
 import { fetchCommunities } from '../../actions/community_actions';
 
 const msp = state => ({
-  currentUser: state.entities.users[state.session.id]
+  currentUser: state.entities.users[state.session.id],
+  communites: Object.values(state.entities.communities)
 });
 
 const mdp = dispatch => ({

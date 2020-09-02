@@ -10,11 +10,14 @@ class Body extends React.Component {
     super(props);
   };
 
+  componentWillMount() {
+    debugger
+    this.props.getCommunities();
+    // localStorage.setItem('communities', this.props.communities)
+  }
+
   render() {
     const { currentUser, location } = this.props;
-
-    
-
     return (
 
       <div className="body-container">
