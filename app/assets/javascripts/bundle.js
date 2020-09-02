@@ -139,7 +139,6 @@ var fetchCommunities = function fetchCommunities() {
 };
 var fetchCommunity = function fetchCommunity(communityId) {
   return function (dispatch) {
-    debugger;
     return _util_community_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchCommunity"](communityId).then(function (community) {
       return dispatch(receiveCommunity(community), function (error) {
         dispatch(receiveErrors(error.responseJSON));
@@ -337,7 +336,6 @@ var Body = /*#__PURE__*/function (_React$Component) {
   _createClass(Body, [{
     key: "componentWillMount",
     value: function componentWillMount() {
-      debugger;
       this.props.getCommunities(); // localStorage.setItem('communities', this.props.communities)
     }
   }, {
@@ -481,7 +479,6 @@ var Community = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, Community);
 
-    debugger;
     _this = _super.call(this, props);
     _this.name = _this.props.community.name || "";
     _this.description = _this.props.community.description || "";
@@ -496,24 +493,12 @@ var Community = /*#__PURE__*/function (_React$Component) {
 
   _createClass(Community, [{
     key: "componentWillMount",
-    // componentDidUpdate(prevProps, prevState) {
-    //   if (prevState !== this.state) {
-    //     this.setState({
-    //       prevState
-    //     })
-    //   }
-    // }
     value: function componentWillMount() {
-      debugger;
       this.props.fetchCommunity(this.props.match.params.communityId);
     }
   }, {
     key: "render",
-    // shouldComponentUpdate() {
-    //   this.props.fetchCommunity(this.props.communityId)
-    // }
     value: function render() {
-      debugger;
       var name = this.name,
           description = this.description,
           shortDesc = this.shortDesc,
@@ -834,7 +819,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
-  debugger;
   return {
     currentUser: state.entities.users[state.session.id],
     community: state.entities.communities[ownProps.match.params.communityId]
@@ -842,7 +826,6 @@ var msp = function msp(state, ownProps) {
 };
 
 var mdp = function mdp(dispatch) {
-  debugger;
   return {
     fetchCommunity: function fetchCommunity(communityId) {
       return dispatch(Object(_actions_community_actions__WEBPACK_IMPORTED_MODULE_2__["fetchCommunity"])(communityId));
@@ -2287,29 +2270,40 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, UserMain);
 
     _this = _super.call(this, props);
+    _this.currentUserId = _this.props.currentUser.id;
     _this.renderCommunities = _this.renderCommunities.bind(_assertThisInitialized(_this));
-    _this.renderCommunity = _this.renderCommunity.bind(_assertThisInitialized(_this));
+    _this.renderLinks = _this.renderLinks.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(UserMain, [{
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      this.renderCommunity();
+      this.renderLinks();
       this.renderCommunities();
     }
   }, {
     key: "renderCommunities",
     value: function renderCommunities() {
-      return Object.values(this.props.communities).map(function (community) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-          to: "/api/communities/".concat(community.id)
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, community.name)));
-      });
+      var _this2 = this;
+
+      debugger;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "community-links"
+      }, Object.values(this.props.communities).map(function (community, i) {
+        if (community.creator_id === _this2.currentUserId) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+            key: "community-".concat(i),
+            to: "/api/communities/".concat(community.id)
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            key: i
+          }, community.name));
+        }
+      })));
     }
   }, {
-    key: "renderCommunity",
-    value: function renderCommunity() {
+    key: "renderLinks",
+    value: function renderLinks() {
       if (this.props.communities[0]) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this.renderCommunities());
       }
@@ -2322,7 +2316,6 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
       var _ref = this.props || [],
           communities = _ref.communities;
 
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-main5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2373,7 +2366,17 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
         className: "supporting3"
       }, "SUPPORTING"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "lower-left6"
-      }, "Go support other Platereon communities or create one yourself!", this.renderCommunity()))))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Go support other Platereon communities or create one yourself!"))))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "community-links4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "community-links3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "community-links2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "community-links1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+        className: "community-links-title"
+      }, "Communities Created"), this.renderLinks())))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "mid-panel1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "mid-panel2"
@@ -2515,7 +2518,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state) {
-  debugger;
   return {
     communities: Object.values(Object.values(state.entities.communities)),
     currentUser: state.entities.users[state.session.id]
@@ -2996,7 +2998,6 @@ var fetchCommunities = function fetchCommunities() {
   });
 };
 var fetchCommunity = function fetchCommunity(communityId) {
-  debugger;
   return $.ajax({
     url: "api/communities/".concat(communityId)
   });

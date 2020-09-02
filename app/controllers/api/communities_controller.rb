@@ -16,7 +16,6 @@ class Api::CommunitiesController < ApplicationController
   end
 
   def show
-    debugger
     @community = Community.find(params[:id])
     render "api/communities/show"
   end

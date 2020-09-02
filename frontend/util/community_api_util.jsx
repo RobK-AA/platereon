@@ -5,7 +5,7 @@ export const fetchCommunities = () => (
 );
 
 export const fetchCommunity = communityId => {
-  debugger
+  
   return $.ajax({
     url: `api/communities/${communityId}`
   })

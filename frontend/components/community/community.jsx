@@ -7,7 +7,7 @@ class Community extends React.Component {
 
   
   constructor(props) {
-    debugger
+    
     super(props);
     
     this.name = this.props.community.name || "";
@@ -21,25 +21,13 @@ class Community extends React.Component {
 
   };
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState !== this.state) {
-  //     this.setState({
-  //       prevState
-  //     })
-  //   }
-  // }
-
   componentWillMount() {
-    debugger
+    
     this.props.fetchCommunity(this.props.match.params.communityId)
   };
 
-  // shouldComponentUpdate() {
-  //   this.props.fetchCommunity(this.props.communityId)
-  // }
-
   render() {
-    debugger
+    
     const { name, 
             description, 
             shortDesc, 

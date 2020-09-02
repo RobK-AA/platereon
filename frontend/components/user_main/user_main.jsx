@@ -8,30 +8,37 @@ import community_container from '../community/community_container';
 class UserMain extends React.Component {
   constructor(props) {
     super(props);
+    this.currentUserId = this.props.currentUser.id
     this.renderCommunities = this.renderCommunities.bind(this);
-    this.renderCommunity = this.renderCommunity.bind(this);
+    this.renderLinks = this.renderLinks.bind(this);
   };
 
   componentDidUpdate() {
-    this.renderCommunity();
+    this.renderLinks();
     this.renderCommunities();
   }
 
   renderCommunities() {
+    debugger
     return (
-      Object.values(this.props.communities).map((community) => (
-        <ul>
-          
-          <Link to={`/api/communities/${community.id}`}>
-            <li>{community.name}</li>
-          </Link>
-          
+      <>
+        <ul className="community-links">
+          {Object.values(this.props.communities).map((community, i) => {
+            if (community.creator_id === this.currentUserId) {
+              
+              return (
+                <Link key={`community-${i}`} to={`/api/communities/${community.id}`}>
+                  <li key={i}>{community.name}</li>
+                </Link>
+              )
+            }
+          })}
         </ul>
-      ))
+      </>
     )
   }
 
-  renderCommunity() {
+  renderLinks() {
     if (this.props.communities[0]) {
       return (
         <>
@@ -44,7 +51,7 @@ class UserMain extends React.Component {
   render() {
     const { currentUser } = this.props;
     const { communities } = this.props || [];
-    debugger
+    
     return (
           <div className="user-main5">
             <div className="user-main4">
@@ -80,11 +87,7 @@ class UserMain extends React.Component {
                                         <span className="lower-left6">
                                           Go support other Platereon communities
                                           or create one yourself!
-                                             {this.renderCommunity()}
-                                             {/* { 
-                                             communities[0].name
-                                            }  */}
-                                            {/* {this.renderCommunities()}                                         */}
+                                             
                                         </span>
                                       </div>
                                     </div>
@@ -96,6 +99,17 @@ class UserMain extends React.Component {
                         </div>
                       </div>
                     </div>
+                    <div className="community-links4">
+                      <div className="community-links3">
+                        <div className="community-links2">
+                          <div className="community-links1">
+                            <h5 className="community-links-title">Communities Created</h5>
+                            {this.renderLinks()}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
                     <div className="mid-panel1">
                       <div className="mid-panel2">
                         <div className="mid-panel3">
