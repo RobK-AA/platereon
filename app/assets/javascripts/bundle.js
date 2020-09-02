@@ -471,14 +471,14 @@ var Community = /*#__PURE__*/function (_React$Component) {
 
     debugger;
     _this = _super.call(this, props);
-    var name = _this.props.community.name || "";
-    var description = _this.props.community.description || "";
-    var shortDesc = _this.props.community.short_description || "";
-    var goldPerks = _this.props.community.gold_perks || "";
-    var silverPerks = _this.props.community.silver_perks || "";
-    var bronzePerks = _this.props.community.bronze_perks || "";
-    var isPlural = _this.props.community.plural || "";
-    var creatorId = _this.props.community.creator_id || ""; // this.state = {
+    _this.name = _this.props.community.name || "";
+    _this.description = _this.props.community.description || "";
+    _this.shortDesc = _this.props.community.short_description || "";
+    _this.goldPerks = _this.props.community.gold_perks || "";
+    _this.silverPerks = _this.props.community.silver_perks || "";
+    _this.bronzePerks = _this.props.community.bronze_perks || "";
+    _this.isPlural = _this.props.community.plural || "";
+    _this.creatorId = _this.props.community.creator_id || ""; // this.state = {
     //   name,
     //   description,
     //   shortDesc,
@@ -512,14 +512,13 @@ var Community = /*#__PURE__*/function (_React$Component) {
     // }
     value: function render() {
       debugger;
-      var _this$props$community = this.props.community,
-          name = _this$props$community.name,
-          description = _this$props$community.description,
-          shortDesc = _this$props$community.shortDesc,
-          goldPerks = _this$props$community.goldPerks,
-          bronzePerks = _this$props$community.bronzePerks,
-          silverPerks = _this$props$community.silverPerks,
-          isPlural = _this$props$community.isPlural;
+      var name = this.name,
+          description = this.description,
+          shortDesc = this.shortDesc,
+          goldPerks = this.goldPerks,
+          bronzePerks = this.bronzePerks,
+          silverPerks = this.silverPerks,
+          isPlural = this.isPlural;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "community-body-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -947,7 +946,7 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
         plural: this.state.isPlural
       };
       this.props.submitCommunity(formData).then(function (action) {
-        return _this3.props.history.push("api/communities/".concat(action.community.id));
+        return _this3.props.history.push("api/communities/".concat(action.community.id), _this3.state);
       });
     }
   }, {

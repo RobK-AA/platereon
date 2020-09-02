@@ -9,14 +9,15 @@ class Community extends React.Component {
   constructor(props) {
     debugger
     super(props);
-    const name = this.props.community.name || "";
-    const description = this.props.community.description || "";
-    const shortDesc = this.props.community.short_description || "";
-    const goldPerks = this.props.community.gold_perks || "";
-    const silverPerks = this.props.community.silver_perks || "";
-    const bronzePerks = this.props.community.bronze_perks || "";
-    const isPlural = this.props.community.plural || "";
-    const creatorId = this.props.community.creator_id || "";
+    
+    this.name = this.props.community.name || "";
+    this.description = this.props.community.description || "";
+    this.shortDesc = this.props.community.short_description || "";
+    this.goldPerks = this.props.community.gold_perks || "";
+    this.silverPerks = this.props.community.silver_perks || "";
+    this.bronzePerks = this.props.community.bronze_perks || "";
+    this.isPlural = this.props.community.plural || "";
+    this.creatorId = this.props.community.creator_id || "";
 
     // this.state = {
     //   name,
@@ -56,7 +57,7 @@ class Community extends React.Component {
             bronzePerks, 
             silverPerks,
             isPlural
-    } = this.props.community
+    } = this
    
     return (
       <div className="community-body-outer">
