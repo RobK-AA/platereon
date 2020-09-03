@@ -11,8 +11,9 @@ class Body extends React.Component {
   };
 
   componentWillMount() {
-    
+    debugger
     this.props.getCommunities();
+    if (this.props.currentUser) this.props.getMemberships(this.props.currentUser.id);
     // localStorage.setItem('communities', this.props.communities)
   }
 

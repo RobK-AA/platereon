@@ -1,8 +1,9 @@
-export const fetchMemberships = (userId) => (
-  $.ajax({
+export const fetchMemberships = (userId) => {
+  debugger
+  return $.ajax({
     url: `api/users/${userId}/memberships`
   })
-); 
+}; 
 
 export const createMembership = (membership) => (
   $.ajax({

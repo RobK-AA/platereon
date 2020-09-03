@@ -12,7 +12,7 @@ class UserMain extends React.Component {
     this.renderCommunities = this.renderCommunities.bind(this);
     this.renderLinks = this.renderLinks.bind(this);
   };
-
+  
   componentDidUpdate() {
     this.renderLinks();
     this.renderCommunities();

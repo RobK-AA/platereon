@@ -9,7 +9,10 @@ class UserShow extends React.Component {
     super(props);
   };
 
- 
+  componentWillMount() {
+    debugger
+    this.props.getMemberships(this.props.currentUser.id);
+  }
 
   render () {
     const { currentUser, location } = this.props;

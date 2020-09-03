@@ -187,6 +187,7 @@ __webpack_require__.r(__webpack_exports__);
 var RECEIVE_MEMBERSHIPS = 'RECEIVE_MEMBERSHIPS';
 var RECEIVE_MEMBERSHIP = 'RECEIVE_MEMBERSHIP';
 var receiveMemberships = function receiveMemberships(memberships) {
+  debugger;
   return {
     type: RECEIVE_MEMBERSHIPS,
     memberships: memberships
@@ -198,9 +199,10 @@ var receiveMembership = function receiveMembership(membership) {
     membership: membership
   };
 };
-var fetchMemberships = function fetchMemberships() {
+var fetchMemberships = function fetchMemberships(userId) {
   return function (dispatch) {
-    return _util_membership_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchMemberships"]().then(function (memberships) {
+    debugger;
+    return _util_membership_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchMemberships"](userId).then(function (memberships) {
       return dispatch(receiveMemberships(memberships), function (error) {
         dispatch(receiveErrors(error.responseJSON));
       });
@@ -388,7 +390,9 @@ var Body = /*#__PURE__*/function (_React$Component) {
   _createClass(Body, [{
     key: "componentWillMount",
     value: function componentWillMount() {
-      this.props.getCommunities(); // localStorage.setItem('communities', this.props.communities)
+      debugger;
+      this.props.getCommunities();
+      if (this.props.currentUser) this.props.getMemberships(this.props.currentUser.id); // localStorage.setItem('communities', this.props.communities)
     }
   }, {
     key: "render",
@@ -454,6 +458,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _actions_community_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/community_actions */ "./frontend/actions/community_actions.js");
 /* harmony import */ var _body__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./body */ "./frontend/components/body/body.jsx");
+/* harmony import */ var _actions_membership_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/membership_actions */ "./frontend/actions/membership_actions.js");
+
 
 
 
@@ -467,12 +473,16 @@ var msp = function msp(state) {
 };
 
 var mdp = function mdp(dispatch) {
+  debugger;
   return {
     logout: function logout() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["logout"])());
     },
     getCommunities: function getCommunities() {
       return dispatch(Object(_actions_community_actions__WEBPACK_IMPORTED_MODULE_2__["fetchCommunities"])());
+    },
+    getMemberships: function getMemberships(userId) {
+      return dispatch(Object(_actions_membership_actions__WEBPACK_IMPORTED_MODULE_4__["fetchMemberships"])(userId));
     }
   };
 };
@@ -2643,6 +2653,12 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(UserShow, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      debugger;
+      this.props.getMemberships(this.props.currentUser.id);
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -2683,6 +2699,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _user_show__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user_show */ "./frontend/components/user_show/user_show.jsx");
 /* harmony import */ var _actions_community_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/community_actions */ "./frontend/actions/community_actions.js");
+/* harmony import */ var _actions_membership_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/membership_actions */ "./frontend/actions/membership_actions.js");
+
 
 
 
@@ -2696,12 +2714,16 @@ var msp = function msp(state) {
 };
 
 var mdp = function mdp(dispatch) {
+  debugger;
   return {
     logout: function logout() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["logout"])());
     },
     getCommunities: function getCommunities() {
       return dispatch(Object(_actions_community_actions__WEBPACK_IMPORTED_MODULE_3__["fetchCommunities"])());
+    },
+    getMemberships: function getMemberships(userId) {
+      return dispatch(Object(_actions_membership_actions__WEBPACK_IMPORTED_MODULE_4__["fetchMemberships"])(userId));
     }
   };
 };
@@ -2892,6 +2914,7 @@ var MembershipsReducer = function MembershipsReducer() {
 
   switch (action.type) {
     case _actions_membership_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_MEMBERSHIPS"]:
+      debugger;
       return action.memberships;
 
     case _actions_membership_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_MEMBERSHIP"]:
@@ -3126,6 +3149,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMembership", function() { return createMembership; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteMembership", function() { return deleteMembership; });
 var fetchMemberships = function fetchMemberships(userId) {
+  debugger;
   return $.ajax({
     url: "api/users/".concat(userId, "/memberships")
   });

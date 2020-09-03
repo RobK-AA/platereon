@@ -4,6 +4,7 @@ export const RECEIVE_MEMBERSHIPS = 'RECEIVE_MEMBERSHIPS';
 export const RECEIVE_MEMBERSHIP = 'RECEIVE_MEMBERSHIP';
 
 export const receiveMemberships = memberships => {
+  debugger
   return {
     type: RECEIVE_MEMBERSHIPS,
     memberships
@@ -17,8 +18,9 @@ export const receiveMembership = membership => {
   }
 };
 
-export const fetchMemberships = () => dispatch => {
-  return MembershipApiUtil.fetchMemberships().then(
+export const fetchMemberships = (userId) => dispatch => {
+  debugger
+  return MembershipApiUtil.fetchMemberships(userId).then(
     memberships => dispatch(receiveMemberships(memberships),
       error => {
         dispatch(receiveErrors(error.responseJSON))
