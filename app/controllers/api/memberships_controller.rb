@@ -6,10 +6,9 @@ class Api::MembershipsController < ApplicationController
 
   def create
     @membership = Membership.new(membership_params)
-    @membership.member_id = current_user.id
-    @membership.community_id = membership_params[:community_id]
+    
     if @membership.save
-      render "api/memberships/show"
+      render :show
     else
       render json: @membership.errors.full_messages, status: 422
     end
@@ -26,6 +25,6 @@ class Api::MembershipsController < ApplicationController
   private
 
   def membership_params
-    params.require(:membership).permit(:community_id)
+    params.require(:membership).permit(:community_id, :member_id)
   end
 end

@@ -167,6 +167,58 @@ var updateCommunity = function updateCommunity(community) {
 
 /***/ }),
 
+/***/ "./frontend/actions/membership_actions.js":
+/*!************************************************!*\
+  !*** ./frontend/actions/membership_actions.js ***!
+  \************************************************/
+/*! exports provided: RECEIVE_MEMBERSHIPS, RECEIVE_MEMBERSHIP, receiveMemberships, receiveMembership, fetchMemberships, createMembership */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_MEMBERSHIPS", function() { return RECEIVE_MEMBERSHIPS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_MEMBERSHIP", function() { return RECEIVE_MEMBERSHIP; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveMemberships", function() { return receiveMemberships; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveMembership", function() { return receiveMembership; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMemberships", function() { return fetchMemberships; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMembership", function() { return createMembership; });
+/* harmony import */ var _util_membership_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/membership_api_util */ "./frontend/util/membership_api_util.jsx");
+
+var RECEIVE_MEMBERSHIPS = 'RECEIVE_MEMBERSHIPS';
+var RECEIVE_MEMBERSHIP = 'RECEIVE_MEMBERSHIP';
+var receiveMemberships = function receiveMemberships(memberships) {
+  return {
+    type: RECEIVE_MEMBERSHIPS,
+    memberships: memberships
+  };
+};
+var receiveMembership = function receiveMembership(membership) {
+  return {
+    type: RECEIVE_MEMBERSHIP,
+    membership: membership
+  };
+};
+var fetchMemberships = function fetchMemberships() {
+  return function (dispatch) {
+    return _util_membership_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchMemberships"]().then(function (memberships) {
+      return dispatch(receiveMemberships(memberships), function (error) {
+        dispatch(receiveErrors(error.responseJSON));
+      });
+    });
+  };
+};
+var createMembership = function createMembership(membership) {
+  return function (dispatch) {
+    return _util_membership_api_util__WEBPACK_IMPORTED_MODULE_0__["createMembership"](membership).then(function (membership) {
+      return dispatch(receiveMembership(membership), function (error) {
+        dispatch(receiveErrors(error.responseJSON));
+      });
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -2783,12 +2835,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
 /* harmony import */ var _communities_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./communities_reducer */ "./frontend/reducers/communities_reducer.js");
+/* harmony import */ var _memberships_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./memberships_reducer */ "./frontend/reducers/memberships_reducer.js");
+
 
 
 
 var EntitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  communities: _communities_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  communities: _communities_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  memberships: _memberships_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (EntitiesReducer);
 
@@ -2814,6 +2869,41 @@ var ErrorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"]
   communities: _community_errors_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (ErrorsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/memberships_reducer.js":
+/*!**************************************************!*\
+  !*** ./frontend/reducers/memberships_reducer.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_membership_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/membership_actions */ "./frontend/actions/membership_actions.js");
+
+
+var MembershipsReducer = function MembershipsReducer() {
+  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(oldState);
+  var newState = Object.assign({}, oldState);
+
+  switch (action.type) {
+    case _actions_membership_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_MEMBERSHIPS"]:
+      return action.memberships;
+
+    case _actions_membership_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_MEMBERSHIP"]:
+      newState[action.membership.id] = action.membership;
+      return newState;
+
+    default:
+      return oldState;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (MembershipsReducer);
 
 /***/ }),
 
@@ -3018,6 +3108,41 @@ var updateCommunity = function updateCommunity(community) {
     data: {
       community: community
     }
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/membership_api_util.jsx":
+/*!***********************************************!*\
+  !*** ./frontend/util/membership_api_util.jsx ***!
+  \***********************************************/
+/*! exports provided: fetchMemberships, createMembership, deleteMembership */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMemberships", function() { return fetchMemberships; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMembership", function() { return createMembership; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteMembership", function() { return deleteMembership; });
+var fetchMemberships = function fetchMemberships(userId) {
+  return $.ajax({
+    url: "api/users/".concat(userId, "/memberships")
+  });
+};
+var createMembership = function createMembership(membership) {
+  return $.ajax({
+    url: "api/memberships",
+    method: "POST",
+    data: {
+      membership: membership
+    }
+  });
+};
+var deleteMembership = function deleteMembership(membershipId) {
+  return $.ajax({
+    url: "api/memberships/".concat(membershipId),
+    method: "DELETE"
   });
 };
 
