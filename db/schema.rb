@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_03_215049) do
+ActiveRecord::Schema.define(version: 2020_09_03_182644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(version: 2020_08_03_215049) do
     t.boolean "plural", default: false
     t.index ["creator_id"], name: "index_communities_on_creator_id"
     t.index ["description"], name: "index_communities_on_description"
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.integer "member_id", null: false
+    t.integer "community_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["community_id"], name: "index_memberships_on_community_id"
+    t.index ["member_id"], name: "index_memberships_on_member_id"
   end
 
   create_table "users", force: :cascade do |t|
