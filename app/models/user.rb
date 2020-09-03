@@ -9,12 +9,18 @@ class User < ApplicationRecord
   attr_reader :password
   after_initialize :ensure_session_token
 
-  has_many :communities,
+  has_many :communities_created,
     primary_key: :id,
     foreign_key: :creator_id,
     class_name: :Community
 
-  
+  has_many :memberships,
+    foreign_key: :member_id,
+    class_name: :Membership
+
+  has_many :communities_joined,
+    through: :memberships,
+    source: :community
 
   def self.find_by_credentials(email, password) 
     user = User.find_by(email: email)
