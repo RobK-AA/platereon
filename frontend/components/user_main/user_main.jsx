@@ -15,6 +15,7 @@ class UserMain extends React.Component {
     this.renderLinks = this.renderLinks.bind(this);
     this.getMemberships = this.props.getMemberships;
     this.communitiesJoined = this.props.currentUser.communities_joined;
+    this.renderJoinMessage = this.renderJoinMessage.bind(this);
   };
   
   componentDidMount() {
@@ -27,24 +28,42 @@ class UserMain extends React.Component {
   }
 
   renderCommunitiesJoined() {
-    
+    debugger
+    const that = this.props.membershipsMessage || "";
     return (
       <>
         <ul className="community-links">
+          {this.renderJoinMessage()}
           {this.communitiesJoined.map((community, i) => {
-              return (
-                <Link key={`community-${i}`} to={`/api/communities/${community.id}`}>
-                  <li key={i}>{community.name}</li>
-                </Link>
-              )
-          })}
+                return (
+                  <>
+                    
+                    <Link key={`community-${i}`} to={`/api/communities/${community.id}`}>
+                      <li key={i}>{community.name}</li>
+                    </Link>
+                  </>
+                )
+              }
+          )}
         </ul>
       </>
     )
   }
 
+  renderJoinMessage() {
+    debugger
+    if (this.props.membershipsMessage.noMembershipsMessage) {
+      return (
+        <>
+        <li key="1000">
+          {this.props.membershipsMessage.noMembershipsMessage}
+        </li>
+        </>
+      )
+    }
+  }
   renderCommunitiesCreated() {
-    
+
     return (
       <>
         <ul className="community-links">

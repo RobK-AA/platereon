@@ -2335,6 +2335,7 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
     _this.renderLinks = _this.renderLinks.bind(_assertThisInitialized(_this));
     _this.getMemberships = _this.props.getMemberships;
     _this.communitiesJoined = _this.props.currentUser.communities_joined;
+    _this.renderJoinMessage = _this.renderJoinMessage.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2352,16 +2353,29 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "renderCommunitiesJoined",
     value: function renderCommunitiesJoined() {
+      debugger;
+      var that = this.props.membershipsMessage || "";
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "community-links"
-      }, this.communitiesJoined.map(function (community, i) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+      }, this.renderJoinMessage(), this.communitiesJoined.map(function (community, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
           key: "community-".concat(i),
           to: "/api/communities/".concat(community.id)
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: i
-        }, community.name));
+        }, community.name)));
       })));
+    }
+  }, {
+    key: "renderJoinMessage",
+    value: function renderJoinMessage() {
+      debugger;
+
+      if (this.props.membershipsMessage.noMembershipsMessage) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: "1000"
+        }, this.props.membershipsMessage.noMembershipsMessage));
+      }
     }
   }, {
     key: "renderCommunitiesCreated",
@@ -2609,7 +2623,8 @@ var msp = function msp(state) {
   return {
     communities: Object.values(Object.values(state.entities.communities)),
     currentUser: state.entities.users[state.session.id],
-    memberships: Object.values(state.entities.memberships)
+    memberships: Object.values(state.entities.memberships),
+    membershipsMessage: state.entities.memberships
   };
 };
 

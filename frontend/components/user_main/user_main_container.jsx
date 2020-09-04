@@ -8,7 +8,8 @@ const msp = state => {
   return  {
     communities: Object.values(Object.values(state.entities.communities)),
     currentUser: state.entities.users[state.session.id],
-    memberships: Object.values(state.entities.memberships)
+    memberships: Object.values(state.entities.memberships),
+    membershipsMessage: state.entities.memberships
 }};
 
 const mdp = dispatch => ({
