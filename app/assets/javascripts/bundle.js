@@ -1036,6 +1036,39 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "highlightErrors",
+    value: function highlightErrors() {
+      if (Object.keys(this.state.errors).length > 0) {
+        $('#email').css('border-color', 'rgb(204, 50, 63)');
+        $('#email').css('background-color', 'rgb(250, 233, 234)');
+        $('#email').css('color', 'rgb(204, 50, 63)');
+        $('#password').css('color', 'rgb(204, 50, 63)');
+        $('#password').css('border-color', 'rgb(204, 50, 63)');
+        $('#password').css('background-color', 'rgb(250, 233, 234)');
+        $('#name').css('border-color', 'rgb(204, 50, 63)');
+        $('#name').css('background-color', 'rgb(250, 233, 234)');
+        $('#name').css('color', 'rgb(204, 50, 63)');
+        $('#confirm-password').css('color', 'rgb(204, 50, 63)');
+        $('#confirm-password').css('border-color', 'rgb(204, 50, 63)');
+        $('#confirm-password').css('background-color', 'rgb(250, 233, 234)');
+      } else {
+        $('#email').css('border-color', '');
+        $('#email').css('background-color', '');
+        $('#email').css('color', '');
+        $('#password').css('color', '');
+        $('#password').css('border-color', '');
+        $('#password').css('background-color', '');
+        $('#name').css('border-color', '');
+        $('#name').css('background-color', '');
+        $('#name').css('color', '');
+        $('#confirm-password').css('color', '');
+        $('#confirm-password').css('border-color', '');
+        $('#confirm-password').css('background-color', '');
+      }
+
+      ;
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

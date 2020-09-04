@@ -7,15 +7,19 @@ class Api::CommunitiesController < ApplicationController
   end
 
   def create
-    debugger
+    
     @community = Community.new(community_params)
     if @community.save
       render "api/communities/show"
     else
-      debugger
-      render json: ['There is already a community with this name. Please choose another name.'], status: 401
-      # render :errors
+      
+      if !(params[:community][:name].length < 1)
+        render json: ['There is already a community with this name. Please choose another name.'], status: 401
+      else
+        render json: ['Name can\'t be blank.'], status: 401
+      # render @community.errors.full_messages, status: 401
       # render json: { communityErrors: "There is already a community with this name. Please choose another name." }
+      end
     end
   end
 
