@@ -1,5 +1,5 @@
 export const fetchMemberships = (userId) => {
-  debugger
+  
   return $.ajax({
     url: `api/users/${userId}/memberships`
   })

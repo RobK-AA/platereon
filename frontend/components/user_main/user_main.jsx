@@ -9,17 +9,24 @@ class UserMain extends React.Component {
   constructor(props) {
     super(props);
     this.currentUserId = this.props.currentUser.id
-    this.renderCommunities = this.renderCommunities.bind(this);
+    this.renderCommunitiesCreated = this.renderCommunitiesCreated.bind(this);
     this.renderLinks = this.renderLinks.bind(this);
+    this.getMemberships = this.props.getMemberships;
   };
   
-  componentDidUpdate() {
-    this.renderLinks();
-    this.renderCommunities();
+  componentDidMount() {
+    debugger
+    this.getMemberships();
   }
 
-  renderCommunities() {
-    debugger
+  componentDidUpdate() {
+    this.renderLinks();
+    this.renderCommunitiesCreated();
+  }
+
+  // render 
+  renderCommunitiesCreated() {
+    
     return (
       <>
         <ul className="community-links">
@@ -42,7 +49,7 @@ class UserMain extends React.Component {
     if (this.props.communities[0]) {
       return (
         <>
-        {this.renderCommunities()}
+        {this.renderCommunitiesCreated()}
         </>
       )
     }

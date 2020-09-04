@@ -187,7 +187,6 @@ __webpack_require__.r(__webpack_exports__);
 var RECEIVE_MEMBERSHIPS = 'RECEIVE_MEMBERSHIPS';
 var RECEIVE_MEMBERSHIP = 'RECEIVE_MEMBERSHIP';
 var receiveMemberships = function receiveMemberships(memberships) {
-  debugger;
   return {
     type: RECEIVE_MEMBERSHIPS,
     memberships: memberships
@@ -201,7 +200,6 @@ var receiveMembership = function receiveMembership(membership) {
 };
 var fetchMemberships = function fetchMemberships(userId) {
   return function (dispatch) {
-    debugger;
     return _util_membership_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchMemberships"](userId).then(function (memberships) {
       return dispatch(receiveMemberships(memberships), function (error) {
         dispatch(receiveErrors(error.responseJSON));
@@ -390,9 +388,8 @@ var Body = /*#__PURE__*/function (_React$Component) {
   _createClass(Body, [{
     key: "componentWillMount",
     value: function componentWillMount() {
-      debugger;
-      this.props.getCommunities();
-      if (this.props.currentUser) this.props.getMemberships(this.props.currentUser.id); // localStorage.setItem('communities', this.props.communities)
+      this.props.getCommunities(); // if (this.props.currentUser) this.props.getMemberships(this.props.currentUser.id);
+      // localStorage.setItem('communities', this.props.communities)
     }
   }, {
     key: "render",
@@ -473,7 +470,6 @@ var msp = function msp(state) {
 };
 
 var mdp = function mdp(dispatch) {
-  debugger;
   return {
     logout: function logout() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["logout"])());
@@ -2333,23 +2329,30 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.currentUserId = _this.props.currentUser.id;
-    _this.renderCommunities = _this.renderCommunities.bind(_assertThisInitialized(_this));
+    _this.renderCommunitiesCreated = _this.renderCommunitiesCreated.bind(_assertThisInitialized(_this));
     _this.renderLinks = _this.renderLinks.bind(_assertThisInitialized(_this));
+    _this.getMemberships = _this.props.getMemberships;
     return _this;
   }
 
   _createClass(UserMain, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      debugger;
+      this.getMemberships();
+    }
+  }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
       this.renderLinks();
-      this.renderCommunities();
-    }
+      this.renderCommunitiesCreated();
+    } // render 
+
   }, {
-    key: "renderCommunities",
-    value: function renderCommunities() {
+    key: "renderCommunitiesCreated",
+    value: function renderCommunitiesCreated() {
       var _this2 = this;
 
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "community-links"
       }, Object.values(this.props.communities).map(function (community, i) {
@@ -2367,7 +2370,7 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
     key: "renderLinks",
     value: function renderLinks() {
       if (this.props.communities[0]) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this.renderCommunities());
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this.renderCommunitiesCreated());
       }
     }
   }, {
@@ -2575,6 +2578,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
 /* harmony import */ var _user_main__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./user_main */ "./frontend/components/user_main/user_main.jsx");
+/* harmony import */ var _actions_membership_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/membership_actions */ "./frontend/actions/membership_actions.js");
+
 
 
 
@@ -2582,7 +2587,8 @@ __webpack_require__.r(__webpack_exports__);
 var msp = function msp(state) {
   return {
     communities: Object.values(Object.values(state.entities.communities)),
-    currentUser: state.entities.users[state.session.id]
+    currentUser: state.entities.users[state.session.id],
+    memberships: Object.values(state.entities.memberships)
   };
 };
 
@@ -2590,6 +2596,9 @@ var mdp = function mdp(dispatch) {
   return {
     logout: function logout() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["logout"])());
+    },
+    getMemberships: function getMemberships(userId) {
+      return dispatch(Object(_actions_membership_actions__WEBPACK_IMPORTED_MODULE_3__["fetchMemberships"])(userId));
     }
   };
 };
@@ -2653,13 +2662,11 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(UserShow, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
-      debugger;
-      this.props.getMemberships(this.props.currentUser.id);
-    }
-  }, {
     key: "render",
+    // componentWillMount() {
+    //   debugger
+    //   this.props.getMemberships(this.props.currentUser.id);
+    // }
     value: function render() {
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
@@ -2714,7 +2721,6 @@ var msp = function msp(state) {
 };
 
 var mdp = function mdp(dispatch) {
-  debugger;
   return {
     logout: function logout() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["logout"])());
@@ -2914,7 +2920,6 @@ var MembershipsReducer = function MembershipsReducer() {
 
   switch (action.type) {
     case _actions_membership_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_MEMBERSHIPS"]:
-      debugger;
       return action.memberships;
 
     case _actions_membership_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_MEMBERSHIP"]:
@@ -3149,7 +3154,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMembership", function() { return createMembership; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteMembership", function() { return deleteMembership; });
 var fetchMemberships = function fetchMemberships(userId) {
-  debugger;
   return $.ajax({
     url: "api/users/".concat(userId, "/memberships")
   });

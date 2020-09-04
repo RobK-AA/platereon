@@ -7,7 +7,7 @@ const MembershipsReducer = (oldState = {}, action) => {
   switch (action.type) {
     
     case RECEIVE_MEMBERSHIPS:
-      debugger
+      
       return action.memberships;
     case RECEIVE_MEMBERSHIP:
       newState[action.membership.id] = action.membership;

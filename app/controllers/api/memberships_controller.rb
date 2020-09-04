@@ -6,7 +6,7 @@ class Api::MembershipsController < ApplicationController
       @memberships = Membership.all
       render :index
     else
-      render json: { memberships: {} }
+      render json: { noMembershipsMessage: "You haven't joined any communities yet." }
     end
   end
 
