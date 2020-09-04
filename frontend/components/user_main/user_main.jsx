@@ -8,14 +8,16 @@ import community_container from '../community/community_container';
 class UserMain extends React.Component {
   constructor(props) {
     super(props);
-    this.currentUserId = this.props.currentUser.id
+    this.currentUser = this.props.currentUser;
+    this.currentUserId = this.props.currentUser.id;
     this.renderCommunitiesCreated = this.renderCommunitiesCreated.bind(this);
+    this.renderCommunitiesJoined = this.renderCommunitiesJoined.bind(this);
     this.renderLinks = this.renderLinks.bind(this);
     this.getMemberships = this.props.getMemberships;
+    this.communitiesJoined = this.props.currentUser.communities_joined;
   };
   
   componentDidMount() {
-    debugger
     this.getMemberships();
   }
 
@@ -24,7 +26,23 @@ class UserMain extends React.Component {
     this.renderCommunitiesCreated();
   }
 
-  // render 
+  renderCommunitiesJoined() {
+    
+    return (
+      <>
+        <ul className="community-links">
+          {this.communitiesJoined.map((community, i) => {
+              return (
+                <Link key={`community-${i}`} to={`/api/communities/${community.id}`}>
+                  <li key={i}>{community.name}</li>
+                </Link>
+              )
+          })}
+        </ul>
+      </>
+    )
+  }
+
   renderCommunitiesCreated() {
     
     return (
@@ -49,7 +67,14 @@ class UserMain extends React.Component {
     if (this.props.communities[0]) {
       return (
         <>
-        {this.renderCommunitiesCreated()}
+          <div className="communities-created">
+            <h5 className="community-links-title">Communities Created</h5>
+            {this.renderCommunitiesCreated()}
+          </div>
+          <div className="communities-joined">
+            <h5 className="community-links-title">Communities Joined</h5>
+            {this.renderCommunitiesJoined()}
+          </div>
         </>
       )
     }
@@ -110,7 +135,7 @@ class UserMain extends React.Component {
                       <div className="community-links3">
                         <div className="community-links2">
                           <div className="community-links1">
-                            <h5 className="community-links-title">Communities Created</h5>
+                            
                             {this.renderLinks()}
                           </div>
                         </div>

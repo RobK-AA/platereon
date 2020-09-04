@@ -10,6 +10,7 @@
       :silver_perks, 
       :gold_perks,
       :short_description,
-      :plural
+      :plural,
+      :members
   end
 end

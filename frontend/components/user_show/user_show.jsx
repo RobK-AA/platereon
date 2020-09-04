@@ -10,14 +10,12 @@ class UserShow extends React.Component {
   };
 
   // componentWillMount() {
-  //   debugger
+  //   
   //   this.props.getMemberships(this.props.currentUser.id);
   // }
 
   render () {
     const { currentUser, location } = this.props;
-
-    
     return (location.pathname === "/createform") 
       ?
       (<Route component={CommunityFormContainer} />) 

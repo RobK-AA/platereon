@@ -545,3 +545,22 @@
     display: block;
     margin-inline-end: 0px;
 }
+
+.communities-created, .communities-joined {
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.communities-created {
+  margin-right: 10px;
+}
+
+.communities-joined {
+  margin-left: 10px;
+}
+
+.community-links1 {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+}

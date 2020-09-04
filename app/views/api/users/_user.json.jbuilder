@@ -1,1 +1,1 @@
-json.extract! user, :id, :email, :name
+json.extract! user, :id, :email, :name, :communities_created, :communities_joined

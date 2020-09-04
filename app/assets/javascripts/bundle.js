@@ -2328,17 +2328,19 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, UserMain);
 
     _this = _super.call(this, props);
+    _this.currentUser = _this.props.currentUser;
     _this.currentUserId = _this.props.currentUser.id;
     _this.renderCommunitiesCreated = _this.renderCommunitiesCreated.bind(_assertThisInitialized(_this));
+    _this.renderCommunitiesJoined = _this.renderCommunitiesJoined.bind(_assertThisInitialized(_this));
     _this.renderLinks = _this.renderLinks.bind(_assertThisInitialized(_this));
     _this.getMemberships = _this.props.getMemberships;
+    _this.communitiesJoined = _this.props.currentUser.communities_joined;
     return _this;
   }
 
   _createClass(UserMain, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      debugger;
       this.getMemberships();
     }
   }, {
@@ -2346,8 +2348,21 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
     value: function componentDidUpdate() {
       this.renderLinks();
       this.renderCommunitiesCreated();
-    } // render 
-
+    }
+  }, {
+    key: "renderCommunitiesJoined",
+    value: function renderCommunitiesJoined() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "community-links"
+      }, this.communitiesJoined.map(function (community, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+          key: "community-".concat(i),
+          to: "/api/communities/".concat(community.id)
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: i
+        }, community.name));
+      })));
+    }
   }, {
     key: "renderCommunitiesCreated",
     value: function renderCommunitiesCreated() {
@@ -2370,7 +2385,15 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
     key: "renderLinks",
     value: function renderLinks() {
       if (this.props.communities[0]) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this.renderCommunitiesCreated());
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "communities-created"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+          className: "community-links-title"
+        }, "Communities Created"), this.renderCommunitiesCreated()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "communities-joined"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+          className: "community-links-title"
+        }, "Communities Joined"), this.renderCommunitiesJoined()));
       }
     }
   }, {
@@ -2439,9 +2462,7 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
         className: "community-links2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "community-links1"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-        className: "community-links-title"
-      }, "Communities Created"), this.renderLinks())))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.renderLinks())))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "mid-panel1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "mid-panel2"
@@ -2664,7 +2685,7 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
   _createClass(UserShow, [{
     key: "render",
     // componentWillMount() {
-    //   debugger
+    //   
     //   this.props.getMemberships(this.props.currentUser.id);
     // }
     value: function render() {
