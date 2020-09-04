@@ -120,7 +120,6 @@ var receiveErrors = function receiveErrors(errors) {
   };
 };
 var clearCommunityErrors = function clearCommunityErrors() {
-  debugger;
   return {
     type: CLEAR_COMMUNITY_ERRORS
   };
@@ -961,6 +960,9 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
     _this.isChecked = _this.isChecked.bind(_assertThisInitialized(_this));
     _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
     _this.highlightErrors = _this.highlightErrors.bind(_assertThisInitialized(_this));
+    _this.submitCommunity = _this.props.submitCommunity;
+    _this.communities = _this.props.communities;
+    _this.handleErrors = _this.handleErrors.bind(_assertThisInitialized(_this));
     _this.state = {
       name: _this.props.currentUser.name,
       description: 'A page for supporters of all my delicious culinary creations!',
@@ -982,7 +984,6 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
 
       return function (e) {
         if (_this2.state.errors) _this2.props.clearErrors();
-        debugger;
 
         _this2.setState(_defineProperty({}, field, e.currentTarget.value));
       };
@@ -1003,13 +1004,8 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
         short_description: this.state.shortDesc,
         plural: this.state.isPlural
       };
-      var that = this;
-      this.props.submitCommunity(formData).then(function (action) {
-        that.action = action;
-
-        if (action.community.id) {
-          return _this3.props.history.push("api/communities/".concat(action.community.id), _this3.state);
-        }
+      this.props.submitCommunity(formData).then(function () {
+        return _this3.props.history.push("api/communities/".concat(_this3.props.communities[Object.keys(_this3.props.communities).length].id), _this3.state);
       });
     }
   }, {
@@ -1038,10 +1034,12 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       this.highlightErrors();
 
       if (this.props.errors) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+          className: "community-errors-list"
+        }, this.props.errors.map(function (error, i) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-            className: "session-errors",
-            key: "error-".concat(i)
+            className: "community-errors",
+            key: "community-error-".concat(i)
           }, error);
         }));
       }
@@ -1097,7 +1095,7 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
         className: "create-form-basics-tiers"
       }, "Basics and Tiers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "create-form-set-details"
-      }, "Set your creator details and choose what to offer your subscribers")), this.renderErrors(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Set your creator details and choose what to offer your subscribers")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-form-case"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         id: "community-form",
@@ -1108,14 +1106,16 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
         className: "name-col"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "create-form-name"
-      }, "Name of Platereon page"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Required")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Name of Platereon page"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Required")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "community-name-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         id: "community-name",
         autoComplete: this.state.name,
         defaultValue: "".concat(this.props.currentUser.name),
         onChange: this.update('name'),
         className: "name-input"
-      })), this.renderErrors(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), this.renderErrors())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "short-desc-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "short-desc-col"
@@ -1277,12 +1277,11 @@ var msp = function msp(state) {
   return {
     currentUser: state.entities.users[state.session.id],
     errors: state.errors.communities,
-    community: state.entities.communities
+    communities: state.entities.communities
   };
 };
 
 var mdp = function mdp(dispatch) {
-  debugger;
   return {
     submitCommunity: function submitCommunity(community) {
       return dispatch(Object(_actions_community_actions__WEBPACK_IMPORTED_MODULE_2__["createCommunity"])(community));

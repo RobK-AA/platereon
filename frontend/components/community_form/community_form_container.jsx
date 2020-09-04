@@ -6,11 +6,11 @@ import { clearCommunityErrors } from "../../actions/community_actions";
 const msp = (state) => ({
   currentUser: state.entities.users[state.session.id],
   errors: state.errors.communities,
-  community: state.entities.communities
+  communities: state.entities.communities
 });
 
 const mdp = dispatch => {
-  debugger
+  
   return {
     submitCommunity: community => dispatch(createCommunity(community)),
     clearErrors: () => dispatch(clearCommunityErrors())

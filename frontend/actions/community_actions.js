@@ -11,7 +11,7 @@ export const receiveErrors = errors => ({
 });
 
 export const clearCommunityErrors = () => {
-  debugger
+  
   return {
   type: CLEAR_COMMUNITY_ERRORS
 }};
@@ -49,9 +49,13 @@ export const fetchCommunity = communityId => dispatch => {
 };
 
 export const createCommunity = community => dispatch => {
+  
   return CommunityApiUtil.createCommunity(community).then(
-    community => {dispatch(receiveCommunity(community))
+    community => {
+      
+      dispatch(receiveCommunity(community))
     }, errors => {
+      
     dispatch(receiveErrors(errors.responseJSON))
   })
 };

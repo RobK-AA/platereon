@@ -19,6 +19,9 @@ class CommunityForm extends React.Component {
     this.isChecked = this.isChecked.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
     this.highlightErrors = this.highlightErrors.bind(this);
+    this.submitCommunity = this.props.submitCommunity;
+    this.communities = this.props.communities;
+    this.handleErrors = this.handleErrors.bind(this);
     this.state = {
       name: this.props.currentUser.name,
       description: 'A page for supporters of all my delicious culinary creations!',
@@ -35,7 +38,6 @@ class CommunityForm extends React.Component {
   update(field) {
     return e => {
       if (this.state.errors) this.props.clearErrors();
-      debugger
       this.setState({
       [field]: e.currentTarget.value
       });
@@ -54,15 +56,12 @@ class CommunityForm extends React.Component {
       short_description: this.state.shortDesc,
       plural: this.state.isPlural
     }
-    const that = this;
-    this.props.submitCommunity(formData).then(
-      (action) => {
-        that.action = action;
-        if (action.community.id) {
-          return this.props.history.push(`api/communities/${action.community.id}`, this.state)
-        }});
-  }
 
+    this.props.submitCommunity(formData).then(
+      () => {
+        return this.props.history.push(`api/communities/${this.props.communities[Object.keys(this.props.communities).length].id}`, this.state)
+      });
+  }
 
   isChecked() {
     if (this.state.isPlural === false) {
@@ -84,9 +83,9 @@ class CommunityForm extends React.Component {
     this.highlightErrors();
     if (this.props.errors) {
       return (
-        <ul>
+        <ul className="community-errors-list">
           {this.props.errors.map((error, i) => (
-            <li className="session-errors" key={`error-${i}`}>
+            <li className="community-errors" key={`community-error-${i}`}>
               {error}
             </li>
           ))}
@@ -111,7 +110,7 @@ class CommunityForm extends React.Component {
   }
 
   render() {
-    
+
       return (
         <div className="create-form">
           <div className="create-form-nav">
@@ -153,7 +152,6 @@ class CommunityForm extends React.Component {
               Set your creator details and choose what to offer your subscribers
             </p>
           </div>
-          {this.renderErrors()}
           <br/>
           <div className="create-form-case">
             <form id="community-form" onSubmit={this.copyContent && this.handleSubmit}>
@@ -162,16 +160,19 @@ class CommunityForm extends React.Component {
                   <label className="create-form-name">Name of Platereon page</label>
                   <span>Required</span>
                 </div>
-                <input 
-                  type="text"
-                  id="community-name"
-                  autoComplete={this.state.name}
-                  defaultValue={`${this.props.currentUser.name}`}
-                  onChange={this.update('name')}
-                  className="name-input"
-                    />
+                <div className="community-name-container">
+                  <input 
+                    type="text"
+                    id="community-name"
+                    autoComplete={this.state.name}
+                    defaultValue={`${this.props.currentUser.name}`}
+                    onChange={this.update('name')}
+                    className="name-input"
+                      />
+                  {this.renderErrors()}
+                </div>
               </div>
-              {this.renderErrors()}
+              
               <div className="short-desc-div">
                 <div className="short-desc-col">
                   <label className="create-form-short-desc">What are you creating?</label>
