@@ -120,6 +120,7 @@ var receiveErrors = function receiveErrors(errors) {
   };
 };
 var clearCommunityErrors = function clearCommunityErrors() {
+  debugger;
   return {
     type: CLEAR_COMMUNITY_ERRORS
   };
@@ -969,7 +970,7 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       goldPerks: 'Full library access plus all Silver perks',
       shortDesc: "Cooking with ".concat(_this.props.currentUser.name, " tutorials, pasta recipes, etc."),
       isPlural: false,
-      errors: _this.props.errors
+      errors: {}
     };
     return _this;
   }
@@ -980,7 +981,9 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       return function (e) {
-        // if (this.props.errors) this.props.clearErrors();
+        if (_this2.state.errors) _this2.props.clearErrors();
+        debugger;
+
         _this2.setState(_defineProperty({}, field, e.currentTarget.value));
       };
     }
@@ -1025,7 +1028,6 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentWillReceiveProps",
     value: function componentWillReceiveProps(nextProps) {
-      debugger;
       this.setState({
         errors: nextProps.errors
       });
@@ -1048,12 +1050,10 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
     key: "highlightErrors",
     value: function highlightErrors() {
       if (this.state.errors.length > 0) {
-        debugger;
         $('#community-name').css('border-color', 'rgb(204, 50, 63)');
         $('#community-name').css('background-color', 'rgb(250, 233, 234)');
         $('#community-name').css('color', 'rgb(204, 50, 63)');
       } else {
-        debugger;
         $('#community-name').css('border-color', '');
         $('#community-name').css('background-color', '');
         $('#community-name').css('color', '');
@@ -1282,6 +1282,7 @@ var msp = function msp(state) {
 };
 
 var mdp = function mdp(dispatch) {
+  debugger;
   return {
     submitCommunity: function submitCommunity(community) {
       return dispatch(Object(_actions_community_actions__WEBPACK_IMPORTED_MODULE_2__["createCommunity"])(community));
@@ -2922,7 +2923,7 @@ var CommunityErrorsReducer = function CommunityErrorsReducer() {
       return action.errors || [];
 
     case _actions_community_actions__WEBPACK_IMPORTED_MODULE_0__["CLEAR_COMMUNITY_ERRORS"]:
-      return oldState;
+      return [];
 
     default:
       return oldState;

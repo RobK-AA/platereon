@@ -10,9 +10,11 @@ export const receiveErrors = errors => ({
   errors
 });
 
-export const clearCommunityErrors = () => ({
+export const clearCommunityErrors = () => {
+  debugger
+  return {
   type: CLEAR_COMMUNITY_ERRORS
-});
+}};
 
 export const receiveCommunities = communities => {
   return {

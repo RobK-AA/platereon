@@ -9,9 +9,12 @@ const msp = (state) => ({
   community: state.entities.communities
 });
 
-const mdp = dispatch => ({
-  submitCommunity: community => dispatch(createCommunity(community)),
-  clearErrors: () => dispatch(clearCommunityErrors())
-});
+const mdp = dispatch => {
+  debugger
+  return {
+    submitCommunity: community => dispatch(createCommunity(community)),
+    clearErrors: () => dispatch(clearCommunityErrors())
+  }
+};
 
 export default connect(msp, mdp)(CommunityForm)

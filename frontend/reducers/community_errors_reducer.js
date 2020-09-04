@@ -11,7 +11,7 @@ const CommunityErrorsReducer = (oldState = [], action) => {
     case RECEIVE_COMMUNITY_ERRORS:
       return action.errors || [];
     case CLEAR_COMMUNITY_ERRORS:
-      return oldState;
+      return [];
     default:
       return oldState;
   }

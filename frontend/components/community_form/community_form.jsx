@@ -28,13 +28,14 @@ class CommunityForm extends React.Component {
       goldPerks: 'Full library access plus all Silver perks',
       shortDesc: `Cooking with ${this.props.currentUser.name} tutorials, pasta recipes, etc.`,
       isPlural: false,
-      errors: this.props.errors
+      errors: {}
     };
   };
 
   update(field) {
     return e => {
-      // if (this.props.errors) this.props.clearErrors();
+      if (this.state.errors) this.props.clearErrors();
+      debugger
       this.setState({
       [field]: e.currentTarget.value
       });
@@ -76,7 +77,6 @@ class CommunityForm extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    debugger
     this.setState({ errors: nextProps.errors });
   }
 
@@ -98,13 +98,11 @@ class CommunityForm extends React.Component {
   highlightErrors() {
     
     if (this.state.errors.length > 0) {
-      debugger
       $('#community-name').css('border-color', 'rgb(204, 50, 63)');
       $('#community-name').css('background-color', 'rgb(250, 233, 234)');
       $('#community-name').css('color', 'rgb(204, 50, 63)');
     }
     else {
-      debugger
       $('#community-name').css('border-color', '');
       $('#community-name').css('background-color', '');
       $('#community-name').css('color', '');
