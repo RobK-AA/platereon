@@ -47,11 +47,9 @@ export const fetchCommunity = communityId => dispatch => {
 };
 
 export const createCommunity = community => dispatch => {
-  debugger
   return CommunityApiUtil.createCommunity(community).then(
     community => {dispatch(receiveCommunity(community))
     }, errors => {
-        debugger
     dispatch(receiveErrors(errors.responseJSON))
   })
 };

@@ -156,11 +156,9 @@ var fetchCommunity = function fetchCommunity(communityId) {
 };
 var createCommunity = function createCommunity(community) {
   return function (dispatch) {
-    debugger;
     return _util_community_api_util__WEBPACK_IMPORTED_MODULE_0__["createCommunity"](community).then(function (community) {
       dispatch(receiveCommunity(community));
     }, function (errors) {
-      debugger;
       dispatch(receiveErrors(errors.responseJSON));
     });
   };
@@ -282,7 +280,6 @@ var signup = function signup(user) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["signup"](user).then(function (user) {
       dispatch(receiveCurrentUser(user));
     }, function (error) {
-      debugger;
       dispatch(receiveErrors(error.responseJSON));
     });
   };
@@ -961,7 +958,8 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.copyContent = _this.copyContent.bind(_assertThisInitialized(_this));
     _this.isChecked = _this.isChecked.bind(_assertThisInitialized(_this));
-    _this.action = null;
+    _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
+    _this.highlightErrors = _this.highlightErrors.bind(_assertThisInitialized(_this));
     _this.state = {
       name: _this.props.currentUser.name,
       description: 'A page for supporters of all my delicious culinary creations!',
@@ -971,7 +969,7 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       goldPerks: 'Full library access plus all Silver perks',
       shortDesc: "Cooking with ".concat(_this.props.currentUser.name, " tutorials, pasta recipes, etc."),
       isPlural: false,
-      errors: {}
+      errors: _this.props.errors
     };
     return _this;
   }
@@ -982,7 +980,8 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       return function (e) {
-        return _this2.setState(_defineProperty({}, field, e.currentTarget.value));
+        // if (this.props.errors) this.props.clearErrors();
+        _this2.setState(_defineProperty({}, field, e.currentTarget.value));
       };
     }
   }, {
@@ -1024,8 +1023,18 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       return true;
     }
   }, {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {
+      debugger;
+      this.setState({
+        errors: nextProps.errors
+      });
+    }
+  }, {
     key: "renderErrors",
     value: function renderErrors() {
+      this.highlightErrors();
+
       if (this.props.errors) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -1038,32 +1047,16 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "highlightErrors",
     value: function highlightErrors() {
-      if (Object.keys(this.state.errors).length > 0) {
-        $('#email').css('border-color', 'rgb(204, 50, 63)');
-        $('#email').css('background-color', 'rgb(250, 233, 234)');
-        $('#email').css('color', 'rgb(204, 50, 63)');
-        $('#password').css('color', 'rgb(204, 50, 63)');
-        $('#password').css('border-color', 'rgb(204, 50, 63)');
-        $('#password').css('background-color', 'rgb(250, 233, 234)');
-        $('#name').css('border-color', 'rgb(204, 50, 63)');
-        $('#name').css('background-color', 'rgb(250, 233, 234)');
-        $('#name').css('color', 'rgb(204, 50, 63)');
-        $('#confirm-password').css('color', 'rgb(204, 50, 63)');
-        $('#confirm-password').css('border-color', 'rgb(204, 50, 63)');
-        $('#confirm-password').css('background-color', 'rgb(250, 233, 234)');
+      if (this.state.errors.length > 0) {
+        debugger;
+        $('#community-name').css('border-color', 'rgb(204, 50, 63)');
+        $('#community-name').css('background-color', 'rgb(250, 233, 234)');
+        $('#community-name').css('color', 'rgb(204, 50, 63)');
       } else {
-        $('#email').css('border-color', '');
-        $('#email').css('background-color', '');
-        $('#email').css('color', '');
-        $('#password').css('color', '');
-        $('#password').css('border-color', '');
-        $('#password').css('background-color', '');
-        $('#name').css('border-color', '');
-        $('#name').css('background-color', '');
-        $('#name').css('color', '');
-        $('#confirm-password').css('color', '');
-        $('#confirm-password').css('border-color', '');
-        $('#confirm-password').css('background-color', '');
+        debugger;
+        $('#community-name').css('border-color', '');
+        $('#community-name').css('background-color', '');
+        $('#community-name').css('color', '');
       }
 
       ;
@@ -1117,12 +1110,12 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
         className: "create-form-name"
       }, "Name of Platereon page"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Required")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
-        id: "name",
+        id: "community-name",
         autoComplete: this.state.name,
         defaultValue: "".concat(this.props.currentUser.name),
         onChange: this.update('name'),
         className: "name-input"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), this.renderErrors(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "short-desc-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "short-desc-col"
@@ -2421,8 +2414,6 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "renderJoinMessage",
     value: function renderJoinMessage() {
-      debugger;
-
       if (this.props.membershipsMessage.noMembershipsMessage) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: "1000"

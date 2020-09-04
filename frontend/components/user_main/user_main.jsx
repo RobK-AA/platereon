@@ -51,7 +51,6 @@ class UserMain extends React.Component {
   }
 
   renderJoinMessage() {
-    debugger
     if (this.props.membershipsMessage.noMembershipsMessage) {
       return (
         <>

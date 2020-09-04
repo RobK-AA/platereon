@@ -17,7 +17,8 @@ class CommunityForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.copyContent = this.copyContent.bind(this);
     this.isChecked = this.isChecked.bind(this);
-    this.action = null;
+    this.renderErrors = this.renderErrors.bind(this);
+    this.highlightErrors = this.highlightErrors.bind(this);
     this.state = {
       name: this.props.currentUser.name,
       description: 'A page for supporters of all my delicious culinary creations!',
@@ -27,19 +28,21 @@ class CommunityForm extends React.Component {
       goldPerks: 'Full library access plus all Silver perks',
       shortDesc: `Cooking with ${this.props.currentUser.name} tutorials, pasta recipes, etc.`,
       isPlural: false,
-      errors: {}
+      errors: this.props.errors
     };
   };
 
   update(field) {
-    return e => this.setState({
+    return e => {
+      // if (this.props.errors) this.props.clearErrors();
+      this.setState({
       [field]: e.currentTarget.value
-    })
-  };
+      });
+    };
+  }
 
   handleSubmit(e) {
     e.preventDefault();
-
     const formData = { 
       name: this.state.name,
       description: this.state.description,
@@ -72,8 +75,13 @@ class CommunityForm extends React.Component {
     return true;
   }
 
-  renderErrors() {
+  componentWillReceiveProps(nextProps) {
+    debugger
+    this.setState({ errors: nextProps.errors });
+  }
 
+  renderErrors() {
+    this.highlightErrors();
     if (this.props.errors) {
       return (
         <ul>
@@ -88,33 +96,19 @@ class CommunityForm extends React.Component {
   };
 
   highlightErrors() {
-    if (Object.keys(this.state.errors).length > 0) {
-      $('#email').css('border-color', 'rgb(204, 50, 63)');
-      $('#email').css('background-color', 'rgb(250, 233, 234)');
-      $('#email').css('color', 'rgb(204, 50, 63)');
-      $('#password').css('color', 'rgb(204, 50, 63)');
-      $('#password').css('border-color', 'rgb(204, 50, 63)');
-      $('#password').css('background-color', 'rgb(250, 233, 234)');
-      $('#name').css('border-color', 'rgb(204, 50, 63)');
-      $('#name').css('background-color', 'rgb(250, 233, 234)');
-      $('#name').css('color', 'rgb(204, 50, 63)');
-      $('#confirm-password').css('color', 'rgb(204, 50, 63)');
-      $('#confirm-password').css('border-color', 'rgb(204, 50, 63)');
-      $('#confirm-password').css('background-color', 'rgb(250, 233, 234)');
+    
+    if (this.state.errors.length > 0) {
+      debugger
+      $('#community-name').css('border-color', 'rgb(204, 50, 63)');
+      $('#community-name').css('background-color', 'rgb(250, 233, 234)');
+      $('#community-name').css('color', 'rgb(204, 50, 63)');
     }
     else {
-      $('#email').css('border-color', '');
-      $('#email').css('background-color', '');
-      $('#email').css('color', '');
-      $('#password').css('color', '');
-      $('#password').css('border-color', '');
-      $('#password').css('background-color', '');
-      $('#name').css('border-color', '');
-      $('#name').css('background-color', '');
-      $('#name').css('color', '');
-      $('#confirm-password').css('color', '');
-      $('#confirm-password').css('border-color', '');
-      $('#confirm-password').css('background-color', '');
+      debugger
+      $('#community-name').css('border-color', '');
+      $('#community-name').css('background-color', '');
+      $('#community-name').css('color', '');
+
     };
   }
 
@@ -172,13 +166,14 @@ class CommunityForm extends React.Component {
                 </div>
                 <input 
                   type="text"
-                  id="name"
+                  id="community-name"
                   autoComplete={this.state.name}
                   defaultValue={`${this.props.currentUser.name}`}
                   onChange={this.update('name')}
                   className="name-input"
                     />
               </div>
+              {this.renderErrors()}
               <div className="short-desc-div">
                 <div className="short-desc-col">
                   <label className="create-form-short-desc">What are you creating?</label>

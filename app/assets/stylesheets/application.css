@@ -497,7 +497,7 @@ html {
 }
 
 
-#password, #email, #name, #confirm-password {
+#password, #email, #name, #confirm-password, #community-name {
     margin-top: 10px;
     resize: none;
     min-width: 0px;
