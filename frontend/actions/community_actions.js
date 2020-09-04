@@ -3,6 +3,16 @@ import * as CommunityApiUtil from '../util/community_api_util';
 export const RECEIVE_COMMUNITIES = 'RECEIVE_COMMUNITIES';
 export const RECEIVE_COMMUNITY = 'RECEIVE_COMMUNITY';
 export const RECEIVE_COMMUNITY_ERRORS = 'RECEIVE_COMMUNITY_ERRORS';
+export const CLEAR_COMMUNITY_ERRORS = "CLEAR_COMMUNITY_ERRORS";
+
+export const receiveErrors = errors => ({
+  type: RECEIVE_COMMUNITY_ERRORS,
+  errors
+});
+
+export const clearCommunityErrors = () => ({
+  type: CLEAR_COMMUNITY_ERRORS
+});
 
 export const receiveCommunities = communities => {
   return {
@@ -18,11 +28,6 @@ export const receiveCommunity = community => {
   }
 };
 
-export const receiveErrors = errors => ({
-  type: RECEIVE_COMMUNITY_ERRORS,
-  errors
-});
-
 export const fetchCommunities = () => dispatch => {
   return CommunityApiUtil.fetchCommunities().then(
     communities => dispatch(receiveCommunities(communities), 
@@ -33,7 +38,6 @@ export const fetchCommunities = () => dispatch => {
 };
 
 export const fetchCommunity = communityId => dispatch => {
-  
   return CommunityApiUtil.fetchCommunity(communityId).then(
     community => dispatch(receiveCommunity(community), 
       error => {
@@ -43,12 +47,13 @@ export const fetchCommunity = communityId => dispatch => {
 };
 
 export const createCommunity = community => dispatch => {
+  debugger
   return CommunityApiUtil.createCommunity(community).then(
-    community => dispatch(receiveCommunity(community), 
-      error => {
-        dispatch(receiveErrors(error.responseJSON))
-      })
-  )
+    community => {dispatch(receiveCommunity(community))
+    }, errors => {
+        debugger
+    dispatch(receiveErrors(errors.responseJSON))
+  })
 };
 
 export const updateCommunity = community => dispatch => {

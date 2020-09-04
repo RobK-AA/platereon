@@ -6,7 +6,6 @@ const CommunitiesReducer = (oldState = {}, action) => {
   let newState = Object.assign({}, oldState);
   switch(action.type) {
     case RECEIVE_COMMUNITIES:
-      
       return action.communities;
     case RECEIVE_COMMUNITY:
       

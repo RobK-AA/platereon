@@ -7,11 +7,15 @@ class Api::CommunitiesController < ApplicationController
   end
 
   def create
+    debugger
     @community = Community.new(community_params)
     if @community.save
       render "api/communities/show"
     else
-      render json: @community.errors.full_messages, status: 422
+      debugger
+      render json: ['There is already a community with this name. Please choose another name.'], status: 401
+      # render :errors
+      # render json: { communityErrors: "There is already a community with this name. Please choose another name." }
     end
   end
 

@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import CommunityForm from './community_form';
 import { createCommunity } from '../../actions/community_actions'
-import { fetchCommunity } from "../../util/community_api_util";
+import { clearCommunityErrors } from "../../actions/community_actions";
 
 const msp = (state) => ({
   currentUser: state.entities.users[state.session.id],
@@ -10,7 +10,8 @@ const msp = (state) => ({
 });
 
 const mdp = dispatch => ({
-  submitCommunity: community => dispatch(createCommunity(community))
+  submitCommunity: community => dispatch(createCommunity(community)),
+  clearErrors: () => dispatch(clearCommunityErrors())
 });
 
 export default connect(msp, mdp)(CommunityForm)

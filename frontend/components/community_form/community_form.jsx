@@ -17,6 +17,7 @@ class CommunityForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.copyContent = this.copyContent.bind(this);
     this.isChecked = this.isChecked.bind(this);
+    this.action = null;
     this.state = {
       name: this.props.currentUser.name,
       description: 'A page for supporters of all my delicious culinary creations!',
@@ -25,7 +26,8 @@ class CommunityForm extends React.Component {
       silverPerks: 'Early access to content, subscriber-only voting power, all Bronze perks',
       goldPerks: 'Full library access plus all Silver perks',
       shortDesc: `Cooking with ${this.props.currentUser.name} tutorials, pasta recipes, etc.`,
-      isPlural: false
+      isPlural: false,
+      errors: {}
     };
   };
 
@@ -48,11 +50,15 @@ class CommunityForm extends React.Component {
       short_description: this.state.shortDesc,
       plural: this.state.isPlural
     }
-
+    const that = this;
     this.props.submitCommunity(formData).then(
       (action) => {
-      return this.props.history.push(`api/communities/${action.community.id}`, this.state)});
-    };
+        that.action = action;
+        if (action.community.id) {
+          return this.props.history.push(`api/communities/${action.community.id}`, this.state)
+        }});
+  }
+
 
   isChecked() {
     if (this.state.isPlural === false) {
@@ -111,6 +117,9 @@ class CommunityForm extends React.Component {
             </div>
             <div className="create-form-nav-right">
               <div className="create-form-launch">
+                {/* <Link to={`/api/communities/${action.community.id}`}>
+                  <button form="community-form" type="submit" >Launch</button>
+                </Link> */}
                 <button form="community-form" type="submit" >Launch</button>
               </div>
             </div>

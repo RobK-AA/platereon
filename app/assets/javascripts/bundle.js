@@ -90,7 +90,7 @@
 /*!***********************************************!*\
   !*** ./frontend/actions/community_actions.js ***!
   \***********************************************/
-/*! exports provided: RECEIVE_COMMUNITIES, RECEIVE_COMMUNITY, RECEIVE_COMMUNITY_ERRORS, receiveCommunities, receiveCommunity, receiveErrors, fetchCommunities, fetchCommunity, createCommunity, updateCommunity */
+/*! exports provided: RECEIVE_COMMUNITIES, RECEIVE_COMMUNITY, RECEIVE_COMMUNITY_ERRORS, CLEAR_COMMUNITY_ERRORS, receiveErrors, clearCommunityErrors, receiveCommunities, receiveCommunity, fetchCommunities, fetchCommunity, createCommunity, updateCommunity */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -98,9 +98,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COMMUNITIES", function() { return RECEIVE_COMMUNITIES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COMMUNITY", function() { return RECEIVE_COMMUNITY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COMMUNITY_ERRORS", function() { return RECEIVE_COMMUNITY_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_COMMUNITY_ERRORS", function() { return CLEAR_COMMUNITY_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearCommunityErrors", function() { return clearCommunityErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCommunities", function() { return receiveCommunities; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCommunity", function() { return receiveCommunity; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCommunities", function() { return fetchCommunities; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchCommunity", function() { return fetchCommunity; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCommunity", function() { return createCommunity; });
@@ -110,6 +112,18 @@ __webpack_require__.r(__webpack_exports__);
 var RECEIVE_COMMUNITIES = 'RECEIVE_COMMUNITIES';
 var RECEIVE_COMMUNITY = 'RECEIVE_COMMUNITY';
 var RECEIVE_COMMUNITY_ERRORS = 'RECEIVE_COMMUNITY_ERRORS';
+var CLEAR_COMMUNITY_ERRORS = "CLEAR_COMMUNITY_ERRORS";
+var receiveErrors = function receiveErrors(errors) {
+  return {
+    type: RECEIVE_COMMUNITY_ERRORS,
+    errors: errors
+  };
+};
+var clearCommunityErrors = function clearCommunityErrors() {
+  return {
+    type: CLEAR_COMMUNITY_ERRORS
+  };
+};
 var receiveCommunities = function receiveCommunities(communities) {
   return {
     type: RECEIVE_COMMUNITIES,
@@ -120,12 +134,6 @@ var receiveCommunity = function receiveCommunity(community) {
   return {
     type: RECEIVE_COMMUNITY,
     community: community
-  };
-};
-var receiveErrors = function receiveErrors(errors) {
-  return {
-    type: RECEIVE_COMMUNITY_ERRORS,
-    errors: errors
   };
 };
 var fetchCommunities = function fetchCommunities() {
@@ -148,10 +156,12 @@ var fetchCommunity = function fetchCommunity(communityId) {
 };
 var createCommunity = function createCommunity(community) {
   return function (dispatch) {
+    debugger;
     return _util_community_api_util__WEBPACK_IMPORTED_MODULE_0__["createCommunity"](community).then(function (community) {
-      return dispatch(receiveCommunity(community), function (error) {
-        dispatch(receiveErrors(error.responseJSON));
-      });
+      dispatch(receiveCommunity(community));
+    }, function (errors) {
+      debugger;
+      dispatch(receiveErrors(errors.responseJSON));
     });
   };
 };
@@ -272,6 +282,7 @@ var signup = function signup(user) {
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["signup"](user).then(function (user) {
       dispatch(receiveCurrentUser(user));
     }, function (error) {
+      debugger;
       dispatch(receiveErrors(error.responseJSON));
     });
   };
@@ -950,6 +961,7 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.copyContent = _this.copyContent.bind(_assertThisInitialized(_this));
     _this.isChecked = _this.isChecked.bind(_assertThisInitialized(_this));
+    _this.action = null;
     _this.state = {
       name: _this.props.currentUser.name,
       description: 'A page for supporters of all my delicious culinary creations!',
@@ -958,7 +970,8 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       silverPerks: 'Early access to content, subscriber-only voting power, all Bronze perks',
       goldPerks: 'Full library access plus all Silver perks',
       shortDesc: "Cooking with ".concat(_this.props.currentUser.name, " tutorials, pasta recipes, etc."),
-      isPlural: false
+      isPlural: false,
+      errors: {}
     };
     return _this;
   }
@@ -988,8 +1001,13 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
         short_description: this.state.shortDesc,
         plural: this.state.isPlural
       };
+      var that = this;
       this.props.submitCommunity(formData).then(function (action) {
-        return _this3.props.history.push("api/communities/".concat(action.community.id), _this3.state);
+        that.action = action;
+
+        if (action.community.id) {
+          return _this3.props.history.push("api/communities/".concat(action.community.id), _this3.state);
+        }
       });
     }
   }, {
@@ -1224,7 +1242,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _community_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./community_form */ "./frontend/components/community_form/community_form.jsx");
 /* harmony import */ var _actions_community_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/community_actions */ "./frontend/actions/community_actions.js");
-/* harmony import */ var _util_community_api_util__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../util/community_api_util */ "./frontend/util/community_api_util.jsx");
 
 
 
@@ -1242,6 +1259,9 @@ var mdp = function mdp(dispatch) {
   return {
     submitCommunity: function submitCommunity(community) {
       return dispatch(Object(_actions_community_actions__WEBPACK_IMPORTED_MODULE_2__["createCommunity"])(community));
+    },
+    clearErrors: function clearErrors() {
+      return dispatch(Object(_actions_community_actions__WEBPACK_IMPORTED_MODULE_2__["clearCommunityErrors"])());
     }
   };
 };
@@ -2353,7 +2373,6 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "renderCommunitiesJoined",
     value: function renderCommunitiesJoined() {
-      debugger;
       var that = this.props.membershipsMessage || "";
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "community-links"
@@ -2877,6 +2896,9 @@ var CommunityErrorsReducer = function CommunityErrorsReducer() {
   switch (action.type) {
     case _actions_community_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMUNITY_ERRORS"]:
       return action.errors || [];
+
+    case _actions_community_actions__WEBPACK_IMPORTED_MODULE_0__["CLEAR_COMMUNITY_ERRORS"]:
+      return oldState;
 
     default:
       return oldState;

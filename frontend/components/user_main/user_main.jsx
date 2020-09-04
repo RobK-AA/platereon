@@ -28,7 +28,7 @@ class UserMain extends React.Component {
   }
 
   renderCommunitiesJoined() {
-    debugger
+    
     const that = this.props.membershipsMessage || "";
     return (
       <>
