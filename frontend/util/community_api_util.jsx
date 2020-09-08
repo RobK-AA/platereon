@@ -1,6 +1,6 @@
 export const fetchCommunities = (keyword="") => (
   $.ajax({
-    url: 'api/communities/'
+    url: `api/communities?search=${keyword}`
   })
 );
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useLocation, BrowserRouter as Router } from "react-router-dom";
 import { receiveResults } from '../../actions/search_actions';
 import { connect } from 'react-redux';
 
@@ -9,17 +9,23 @@ class Search extends React.Component {
     super(props)
     this.update = this.update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.renderSearchResults = this.renderSearchResults.bind(this);
     this.state = {
       query: ""
     }
   }
 
+  useQuery() {
+    return new URLSearchParams(useLocation().search);
+  }
+
   handleSubmit(e) {
+    
     debugger
     e.preventDefault();
     const { query } = this.state;
     
-    this.props.search(query).then(this.props.history.push(`/search?color=${query}`));
+    this.props.search(query).then(this.props.history.push(`/communities?search=${query}`));
     
     console.log(query);
   }
@@ -32,6 +38,28 @@ class Search extends React.Component {
     };
   }
 
+  renderSearchResults() {
+    let q = this.useQuery();
+    return (
+      <div>
+        <div>
+          <h2>Accounts</h2>
+          <ul>
+            <li>
+              <Link to="/communities?search=foo">Foo User</Link>
+            </li>
+            <li>
+              <Link to="/account?name=bar">Bar User</Link>
+            </li>
+            <li>
+              <Link to="/account?name=baz">Baz User</Link>
+            </li>
+          </ul>
+          <User name={q.get("name")} />
+        </div>
+      </div>
+    );
+  }
   render() {
     return (
       <div>
@@ -39,7 +67,8 @@ class Search extends React.Component {
           <input 
             type="text" 
             placeholder="Search.."
-            onChange={this.update()}></input>
+            onChange={this.update()}
+            ></input>
         </form>
       </div>
     )

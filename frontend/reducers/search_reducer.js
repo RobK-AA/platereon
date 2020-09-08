@@ -6,7 +6,7 @@ const SearchReducer = (oldState = {}, action) => {
   let newState = Object.assign({}, oldState);
   switch (action.type) {
     case RECEIVE_SEARCH_RESULTS:
-      return action.communities || ["No results found"]
+      return action.searchResults //|| ["No results found"]
     default:
       return oldState;
   }
