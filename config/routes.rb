@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resource :session, only: [:new, :create, :destroy]
   end
   
+  resources :searches
   root 'static_pages#root'
 
 end

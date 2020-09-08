@@ -3,7 +3,7 @@ class Api::CommunitiesController < ApplicationController
   # before_action :require_logged_in, only: [:show]
 
   def index
-    @communities = Community.all
+    @communities = Community.search(params[:search])
   end
 
   def create

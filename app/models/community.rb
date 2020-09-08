@@ -16,4 +16,11 @@ class Community < ApplicationRecord
     through: :memberships,
     source: :member
   
+  def self.search(search)
+    if search
+      where(["short_desc LIKE ?", "%#{search}%"])
+    else
+      all
+    end
+  end
 end
