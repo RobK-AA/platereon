@@ -10,9 +10,9 @@ Rails.application.routes.draw do
 
     resources :memberships, only: [:create, :destroy]
     resource :session, only: [:new, :create, :destroy]
+    resources :searches, only: [:create, :show]
   end
-  
-  resources :searches
+
   root 'static_pages#root'
 
 end

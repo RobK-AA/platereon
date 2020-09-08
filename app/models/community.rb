@@ -18,9 +18,10 @@ class Community < ApplicationRecord
   
   def self.search(search)
     if search
-      where(["short_desc LIKE ?", "%#{search}%"])
+      where(["lower(short_description) LIKE ?", "%#{search.downcase}%"])
     else
       all
     end
   end
+
 end
