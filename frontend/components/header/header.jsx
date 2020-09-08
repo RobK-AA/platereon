@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {router} from 'react-router-dom';
-import { Search } from '../search/search';
+import Search from '../search/search';
 
 class Header extends React.Component {
   constructor(props) {
     super(props)
   }
+
   render() {
     const { currentUser, logout, location } = this.props;
 

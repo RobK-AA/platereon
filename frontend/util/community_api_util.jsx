@@ -1,4 +1,4 @@
-export const fetchCommunities = () => (
+export const fetchCommunities = (keyword="") => (
   $.ajax({
     url: 'api/communities/'
   })

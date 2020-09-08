@@ -1,4 +1,4 @@
-import * as SearchAPIUtil from '../util/search_api_util';
+import * as CommunityApiUtil from '../util/community_api_util';
 
 export const RECEIVE_SEARCH_RESULTS = 'RECEIVE_SEARCH_RESULTS';
 
@@ -11,9 +11,9 @@ export const receiveSearchResults = searchResults => {
 
 export const receiveResults = (keyword) => dispatch => {
 
-  return SearchApiUtil.createSearch(keyword).then(results => {
+  return CommunityApiUtil.fetchCommunities(keyword).then(results => {
     dispatch(receiveSearchResults(results))
-  }, error => {
-        dispatch(receiveErrors(error.responseJSON))
+  }, errors => {
+        dispatch(receiveErrors(errors.responseJSON))
     })
 };
