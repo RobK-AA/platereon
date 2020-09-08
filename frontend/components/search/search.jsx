@@ -15,9 +15,13 @@ class Search extends React.Component {
   }
 
   handleSubmit(e) {
+    debugger
     e.preventDefault();
     const { query } = this.state;
-    this.props.search(query)
+    
+    this.props.search(query).then(this.props.history.push(`/search?color=${query}`));
+    
+    console.log(query);
   }
 
   update() {

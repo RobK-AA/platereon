@@ -2138,9 +2138,11 @@ var Search = /*#__PURE__*/function (_React$Component) {
   _createClass(Search, [{
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      debugger;
       e.preventDefault();
       var query = this.state.query;
-      this.props.search(query);
+      this.props.search(query).then(this.props.history.push("/search?color=".concat(query)));
+      console.log(query);
     }
   }, {
     key: "update",
