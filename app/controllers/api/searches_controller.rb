@@ -1,8 +1,8 @@
-class API::SearchesController < ApplicationController
-
+class Api::SearchesController < ApplicationController
+  skip_before_action :verify_authenticity_token
   def create
     @search = Search.create(search_params)
-    redirect_to @search
+    render :show
   end
 
   def show
