@@ -24,7 +24,7 @@ class UserMain extends React.Component {
 
   componentDidUpdate() {
     this.renderLinks();
-    this.renderCommunitiesCreated();
+    // this.renderCommunitiesCreated();
   }
 
   renderCommunitiesJoined() {
