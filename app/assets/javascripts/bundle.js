@@ -423,23 +423,7 @@ var Body = /*#__PURE__*/function (_React$Component) {
         path: "/",
         component: _user_show_user_show_container__WEBPACK_IMPORTED_MODULE_2__["default"]
       }));
-    } // render() {
-    //   const { currentUser, location } = this.props;
-    //   return (
-    //     <div className="outer-main">
-    //       {(location.pathname === "/login") || (location.pathname === "/signup") 
-    //       ?
-    //         <>
-    //           <AuthRoute exact path="/login" component={LogInFormContainer} />
-    //           <AuthRoute exact path="/signup" component={SignUpFormContainer} />
-    //         </>
-    //       :
-    //       currentUser ? <ProtectedRoute component={UserShowContainer} /> : <MainPageContainer />
-    //       }
-    //     </div>
-    //   )
-    // }
-
+    }
   }]);
 
   return Body;
