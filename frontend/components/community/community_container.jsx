@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import Community from './community';
 import { fetchCommunity } from '../../actions/community_actions'
+import { createMembership } from "../../actions/membership_actions";
 
 const msp = (state, ownProps) => {
   
@@ -13,7 +14,8 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => {
   
   return {
-    fetchCommunity: communityId => dispatch(fetchCommunity(communityId))
+    fetchCommunity: communityId => dispatch(fetchCommunity(communityId)),
+    joinCommunity: community => dispatch(createMembership(community))
 }};
 
 export default connect(msp, mdp)(Community);

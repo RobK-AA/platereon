@@ -592,6 +592,10 @@ var Community = /*#__PURE__*/function (_React$Component) {
     _this.bronzePerks = _this.props.community.bronze_perks || "";
     _this.isPlural = _this.props.community.plural || "";
     _this.creatorId = _this.props.community.creator_id || "";
+    _this.id = _this.props.community.id || "";
+    _this.currentUser = _this.props.currentUser;
+    _this.joinCommunity = _this.props.joinCommunity.bind(_assertThisInitialized(_this));
+    _this.handleJoin = _this.handleJoin.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -599,6 +603,19 @@ var Community = /*#__PURE__*/function (_React$Component) {
     key: "componentWillMount",
     value: function componentWillMount() {
       this.props.fetchCommunity(this.props.match.params.communityId);
+    }
+  }, {
+    key: "handleJoin",
+    value: function handleJoin() {
+      debugger;
+      var membership = {
+        member_id: this.currentUser.id,
+        community_id: this.id
+      };
+      this.joinCommunity(membership); //.then(
+      // () => {
+      //   return this.props.history.push(`api/communities/${this.props.communities[Object.keys(this.props.communities).length].id}`, this.state)
+      // });
     }
   }, {
     key: "render",
@@ -686,6 +703,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "join2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: this.handleJoin,
         className: "join-text"
       }, "Join"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "bronze-desc3"
@@ -731,6 +749,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "join2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: this.handleJoin,
         className: "join-text"
       }, "Join"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "silver-desc3"
@@ -776,6 +795,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "join2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: this.handleJoin,
         className: "join-text"
       }, "Join"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "gold-desc3"
@@ -918,6 +938,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _community__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./community */ "./frontend/components/community/community.jsx");
 /* harmony import */ var _actions_community_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/community_actions */ "./frontend/actions/community_actions.js");
+/* harmony import */ var _actions_membership_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/membership_actions */ "./frontend/actions/membership_actions.js");
+
 
 
 
@@ -933,6 +955,9 @@ var mdp = function mdp(dispatch) {
   return {
     fetchCommunity: function fetchCommunity(communityId) {
       return dispatch(Object(_actions_community_actions__WEBPACK_IMPORTED_MODULE_2__["fetchCommunity"])(communityId));
+    },
+    joinCommunity: function joinCommunity(community) {
+      return dispatch(Object(_actions_membership_actions__WEBPACK_IMPORTED_MODULE_3__["createMembership"])(community));
     }
   };
 };
@@ -3043,7 +3068,6 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
           location = _this$props.location;
-      debugger;
       return location.pathname === "/createform" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/createform",

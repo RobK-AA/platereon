@@ -18,13 +18,25 @@ class Community extends React.Component {
     this.bronzePerks = this.props.community.bronze_perks || "";
     this.isPlural = this.props.community.plural || "";
     this.creatorId = this.props.community.creator_id || "";
-
+    this.id = this.props.community.id || "";
+    this.currentUser = this.props.currentUser;
+    this.joinCommunity = this.props.joinCommunity.bind(this);
+    this.handleJoin = this.handleJoin.bind(this);
   };
 
   componentWillMount() {
     
     this.props.fetchCommunity(this.props.match.params.communityId)
   };
+
+  handleJoin() {
+    debugger
+    const membership = { member_id: this.currentUser.id, community_id: this.id }
+    this.joinCommunity(membership) //.then(
+      // () => {
+      //   return this.props.history.push(`api/communities/${this.props.communities[Object.keys(this.props.communities).length].id}`, this.state)
+      // });
+  }
 
   render() {
     
@@ -36,7 +48,7 @@ class Community extends React.Component {
             silverPerks,
             isPlural
     } = this
-   
+    
     return (
       <div className="community-body-outer">
         <div className="community-body-mid">
@@ -100,7 +112,7 @@ class Community extends React.Component {
                                     <div className="join4">
                                       <div className="join3">
                                         <div className="join2">
-                                          <div className="join-text">Join</div>
+                                          <div onClick={this.handleJoin} className="join-text">Join</div>
                                         </div>
                                       </div>
                                     </div>
@@ -154,7 +166,7 @@ class Community extends React.Component {
                                     <div className="join4">
                                       <div className="join3">
                                         <div className="join2">
-                                          <div className="join-text">Join</div>
+                                          <div onClick={this.handleJoin} className="join-text">Join</div>
                                         </div>
                                       </div>
                                     </div>
@@ -206,7 +218,7 @@ class Community extends React.Component {
                                     <div className="join4">
                                       <div className="join3">
                                         <div className="join2">
-                                          <div className="join-text">Join</div>
+                                          <div onClick={this.handleJoin} className="join-text">Join</div>
                                         </div>
                                       </div>
                                     </div>
