@@ -597,6 +597,9 @@ var Community = /*#__PURE__*/function (_React$Component) {
     _this.joinCommunity = _this.props.joinCommunity.bind(_assertThisInitialized(_this));
     _this.handleJoin = _this.handleJoin.bind(_assertThisInitialized(_this));
     _this.renderCommunityWelcome = _this.renderCommunityWelcome.bind(_assertThisInitialized(_this));
+    _this.state = {
+      currentUserIsMember: false
+    };
     return _this;
   }
 
@@ -606,22 +609,27 @@ var Community = /*#__PURE__*/function (_React$Component) {
       this.props.fetchCommunity(this.props.match.params.communityId);
     }
   }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
+    key: "componentDidUpdate",
+    // componentDidMount() {
+    //   this.renderCommunityWelcome();
+    // }
+    value: function componentDidUpdate() {
       this.renderCommunityWelcome();
     }
   }, {
     key: "handleJoin",
     value: function handleJoin() {
-      var _this2 = this;
-
-      var membership = {
-        member_id: this.currentUser.id,
-        community_id: this.id
-      };
-      this.joinCommunity(membership).then(function () {
-        return _this2.props.history.push("api/communities/".concat(_this2.id), _this2.state);
-      });
+      if (this.currentUser !== undefined) {
+        var membership = {
+          member_id: this.currentUser.id,
+          community_id: this.id
+        };
+        this.joinCommunity(membership).then(this.setState({
+          currentUserIsMember: true
+        }));
+      } else {
+        return this.props.history.push("/login");
+      }
     }
   }, {
     key: "renderCommunityWelcome",
@@ -636,9 +644,8 @@ var Community = /*#__PURE__*/function (_React$Component) {
       var ids = Object.values(this.currentUser.communities_joined).map(function (community) {
         return community.id;
       });
-      debugger;
 
-      if (ids.includes(id)) {
+      if (ids.includes(id) || this.state.currentUserIsMember === true) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
           className: "perks-title-text"
         }, "You're a member!"));

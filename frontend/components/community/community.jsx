@@ -7,7 +7,6 @@ class Community extends React.Component {
 
   
   constructor(props) {
-    
     super(props);
     
     this.name = this.props.community.name || "";
@@ -23,23 +22,36 @@ class Community extends React.Component {
     this.joinCommunity = this.props.joinCommunity.bind(this);
     this.handleJoin = this.handleJoin.bind(this);
     this.renderCommunityWelcome = this.renderCommunityWelcome.bind(this);
+
+    this.state = {
+      currentUserIsMember: false
+    }
   };
 
   componentWillMount() {
     this.props.fetchCommunity(this.props.match.params.communityId);
   };
 
-  componentDidMount() {
+  // componentDidMount() {
+  //   this.renderCommunityWelcome();
+  // }
+
+  componentDidUpdate() {
     this.renderCommunityWelcome();
   }
 
   handleJoin() {
     
-    const membership = { member_id: this.currentUser.id, community_id: this.id }
-    this.joinCommunity(membership).then(
-      () => {
-        return this.props.history.push(`api/communities/${this.id}`, this.state)
-      });
+    
+    if (this.currentUser !== undefined) {
+      const membership = { member_id: this.currentUser.id, community_id: this.id }
+      this.joinCommunity(membership).then(this.setState({
+          currentUserIsMember: true
+        }))
+    } else {
+        return this.props.history.push(`/login`)
+    }
+    
   }
 
   renderCommunityWelcome() {
@@ -56,8 +68,8 @@ class Community extends React.Component {
     const ids = Object.values(this.currentUser.communities_joined).map((community) => {
       return community.id;
     })
-    debugger
-      if (ids.includes(id)) {
+    
+      if (ids.includes(id) || this.state.currentUserIsMember === true) {
         
         return (
           <div>
@@ -65,6 +77,7 @@ class Community extends React.Component {
           </div>
         )
       } else {
+        
         return (
           <div>
             <h2 className="perks-title-text">Select a membership level</h2>
