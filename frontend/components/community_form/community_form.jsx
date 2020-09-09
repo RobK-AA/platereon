@@ -20,7 +20,7 @@ class CommunityForm extends React.Component {
     this.highlightErrors = this.highlightErrors.bind(this);
     this.submitCommunity = this.props.submitCommunity;
     this.communities = this.props.communities;
-    this.handleErrors = this.handleErrors.bind(this);
+    
     this.state = {
       name: this.props.currentUser.name,
       description: 'A page for supporters of all my delicious culinary creations!',

@@ -1288,6 +1288,7 @@ Header {
 }
 
 .editor-box, .about-textarea {
+   min-width: -webkit-fill-available;
     min-height: 140px;
     position: relative;
     overflow: auto;
@@ -1315,6 +1316,7 @@ Header {
   display: block;
   resize: none;
   width: 100%;
+  max-width: fit-content;
 }
 
 .outer-footer {
