@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import MainPageContainer from '../main_page/main_page_container';
 import UserShowContainer from '../user_show/user_show_container';
 import { AuthRoute, ProtectedRoute } from '../../util/route_util';
@@ -24,12 +24,17 @@ class Body extends React.Component {
     return (
 
       <div className="body-container">
+
+          <AuthRoute exact path="/login" component={LogInFormContainer} />
+          <AuthRoute exact path="/signup" component={SignUpFormContainer} />
+          <AuthRoute exact path="/" component={MainPageContainer} />
+ 
+        <Switch>
+          <Route exact path="/search" component={SearchResults} />
+          <ProtectedRoute exact path="/" component={UserShowContainer} />
+        </Switch>
         
-        <AuthRoute exact path="/login" component={LogInFormContainer} />
-        <AuthRoute exact path="/signup" component={SignUpFormContainer} />
-        <AuthRoute exact path="/" component={MainPageContainer} />
-        <ProtectedRoute path="/" component={UserShowContainer} />
-        <Route exact path="/api/communities?search" component={SearchResults} />
+        
       </div>
     )
   }

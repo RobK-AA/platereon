@@ -6,7 +6,7 @@ import Demo from '../demo/demo';
 class MainPage extends React.Component {
 
   render() {
-
+    debugger
     return (
       <div className="outer-main">
         <div className="outer-main-2">

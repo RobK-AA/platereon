@@ -456,14 +456,15 @@ var Body = /*#__PURE__*/function (_React$Component) {
         exact: true,
         path: "/",
         component: _main_page_main_page_container__WEBPACK_IMPORTED_MODULE_2__["default"]
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+        exact: true,
+        path: "/search",
+        component: _search_search_results__WEBPACK_IMPORTED_MODULE_7__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__["ProtectedRoute"], {
+        exact: true,
         path: "/",
         component: _user_show_user_show_container__WEBPACK_IMPORTED_MODULE_3__["default"]
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
-        exact: true,
-        path: "/api/communities?search",
-        component: _search_search_results__WEBPACK_IMPORTED_MODULE_7__["default"]
-      }));
+      })));
     }
   }]);
 
@@ -1852,6 +1853,7 @@ var MainPage = /*#__PURE__*/function (_React$Component) {
   _createClass(MainPage, [{
     key: "render",
     value: function render() {
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "outer-main"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2152,8 +2154,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       e.preventDefault();
       var query = this.state.query;
-      this.props.search(query).then(this.props.history.push("/communities?search=".concat(query)));
-      console.log(query);
+      this.props.search(query).then(this.props.history.push("/search"));
     }
   }, {
     key: "update",
@@ -2207,6 +2208,10 @@ var Search = /*#__PURE__*/function (_React$Component) {
   return Search;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
+var msp = function msp(state) {
+  return {};
+};
+
 var mdp = function mdp(dispatch) {
   return {
     search: function search(keyword) {
@@ -2215,7 +2220,7 @@ var mdp = function mdp(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(null, mdp)(Search));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(msp, mdp)(Search)));
 
 /***/ }),
 

@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link, useLocation, BrowserRouter as Router } from "react-router-dom";
+import { withRouter, Link, useLocation, BrowserRouter as Router } from "react-router-dom";
 import { receiveResults } from '../../actions/search_actions';
 import { connect } from 'react-redux';
+
 
 class Search extends React.Component {
 
@@ -22,10 +23,7 @@ class Search extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const { query } = this.state;
-    
-    this.props.search(query).then(this.props.history.push(`/communities?search=${query}`));
-    
-    console.log(query);
+    this.props.search(query).then(this.props.history.push(`/search`));
   }
 
   update() {
@@ -73,8 +71,11 @@ class Search extends React.Component {
   }
 }
 
+const msp = state => ({
+})
+
 const mdp = dispatch => ({
   search: (keyword) => dispatch(receiveResults(keyword))
 })
-export default connect(null, mdp)(Search);
+export default withRouter(connect(msp, mdp)(Search));
 
