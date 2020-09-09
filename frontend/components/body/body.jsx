@@ -5,7 +5,7 @@ import UserShowContainer from '../user_show/user_show_container';
 import { AuthRoute, ProtectedRoute } from '../../util/route_util';
 import SignUpFormContainer from '../signup_form/signup_form_container';
 import LogInFormContainer from '../login_form/login_form_container';
-import SearchResults from '../search/search_results'
+import SearchResultsContainer from '../search/search_results_container';
 class Body extends React.Component {
 
   constructor(props) {
@@ -30,7 +30,7 @@ class Body extends React.Component {
           <AuthRoute exact path="/" component={MainPageContainer} />
  
         <Switch>
-          <Route exact path="/search" component={SearchResults} />
+          <Route exact path="/search" component={SearchResultsContainer} />
           <ProtectedRoute exact path="/" component={UserShowContainer} />
         </Switch>
         
