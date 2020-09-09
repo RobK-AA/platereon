@@ -87,6 +87,9 @@ html {
     
  }
 
+ .header-login {
+   margin-left: 20px;
+ }
  .header-signup {
     background-color: rgb(232, 91, 70);
     color: rgb(255, 255, 255);
@@ -607,6 +610,7 @@ html {
   font-weight: 700;
   position: relative;
   margin-right: 17px;
+  margin-left: 20px;
   display: block;
     background-size: cover;
     width: 2rem;
