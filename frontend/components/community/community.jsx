@@ -22,20 +22,44 @@ class Community extends React.Component {
     this.currentUser = this.props.currentUser;
     this.joinCommunity = this.props.joinCommunity.bind(this);
     this.handleJoin = this.handleJoin.bind(this);
+    this.renderCommunityWelcome = this.renderCommunityWelcome.bind(this);
   };
 
   componentWillMount() {
-    
-    this.props.fetchCommunity(this.props.match.params.communityId)
+    this.props.fetchCommunity(this.props.match.params.communityId);
   };
 
   handleJoin() {
-    debugger
+    
     const membership = { member_id: this.currentUser.id, community_id: this.id }
-    this.joinCommunity(membership) //.then(
-      // () => {
-      //   return this.props.history.push(`api/communities/${this.props.communities[Object.keys(this.props.communities).length].id}`, this.state)
-      // });
+    this.joinCommunity(membership).then(
+      () => {
+        return this.props.history.push(`api/communities/${this.id}`, this.state)
+      });
+  }
+
+  renderCommunityWelcome() {
+    const { id } = this;
+    
+    const ids = Object.values(this.currentUser.communities_joined).map((community) => {
+      return community.id;
+    })
+
+      if (ids.includes(id)) {
+        
+        return (
+          <div>
+            <h2 className="perks-title-text">You're a member!</h2>
+          </div>
+        )
+      } else {
+        return (
+          <div>
+            <h2 className="perks-title-text">Select a membership level</h2>
+          </div>
+        )
+      }
+
   }
 
   render() {
@@ -74,9 +98,10 @@ class Community extends React.Component {
                 </div>
                 <div className="perks-outer">
                   <div className="perks-title">
-                    <h2 className="perks-title-text">
-                      Select a membership level
-                    </h2>
+                    {/* <h2 className="perks-title-text"> */}
+                      {this.renderCommunityWelcome()}
+                      {/* hi
+                    </h2> */}
                   </div>
                   <div className="perks-container">
                     <div className="perks">

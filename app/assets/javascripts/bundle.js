@@ -596,6 +596,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
     _this.currentUser = _this.props.currentUser;
     _this.joinCommunity = _this.props.joinCommunity.bind(_assertThisInitialized(_this));
     _this.handleJoin = _this.handleJoin.bind(_assertThisInitialized(_this));
+    _this.renderCommunityWelcome = _this.renderCommunityWelcome.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -607,15 +608,33 @@ var Community = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleJoin",
     value: function handleJoin() {
-      debugger;
+      var _this2 = this;
+
       var membership = {
         member_id: this.currentUser.id,
         community_id: this.id
       };
-      this.joinCommunity(membership); //.then(
-      // () => {
-      //   return this.props.history.push(`api/communities/${this.props.communities[Object.keys(this.props.communities).length].id}`, this.state)
-      // });
+      this.joinCommunity(membership).then(function () {
+        return _this2.props.history.push("api/communities/".concat(_this2.id), _this2.state);
+      });
+    }
+  }, {
+    key: "renderCommunityWelcome",
+    value: function renderCommunityWelcome() {
+      var id = this.id;
+      var ids = Object.values(this.currentUser.communities_joined).map(function (community) {
+        return community.id;
+      });
+
+      if (ids.includes(id)) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+          className: "perks-title-text"
+        }, "You're a member!"));
+      } else {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+          className: "perks-title-text"
+        }, "Select a membership level"));
+      }
     }
   }, {
     key: "render",
@@ -659,9 +678,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
         className: "perks-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "perks-title"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-        className: "perks-title-text"
-      }, "Select a membership level")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.renderCommunityWelcome()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "perks-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "perks"
