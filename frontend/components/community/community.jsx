@@ -29,6 +29,10 @@ class Community extends React.Component {
     this.props.fetchCommunity(this.props.match.params.communityId);
   };
 
+  componentDidMount() {
+    this.renderCommunityWelcome();
+  }
+
   handleJoin() {
     
     const membership = { member_id: this.currentUser.id, community_id: this.id }
@@ -39,12 +43,20 @@ class Community extends React.Component {
   }
 
   renderCommunityWelcome() {
+    if (this.currentUser === undefined) {
+      return (
+        <div>
+          <h2 className="perks-title-text">Select a membership level</h2>
+          <h5>(You must be logged in to join a community)</h5>
+        </div>
+      )
+    }
     const { id } = this;
     
     const ids = Object.values(this.currentUser.communities_joined).map((community) => {
       return community.id;
     })
-
+    debugger
       if (ids.includes(id)) {
         
         return (

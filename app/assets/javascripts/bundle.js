@@ -606,6 +606,11 @@ var Community = /*#__PURE__*/function (_React$Component) {
       this.props.fetchCommunity(this.props.match.params.communityId);
     }
   }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.renderCommunityWelcome();
+    }
+  }, {
     key: "handleJoin",
     value: function handleJoin() {
       var _this2 = this;
@@ -621,10 +626,17 @@ var Community = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "renderCommunityWelcome",
     value: function renderCommunityWelcome() {
+      if (this.currentUser === undefined) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+          className: "perks-title-text"
+        }, "Select a membership level"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "(You must be logged in to join a community)"));
+      }
+
       var id = this.id;
       var ids = Object.values(this.currentUser.communities_joined).map(function (community) {
         return community.id;
       });
+      debugger;
 
       if (ids.includes(id)) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
