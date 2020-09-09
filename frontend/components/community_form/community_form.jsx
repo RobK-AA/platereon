@@ -6,7 +6,6 @@ import {
   Link,
   HashRouter
 } from 'react-router-dom';
-import CommunityContainer from '../community/community_container'
 
 class CommunityForm extends React.Component {
 

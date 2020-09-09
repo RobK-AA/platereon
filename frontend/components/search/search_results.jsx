@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class SearchResults extends React.Component {
   constructor(props) {
@@ -14,16 +15,16 @@ class SearchResults extends React.Component {
 
   renderSearchResults() {
     const { searchResults } = this.props;
-    debugger
+    
     return (
       <>
-        <ul>
+        <ul className="search-results-list">
           {searchResults.map((community, i) => {
-            debugger
+            
             return (
-            <li key={i}>
-              <div>{community.name}</div>
-            </li>
+              <Link key={`community-${i}`} to={`/api/communities/${community.id}`}>
+                <li className="search-results-list-item" key={i}><div>{community.name}</div></li>
+              </Link>
           )})}
         </ul>
       </>
@@ -34,7 +35,7 @@ class SearchResults extends React.Component {
     
     return (
       <div>
-        <div>Search Results</div>
+        <div className="results-header">Search Results</div>
         {this.renderSearchResults()}
       </div>
     )

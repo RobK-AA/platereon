@@ -41,3 +41,12 @@
 #nav-search input:focus, textarea {
  outline: none !important;
 }
+
+.search-results-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.results-header {
+  margin-top: 4px;
+}

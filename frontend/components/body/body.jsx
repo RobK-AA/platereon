@@ -6,6 +6,7 @@ import { AuthRoute, ProtectedRoute } from '../../util/route_util';
 import SignUpFormContainer from '../signup_form/signup_form_container';
 import LogInFormContainer from '../login_form/login_form_container';
 import SearchResultsContainer from '../search/search_results_container';
+import CommunityContainer from '../community/community_container';
 class Body extends React.Component {
 
   constructor(props) {
@@ -24,13 +25,14 @@ class Body extends React.Component {
     return (
 
       <div className="body-container">
-
+          
           <AuthRoute exact path="/login" component={LogInFormContainer} />
           <AuthRoute exact path="/signup" component={SignUpFormContainer} />
           <AuthRoute exact path="/" component={MainPageContainer} />
- 
+          <Route exact path="/api/communities/:communityId" component={CommunityContainer} />
         <Switch>
           <Route exact path="/search" component={SearchResultsContainer} />
+          
           <ProtectedRoute exact path="/" component={UserShowContainer} />
         </Switch>
         

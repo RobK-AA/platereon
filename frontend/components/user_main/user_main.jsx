@@ -1,7 +1,6 @@
 import React from 'react';
 import CommunityFormContainer from '../community_form/community_form_container'
 import { Route, Link } from 'react-router-dom';
-import CommunityContainer from '../community/community_container'
 import CommunitiesReducer from '../../reducers/communities_reducer';
 import community_container from '../community/community_container';
 
