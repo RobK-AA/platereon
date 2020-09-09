@@ -2136,23 +2136,20 @@ var Search = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.update = _this.update.bind(_assertThisInitialized(_this));
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.renderSearchResults = _this.renderSearchResults.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this)); // this.renderSearchResults = this.renderSearchResults.bind(this);
+
     _this.state = {
       query: ""
     };
     return _this;
-  }
+  } // useQuery() {
+  //   return new URLSearchParams(useLocation().search);
+  // }
+
 
   _createClass(Search, [{
-    key: "useQuery",
-    value: function useQuery() {
-      return new URLSearchParams(Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["useLocation"])().search);
-    }
-  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      debugger;
       e.preventDefault();
       var query = this.state.query;
       this.props.search(query).then(this.props.history.push("/communities?search=".concat(query)));
@@ -2168,30 +2165,40 @@ var Search = /*#__PURE__*/function (_React$Component) {
           query: e.currentTarget.value
         });
       };
-    }
-  }, {
-    key: "renderSearchResults",
-    value: function renderSearchResults() {
-      var q = this.useQuery();
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Accounts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/communities?search=foo"
-      }, "Foo User")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/account?name=bar"
-      }, "Bar User")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/account?name=baz"
-      }, "Baz User"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(User, {
-        name: q.get("name")
-      })));
-    }
+    } // renderSearchResults() {
+    //   let q = this.useQuery();
+    //   return (
+    //     <div>
+    //       <div>
+    //         <h2>Accounts</h2>
+    //         <ul>
+    //           <li>
+    //             <Link to="/communities?search=foo">Foo User</Link>
+    //           </li>
+    //           <li>
+    //             <Link to="/account?name=bar">Bar User</Link>
+    //           </li>
+    //           <li>
+    //             <Link to="/account?name=baz">Baz User</Link>
+    //           </li>
+    //         </ul>
+    //         <User name={q.get("name")} />
+    //       </div>
+    //     </div>
+    //   );
+    // }
+
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "nav-search"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         action: "submit",
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
-        placeholder: "Search..",
+        placeholder: "Find a creator",
         onChange: this.update()
       })));
     }

@@ -9,19 +9,17 @@ class Search extends React.Component {
     super(props)
     this.update = this.update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.renderSearchResults = this.renderSearchResults.bind(this);
+    // this.renderSearchResults = this.renderSearchResults.bind(this);
     this.state = {
       query: ""
     }
   }
 
-  useQuery() {
-    return new URLSearchParams(useLocation().search);
-  }
+  // useQuery() {
+  //   return new URLSearchParams(useLocation().search);
+  // }
 
   handleSubmit(e) {
-    
-    debugger
     e.preventDefault();
     const { query } = this.state;
     
@@ -38,35 +36,35 @@ class Search extends React.Component {
     };
   }
 
-  renderSearchResults() {
-    let q = this.useQuery();
-    return (
-      <div>
-        <div>
-          <h2>Accounts</h2>
-          <ul>
-            <li>
-              <Link to="/communities?search=foo">Foo User</Link>
-            </li>
-            <li>
-              <Link to="/account?name=bar">Bar User</Link>
-            </li>
-            <li>
-              <Link to="/account?name=baz">Baz User</Link>
-            </li>
-          </ul>
-          <User name={q.get("name")} />
-        </div>
-      </div>
-    );
-  }
+  // renderSearchResults() {
+  //   let q = this.useQuery();
+  //   return (
+  //     <div>
+  //       <div>
+  //         <h2>Accounts</h2>
+  //         <ul>
+  //           <li>
+  //             <Link to="/communities?search=foo">Foo User</Link>
+  //           </li>
+  //           <li>
+  //             <Link to="/account?name=bar">Bar User</Link>
+  //           </li>
+  //           <li>
+  //             <Link to="/account?name=baz">Baz User</Link>
+  //           </li>
+  //         </ul>
+  //         <User name={q.get("name")} />
+  //       </div>
+  //     </div>
+  //   );
+  // }
   render() {
     return (
-      <div>
+      <div id="nav-search">
         <form action="submit" onSubmit={this.handleSubmit}>
           <input 
             type="text" 
-            placeholder="Search.."
+            placeholder="Find a creator"
             onChange={this.update()}
             ></input>
         </form>

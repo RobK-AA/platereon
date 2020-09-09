@@ -1,3 +1,43 @@
 // Place all the styles related to the searches controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#nav-search {
+  display: inline-block;
+  background-color: rgb(245, 244, 242);
+    border-radius: 9999px;
+    cursor: default;
+    padding: 0.5rem 0.75rem;
+    right: 0px;
+    width: auto;
+}
+
+#nav-search input {
+  padding: 1px 2px;
+  -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: -internal-light-dark(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: none;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: none;
+    background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+    border: none;
+    text-size-adjust: 100%;
+    margin-top: 0;
+    top: 0;
+    width: 100%;    
+    overflow: hidden;
+}
+
+#nav-search input:focus, textarea {
+ outline: none !important;
+}
