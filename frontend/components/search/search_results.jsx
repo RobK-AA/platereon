@@ -15,7 +15,7 @@ class SearchResults extends React.Component {
 
   renderSearchResults() {
     const { searchResults } = this.props;
-    debugger
+    
     return (
       <>
         <ul className="search-results-list">

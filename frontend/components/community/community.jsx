@@ -22,7 +22,7 @@ class Community extends React.Component {
     this.joinCommunity = this.props.joinCommunity.bind(this);
     this.handleJoin = this.handleJoin.bind(this);
     this.renderCommunityWelcome = this.renderCommunityWelcome.bind(this);
-
+    this.renderJoinButton = this.renderJoinButton.bind(this);
     this.state = {
       currentUserIsMember: false
     }
@@ -82,6 +82,22 @@ class Community extends React.Component {
         )
       }
 
+  }
+
+  renderJoinButton() {
+    const { id } = this;
+    const ids = Object.values(this.currentUser.communities_joined).map((community) => {
+      return community.id;
+    })
+    if (ids.includes(id) || this.state.currentUserIsMember) {
+      return (
+        <div className="unjoin-text">Unjoin</div>
+      )
+    } else {
+      return (
+        <div onClick={this.handleJoin} className="join-text">Join</div>
+      )
+    }
   }
 
   render() {
@@ -159,7 +175,7 @@ class Community extends React.Component {
                                     <div className="join4">
                                       <div className="join3">
                                         <div className="join2">
-                                          <div onClick={this.handleJoin} className="join-text">Join</div>
+                                          {this.renderJoinButton()}
                                         </div>
                                       </div>
                                     </div>
@@ -213,7 +229,7 @@ class Community extends React.Component {
                                     <div className="join4">
                                       <div className="join3">
                                         <div className="join2">
-                                          <div onClick={this.handleJoin} className="join-text">Join</div>
+                                          {this.renderJoinButton()}
                                         </div>
                                       </div>
                                     </div>
@@ -265,7 +281,7 @@ class Community extends React.Component {
                                     <div className="join4">
                                       <div className="join3">
                                         <div className="join2">
-                                          <div onClick={this.handleJoin} className="join-text">Join</div>
+                                          {this.renderJoinButton()}
                                         </div>
                                       </div>
                                     </div>

@@ -597,6 +597,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
     _this.joinCommunity = _this.props.joinCommunity.bind(_assertThisInitialized(_this));
     _this.handleJoin = _this.handleJoin.bind(_assertThisInitialized(_this));
     _this.renderCommunityWelcome = _this.renderCommunityWelcome.bind(_assertThisInitialized(_this));
+    _this.renderJoinButton = _this.renderJoinButton.bind(_assertThisInitialized(_this));
     _this.state = {
       currentUserIsMember: false
     };
@@ -653,6 +654,25 @@ var Community = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
           className: "perks-title-text"
         }, "Select a membership level"));
+      }
+    }
+  }, {
+    key: "renderJoinButton",
+    value: function renderJoinButton() {
+      var id = this.id;
+      var ids = Object.values(this.currentUser.communities_joined).map(function (community) {
+        return community.id;
+      });
+
+      if (ids.includes(id) || this.state.currentUserIsMember) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "unjoin-text"
+        }, "Unjoin");
+      } else {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          onClick: this.handleJoin,
+          className: "join-text"
+        }, "Join");
       }
     }
   }, {
@@ -738,10 +758,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
         className: "join3"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "join2"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        onClick: this.handleJoin,
-        className: "join-text"
-      }, "Join"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.renderJoinButton())))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "bronze-desc3"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "bronze-desc2"
@@ -784,10 +801,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
         className: "join3"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "join2"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        onClick: this.handleJoin,
-        className: "join-text"
-      }, "Join"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.renderJoinButton())))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "silver-desc3"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "silver-desc2"
@@ -830,10 +844,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
         className: "join3"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "join2"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        onClick: this.handleJoin,
-        className: "join-text"
-      }, "Join"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.renderJoinButton())))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "gold-desc3"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "gold-desc2"
@@ -2333,7 +2344,6 @@ var SearchResults = /*#__PURE__*/function (_React$Component) {
     key: "renderSearchResults",
     value: function renderSearchResults() {
       var searchResults = this.props.searchResults;
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "search-results-list"
       }, searchResults.map(function (community, i) {
