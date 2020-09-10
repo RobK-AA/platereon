@@ -12,9 +12,8 @@ const MembershipsReducer = (oldState = {}, action) => {
       newState[action.membership.id] = action.membership;
       return newState;
     case REMOVE_MEMBERSHIP:
-      debugger
+      
       delete newState[action.membership.id];
-      debugger
       return newState;
     default:
       return oldState;

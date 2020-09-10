@@ -25,12 +25,39 @@ class Community extends React.Component {
     this.handleUnjoin = this.handleUnjoin.bind(this);
     this.renderCommunityWelcome = this.renderCommunityWelcome.bind(this);
     this.renderJoinButton = this.renderJoinButton.bind(this);
-    this.state = {
-      currentUserIsMember: false
+
+    const ids = Object.values(this.currentUser.communities_joined).map((community) => {
+      return community.id;
+    })
+    
+    if (ids.includes(props.community.id)) {
+      
+      this.state = {
+        currentUserIsMember: true
+      }
+    } else {
+
+      this.state = {
+        currentUserIsMember: false
+      }
     }
+    // this.state = {
+    //   currentUserIsMember: false
+    // }
   };
 
   componentWillMount() {
+    // const id = this;
+    // const ids = Object.values(this.currentUser.communities_joined).map((community) => {
+    //   return community.id;
+    // })
+
+    // if (ids.includes(id)) {
+    //   
+    //   this.setState({
+    //     currentUserIsMember: true
+    //   })
+    // }
     this.props.fetchCommunity(this.props.match.params.communityId);
   };
 
@@ -40,6 +67,7 @@ class Community extends React.Component {
 
   componentDidUpdate() {
     this.renderCommunityWelcome();
+    this.renderJoinButton();
   }
 
   handleJoin() {
@@ -68,10 +96,10 @@ class Community extends React.Component {
         }
       }
     }
-    debugger
+    
     this.unjoinCommunity(membershipId).then(this.setState({
       currentUserIsMember: false
-    }))
+    })).then(() => this.renderJoinButton());
   }
 
   renderCommunityWelcome() {
@@ -89,7 +117,7 @@ class Community extends React.Component {
       return community.id;
     })
     
-      if (ids.includes(id) || this.state.currentUserIsMember === true) {
+    if (this.state.currentUserIsMember === true) {
         
         return (
           <div>
@@ -112,7 +140,8 @@ class Community extends React.Component {
     const ids = Object.values(this.currentUser.communities_joined).map((community) => {
       return community.id;
     })
-    if (ids.includes(id) || this.state.currentUserIsMember) {
+    if (this.state.currentUserIsMember) {
+      
       return (
         <div onClick={this.handleUnjoin} className="unjoin-text">Unjoin</div>
       )

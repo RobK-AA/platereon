@@ -619,15 +619,39 @@ var Community = /*#__PURE__*/function (_React$Component) {
     _this.handleUnjoin = _this.handleUnjoin.bind(_assertThisInitialized(_this));
     _this.renderCommunityWelcome = _this.renderCommunityWelcome.bind(_assertThisInitialized(_this));
     _this.renderJoinButton = _this.renderJoinButton.bind(_assertThisInitialized(_this));
-    _this.state = {
-      currentUserIsMember: false
-    };
+    var ids = Object.values(_this.currentUser.communities_joined).map(function (community) {
+      return community.id;
+    });
+
+    if (ids.includes(props.community.id)) {
+      _this.state = {
+        currentUserIsMember: true
+      };
+    } else {
+      _this.state = {
+        currentUserIsMember: false
+      };
+    } // this.state = {
+    //   currentUserIsMember: false
+    // }
+
+
     return _this;
   }
 
   _createClass(Community, [{
     key: "componentWillMount",
     value: function componentWillMount() {
+      // const id = this;
+      // const ids = Object.values(this.currentUser.communities_joined).map((community) => {
+      //   return community.id;
+      // })
+      // if (ids.includes(id)) {
+      //   
+      //   this.setState({
+      //     currentUserIsMember: true
+      //   })
+      // }
       this.props.fetchCommunity(this.props.match.params.communityId);
     }
   }, {
@@ -637,6 +661,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
     // }
     value: function componentDidUpdate() {
       this.renderCommunityWelcome();
+      this.renderJoinButton();
     }
   }, {
     key: "handleJoin",
@@ -656,6 +681,8 @@ var Community = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleUnjoin",
     value: function handleUnjoin() {
+      var _this2 = this;
+
       var memberships = this.props.memberships;
       var membershipId;
 
@@ -667,10 +694,11 @@ var Community = /*#__PURE__*/function (_React$Component) {
         }
       }
 
-      debugger;
       this.unjoinCommunity(membershipId).then(this.setState({
         currentUserIsMember: false
-      }));
+      })).then(function () {
+        return _this2.renderJoinButton();
+      });
     }
   }, {
     key: "renderCommunityWelcome",
@@ -686,7 +714,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
         return community.id;
       });
 
-      if (ids.includes(id) || this.state.currentUserIsMember === true) {
+      if (this.state.currentUserIsMember === true) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
           className: "perks-title-text"
         }, "You're a member!"));
@@ -704,7 +732,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
         return community.id;
       });
 
-      if (ids.includes(id) || this.state.currentUserIsMember) {
+      if (this.state.currentUserIsMember) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           onClick: this.handleUnjoin,
           className: "unjoin-text"
@@ -3416,9 +3444,7 @@ var MembershipsReducer = function MembershipsReducer() {
       return newState;
 
     case _actions_membership_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_MEMBERSHIP"]:
-      debugger;
       delete newState[action.membership.id];
-      debugger;
       return newState;
 
     default:
