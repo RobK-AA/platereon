@@ -210,10 +210,10 @@ var receiveMembership = function receiveMembership(membership) {
     membership: membership
   };
 };
-var removeMembership = function removeMembership(membershipId) {
+var removeMembership = function removeMembership(membership) {
   return {
     type: REMOVE_MEMBERSHIP,
-    membershipId: membershipId
+    membership: membership
   };
 };
 var fetchMemberships = function fetchMemberships(userId) {
@@ -236,8 +236,8 @@ var createMembership = function createMembership(membership) {
 };
 var deleteMembership = function deleteMembership(membershipId) {
   return function (dispatch) {
-    return _util_membership_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteMembership"](membershipId).then(function (membershipId) {
-      return dispatch(removeMembership(membershipId), function (errors) {
+    return _util_membership_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteMembership"](membershipId).then(function (membership) {
+      return dispatch(removeMembership(membership), function (errors) {
         dispatch(receiveErrors(errors.responseJSON));
       });
     });
@@ -667,6 +667,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
         }
       }
 
+      debugger;
       this.unjoinCommunity(membershipId).then(this.setState({
         currentUserIsMember: false
       }));
@@ -3415,7 +3416,9 @@ var MembershipsReducer = function MembershipsReducer() {
       return newState;
 
     case _actions_membership_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_MEMBERSHIP"]:
-      delete newState[action.membershipId];
+      debugger;
+      delete newState[action.membership.id];
+      debugger;
       return newState;
 
     default:

@@ -68,6 +68,7 @@ class Community extends React.Component {
         }
       }
     }
+    debugger
     this.unjoinCommunity(membershipId).then(this.setState({
       currentUserIsMember: false
     }))

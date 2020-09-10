@@ -19,10 +19,10 @@ export const receiveMembership = membership => {
   }
 };
 
-export const removeMembership = membershipId => {
+export const removeMembership = membership => {
   return {
     type: REMOVE_MEMBERSHIP,
-    membershipId
+    membership
   }
 };
 
@@ -47,7 +47,7 @@ export const createMembership = (membership) => dispatch => {
 
 export const deleteMembership = (membershipId) => dispatch => {
   return MembershipApiUtil.deleteMembership(membershipId).then(
-    membershipId => dispatch(removeMembership(membershipId),
+    membership => dispatch(removeMembership(membership),
       errors => {
         dispatch(receiveErrors(errors.responseJSON))
       })

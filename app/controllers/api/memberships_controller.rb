@@ -21,9 +21,11 @@ class Api::MembershipsController < ApplicationController
   end
   
   def destroy
-    @membership = current_user.communities_joined.find_by(id: params[:id])
+    @membership = Membership.find_by(id: params[:id])
+    debugger
     if @membership
       @membership.destroy
+      debugger
     else
       render json: { endMembershipError: "You are not a member of this community"}
     end
