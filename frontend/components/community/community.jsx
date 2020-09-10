@@ -41,8 +41,6 @@ class Community extends React.Component {
   }
 
   handleJoin() {
-    
-    
     if (this.currentUser !== undefined) {
       const membership = { member_id: this.currentUser.id, community_id: this.id }
       this.joinCommunity(membership).then(this.setState({
@@ -51,7 +49,6 @@ class Community extends React.Component {
     } else {
         return this.props.history.push(`/login`)
     }
-    
   }
 
   renderCommunityWelcome() {

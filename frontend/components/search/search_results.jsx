@@ -15,7 +15,7 @@ class SearchResults extends React.Component {
 
   renderSearchResults() {
     const { searchResults } = this.props;
-    
+    debugger
     return (
       <>
         <ul className="search-results-list">
@@ -32,11 +32,19 @@ class SearchResults extends React.Component {
   }
 
   render() {
-    
+    const { search } = this.props.location
     return (
-      <div>
-        <div className="results-header">Search Results</div>
-        {this.renderSearchResults()}
+      <div id="search-results4">
+        <div id="search-results3">
+          <div id="search-results2">
+            <div id="search-results1">
+              <div className="results-header-container">
+                <h3 className="results-header">Results: "{search.slice(2, search.length)}"</h3>
+              </div>
+              {this.renderSearchResults()}
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

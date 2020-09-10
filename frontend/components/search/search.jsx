@@ -23,7 +23,11 @@ class Search extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const { query } = this.state;
-    this.props.search(query).then(this.props.history.push(`/search`));
+    this.props.search(query).then(this.props.history.push(`/search?=${query}`, this.state)).then(
+      this.setState({
+        query: ""
+      })
+    );
   }
 
   update() {
@@ -34,28 +38,6 @@ class Search extends React.Component {
     };
   }
 
-  // renderSearchResults() {
-  //   let q = this.useQuery();
-  //   return (
-  //     <div>
-  //       <div>
-  //         <h2>Accounts</h2>
-  //         <ul>
-  //           <li>
-  //             <Link to="/communities?search=foo">Foo User</Link>
-  //           </li>
-  //           <li>
-  //             <Link to="/account?name=bar">Bar User</Link>
-  //           </li>
-  //           <li>
-  //             <Link to="/account?name=baz">Baz User</Link>
-  //           </li>
-  //         </ul>
-  //         <User name={q.get("name")} />
-  //       </div>
-  //     </div>
-  //   );
-  // }
   render() {
     return (
       <div id="nav-search">
@@ -64,6 +46,7 @@ class Search extends React.Component {
             type="text" 
             placeholder="Find a creator"
             onChange={this.update()}
+            value={this.state.query}
             ></input>
         </form>
       </div>

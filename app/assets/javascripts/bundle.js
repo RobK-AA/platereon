@@ -2223,7 +2223,9 @@ var Search = /*#__PURE__*/function (_React$Component) {
     value: function handleSubmit(e) {
       e.preventDefault();
       var query = this.state.query;
-      this.props.search(query).then(this.props.history.push("/search"));
+      this.props.search(query).then(this.props.history.push("/search?=".concat(query), this.state)).then(this.setState({
+        query: ""
+      }));
     }
   }, {
     key: "update",
@@ -2235,29 +2237,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
           query: e.currentTarget.value
         });
       };
-    } // renderSearchResults() {
-    //   let q = this.useQuery();
-    //   return (
-    //     <div>
-    //       <div>
-    //         <h2>Accounts</h2>
-    //         <ul>
-    //           <li>
-    //             <Link to="/communities?search=foo">Foo User</Link>
-    //           </li>
-    //           <li>
-    //             <Link to="/account?name=bar">Bar User</Link>
-    //           </li>
-    //           <li>
-    //             <Link to="/account?name=baz">Baz User</Link>
-    //           </li>
-    //         </ul>
-    //         <User name={q.get("name")} />
-    //       </div>
-    //     </div>
-    //   );
-    // }
-
+    }
   }, {
     key: "render",
     value: function render() {
@@ -2269,7 +2249,8 @@ var Search = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         placeholder: "Find a creator",
-        onChange: this.update()
+        onChange: this.update(),
+        value: this.state.query
       })));
     }
   }]);
@@ -2352,6 +2333,7 @@ var SearchResults = /*#__PURE__*/function (_React$Component) {
     key: "renderSearchResults",
     value: function renderSearchResults() {
       var searchResults = this.props.searchResults;
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "search-results-list"
       }, searchResults.map(function (community, i) {
@@ -2367,9 +2349,20 @@ var SearchResults = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      var search = this.props.location.search;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "search-results4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "search-results3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "search-results2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "search-results1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "results-header-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
         className: "results-header"
-      }, "Search Results"), this.renderSearchResults());
+      }, "Results: \"", search.slice(2, search.length), "\"")), this.renderSearchResults()))));
     }
   }]);
 
