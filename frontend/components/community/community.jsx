@@ -20,7 +20,9 @@ class Community extends React.Component {
     this.id = this.props.community.id || "";
     this.currentUser = this.props.currentUser;
     this.joinCommunity = this.props.joinCommunity.bind(this);
+    this.unjoinCommunity = this.props.unjoinCommunity.bind(this);
     this.handleJoin = this.handleJoin.bind(this);
+    this.handleUnjoin = this.handleUnjoin.bind(this);
     this.renderCommunityWelcome = this.renderCommunityWelcome.bind(this);
     this.renderJoinButton = this.renderJoinButton.bind(this);
     this.state = {
@@ -49,6 +51,26 @@ class Community extends React.Component {
     } else {
         return this.props.history.push(`/login`)
     }
+  }
+
+  handleUnjoin() {
+    const { memberships } = this.props;
+    let membershipId;
+    
+    while (!membershipId) {
+      
+      for (let i = 0; i < memberships.length; i++) {
+        
+        if (memberships[i].member_id === this.currentUser.id && memberships[i].community_id === this.id) {
+          
+          membershipId = memberships[i].id;
+          
+        }
+      }
+    }
+    this.unjoinCommunity(membershipId).then(this.setState({
+      currentUserIsMember: false
+    }))
   }
 
   renderCommunityWelcome() {
@@ -91,7 +113,7 @@ class Community extends React.Component {
     })
     if (ids.includes(id) || this.state.currentUserIsMember) {
       return (
-        <div className="unjoin-text">Unjoin</div>
+        <div onClick={this.handleUnjoin} className="unjoin-text">Unjoin</div>
       )
     } else {
       return (

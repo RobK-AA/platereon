@@ -179,21 +179,25 @@ var updateCommunity = function updateCommunity(community) {
 /*!************************************************!*\
   !*** ./frontend/actions/membership_actions.js ***!
   \************************************************/
-/*! exports provided: RECEIVE_MEMBERSHIPS, RECEIVE_MEMBERSHIP, receiveMemberships, receiveMembership, fetchMemberships, createMembership */
+/*! exports provided: RECEIVE_MEMBERSHIPS, RECEIVE_MEMBERSHIP, REMOVE_MEMBERSHIP, receiveMemberships, receiveMembership, removeMembership, fetchMemberships, createMembership, deleteMembership */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_MEMBERSHIPS", function() { return RECEIVE_MEMBERSHIPS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_MEMBERSHIP", function() { return RECEIVE_MEMBERSHIP; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_MEMBERSHIP", function() { return REMOVE_MEMBERSHIP; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveMemberships", function() { return receiveMemberships; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveMembership", function() { return receiveMembership; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeMembership", function() { return removeMembership; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMemberships", function() { return fetchMemberships; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createMembership", function() { return createMembership; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteMembership", function() { return deleteMembership; });
 /* harmony import */ var _util_membership_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/membership_api_util */ "./frontend/util/membership_api_util.jsx");
 
 var RECEIVE_MEMBERSHIPS = 'RECEIVE_MEMBERSHIPS';
 var RECEIVE_MEMBERSHIP = 'RECEIVE_MEMBERSHIP';
+var REMOVE_MEMBERSHIP = 'REMOVE_MEMBERSHIP';
 var receiveMemberships = function receiveMemberships(memberships) {
   return {
     type: RECEIVE_MEMBERSHIPS,
@@ -204,6 +208,12 @@ var receiveMembership = function receiveMembership(membership) {
   return {
     type: RECEIVE_MEMBERSHIP,
     membership: membership
+  };
+};
+var removeMembership = function removeMembership(membershipId) {
+  return {
+    type: REMOVE_MEMBERSHIP,
+    membershipId: membershipId
   };
 };
 var fetchMemberships = function fetchMemberships(userId) {
@@ -220,6 +230,15 @@ var createMembership = function createMembership(membership) {
     return _util_membership_api_util__WEBPACK_IMPORTED_MODULE_0__["createMembership"](membership).then(function (membership) {
       return dispatch(receiveMembership(membership), function (error) {
         dispatch(receiveErrors(error.responseJSON));
+      });
+    });
+  };
+};
+var deleteMembership = function deleteMembership(membershipId) {
+  return function (dispatch) {
+    return _util_membership_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteMembership"](membershipId).then(function (membershipId) {
+      return dispatch(removeMembership(membershipId), function (errors) {
+        dispatch(receiveErrors(errors.responseJSON));
       });
     });
   };
@@ -595,7 +614,9 @@ var Community = /*#__PURE__*/function (_React$Component) {
     _this.id = _this.props.community.id || "";
     _this.currentUser = _this.props.currentUser;
     _this.joinCommunity = _this.props.joinCommunity.bind(_assertThisInitialized(_this));
+    _this.unjoinCommunity = _this.props.unjoinCommunity.bind(_assertThisInitialized(_this));
     _this.handleJoin = _this.handleJoin.bind(_assertThisInitialized(_this));
+    _this.handleUnjoin = _this.handleUnjoin.bind(_assertThisInitialized(_this));
     _this.renderCommunityWelcome = _this.renderCommunityWelcome.bind(_assertThisInitialized(_this));
     _this.renderJoinButton = _this.renderJoinButton.bind(_assertThisInitialized(_this));
     _this.state = {
@@ -633,6 +654,24 @@ var Community = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
+    key: "handleUnjoin",
+    value: function handleUnjoin() {
+      var memberships = this.props.memberships;
+      var membershipId;
+
+      while (!membershipId) {
+        for (var i = 0; i < memberships.length; i++) {
+          if (memberships[i].member_id === this.currentUser.id && memberships[i].community_id === this.id) {
+            membershipId = memberships[i].id;
+          }
+        }
+      }
+
+      this.unjoinCommunity(membershipId).then(this.setState({
+        currentUserIsMember: false
+      }));
+    }
+  }, {
     key: "renderCommunityWelcome",
     value: function renderCommunityWelcome() {
       if (this.currentUser === undefined) {
@@ -666,6 +705,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
 
       if (ids.includes(id) || this.state.currentUserIsMember) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          onClick: this.handleUnjoin,
           className: "unjoin-text"
         }, "Unjoin");
       } else {
@@ -994,7 +1034,8 @@ __webpack_require__.r(__webpack_exports__);
 var msp = function msp(state, ownProps) {
   return {
     currentUser: state.entities.users[state.session.id],
-    community: state.entities.communities[ownProps.match.params.communityId]
+    community: state.entities.communities[ownProps.match.params.communityId],
+    memberships: Object.values(state.entities.memberships)
   };
 };
 
@@ -1003,8 +1044,11 @@ var mdp = function mdp(dispatch) {
     fetchCommunity: function fetchCommunity(communityId) {
       return dispatch(Object(_actions_community_actions__WEBPACK_IMPORTED_MODULE_2__["fetchCommunity"])(communityId));
     },
-    joinCommunity: function joinCommunity(community) {
-      return dispatch(Object(_actions_membership_actions__WEBPACK_IMPORTED_MODULE_3__["createMembership"])(community));
+    joinCommunity: function joinCommunity(membership) {
+      return dispatch(Object(_actions_membership_actions__WEBPACK_IMPORTED_MODULE_3__["createMembership"])(membership));
+    },
+    unjoinCommunity: function unjoinCommunity(membershipId) {
+      return dispatch(Object(_actions_membership_actions__WEBPACK_IMPORTED_MODULE_3__["deleteMembership"])(membershipId));
     }
   };
 };
@@ -3368,6 +3412,10 @@ var MembershipsReducer = function MembershipsReducer() {
 
     case _actions_membership_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_MEMBERSHIP"]:
       newState[action.membership.id] = action.membership;
+      return newState;
+
+    case _actions_membership_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_MEMBERSHIP"]:
+      delete newState[action.membershipId];
       return newState;
 
     default:

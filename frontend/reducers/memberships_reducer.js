@@ -1,4 +1,4 @@
-import { RECEIVE_MEMBERSHIPS, RECEIVE_MEMBERSHIP } from '../actions/membership_actions';
+import { RECEIVE_MEMBERSHIPS, RECEIVE_MEMBERSHIP, REMOVE_MEMBERSHIP } from '../actions/membership_actions';
 
 const MembershipsReducer = (oldState = {}, action) => {
 
@@ -7,10 +7,12 @@ const MembershipsReducer = (oldState = {}, action) => {
   switch (action.type) {
     
     case RECEIVE_MEMBERSHIPS:
-      
       return action.memberships;
     case RECEIVE_MEMBERSHIP:
       newState[action.membership.id] = action.membership;
+      return newState;
+    case REMOVE_MEMBERSHIP:
+      delete newState[action.membershipId];
       return newState;
     default:
       return oldState;
