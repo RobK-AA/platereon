@@ -26,21 +26,29 @@ class Community extends React.Component {
     this.renderCommunityWelcome = this.renderCommunityWelcome.bind(this);
     this.renderJoinButton = this.renderJoinButton.bind(this);
 
-    const ids = Object.values(this.currentUser.communities_joined).map((community) => {
-      return community.id;
-    })
-    
-    if (ids.includes(props.community.id)) {
+    if (this.currentUser) {
       
-      this.state = {
-        currentUserIsMember: true
+      const ids = Object.values(this.currentUser.communities_joined).map((community) => {
+        return community.id;
+      })
+      if (ids.includes(props.community.id)) {
+
+        this.state = {
+          currentUserIsMember: true
+        }
+      } else {
+
+        this.state = {
+          currentUserIsMember: false
+        }
       }
     } else {
-
       this.state = {
         currentUserIsMember: false
       }
     }
+    
+    
     // this.state = {
     //   currentUserIsMember: false
     // }
@@ -136,10 +144,7 @@ class Community extends React.Component {
   }
 
   renderJoinButton() {
-    const { id } = this;
-    const ids = Object.values(this.currentUser.communities_joined).map((community) => {
-      return community.id;
-    })
+    
     if (this.state.currentUserIsMember) {
       
       return (

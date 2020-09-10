@@ -619,14 +619,21 @@ var Community = /*#__PURE__*/function (_React$Component) {
     _this.handleUnjoin = _this.handleUnjoin.bind(_assertThisInitialized(_this));
     _this.renderCommunityWelcome = _this.renderCommunityWelcome.bind(_assertThisInitialized(_this));
     _this.renderJoinButton = _this.renderJoinButton.bind(_assertThisInitialized(_this));
-    var ids = Object.values(_this.currentUser.communities_joined).map(function (community) {
-      return community.id;
-    });
 
-    if (ids.includes(props.community.id)) {
-      _this.state = {
-        currentUserIsMember: true
-      };
+    if (_this.currentUser) {
+      var ids = Object.values(_this.currentUser.communities_joined).map(function (community) {
+        return community.id;
+      });
+
+      if (ids.includes(props.community.id)) {
+        _this.state = {
+          currentUserIsMember: true
+        };
+      } else {
+        _this.state = {
+          currentUserIsMember: false
+        };
+      }
     } else {
       _this.state = {
         currentUserIsMember: false
@@ -727,11 +734,6 @@ var Community = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "renderJoinButton",
     value: function renderJoinButton() {
-      var id = this.id;
-      var ids = Object.values(this.currentUser.communities_joined).map(function (community) {
-        return community.id;
-      });
-
       if (this.state.currentUserIsMember) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           onClick: this.handleUnjoin,
