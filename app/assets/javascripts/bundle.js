@@ -246,6 +246,99 @@ var deleteMembership = function deleteMembership(membershipId) {
 
 /***/ }),
 
+/***/ "./frontend/actions/post_actions.js":
+/*!******************************************!*\
+  !*** ./frontend/actions/post_actions.js ***!
+  \******************************************/
+/*! exports provided: RECEIVE_POSTS, RECEIVE_POST, REMOVE_POST, receivePosts, receivePost, removePost, fetchPosts, fetchPost, createPost, updatePost, deletePost */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_POSTS", function() { return RECEIVE_POSTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_POST", function() { return RECEIVE_POST; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_POST", function() { return REMOVE_POST; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receivePosts", function() { return receivePosts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receivePost", function() { return receivePost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removePost", function() { return removePost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPosts", function() { return fetchPosts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPost", function() { return fetchPost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPost", function() { return createPost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePost", function() { return updatePost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePost", function() { return deletePost; });
+/* harmony import */ var _util_post_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/post_api_util */ "./frontend/util/post_api_util.jsx");
+/* harmony import */ var _membership_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./membership_actions */ "./frontend/actions/membership_actions.js");
+
+
+var RECEIVE_POSTS = 'RECEIVE_POSTS';
+var RECEIVE_POST = 'RECEIVE_POST';
+var REMOVE_POST = 'REMOVE_POST';
+var receivePosts = function receivePosts(posts) {
+  return {
+    type: RECEIVE_POSTS,
+    posts: posts
+  };
+};
+var receivePost = function receivePost(post) {
+  return {
+    type: RECEIVE_POSTS,
+    post: post
+  };
+};
+var removePost = function removePost(post) {
+  return {
+    type: REMOVE_POST,
+    post: post
+  };
+};
+var fetchPosts = function fetchPosts(communityId) {
+  return function (dispatch) {
+    return _util_post_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchPosts"](communityId).then(function (posts) {
+      return dispatch(receivePosts(posts));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+var fetchPost = function fetchPost(postId) {
+  return function (dispatch) {
+    return _util_post_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchPost"](postId).then(function (post) {
+      return dispatch(receivePost(post));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+var createPost = function createPost(post) {
+  return function (dispatch) {
+    return _util_post_api_util__WEBPACK_IMPORTED_MODULE_0__["createPost"](post).then(function (post) {
+      return dispatch(receivePost(post));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+var updatePost = function updatePost(post) {
+  return function (dispatch) {
+    return _util_post_api_util__WEBPACK_IMPORTED_MODULE_0__["updatePost"](post).then(function (post) {
+      return dispatch(receivePost(post));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+var deletePost = function deletePost(postId) {
+  return function (dispatch) {
+    return _util_post_api_util__WEBPACK_IMPORTED_MODULE_0__["deletePost"](postId).then(function (postId) {
+      return dispatch(removePost(postId));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/search_actions.js":
 /*!********************************************!*\
   !*** ./frontend/actions/search_actions.js ***!
@@ -1057,6 +1150,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _community__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./community */ "./frontend/components/community/community.jsx");
 /* harmony import */ var _actions_community_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/community_actions */ "./frontend/actions/community_actions.js");
 /* harmony import */ var _actions_membership_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/membership_actions */ "./frontend/actions/membership_actions.js");
+/* harmony import */ var _actions_post_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/post_actions */ "./frontend/actions/post_actions.js");
+
 
 
 
@@ -1080,6 +1175,21 @@ var mdp = function mdp(dispatch) {
     },
     unjoinCommunity: function unjoinCommunity(membershipId) {
       return dispatch(Object(_actions_membership_actions__WEBPACK_IMPORTED_MODULE_3__["deleteMembership"])(membershipId));
+    },
+    getPosts: function getPosts(communityId) {
+      return dispatch(Object(_actions_post_actions__WEBPACK_IMPORTED_MODULE_4__["fetchPosts"])(communityId));
+    },
+    getPost: function getPost(postId) {
+      return dispatch(Object(_actions_post_actions__WEBPACK_IMPORTED_MODULE_4__["fetchPost"])(postId));
+    },
+    submitPost: function submitPost(post) {
+      return dispatch(Object(_actions_post_actions__WEBPACK_IMPORTED_MODULE_4__["createPost"])(post));
+    },
+    updatePost: function updatePost(post) {
+      return dispatch(Object(_actions_post_actions__WEBPACK_IMPORTED_MODULE_4__["updatePost"])(post));
+    },
+    deletePost: function deletePost(postId) {
+      return dispatch(Object(_actions_post_actions__WEBPACK_IMPORTED_MODULE_4__["deletePost"])(postId));
     }
   };
 };
@@ -3381,6 +3491,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _communities_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./communities_reducer */ "./frontend/reducers/communities_reducer.js");
 /* harmony import */ var _memberships_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./memberships_reducer */ "./frontend/reducers/memberships_reducer.js");
 /* harmony import */ var _search_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./search_reducer */ "./frontend/reducers/search_reducer.js");
+/* harmony import */ var _posts_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./posts_reducer */ "./frontend/reducers/posts_reducer.js");
+
 
 
 
@@ -3390,6 +3502,7 @@ var EntitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   communities: _communities_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   memberships: _memberships_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
+  posts: _posts_reducer__WEBPACK_IMPORTED_MODULE_5__["default"],
   search: _search_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (EntitiesReducer);
@@ -3455,6 +3568,45 @@ var MembershipsReducer = function MembershipsReducer() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (MembershipsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/posts_reducer.js":
+/*!********************************************!*\
+  !*** ./frontend/reducers/posts_reducer.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_post_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/post_actions */ "./frontend/actions/post_actions.js");
+
+
+var PostsReducer = function PostsReducer() {
+  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(oldState);
+  var newState = Object.assign({}, oldState);
+
+  switch (action.type) {
+    case _actions_post_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_POSTS"]:
+      return action.posts;
+
+    case _actions_post_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_POST"]:
+      newState[action.post.id] = action.post;
+      return newState;
+
+    case _actions_post_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_POST"]:
+      delete newState[action.post.id];
+      return newState;
+
+    default:
+      return oldState;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (PostsReducer);
 
 /***/ }),
 
@@ -3726,6 +3878,57 @@ var createMembership = function createMembership(membership) {
 var deleteMembership = function deleteMembership(membershipId) {
   return $.ajax({
     url: "api/memberships/".concat(membershipId),
+    method: "DELETE"
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/post_api_util.jsx":
+/*!*****************************************!*\
+  !*** ./frontend/util/post_api_util.jsx ***!
+  \*****************************************/
+/*! exports provided: fetchPosts, fetchPost, createPost, updatePost, deletePost */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPosts", function() { return fetchPosts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPost", function() { return fetchPost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPost", function() { return createPost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePost", function() { return updatePost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePost", function() { return deletePost; });
+var fetchPosts = function fetchPosts(communityId) {
+  return $.ajax({
+    url: "api/communities/".concat(communityId, "/posts")
+  });
+};
+var fetchPost = function fetchPost(postId) {
+  return $.ajax({
+    url: "api/posts/".concat(postId)
+  });
+};
+var createPost = function createPost(post) {
+  return $.ajax({
+    url: "api/posts",
+    method: "POST",
+    data: {
+      post: post
+    }
+  });
+};
+var updatePost = function updatePost(post) {
+  return $.ajax({
+    url: "api/posts/".concat(post.id),
+    method: "DELETE",
+    data: {
+      post: post
+    }
+  });
+};
+var deletePost = function deletePost(postId) {
+  return $.ajax({
+    url: "api/posts/".concat(postId),
     method: "DELETE"
   });
 };
