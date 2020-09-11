@@ -18,7 +18,7 @@ class Community < ApplicationRecord
 
   has_many :posts,
     foreign_key: :community_id,
-    class_name: :Membership
+    class_name: :Post
 
   def self.search(search)
     if search

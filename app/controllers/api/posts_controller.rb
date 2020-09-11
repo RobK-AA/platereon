@@ -5,9 +5,8 @@ class API::PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.author_id = current_user.id
 
-    if @post.save
+    if @post.save && @post.author_id == @post.community.creator_id
       render :show
     else
       render :errors, status: 404
@@ -42,7 +41,7 @@ class API::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:community_id, :body)
+    params.require(:post).permit(:community_id, :author_id, :body, :title)
   end
 
 end

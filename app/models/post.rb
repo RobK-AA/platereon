@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   validates :community_id, :author_id, presence: true
+  validates :title, presence: true, length: { minimum: 1 }
   validates :body, presence: true, length: { minimum: 1 }
 
   belongs_to :author,
@@ -8,6 +9,6 @@ class Post < ApplicationRecord
 
   belongs_to :community,
     foreign_key: :community_id,
-    class_name: :community
+    class_name: :Community
 
 end

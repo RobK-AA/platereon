@@ -1,0 +1,2 @@
+json.extract! @post, 
+  :id
