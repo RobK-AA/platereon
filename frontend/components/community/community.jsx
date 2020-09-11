@@ -1,7 +1,8 @@
 import React from 'react';
+import PostContainer from '../post/post_container'
 import {BrowserRouter } from 'react-router-dom';
 import ls from 'local-storage'
-
+import PostFormContainer from '../post/post_form_container';
 
 class Community extends React.Component {
 
@@ -25,6 +26,7 @@ class Community extends React.Component {
     this.handleUnjoin = this.handleUnjoin.bind(this);
     this.renderCommunityWelcome = this.renderCommunityWelcome.bind(this);
     this.renderJoinButton = this.renderJoinButton.bind(this);
+    this.renderPostForm = this.renderPostForm.bind(this);
 
     if (this.currentUser) {
       
@@ -157,6 +159,16 @@ class Community extends React.Component {
     }
   }
 
+  renderPostForm() {
+    if (this.currentUser && (this.creatorId === this.currentUser.id)) {
+      return (
+        <>
+          <PostFormContainer />
+        </>
+      )
+    }
+  }
+
   render() {
     
     const { name, 
@@ -194,8 +206,9 @@ class Community extends React.Component {
                 <div className="perks-outer">
                   <div className="perks-title">
                     {/* <h2 className="perks-title-text"> */}
-                      {this.renderCommunityWelcome()}
-                      {/* hi
+                    {this.renderCommunityWelcome()}
+                    {this.renderPostForm()}
+                    {/* hi
                     </h2> */}
                   </div>
                   <div className="perks-container">
