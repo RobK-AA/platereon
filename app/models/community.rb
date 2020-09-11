@@ -15,7 +15,11 @@ class Community < ApplicationRecord
   has_many :members,
     through: :memberships,
     source: :member
-  
+
+  has_many :posts,
+    foreign_key: :community_id,
+    class_name: :Membership
+
   def self.search(search)
     if search
       where(["lower(short_description) LIKE ? 
