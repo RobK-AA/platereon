@@ -2,7 +2,7 @@ class API::PostsController < ApplicationController
 
   def index
   end
-  
+
   def create
     @post = Post.new(post_params)
     @post.author_id = current_user.id
