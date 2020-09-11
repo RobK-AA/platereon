@@ -9,4 +9,5 @@ json.extract! @community,
   :silver_perks, 
   :gold_perks,
   :short_description,
-  :plural
+  :plural,
+  :posts

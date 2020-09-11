@@ -10,10 +10,13 @@ class User < ApplicationRecord
   after_initialize :ensure_session_token
 
   has_many :communities_created,
-    primary_key: :id,
     foreign_key: :creator_id,
     class_name: :Community
 
+  has_many :posts,
+    foreign_key: :author_id,
+    class_name: :Post
+  
   has_many :memberships,
     foreign_key: :member_id,
     class_name: :Membership
@@ -21,6 +24,10 @@ class User < ApplicationRecord
   has_many :communities_joined,
     through: :memberships,
     source: :community
+
+  has_many :posts_in_communities_joined,
+    through: :communities_joined,
+    source: :posts
 
   def self.find_by_credentials(email, password) 
     user = User.find_by(email: email)

@@ -11,6 +11,7 @@
       :gold_perks,
       :short_description,
       :plural,
-      :members
+      :members,
+      :posts
   end
 end
