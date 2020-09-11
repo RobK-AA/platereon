@@ -1,6 +1,8 @@
-class API::PostsController < ApplicationController
+class Api::PostsController < ApplicationController
 
   def index
+    @posts = Post.all
+    render :index
   end
 
   def create
@@ -34,7 +36,7 @@ class API::PostsController < ApplicationController
       @post.destroy
       render :show
     else
-      render json: { postDeleteError: "Something went wrong. Post not deleted." }, status 404
+      render json: { postDeleteError: "Something went wrong. Post not deleted." }, status: 404
     end
   end
 
