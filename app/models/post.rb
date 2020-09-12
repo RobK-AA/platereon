@@ -11,4 +11,5 @@ class Post < ApplicationRecord
     foreign_key: :community_id,
     class_name: :Community
 
+  has_many_attached :images
 end

@@ -1,7 +1,7 @@
 class Api::PostsController < ApplicationController
 
   def index
-    @posts = Post.all
+    @posts = Post.all.with_attached_images
     render :index
   end
 
@@ -17,11 +17,12 @@ class Api::PostsController < ApplicationController
 
   def show
     @post = Post.includes(:author, :community).find_by(id: params[:id])
+                .with_attached_images
     render :show
   end
 
   def update
-    @post = Post.includes(:author, :community).find_by(id: params[:id])
+    @post = Post.includes(:author, :community).find_by(id: params[:id]).with_attached_images
 
     if @post.update(post_params)
       render :show
@@ -43,7 +44,7 @@ class Api::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:community_id, :author_id, :body, :title)
+    params.require(:post).permit(:community_id, :author_id, :body, :title, images: [])
   end
 
 end
