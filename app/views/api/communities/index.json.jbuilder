@@ -13,5 +13,7 @@
       :plural,
       :members,
       :posts
+    
+    json.background_image community.background_image.attached? ? url_for(community.background_image) : nil
   end
 end

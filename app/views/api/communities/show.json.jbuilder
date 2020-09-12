@@ -11,3 +11,5 @@ json.extract! @community,
   :short_description,
   :plural,
   :posts
+
+json.background_image @community.background_image ? url_for(@community.background_image) : nil

@@ -19,6 +19,8 @@ class Community < ApplicationRecord
   has_many :posts,
     foreign_key: :community_id,
     class_name: :Post
+  
+  has_one_attached :background_image
 
   def self.search(search)
     if search

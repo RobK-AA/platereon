@@ -4,6 +4,7 @@ class Api::CommunitiesController < ApplicationController
 
   def index
     @communities = Community.search(params[:search])
+                            .with_attached_background_image
   end
 
   def create
@@ -24,7 +25,7 @@ class Api::CommunitiesController < ApplicationController
   end
 
   def show
-    @community = Community.find(params[:id])
+    @community = Community.with_attached_background_image.find(params[:id])
     render "api/communities/show"
   end
 
@@ -49,6 +50,7 @@ class Api::CommunitiesController < ApplicationController
       :silver_perks,
       :gold_perks,
       :short_description,
-      :plural) 
+      :plural,
+      :background_image) 
   end
 end
