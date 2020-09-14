@@ -31,7 +31,7 @@ class PostForm extends React.Component {
     }
   }
 
-  handleInput(e) {
+  handleInput(field) {
     return e => this.setState({ [field]: e.target.value });
   }
 
@@ -39,8 +39,8 @@ class PostForm extends React.Component {
     const { title, body, imageUrls } = this.state;
     return (
       <div className="new-post-form">
-        <h4>Post content for your subscribers:</h4>
-        <form action="submit">
+        <form id="post-form" action="submit">
+          <h4>Post content for your subscribers:</h4>
           <div className="new-post-form-container">
             <div className="post-title">
               <label htmlFor="">Title
@@ -51,27 +51,38 @@ class PostForm extends React.Component {
                   />
               </label>
             </div>
-            <div className="post-body">
-              <label htmlFor="">Body
-                <textarea  
-                  onChange={this.handleInput("body")}
-                  value={body}
-                  />
-              </label>
-              {imageUrls.length ? 
-                (<div className="images-attached">
-                  {imageUrls.map((url, i) => <img src={url} key={i} />)}
-                </div>) : null
-              }
+            <div id="attached-images-outer">
+              <div id="attached-images">
+                {imageUrls.length ?
+                  (<div className="images-attached">
+                    {imageUrls.map((url, i) => <img className="post-img" src={url} key={i} />)}
+                  </div>) : null
+                }
+                </div>
             </div>
+            
             <div className="post-upload">
-              <label htmlFor="">Upload Content
+              <label htmlFor="">Upload Images/Videos
                 <input id="image-input"
                   type="file"
                   onChange={this.addImage}
                 />
               </label>
             </div>
+            <div className="post-body">
+              {/* <label htmlFor="">Body */}
+              <div className="post-body-container">
+                <textarea  
+                  className="post-textarea"
+                  onChange={this.handleInput("body")}
+                  value={body}
+                  placeholder={"What would you like to share with your supporters?"}
+                  />
+              {/* </label> */}
+              </div>
+              
+            </div>
+            
           </div>
         </form>
       </div>

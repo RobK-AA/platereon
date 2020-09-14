@@ -2,29 +2,67 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.images-attached {
-  width: 100%;
-  flex-direction: row;
-  flex-wrap: wrap;
-
-  img {
-    object-fit: cover;
-    max-width: 50%;
-    max-height: 50%;
-  }
+.new-post-form-container {
+  width: 60%;
+  display: contents;
 }
-
 .new-post-form {
   box-sizing: border-box;
-  width: 100%;
+  width: auto;
   height: fit-content;
   align-items: center;
-  
 }
 
-.new-post-form-conatiner {
-  display: flex !important;
-  width: 500px !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-}
+  .post-form {
+    box-sizing: border-box;
+    width: 500px !important;
+    height: fit-content;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+
+  #attached-images-outer {
+    width: 60%;
+    display: inline-flex;
+  }
+
+  #attached-images {
+    width: 100%;
+  }
+      .images-attached {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+        .post-img {
+          object-fit: cover !important;
+          max-width: 50% !important;
+          max-height: 50% !important;
+          // all: unset !important;
+          // overflow-wrap: break-word !important;
+          // transform: scale(.1) !important;
+          border-radius: 4px !important;
+        }
+
+      .post-textarea {
+        text-align: unset;
+        all: unset;
+        width: 100%;
+        min-height: 250px;
+        overflow-wrap: break-word;
+        
+      }
+
+      .post-body {
+        text-align: left;
+        width: 100%;
+        justify-content: center;
+        display: flex;
+      }
+
+      .post-body-container {
+        width: 50%;
+        border-style: groove;
+      }
