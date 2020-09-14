@@ -292,7 +292,7 @@ var receivePosts = function receivePosts(posts) {
 };
 var receivePost = function receivePost(post) {
   return {
-    type: RECEIVE_POSTS,
+    type: RECEIVE_POST,
     post: post
   };
 };
@@ -322,7 +322,9 @@ var fetchPost = function fetchPost(postId) {
 };
 var createPost = function createPost(post) {
   return function (dispatch) {
+    debugger;
     return _util_post_api_util__WEBPACK_IMPORTED_MODULE_0__["createPost"](post).then(function (post) {
+      debugger;
       return dispatch(receivePost(post));
     }, function (errors) {
       return dispatch(receiveErrors(errors.responseJSON));
@@ -2545,18 +2547,24 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
+      var post = new FormData();
       var _this$state = this.state,
           title = _this$state.title,
           body = _this$state.body,
+          images = _this$state.images,
           imageUrls = _this$state.imageUrls;
-      var author_id = this.props.currentUser.id;
-      var community_id = this.props.communityId;
-      var post = {
-        title: title,
-        body: body,
-        author_id: author_id,
-        community_id: community_id
-      };
+      var authorId = this.props.currentUser.id;
+      var communityId = this.props.communityId;
+      post.append("post[title]", title);
+      post.append("post[body]", body);
+      post.append("post[author_id]", authorId);
+      post.append("post[community_id]", communityId);
+      var attachedImages = images;
+
+      for (var i = 0; i < attachedImages.length; i++) {
+        post.append("post[images][]", attachedImages[i]);
+      }
+
       debugger;
       this.props.submitPost(post);
     }
@@ -4314,14 +4322,14 @@ var fetchPost = function fetchPost(postId) {
     url: "api/posts/".concat(postId)
   });
 };
-var createPost = function createPost(post) {
+var createPost = function createPost(formData) {
   debugger;
   return $.ajax({
     url: "api/posts",
     method: "POST",
-    data: {
-      post: post
-    }
+    data: formData,
+    processData: false,
+    contentType: false
   });
 };
 var updatePost = function updatePost(post) {

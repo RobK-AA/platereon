@@ -38,10 +38,20 @@ class PostForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { title, body, imageUrls } = this.state;
-    const author_id = this.props.currentUser.id;
-    const community_id = this.props.communityId;
-    const post = { title, body, author_id, community_id };
+    const post = new FormData();
+    const { title, body, images, imageUrls } = this.state;
+    const authorId = this.props.currentUser.id;
+    const communityId = this.props.communityId;
+    post.append("post[title]", title)
+    post.append("post[body]", body)
+    post.append("post[author_id]", authorId)
+    post.append("post[community_id]", communityId)
+
+    const attachedImages = images;
+
+    for (let i = 0; i < attachedImages.length; i++) {
+      post.append("post[images][]", attachedImages[i]);
+    }
     debugger
     this.props.submitPost(post)
   }

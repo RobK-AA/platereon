@@ -18,7 +18,7 @@ export const receivePosts = posts => ({
 })
 
 export const receivePost = post => ({
-  type: RECEIVE_POSTS,
+  type: RECEIVE_POST,
   post
 })
 
@@ -41,12 +41,16 @@ export const fetchPost = postId => dispatch => (
   )
 )
 
-export const createPost = post => dispatch => (
-  PostApiUtil.createPost(post).then(
-    post => dispatch(receivePost(post)),
+export const createPost = post => dispatch => {
+  debugger
+  return PostApiUtil.createPost(post).then(
+    post => {
+      debugger
+      return dispatch(receivePost(post));
+    },
     errors => dispatch(receiveErrors(errors.responseJSON))
   )
-)
+}
 
 export const updatePost = post => dispatch => (
   PostApiUtil.updatePost(post).then(
