@@ -37,6 +37,7 @@ class PostForm extends React.Component {
 
   render() {
     const { title, body, imageUrls } = this.state;
+    const filledOut = body.length > 0 && title.length > 0;
     return (
       <div className="new-post-form">
         <form id="post-form" action="submit">
@@ -84,6 +85,15 @@ class PostForm extends React.Component {
             </div>
             
           </div>
+          <div className="post-create">
+            <button
+              className="post-button"
+              type="submit"
+              disabled={!filledOut}>
+              Share
+          </button>
+          </div>
+          
         </form>
       </div>
     );

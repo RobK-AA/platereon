@@ -23,7 +23,7 @@
   }
 
   #attached-images-outer {
-    width: 60%;
+    width: 500px;
     display: inline-flex;
   }
 
@@ -65,4 +65,21 @@
       .post-body-container {
         width: 50%;
         border-style: groove;
+      }
+
+      .post-create {
+        -webkit-box-align: center;
+        align-items: center;
+        display: flex;
+        -webkit-box-pack: center;
+        justify-content: center;
+        visibility: visible;
+        color: rgb(0, 76, 129) !important;
+        font-size: 0.875rem !important;
+        pointer-events: unset;
+        text-align: center;
+        text-transform: none;
+        user-select: none;
+        white-space: unset;
+        font-weight: 500;
       }

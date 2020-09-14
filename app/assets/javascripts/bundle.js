@@ -2536,6 +2536,7 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
           title = _this$state.title,
           body = _this$state.body,
           imageUrls = _this$state.imageUrls;
+      var filledOut = body.length > 0 && title.length > 0;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "new-post-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -2580,7 +2581,13 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
         onChange: this.handleInput("body"),
         value: body,
         placeholder: "What would you like to share with your supporters?"
-      }))))));
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "post-create"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "post-button",
+        type: "submit",
+        disabled: !filledOut
+      }, "Share"))));
     }
   }]);
 
@@ -2612,7 +2619,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
-  debugger;
   return {
     currentUser: state.entities.users[state.session.id],
     memberships: Object.values(state.entities.memberships),

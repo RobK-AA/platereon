@@ -8,7 +8,7 @@ import {
 } from "../../actions/membership_actions";
 
 const msp = (state, ownProps) => {
-  debugger
+  
   return {
     currentUser: state.entities.users[state.session.id],
     memberships: Object.values(state.entities.memberships),
