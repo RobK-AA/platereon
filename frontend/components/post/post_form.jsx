@@ -42,30 +42,36 @@ class PostForm extends React.Component {
         <h4>Post content for your subscribers:</h4>
         <form action="submit">
           <div className="new-post-form-container">
-            <label htmlFor="">Title
-              <input 
-                type="text"
-                value={title}
-                onChange={this.handleInput("title")}
-                 />
-            </label>
-            <label htmlFor="">Body
-              <textarea  
-                onChange={this.handleInput("body")}
-                value={body}
+            <div className="post-title">
+              <label htmlFor="">Title
+                <input 
+                  type="text"
+                  value={title}
+                  onChange={this.handleInput("title")}
+                  />
+              </label>
+            </div>
+            <div className="post-body">
+              <label htmlFor="">Body
+                <textarea  
+                  onChange={this.handleInput("body")}
+                  value={body}
+                  />
+              </label>
+              {imageUrls.length ? 
+                (<div className="images-attached">
+                  {imageUrls.map((url, i) => <img src={url} key={i} />)}
+                </div>) : null
+              }
+            </div>
+            <div className="post-upload">
+              <label htmlFor="">Upload Content
+                <input id="image-input"
+                  type="file"
+                  onChange={this.addImage}
                 />
-            </label>
-            {imageUrls.length ? 
-              (<div className="images-attached">
-                {imageUrls.map((url, i) => <img src={url} key={i} />)}
-              </div>) : null
-            }
-            <label htmlFor="">Upload Content
-              <input id="image-input"
-                type="file"
-                onChange={this.addImage}
-              />
-            </label>
+              </label>
+            </div>
           </div>
         </form>
       </div>

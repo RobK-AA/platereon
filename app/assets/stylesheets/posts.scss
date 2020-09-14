@@ -19,8 +19,12 @@
   width: 100%;
   height: fit-content;
   align-items: center;
+  
 }
 
 .new-post-form-conatiner {
-  width: 500px;
+  display: flex !important;
+  width: 500px !important;
+  flex-direction: column !important;
+  justify-content: center !important;
 }
