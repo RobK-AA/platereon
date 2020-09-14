@@ -4,7 +4,8 @@ class PostForm extends React.Component {
   constructor(props) {
     super(props)
     this.addImage = this.addImage.bind(this);
-    this.handleInput = this.handleInput.bind(this);
+    this.update = this.update.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = this.props.post
     this.state.imageUrls = [];
   }
@@ -31,8 +32,18 @@ class PostForm extends React.Component {
     }
   }
 
-  handleInput(field) {
+  update(field) {
     return e => this.setState({ [field]: e.target.value });
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    const { title, body, imageUrls } = this.state;
+    const author_id = this.props.currentUser.id;
+    const community_id = this.props.communityId;
+    const post = { title, body, author_id, community_id };
+    debugger
+    this.props.submitPost(post)
   }
 
   render() {
@@ -40,7 +51,7 @@ class PostForm extends React.Component {
     const filledOut = body.length > 0 && title.length > 0;
     return (
       <div className="new-post-form">
-        <form id="post-form" action="submit">
+        <form id="post-form" action="submit" onSubmit={this.handleSubmit}>
           <h4>Post content for your subscribers:</h4>
           <div className="new-post-form-container">
             <div className="post-title">
@@ -48,7 +59,7 @@ class PostForm extends React.Component {
                 <input 
                   type="text"
                   value={title}
-                  onChange={this.handleInput("title")}
+                  onChange={this.update("title")}
                   />
               </label>
             </div>
@@ -75,7 +86,7 @@ class PostForm extends React.Component {
               <div className="post-body-container">
                 <textarea  
                   className="post-textarea"
-                  onChange={this.handleInput("body")}
+                  onChange={this.update("body")}
                   value={body}
                   placeholder={"What would you like to share with your supporters?"}
                   />

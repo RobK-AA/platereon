@@ -250,7 +250,7 @@ var deleteMembership = function deleteMembership(membershipId) {
 /*!******************************************!*\
   !*** ./frontend/actions/post_actions.js ***!
   \******************************************/
-/*! exports provided: RECEIVE_POSTS, RECEIVE_POST, REMOVE_POST, receivePosts, receivePost, removePost, fetchPosts, fetchPost, createPost, updatePost, deletePost */
+/*! exports provided: RECEIVE_POSTS, RECEIVE_POST, REMOVE_POST, RECEIVE_POST_ERRORS, CLEAR_POST_ERRORS, receiveErrors, receivePosts, receivePost, removePost, fetchPosts, fetchPost, createPost, updatePost, deletePost */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -258,6 +258,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_POSTS", function() { return RECEIVE_POSTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_POST", function() { return RECEIVE_POST; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_POST", function() { return REMOVE_POST; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_POST_ERRORS", function() { return RECEIVE_POST_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_POST_ERRORS", function() { return CLEAR_POST_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receivePosts", function() { return receivePosts; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receivePost", function() { return receivePost; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removePost", function() { return removePost; });
@@ -273,6 +276,14 @@ __webpack_require__.r(__webpack_exports__);
 var RECEIVE_POSTS = 'RECEIVE_POSTS';
 var RECEIVE_POST = 'RECEIVE_POST';
 var REMOVE_POST = 'REMOVE_POST';
+var RECEIVE_POST_ERRORS = 'RECEIVE_POST_ERRORS';
+var CLEAR_POST_ERRORS = "CLEAR_POST_ERRORS";
+var receiveErrors = function receiveErrors(errors) {
+  return {
+    type: RECEIVE_POST_ERRORS,
+    errors: errors
+  };
+};
 var receivePosts = function receivePosts(posts) {
   return {
     type: RECEIVE_POSTS,
@@ -2487,7 +2498,8 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.addImage = _this.addImage.bind(_assertThisInitialized(_this));
-    _this.handleInput = _this.handleInput.bind(_assertThisInitialized(_this));
+    _this.update = _this.update.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.state = _this.props.post;
     _this.state.imageUrls = [];
     return _this;
@@ -2521,8 +2533,8 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
-    key: "handleInput",
-    value: function handleInput(field) {
+    key: "update",
+    value: function update(field) {
       var _this3 = this;
 
       return function (e) {
@@ -2530,18 +2542,38 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
       };
     }
   }, {
-    key: "render",
-    value: function render() {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
       var _this$state = this.state,
           title = _this$state.title,
           body = _this$state.body,
           imageUrls = _this$state.imageUrls;
+      var author_id = this.props.currentUser.id;
+      var community_id = this.props.communityId;
+      var post = {
+        title: title,
+        body: body,
+        author_id: author_id,
+        community_id: community_id
+      };
+      debugger;
+      this.props.submitPost(post);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$state2 = this.state,
+          title = _this$state2.title,
+          body = _this$state2.body,
+          imageUrls = _this$state2.imageUrls;
       var filledOut = body.length > 0 && title.length > 0;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "new-post-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         id: "post-form",
-        action: "submit"
+        action: "submit",
+        onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Post content for your subscribers:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "new-post-form-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2551,7 +2583,7 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
       }, "Title", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: title,
-        onChange: this.handleInput("title")
+        onChange: this.update("title")
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "attached-images-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2578,7 +2610,7 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
         className: "post-body-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         className: "post-textarea",
-        onChange: this.handleInput("body"),
+        onChange: this.update("body"),
         value: body,
         placeholder: "What would you like to share with your supporters?"
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3859,12 +3891,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _session_errors_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./session_errors_reducer */ "./frontend/reducers/session_errors_reducer.js");
 /* harmony import */ var _community_errors_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./community_errors_reducer */ "./frontend/reducers/community_errors_reducer.js");
+/* harmony import */ var _post_errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./post_errors_reducer */ "./frontend/reducers/post_errors_reducer.js");
+
 
 
 
 var ErrorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   session: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  communities: _community_errors_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
+  communities: _community_errors_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  posts: _post_errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (ErrorsReducer);
 
@@ -3906,6 +3941,39 @@ var MembershipsReducer = function MembershipsReducer() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (MembershipsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/post_errors_reducer.js":
+/*!**************************************************!*\
+  !*** ./frontend/reducers/post_errors_reducer.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_post_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/post_actions */ "./frontend/actions/post_actions.js");
+
+
+var PostErrorsReducer = function PostErrorsReducer() {
+  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(oldState);
+
+  switch (action.type) {
+    case _actions_post_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_POST_ERRORS"]:
+      return action.errors || [];
+
+    case _actions_post_actions__WEBPACK_IMPORTED_MODULE_0__["CLEAR_POST_ERRORS"]:
+      return [];
+
+    default:
+      return oldState;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (PostErrorsReducer);
 
 /***/ }),
 
@@ -4247,6 +4315,7 @@ var fetchPost = function fetchPost(postId) {
   });
 };
 var createPost = function createPost(post) {
+  debugger;
   return $.ajax({
     url: "api/posts",
     method: "POST",

@@ -5,4 +5,4 @@ json.extract! @post,
   :title,
   :body
 
-json.images post.images.map { |image| url_for(image) }
+json.images @post.images.map { |image| url_for(image) }
