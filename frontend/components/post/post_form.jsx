@@ -4,6 +4,7 @@ class PostForm extends React.Component {
   constructor(props) {
     super(props)
     this.addImage = this.addImage.bind(this);
+    this.handleInput = this.handleInput.bind(this);
     this.state = this.props.post
     this.state.imageUrls = [];
   }
@@ -30,21 +31,42 @@ class PostForm extends React.Component {
     }
   }
 
+  handleInput(e) {
+    return e => this.setState({ [field]: e.target.value });
+  }
+
   render() {
+    const { title, body, imageUrls } = this.state;
     return (
-      <div>
+      <div className="new-post-form">
         <h4>Post content for your subscribers:</h4>
         <form action="submit">
-          <label htmlFor="">Title
-            <input type="text" />
-          </label>
-          <label htmlFor="">Body
-            <textarea  />
-          </label>
-          <label htmlFor="">Upload Content
-            <input id="image-input"
-              type="file"/>
-          </label>
+          <div className="new-post-form-container">
+            <label htmlFor="">Title
+              <input 
+                type="text"
+                value={title}
+                onChange={this.handleInput("title")}
+                 />
+            </label>
+            <label htmlFor="">Body
+              <textarea  
+                onChange={this.handleInput("body")}
+                value={body}
+                />
+            </label>
+            {imageUrls.length ? 
+              (<div className="images-attached">
+                {imageUrls.map((url, i) => <img src={url} key={i} />)}
+              </div>) : null
+            }
+            <label htmlFor="">Upload Content
+              <input id="image-input"
+                type="file"
+                onChange={this.addImage}
+              />
+            </label>
+          </div>
         </form>
       </div>
     );

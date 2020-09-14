@@ -1,3 +1,26 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.images-attached {
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  img {
+    object-fit: cover;
+    max-width: 50%;
+    max-height: 50%;
+  }
+}
+
+.new-post-form {
+  box-sizing: border-box;
+  width: 100%;
+  height: fit-content;
+  align-items: center;
+}
+
+.new-post-form-conatiner {
+  width: 500px;
+}
