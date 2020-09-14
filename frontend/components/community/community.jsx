@@ -163,7 +163,7 @@ class Community extends React.Component {
     if (this.currentUser && (this.creatorId === this.currentUser.id)) {
       return (
         <>
-          <PostFormContainer />
+          <PostFormContainer communityId={this.id}/>
         </>
       )
     }

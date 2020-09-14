@@ -848,7 +848,9 @@ var Community = /*#__PURE__*/function (_React$Component) {
     key: "renderPostForm",
     value: function renderPostForm() {
       if (this.currentUser && this.creatorId === this.currentUser.id) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_post_post_form_container__WEBPACK_IMPORTED_MODULE_4__["default"], null));
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_post_post_form_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          communityId: this.id
+        }));
       }
     }
   }, {
@@ -2477,12 +2479,45 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(PostForm);
 
   function PostForm(props) {
+    var _this;
+
     _classCallCheck(this, PostForm);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.addImage = _this.addImage.bind(_assertThisInitialized(_this));
+    _this.state = _this.props.post;
+    _this.state.imageUrls = [];
+    return _this;
   }
 
   _createClass(PostForm, [{
+    key: "addImage",
+    value: function addImage(e) {
+      var _this2 = this;
+
+      e.preventDefault();
+      var images = new FileReader();
+      var image = e.target.files[0];
+
+      images.onloadend = function () {
+        var newImageUrls = _this2.state.imageUrls;
+        newImageUrls.push(images.result);
+        var newImages = _this2.state.images;
+        newImages.push(image);
+
+        _this2.setState({
+          imageUrls: newImageUrls,
+          images: newImages
+        });
+      };
+
+      if (image) {
+        images.readAsDataURL(image);
+      } else {
+        alert("Please choose another file type");
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Post content for your subscribers:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -2493,8 +2528,11 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
         type: "text"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: ""
-      }, "Body", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "textarea"
+      }, "Body", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: ""
+      }, "Upload Content", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "image-input",
+        type: "file"
       }))));
     }
   }]);
@@ -2527,9 +2565,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
+  debugger;
   return {
     currentUser: state.entities.users[state.session.id],
-    memberships: Object.values(state.entities.memberships)
+    memberships: Object.values(state.entities.memberships),
+    post: {
+      communityId: ownProps.communityId,
+      title: "",
+      body: "",
+      images: []
+    }
   };
 };
 
