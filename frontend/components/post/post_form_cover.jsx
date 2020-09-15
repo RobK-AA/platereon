@@ -3,7 +3,6 @@ import CommunityFormContainer from "../community_form/community_form_container";
 import { Route, Link } from "react-router-dom";
 import CommunitiesReducer from "../../reducers/communities_reducer";
 import community_container from "../community/community_container";
-import { PostLink } from "../post/post_link";
 import { connect } from "react-redux";
 
 class PostCover extends React.Component {

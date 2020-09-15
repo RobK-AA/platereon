@@ -6,6 +6,8 @@ class PostForm extends React.Component {
     this.addImage = this.addImage.bind(this);
     this.update = this.update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.renderDropDown = this.renderDropDown.bind(this);
+    this.currentUser = this.props.currentUser;
     this.state = this.props.post
     this.state.imageUrls = [];
   }
@@ -32,6 +34,22 @@ class PostForm extends React.Component {
     }
   }
 
+  renderDropDown() {
+    const communities = this.currentUser.communities_created;
+    debugger
+    return (
+      <>
+        <label htmlFor="communities-dropdown">
+          <select id="communities-dropdown">
+            {communities.map((community) => (
+              <option value={community.name}>{community.name}</option>
+            ))}
+          </select>
+        </label>
+      </>
+    );
+  }
+
   update(field) {
     return e => this.setState({ [field]: e.target.value });
   }
@@ -52,7 +70,7 @@ class PostForm extends React.Component {
     for (let i = 0; i < attachedImages.length; i++) {
       post.append("post[images][]", attachedImages[i]);
     }
-    debugger
+    
     this.props.submitPost(post)
   }
 
@@ -63,6 +81,9 @@ class PostForm extends React.Component {
       <div className="new-post-form">
         <form id="post-form" action="submit" onSubmit={this.handleSubmit}>
           <h4>Post content for your subscribers:</h4>
+          <div>
+            {this.renderDropDown()}
+          </div>
           <div className="new-post-form-container">
             <div className="post-title">
               <label htmlFor="">Title

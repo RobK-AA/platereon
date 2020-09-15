@@ -9,7 +9,7 @@ class Api::PostsController < ApplicationController
     @post = Post.new(post_params)
     
     if @post.save && @post.author_id == @post.community.creator_id
-      debugger 
+      
       render :show
     else
       render :errors, status: 404
