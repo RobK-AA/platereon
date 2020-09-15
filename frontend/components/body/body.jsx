@@ -33,7 +33,7 @@ class Body extends React.Component {
           <AuthRoute exact path="/signup" component={SignUpFormContainer} />
           <AuthRoute exact path="/" component={MainPageContainer} />
           {/* <Route exact path="/communities/:communityId" component={CommunityContainer} /> */}
-          <ProtectedRoute path="/" component={UserShowContainer} />
+          <ProtectedRoute exact path="/" component={UserShowContainer} />
           <ProtectedRoute exact path="/createform" component={CommunityFormContainer} />
           <ProtectedRoute exact path="/postform" component={PostCoverContainer} />
           <ProtectedRoute exact path="/postform/text" component={PostFormContainer} />

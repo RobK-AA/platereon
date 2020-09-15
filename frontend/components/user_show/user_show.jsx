@@ -16,10 +16,12 @@ class UserShow extends React.Component {
 
   render () {
     const { currentUser, location } = this.props;
-    
+    // return (
+      
+    // )
     return location.pathname === "/createform" ? (
       <Route exact path="/createform" component={CommunityFormContainer} />
-    ) : location.pathname.includes("communities") ? (
+    ) : location.pathname.includes("communities") || (location.href && location.href.split('/').includes('communities')) ? (
       <div className="community-page">
         <div>
           <Route

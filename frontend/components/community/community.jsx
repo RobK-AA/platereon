@@ -9,16 +9,26 @@ class Community extends React.Component {
   
   constructor(props) {
     super(props);
-    
-    this.name = this.props.community.name || "";
-    this.description = this.props.community.description || "";
-    this.shortDesc = this.props.community.short_description || "";
-    this.goldPerks = this.props.community.gold_perks || "";
-    this.silverPerks = this.props.community.silver_perks || "";
-    this.bronzePerks = this.props.community.bronze_perks || "";
-    this.isPlural = this.props.community.plural || "";
-    this.creatorId = this.props.community.creator_id || "";
-    this.id = this.props.community.id || "";
+    if (this.props.community) {
+      this.name = this.props.community.name || "";
+      this.description = this.props.community.description || "";
+      this.shortDesc = this.props.community.short_description || "";
+      this.goldPerks = this.props.community.gold_perks || "";
+      this.silverPerks = this.props.community.silver_perks || "";
+      this.bronzePerks = this.props.community.bronze_perks || "";
+      this.isPlural = this.props.community.plural || "";
+      this.creatorId = this.props.community.creator_id || "";
+      this.id = this.props.community.id || "";
+    }
+    // this.name = this.props.community.name || localStorage.getItem("community").name;
+    // this.description = this.props.community.description || "";
+    // this.shortDesc = this.props.community.short_description || "";
+    // this.goldPerks = this.props.community.gold_perks || "";
+    // this.silverPerks = this.props.community.silver_perks || "";
+    // this.bronzePerks = this.props.community.bronze_perks || "";
+    // this.isPlural = this.props.community.plural || "";
+    // this.creatorId = this.props.community.creator_id || "";
+    // this.id = this.props.community.id || "";
     this.currentUser = this.props.currentUser;
     this.joinCommunity = this.props.joinCommunity.bind(this);
     this.unjoinCommunity = this.props.unjoinCommunity.bind(this);
@@ -29,7 +39,7 @@ class Community extends React.Component {
     this.renderPostForm = this.renderPostForm.bind(this);
     this.renderPosts = this.renderPosts.bind(this);
 
-    if (this.currentUser) {
+    if (this.currentUser && this.props.community) {
       
       const ids = Object.values(this.currentUser.communities_joined).map((community) => {
         return community.id;
@@ -56,11 +66,13 @@ class Community extends React.Component {
     //   currentUserIsMember: false
     // }
   };
-
+  
   componentWillMount() {
     this.props.fetchCommunity(parseInt(this.props.match.params.communityId));
+    this.props.getCommunities();
   };
 
+  
   // componentDidMount() {
   //   this.renderCommunityWelcome();
   // }
@@ -160,7 +172,7 @@ class Community extends React.Component {
   }
 
   renderPosts() {
-    if (this.currentUser) {
+    if (this.state.currentUserIsMember) {
       return (<PostsContainer />);
     }
   }
@@ -174,8 +186,20 @@ class Community extends React.Component {
             bronzePerks, 
             silverPerks,
             isPlural
-    } = this
-    
+    } = this;
+
+    if (this.props.community) {
+      const {
+        nameCom,
+        descriptionCom,
+        shortDescCom,
+        goldPerksCom,
+        bronzePerksCom,
+        silverPerksCom,
+        isPluralCom,
+      } = this.props.community;
+    }
+    debugger;
     return (
       <div className="community-body-outer">
         <div className="community-body-mid">

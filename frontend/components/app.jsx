@@ -11,4 +11,5 @@ const App = ({ currentUser }) => (
     <Route component={BodyContainer} />
   </div>
 );
+
 export default App;

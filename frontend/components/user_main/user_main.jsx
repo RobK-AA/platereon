@@ -70,7 +70,7 @@ class UserMain extends React.Component {
             if (community.creator_id === this.currentUserId) {
               
               return (
-                <Link key={`community-${i}`} to={`/communities/${community.id}`}>
+                <Link communities={this.props.communities} key={`community-${i}`} to={`/communities/${community.id}`}>
                   <li key={i}>{community.name}</li>
                 </Link>
               )
