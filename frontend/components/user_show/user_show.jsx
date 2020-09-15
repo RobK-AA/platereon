@@ -17,20 +17,19 @@ class UserShow extends React.Component {
   render () {
     const { currentUser, location } = this.props;
     
-    return (location.pathname === "/createform") 
-      ?
-      (<Route exact path="/createform" component={CommunityFormContainer} />) 
-      :
-      (
-        (location.pathname.includes('communities')) 
-        ?
-        <div className="community-page">
-            <div>
-              <Route communities={this.props.communities} path="/api/communities/:communityId" component={CommunityContainer} />
-            </div>
+    return location.pathname === "/createform" ? (
+      <Route exact path="/createform" component={CommunityFormContainer} />
+    ) : location.pathname.includes("communities") ? (
+      <div className="community-page">
+        <div>
+          <Route
+            communities={this.props.communities}
+            exact path="/communities/:communityId"
+            component={CommunityContainer}/>
         </div>
-        :
-        <UserMainContainer currentUser={currentUser} />
+      </div>
+    ) : (
+      <UserMainContainer currentUser={currentUser} />
     );
   }
 };

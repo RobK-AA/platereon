@@ -58,7 +58,7 @@ class CommunityForm extends React.Component {
 
     this.props.submitCommunity(formData).then(
       () => {
-        return this.props.history.push(`api/communities/${this.props.communities[Object.keys(this.props.communities).length].id}`, this.state)
+        return this.props.history.push(`communities/${this.props.communities[Object.keys(this.props.communities).length].id}`, this.state)
       });
   }
 
@@ -138,7 +138,7 @@ class CommunityForm extends React.Component {
             </div>
             <div className="create-form-nav-right">
               <div className="create-form-launch">
-                {/* <Link to={`/api/communities/${action.community.id}`}>
+                {/* <Link to={`/communities/${action.community.id}`}>
                   <button form="community-form" type="submit" >Launch</button>
                 </Link> */}
                 <button form="community-form" type="submit" >Launch</button>

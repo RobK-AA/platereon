@@ -77,7 +77,7 @@ class PostForm extends React.Component {
     for (let i = 0; i < attachedImages.length; i++) {
       post.append("post[images][]", attachedImages[i]);
     }
-    debugger
+    
     this.props.submitPost(post)
   }
 

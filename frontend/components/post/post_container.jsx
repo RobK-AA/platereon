@@ -5,10 +5,9 @@ import { fetchCommunity } from '../../actions/community_actions';
 import { createMembership, deleteMembership } from "../../actions/membership_actions";
 
 const msp = (state, ownProps) => {
-
+  debugger
   return {
     currentUser: state.entities.users[state.session.id],
-    community: state.entities.communities[ownProps.match.params.communityId],
     memberships: Object.values(state.entities.memberships)
   };
 };

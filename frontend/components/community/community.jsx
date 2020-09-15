@@ -1,5 +1,5 @@
 import React from 'react';
-import PostContainer from '../post/post_container'
+import PostsContainer from '../post/post_container'
 import {BrowserRouter } from 'react-router-dom';
 import ls from 'local-storage'
 import PostFormContainer from '../post/post_form_container';
@@ -27,6 +27,7 @@ class Community extends React.Component {
     this.renderCommunityWelcome = this.renderCommunityWelcome.bind(this);
     this.renderJoinButton = this.renderJoinButton.bind(this);
     this.renderPostForm = this.renderPostForm.bind(this);
+    this.renderPosts = this.renderPosts.bind(this);
 
     if (this.currentUser) {
       
@@ -57,18 +58,7 @@ class Community extends React.Component {
   };
 
   componentWillMount() {
-    // const id = this;
-    // const ids = Object.values(this.currentUser.communities_joined).map((community) => {
-    //   return community.id;
-    // })
-
-    // if (ids.includes(id)) {
-    //   
-    //   this.setState({
-    //     currentUserIsMember: true
-    //   })
-    // }
-    this.props.fetchCommunity(this.props.match.params.communityId);
+    this.props.fetchCommunity(parseInt(this.props.match.params.communityId));
   };
 
   // componentDidMount() {
@@ -166,6 +156,12 @@ class Community extends React.Component {
           <PostFormContainer communityId={this.id}/>
         </>
       )
+    }
+  }
+
+  renderPosts() {
+    if (this.currentUser) {
+      return (<PostsContainer />);
     }
   }
 
@@ -409,6 +405,7 @@ class Community extends React.Component {
                   </div>
                 </div>
               </div>
+              {this.renderPosts()}
               <div className="outer-footer1">
                 <div className="outer-footer2">
                   <div className="outer-footer3">

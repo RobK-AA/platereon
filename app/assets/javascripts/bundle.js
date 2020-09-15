@@ -511,10 +511,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _signup_form_signup_form_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../signup_form/signup_form_container */ "./frontend/components/signup_form/signup_form_container.jsx");
 /* harmony import */ var _login_form_login_form_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../login_form/login_form_container */ "./frontend/components/login_form/login_form_container.jsx");
 /* harmony import */ var _search_search_results_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../search/search_results_container */ "./frontend/components/search/search_results_container.jsx");
-/* harmony import */ var _community_community_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../community/community_container */ "./frontend/components/community/community_container.jsx");
-/* harmony import */ var _community_form_community_form_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../community_form/community_form_container */ "./frontend/components/community_form/community_form_container.jsx");
-/* harmony import */ var _post_post_form_cover__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../post/post_form_cover */ "./frontend/components/post/post_form_cover.jsx");
-/* harmony import */ var _post_post_form_container__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../post/post_form_container */ "./frontend/components/post/post_form_container.jsx");
+/* harmony import */ var _community_form_community_form_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../community_form/community_form_container */ "./frontend/components/community_form/community_form_container.jsx");
+/* harmony import */ var _post_post_form_cover__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../post/post_form_cover */ "./frontend/components/post/post_form_cover.jsx");
+/* harmony import */ var _post_post_form_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../post/post_form_container */ "./frontend/components/post/post_form_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -544,7 +543,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
+ // import CommunityContainer from '../community/community_container';
 
 
 
@@ -587,30 +586,25 @@ var Body = /*#__PURE__*/function (_React$Component) {
         exact: true,
         path: "/",
         component: _main_page_main_page_container__WEBPACK_IMPORTED_MODULE_2__["default"]
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
-        exact: true,
-        path: "/api/communities/:communityId",
-        component: _community_community_container__WEBPACK_IMPORTED_MODULE_8__["default"]
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__["ProtectedRoute"], {
+        path: "/",
+        component: _user_show_user_show_container__WEBPACK_IMPORTED_MODULE_3__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__["ProtectedRoute"], {
         exact: true,
         path: "/createform",
-        component: _community_form_community_form_container__WEBPACK_IMPORTED_MODULE_9__["default"]
+        component: _community_form_community_form_container__WEBPACK_IMPORTED_MODULE_8__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__["ProtectedRoute"], {
         exact: true,
         path: "/postform",
-        component: _post_post_form_cover__WEBPACK_IMPORTED_MODULE_10__["default"]
+        component: _post_post_form_cover__WEBPACK_IMPORTED_MODULE_9__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__["ProtectedRoute"], {
         exact: true,
         path: "/postform/text",
-        component: _post_post_form_container__WEBPACK_IMPORTED_MODULE_11__["default"]
+        component: _post_post_form_container__WEBPACK_IMPORTED_MODULE_10__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         exact: true,
         path: "/search",
         component: _search_search_results_container__WEBPACK_IMPORTED_MODULE_7__["default"]
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__["ProtectedRoute"], {
-        exact: true,
-        path: "/",
-        component: _user_show_user_show_container__WEBPACK_IMPORTED_MODULE_3__["default"]
       })));
     }
   }]);
@@ -740,6 +734,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
     _this.renderCommunityWelcome = _this.renderCommunityWelcome.bind(_assertThisInitialized(_this));
     _this.renderJoinButton = _this.renderJoinButton.bind(_assertThisInitialized(_this));
     _this.renderPostForm = _this.renderPostForm.bind(_assertThisInitialized(_this));
+    _this.renderPosts = _this.renderPosts.bind(_assertThisInitialized(_this));
 
     if (_this.currentUser) {
       var ids = Object.values(_this.currentUser.communities_joined).map(function (community) {
@@ -770,17 +765,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
   _createClass(Community, [{
     key: "componentWillMount",
     value: function componentWillMount() {
-      // const id = this;
-      // const ids = Object.values(this.currentUser.communities_joined).map((community) => {
-      //   return community.id;
-      // })
-      // if (ids.includes(id)) {
-      //   
-      //   this.setState({
-      //     currentUserIsMember: true
-      //   })
-      // }
-      this.props.fetchCommunity(this.props.match.params.communityId);
+      this.props.fetchCommunity(parseInt(this.props.match.params.communityId));
     }
   }, {
     key: "componentDidUpdate",
@@ -874,6 +859,13 @@ var Community = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_post_post_form_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
           communityId: this.id
         }));
+      }
+    }
+  }, {
+    key: "renderPosts",
+    value: function renderPosts() {
+      if (this.currentUser) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_post_post_container__WEBPACK_IMPORTED_MODULE_1__["default"], null);
       }
     }
   }, {
@@ -1083,7 +1075,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
         className: "about-body8"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "about-body9"
-      }, description))))))))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, description))))))))))))))), this.renderPosts(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "outer-footer1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "outer-footer2"
@@ -1334,7 +1326,7 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
         plural: this.state.isPlural
       };
       this.props.submitCommunity(formData).then(function () {
-        return _this3.props.history.push("api/communities/".concat(_this3.props.communities[Object.keys(_this3.props.communities).length].id), _this3.state);
+        return _this3.props.history.push("communities/".concat(_this3.props.communities[Object.keys(_this3.props.communities).length].id), _this3.state);
       });
     }
   }, {
@@ -2372,6 +2364,10 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
@@ -2398,6 +2394,13 @@ var Post = /*#__PURE__*/function (_React$Component) {
 
     return _super.apply(this, arguments);
   }
+
+  _createClass(Post, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Hi"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Hi"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Hi")));
+    }
+  }]);
 
   return Post;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
@@ -2427,9 +2430,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
+  debugger;
   return {
     currentUser: state.entities.users[state.session.id],
-    community: state.entities.communities[ownProps.match.params.communityId],
     memberships: Object.values(state.entities.memberships)
   };
 };
@@ -2608,7 +2611,6 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
         post.append("post[images][]", attachedImages[i]);
       }
 
-      debugger;
       this.props.submitPost(post);
     }
   }, {
@@ -3136,7 +3138,7 @@ var SearchResults = /*#__PURE__*/function (_React$Component) {
       }, searchResults.map(function (community, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           key: "community-".concat(i),
-          to: "/api/communities/".concat(community.id)
+          to: "/communities/".concat(community.id)
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           className: "search-results-list-item",
           key: i
@@ -3549,7 +3551,7 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
       }, this.renderJoinMessage(), this.communitiesJoined.map(function (community, i) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
           key: "community-".concat(i),
-          to: "/api/communities/".concat(community.id)
+          to: "/communities/".concat(community.id)
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: i
         }, community.name)));
@@ -3575,7 +3577,7 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
         if (community.creator_id === _this2.currentUserId) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
             key: "community-".concat(i),
-            to: "/api/communities/".concat(community.id)
+            to: "/communities/".concat(community.id)
           }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
             key: i
           }, community.name));
@@ -3931,11 +3933,12 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
         exact: true,
         path: "/createform",
         component: _community_form_community_form_container__WEBPACK_IMPORTED_MODULE_1__["default"]
-      }) : location.pathname.includes('communities') ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }) : location.pathname.includes("communities") ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "community-page"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         communities: this.props.communities,
-        path: "/api/communities/:communityId",
+        exact: true,
+        path: "/communities/:communityId",
         component: _community_community_container__WEBPACK_IMPORTED_MODULE_3__["default"]
       }))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_main_user_main_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
         currentUser: currentUser

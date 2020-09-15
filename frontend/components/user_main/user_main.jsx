@@ -38,7 +38,7 @@ class UserMain extends React.Component {
                 return (
                   <>
                     
-                    <Link key={`community-${i}`} to={`/api/communities/${community.id}`}>
+                    <Link key={`community-${i}`} to={`/communities/${community.id}`}>
                       <li key={i}>{community.name}</li>
                     </Link>
                   </>
@@ -70,7 +70,7 @@ class UserMain extends React.Component {
             if (community.creator_id === this.currentUserId) {
               
               return (
-                <Link key={`community-${i}`} to={`/api/communities/${community.id}`}>
+                <Link key={`community-${i}`} to={`/communities/${community.id}`}>
                   <li key={i}>{community.name}</li>
                 </Link>
               )

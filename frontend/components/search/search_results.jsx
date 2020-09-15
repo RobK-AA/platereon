@@ -22,7 +22,7 @@ class SearchResults extends React.Component {
           {searchResults.map((community, i) => {
             
             return (
-              <Link key={`community-${i}`} to={`/api/communities/${community.id}`}>
+              <Link key={`community-${i}`} to={`/communities/${community.id}`}>
                 <li className="search-results-list-item" key={i}><div>{community.name}</div></li>
               </Link>
           )})}
