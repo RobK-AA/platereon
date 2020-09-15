@@ -515,6 +515,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _search_search_results_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../search/search_results_container */ "./frontend/components/search/search_results_container.jsx");
 /* harmony import */ var _community_community_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../community/community_container */ "./frontend/components/community/community_container.jsx");
 /* harmony import */ var _community_form_community_form_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../community_form/community_form_container */ "./frontend/components/community_form/community_form_container.jsx");
+/* harmony import */ var _post_post_form_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../post/post_form_container */ "./frontend/components/post/post_form_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -536,6 +537,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -593,6 +595,10 @@ var Body = /*#__PURE__*/function (_React$Component) {
         exact: true,
         path: "/createform",
         component: _community_form_community_form_container__WEBPACK_IMPORTED_MODULE_9__["default"]
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__["ProtectedRoute"], {
+        exact: true,
+        path: "/postform",
+        component: _post_post_form_container__WEBPACK_IMPORTED_MODULE_10__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         exact: true,
         path: "/search",
@@ -3550,16 +3556,16 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
         className: "ur-title2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "ur-title"
-      }, "Become a creator")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, "Post to your Communities")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "upper-right-text"
-      }, "Build a membership for your fans and get paid to create on your own terms."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Share content with your fans."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "get-started-link"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-        className: "main-create-link",
-        to: "/createform"
+        className: "main-post-link",
+        to: "/postform"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "main-create2"
-      }, " Get started"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Make a post"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "main-create1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "main-create2"

@@ -204,21 +204,20 @@ class UserMain extends React.Component {
                                 <div className="ur-title1">
                                   <div className="ur-title2">
                                     <h5 className="ur-title">
-                                      Become a creator
+                                      Post to your Communities
                                     </h5>
                                   </div>
                                 </div>
                               </div>
                               <p className="upper-right-text">
-                                Build a membership for your fans and get paid to
-                                create on your own terms.
+                                Share content with your fans.
                               </p>
                               <div className="get-started-link">
                                 <Link
-                                  className="main-create-link"
-                                  to={`/createform`}
+                                  className="main-post-link"
+                                  to={`/postform`}
                                 >
-                                  <p className="main-create2"> Get started</p>
+                                  <p className="main-create2">Make a post</p>
                                   <div className="main-create1">
                                     <div className="main-create2"></div>
                                   </div>

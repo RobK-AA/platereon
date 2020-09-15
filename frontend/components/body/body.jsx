@@ -8,6 +8,7 @@ import LogInFormContainer from '../login_form/login_form_container';
 import SearchResultsContainer from '../search/search_results_container';
 import CommunityContainer from '../community/community_container';
 import CommunityFormContainer from '../community_form/community_form_container';
+import PostFormContainer from '../post/post_form_container';
 class Body extends React.Component {
 
   constructor(props) {
@@ -32,6 +33,7 @@ class Body extends React.Component {
           <AuthRoute exact path="/" component={MainPageContainer} />
           <Route exact path="/api/communities/:communityId" component={CommunityContainer} />
           <ProtectedRoute exact path="/createform" component={CommunityFormContainer} />
+          <ProtectedRoute exact path="/postform" component={PostFormContainer} />
         <Switch>
           <Route exact path="/search" component={SearchResultsContainer} />
           
