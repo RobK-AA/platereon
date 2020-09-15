@@ -34,33 +34,34 @@ class PostCover extends React.Component {
                         </div>
                         <div className="post-cover11"></div>
                         <div className="post-types">
-                          <div className="posts post-text">
+
+                          <Link to={"/postform/text"} className="posts post-text">
                             <div className="posts-img post-text">
-                              <span>
-                                <img src="https://img.icons8.com/office/40/000000/lowercase.png" />
-                              </span>
+                              <img src="https://img.icons8.com/office/40/000000/lowercase.png" />
                             </div>
                             <div className="posts-text post-text">
                               <span>Text</span>
                             </div>
-                          </div>
-                          <div className="posts post-images">
-                            <div className="posts-img post-images">
-                              <img src="https://img.icons8.com/nolan/40/google-images.png" />
-                            </div>
-                            <div className="posts-text post-images">
-                              <span>Images</span>
-                            </div>
-                          </div>
-                          <div className="posts post-video">
+                          </Link>
+
+                          <Link to={"/postform/text"} className="posts post-images">
+                              <div className="posts-img post-images">
+                                <img src="https://img.icons8.com/nolan/40/google-images.png" />
+                              </div>
+                              <div className="posts-text post-images">
+                                <span>Images</span>
+                              </div>
+                          </Link>
+
+                          <Link to={"/postform/text"} className="posts post-video">
                             <div className="posts-img post-video">
                               <img src="https://img.icons8.com/color/40/000000/video.png" />
                             </div>
                             <div className="posts-text post-video">
                               <span>Video</span>
                             </div>
-                          </div>
-                          <div className="posts post-audio">
+                          </Link>
+                          <Link to={"/postform/text"} className="posts post-audio">
                             <div className="posts-img post-audio">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -98,15 +99,15 @@ class PostCover extends React.Component {
                             <div className="posts-text post-audio">
                               <span>Audio</span>
                             </div>
-                          </div>
-                          <div className="posts post-link">
+                          </Link>
+                          <Link to={"/postform/text"} className="posts post-link">
                             <div className="posts-img post-link">
                               <img src="https://img.icons8.com/office/40/000000/link.png" />
                             </div>
                             <div className="posts-text post-link">
                               <span>Link</span>
                             </div>
-                          </div>
+                          </Link>
                         </div>
                       </div>
                     </div>

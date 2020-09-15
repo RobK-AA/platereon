@@ -9,6 +9,7 @@ import SearchResultsContainer from '../search/search_results_container';
 import CommunityContainer from '../community/community_container';
 import CommunityFormContainer from '../community_form/community_form_container';
 import PostCoverContainer from '../post/post_form_cover';
+import PostFormContainer from '../post/post_form_container';
 class Body extends React.Component {
 
   constructor(props) {
@@ -34,6 +35,7 @@ class Body extends React.Component {
           <Route exact path="/api/communities/:communityId" component={CommunityContainer} />
           <ProtectedRoute exact path="/createform" component={CommunityFormContainer} />
           <ProtectedRoute exact path="/postform" component={PostCoverContainer} />
+          <ProtectedRoute exact path="/postform/text" component={PostFormContainer} />
         <Switch>
           <Route exact path="/search" component={SearchResultsContainer} />
           
