@@ -2512,6 +2512,7 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
     _this.addImage = _this.addImage.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleSelect = _this.handleSelect.bind(_assertThisInitialized(_this));
     _this.renderDropDown = _this.renderDropDown.bind(_assertThisInitialized(_this));
     _this.currentUser = _this.props.currentUser;
     _this.state = _this.props.post;
@@ -2550,24 +2551,39 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
     key: "renderDropDown",
     value: function renderDropDown() {
       var communities = this.currentUser.communities_created;
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "communities-dropdown"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        onChange: this.handleSelect,
         id: "communities-dropdown"
       }, communities.map(function (community) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          name: community.id,
           value: community.name
         }, community.name);
       }))));
     }
   }, {
-    key: "update",
-    value: function update(field) {
+    key: "handleSelect",
+    value: function handleSelect(e) {
       var _this3 = this;
 
+      e.preventDefault();
+      var id = parseInt($("option:selected").attr("name"));
+
+      (function (e) {
+        return _this3.setState({
+          communityId: id
+        });
+      });
+    }
+  }, {
+    key: "update",
+    value: function update(field) {
+      var _this4 = this;
+
       return function (e) {
-        return _this3.setState(_defineProperty({}, field, e.target.value));
+        return _this4.setState(_defineProperty({}, field, e.target.value));
       };
     }
   }, {
@@ -2581,17 +2597,18 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
           images = _this$state.images,
           imageUrls = _this$state.imageUrls;
       var authorId = this.props.currentUser.id;
-      var communityId = this.props.communityId;
+      var communityId = this.state.communityId;
       post.append("post[title]", title);
       post.append("post[body]", body);
       post.append("post[author_id]", authorId);
-      post.append("post[community_id]", communityId);
+      post.append("post[community_id]", parseInt($("option:selected").attr("name")));
       var attachedImages = images;
 
       for (var i = 0; i < attachedImages.length; i++) {
         post.append("post[images][]", attachedImages[i]);
       }
 
+      debugger;
       this.props.submitPost(post);
     }
   }, {
@@ -2608,7 +2625,7 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
         id: "post-form",
         action: "submit",
         onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Post content for your subscribers:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.renderDropDown()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Post content for your subscribers:"), this.renderDropDown(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "new-post-form-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-title"
@@ -2634,7 +2651,7 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
         className: "post-upload"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: ""
-      }, "Upload Images/Videos", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, "Upload Pictures", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "image-input",
         type: "file",
         onChange: this.addImage
