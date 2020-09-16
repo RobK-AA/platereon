@@ -8,6 +8,7 @@ class PostForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.renderDropDown = this.renderDropDown.bind(this);
+    this.renderImageForm = this.renderImageForm.bind(this);
     this.currentUser = this.props.currentUser;
     this.state = this.props.post
     this.state.imageUrls = [];
@@ -43,14 +44,40 @@ class PostForm extends React.Component {
         <label htmlFor="communities-dropdown">
           <select onChange={this.handleSelect} id="communities-dropdown">
             <option defaultValue="selected">Select One of Your Communities</option>
-            {communities.map((community) => (
-              <option name={community.id} value={community.name}>{community.name}</option>
+            {communities.map((community, i) => (
+              <option key={i} name={community.id} value={community.name}>{community.name}</option>
             ))}
           </select>
         </label>
       </>
     );
   }
+
+  renderImageForm() {
+    const { imageUrls } = this.state;
+    return (
+      <>
+      <div id="attached-images-outer">
+        <div id="attached-images">
+          {imageUrls.length ? (
+            <div className="images-attached">
+              {imageUrls.map((url, i) => (
+                <img className="post-img" src={url} key={i} />
+              ))}
+            </div>
+          ) : null}
+        </div>
+      </div>
+
+            <div className="post-upload">
+              <label htmlFor="">
+                Upload Pictures
+                <input id="image-input" type="file" onChange={this.addImage} />
+              </label>
+            </div>
+            </>)
+  }
+    
 
   handleSelect(e) {
     e.preventDefault();
@@ -90,9 +117,15 @@ class PostForm extends React.Component {
   }
 
   render() {
-    
+
     const { title, body, imageUrls } = this.state;
     const filledOut = body.length > 0 && title.length > 0;
+
+    const textPost = this.props.location.pathname.includes('text');
+    const imagePost = this.props.location.pathname.includes('images');
+    const videoPost = this.props.location.pathname.includes('video');
+    const linkPost = this.props.location.pathname.includes("link");
+
     return (
       <div className="new-post-form">
         <form id="post-form" action="submit" onSubmit={this.handleSubmit}>
@@ -109,24 +142,10 @@ class PostForm extends React.Component {
                 />
               </label>
             </div>
-            <div id="attached-images-outer">
-              <div id="attached-images">
-                {imageUrls.length ? (
-                  <div className="images-attached">
-                    {imageUrls.map((url, i) => (
-                      <img className="post-img" src={url} key={i} />
-                    ))}
-                  </div>
-                ) : null}
-              </div>
-            </div>
-
-            <div className="post-upload">
-              <label htmlFor="">
-                Upload Pictures
-                <input id="image-input" type="file" onChange={this.addImage} />
-              </label>
-            </div>
+            {imagePost ? 
+            this.renderImageForm()
+             : null }
+          
             <div className="post-body">
               {/* <label htmlFor="">Body */}
               <div className="post-body-container">

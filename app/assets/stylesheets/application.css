@@ -603,8 +603,6 @@ html {
     box-sizing: border-box;
 }
 .current-user-menu {
-  cursor: pointer;
-  background-color: rgb(232, 91, 70);
   border-radius: 5%;
   padding: 2px;
   font-weight: 700;

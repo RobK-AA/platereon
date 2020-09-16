@@ -8,7 +8,6 @@ class Post extends React.Component {
   render() {
 
     const { title, body, images } = this.props.post;
-
     let imgStyle;
     if (images.length) {
       imgStyle = { display: "block"}
@@ -51,7 +50,6 @@ class Post extends React.Component {
                        {images.map((image, i) => <img key={i} src={image} />)}
                       </ul>) : null
                     }
-                    {/* <img style={imgStyle} src={images[0]} alt={this.props.post.title}/> */}
                   </div>
                 </div>
                 <div className="post-content">
@@ -59,7 +57,7 @@ class Post extends React.Component {
                     <div className="post-title-date">
                       <div className="post-title-date1">
                         <div className="post-datetime">
-                          {/* {this.props.post.created_at} */}
+                          {this.props.post.created_at}
                         </div>
                         <div className="unlocked">
 

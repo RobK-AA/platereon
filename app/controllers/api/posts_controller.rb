@@ -46,7 +46,7 @@ class Api::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:community_id, :author_id, :body, :title, images: [])
+    params.require(:post).permit(:community_id, :author_id, :body, :title, images: [], :video_url, :link_url)
   end
 
 end

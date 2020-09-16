@@ -43,7 +43,7 @@ class PostCover extends React.Component {
                             </div>
                           </Link>
 
-                          <Link to={"/postform/text"} className="posts post-images">
+                          <Link to={"/postform/images"} className="posts post-images">
                               <div className="posts-img post-images">
                                 <img src="https://img.icons8.com/nolan/40/google-images.png" />
                               </div>
@@ -52,7 +52,7 @@ class PostCover extends React.Component {
                               </div>
                           </Link>
 
-                          <Link to={"/postform/text"} className="posts post-video">
+                          <Link to={"/postform/video"} className="posts post-video">
                             <div className="posts-img post-video">
                               <img src="https://img.icons8.com/color/40/000000/video.png" />
                             </div>
@@ -60,7 +60,7 @@ class PostCover extends React.Component {
                               <span>Video</span>
                             </div>
                           </Link>
-                          <Link to={"/postform/text"} className="posts post-audio">
+                          <Link to={"/postform/audio"} className="posts post-audio">
                             <div className="posts-img post-audio">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -99,7 +99,7 @@ class PostCover extends React.Component {
                               <span>Audio</span>
                             </div>
                           </Link>
-                          <Link to={"/postform/text"} className="posts post-link">
+                          <Link to={"/postform/link"} className="posts post-link">
                             <div className="posts-img post-link">
                               <img src="https://img.icons8.com/office/40/000000/link.png" />
                             </div>

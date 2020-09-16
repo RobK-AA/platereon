@@ -56,13 +56,14 @@ class UserMain extends React.Component {
 
       return (
         <>
-        <li key="1000">
+        <li key="10000">
           {this.props.membershipsMessage.noMembershipsMessage}
         </li>
         </>
       )
     }
   }
+
   renderCommunitiesCreated() {
 
     return (
@@ -72,8 +73,8 @@ class UserMain extends React.Component {
             if (community.creator_id === this.currentUserId) {
               
               return (
-                <Link id="community-link" communities={this.props.communities} key={`community-${i}`} to={`/communities/${community.id}`}>
-                  <li key={i}>{community.name}</li>
+                <Link id="community-link" communities={this.props.communities} key={`community-created-${i}`} to={`/communities/${community.id}`}>
+                  <li key={`community-create-${i}`}>{community.name}</li>
                 </Link>
               )
             }
@@ -298,11 +299,11 @@ class UserMain extends React.Component {
                     <div className="footer31">
                       <div className="footer32">
                         <ul className="footer-ul1">
-                          <li className="footer-ul10">FOR CREATORS</li>
-                          <li className="footer-ul11">About</li>
-                          <li className="footer-ul12">GitHub</li>
-                          <li className="footer-ul13">LinkedIn</li>
-                          <li className="footer-ul14">App Academy</li>
+                          <li key="1000" className="footer-ul10">FOR CREATORS</li>
+                          <li key="1001" className="footer-ul11">About</li>
+                          <li key="1002" className="footer-ul12">GitHub</li>
+                          <li key="1003" className="footer-ul13">LinkedIn</li>
+                          <li key="1004" className="footer-ul14">App Academy</li>
                         </ul>
                       </div>
                     </div>

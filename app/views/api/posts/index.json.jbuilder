@@ -6,6 +6,8 @@
       :community_id,
       :title,
       :body,
+      :video_url,
+      :link_url,
       :created_at
 
     json.images post.images.map { |image| url_for(image) }
