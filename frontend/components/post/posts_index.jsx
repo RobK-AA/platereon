@@ -1,12 +1,12 @@
 import React from 'react';
-import PostsContainer from './post_container';
+import PostContainer from './post_container';
 
 const PostsIndex = ({ posts }) => {
   return posts ? (
     <div>
       {posts.map((post, i) => {
         return (
-          <PostsContainer key={i} post={post} />
+          <PostContainer key={i} post={post} />
         );
       })}
     </div>
