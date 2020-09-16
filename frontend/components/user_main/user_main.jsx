@@ -51,7 +51,9 @@ class UserMain extends React.Component {
   }
 
   renderJoinMessage() {
-    if (this.props.membershipsMessage.noMembershipsMessage) {
+
+    if (this.props.membershipsMessage.noMembershipsMessage && !$('community-link').innerHTML) {
+
       return (
         <>
         <li key="1000">
@@ -70,7 +72,7 @@ class UserMain extends React.Component {
             if (community.creator_id === this.currentUserId) {
               
               return (
-                <Link communities={this.props.communities} key={`community-${i}`} to={`/communities/${community.id}`}>
+                <Link id="community-link" communities={this.props.communities} key={`community-${i}`} to={`/communities/${community.id}`}>
                   <li key={i}>{community.name}</li>
                 </Link>
               )

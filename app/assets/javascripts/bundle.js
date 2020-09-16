@@ -888,7 +888,6 @@ var Community = /*#__PURE__*/function (_React$Component) {
     key: "renderPosts",
     value: function renderPosts() {
       if (this.state.currentUserIsMember) {
-        debugger;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_post_posts_index__WEBPACK_IMPORTED_MODULE_5__["default"], {
           posts: this.props.posts
         });
@@ -2720,7 +2719,7 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
         post.append("post[images][]", attachedImages[i]);
       }
 
-      this.props.submitPost(post);
+      this.props.submitPost(post).then(this.props.history.push("/communities/".concat(parseInt($("option:selected").attr("name"))), this.state));
     }
   }, {
     key: "render",
@@ -3050,7 +3049,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var PostsIndex = function PostsIndex(_ref) {
   var posts = _ref.posts;
-  debugger;
   return posts ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "post-list-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3707,7 +3705,7 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "renderJoinMessage",
     value: function renderJoinMessage() {
-      if (this.props.membershipsMessage.noMembershipsMessage) {
+      if (this.props.membershipsMessage.noMembershipsMessage && !$('community-link').innerHTML) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: "1000"
         }, this.props.membershipsMessage.noMembershipsMessage));
@@ -3723,6 +3721,7 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
       }, Object.values(this.props.communities).map(function (community, i) {
         if (community.creator_id === _this2.currentUserId) {
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+            id: "community-link",
             communities: _this2.props.communities,
             key: "community-".concat(i),
             to: "/communities/".concat(community.id)

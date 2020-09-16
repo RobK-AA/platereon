@@ -79,7 +79,14 @@ class PostForm extends React.Component {
       post.append("post[images][]", attachedImages[i]);
     }
     
-    this.props.submitPost(post)
+    this.props
+      .submitPost(post)
+      .then(
+        this.props.history.push(
+          `/communities/${parseInt($("option:selected").attr("name"))}`,
+          this.state
+        )
+      );
   }
 
   render() {
