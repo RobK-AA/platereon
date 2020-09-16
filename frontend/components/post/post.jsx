@@ -13,7 +13,12 @@ class Post extends React.Component {
                 <h4>{post.title}</h4>
                 <div>{post.body}</div>
                 <div>{post.created_at}</div>
-                <div>{post.images}</div>
+                <ul>{post.images.map((image, i) => {
+                  return (
+                  <li>
+                    <img key={i} src={image} />
+                  </li>)
+                })}</ul>
               </li>
             )
           })}
