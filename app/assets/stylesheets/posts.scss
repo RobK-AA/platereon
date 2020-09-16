@@ -410,7 +410,6 @@
 }
 
 .post-title-date {
-    z-index: 100;
     position: relative;
 }
 
@@ -426,8 +425,6 @@
     margin: 0rem;
 }
 
-
-
 .post-title-title span {
   font-weight: 700;
   font-size: 1.3125rem !important;
@@ -437,4 +434,23 @@
   color: currentColor;
   text-decoration: none;
   cursor: pointer;
+}
+
+.post-body2 {
+  white-space: pre-line;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.post-body1 {
+  display: block;
+  white-space: pre-line;
+  line-height: 1.5;
+  font-size: 1rem !important;
+  text-align: justify;
 }

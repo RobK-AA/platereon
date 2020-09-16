@@ -6,8 +6,11 @@ class Post extends React.Component {
   }
 
   render() {
+
+    const { title, body, images } = this.props.post;
+
     let imgStyle;
-    if (this.props.post.images.length) {
+    if (images.length) {
       imgStyle = { display: "block"}
     } else {
       imgStyle = { display: "none"}
@@ -43,17 +46,32 @@ class Post extends React.Component {
               <div className="post1">
                 <div className="post-media">
                   <div className="post-media-container">
-                    <img style={imgStyle} src={this.props.post.images[0]} alt={this.props.post.title}/>
+                    {images.length ? 
+                      (<ul>
+                       {images.map((image, i) => <img key={i} src={image} />)}
+                      </ul>) : null
+                    }
+                    {/* <img style={imgStyle} src={images[0]} alt={this.props.post.title}/> */}
                   </div>
                 </div>
                 <div className="post-content">
                   <div className="post-title1">
                     <div className="post-title-date">
+                      <div className="post-title-date1">
+                        <div className="post-datetime">
+                          {/* {this.props.post.created_at} */}
+                        </div>
+                        <div className="unlocked">
 
+                        </div>
+                      </div>
                     </div>
                     <div className="post-title-title">
-                      <span><a href="">{this.props.post.title}</a></span>
+                      <span><a href="">{title}</a></span>
                     </div>
+                  </div>
+                  <div className="post-body1">
+                    <p className="post-body2">{body}</p>
                   </div>
                 </div>
               </div>
