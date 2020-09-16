@@ -5,7 +5,8 @@
       :author_id,
       :community_id,
       :title,
-      :body
+      :body,
+      :created_at
 
     json.images post.images.map { |image| url_for(image) }
   end
