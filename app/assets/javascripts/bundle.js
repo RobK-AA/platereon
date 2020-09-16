@@ -752,6 +752,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
     _this.renderJoinButton = _this.renderJoinButton.bind(_assertThisInitialized(_this));
     _this.renderPostForm = _this.renderPostForm.bind(_assertThisInitialized(_this));
     _this.renderPosts = _this.renderPosts.bind(_assertThisInitialized(_this));
+    _this.getPosts = _this.props.getPosts;
 
     if (_this.currentUser && _this.props.community) {
       var ids = Object.values(_this.currentUser.communities_joined).map(function (community) {
@@ -771,7 +772,9 @@ var Community = /*#__PURE__*/function (_React$Component) {
       _this.state = {
         currentUserIsMember: false
       };
-    } // this.state = {
+    }
+
+    _this.getPosts(_this.id); // this.state = {
     //   currentUserIsMember: false
     // }
 
@@ -896,7 +899,6 @@ var Community = /*#__PURE__*/function (_React$Component) {
           bronzePerks = this.bronzePerks,
           silverPerks = this.silverPerks,
           isPlural = this.isPlural;
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "community-body-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2420,6 +2422,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
   _createClass(Post, [{
     key: "render",
     value: function render() {
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Hi"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Hi"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Hi")));
     }
   }]);
@@ -2454,7 +2457,8 @@ __webpack_require__.r(__webpack_exports__);
 var msp = function msp(state, ownProps) {
   return {
     currentUser: state.entities.users[state.session.id],
-    memberships: Object.values(state.entities.memberships)
+    memberships: Object.values(state.entities.memberships),
+    posts: Object.values(state.entities.posts)
   };
 };
 
@@ -2580,7 +2584,9 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
         onChange: this.handleSelect,
         id: "communities-dropdown"
-      }, communities.map(function (community) {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        defaultValue: "selected"
+      }, "Select One of Your Communities"), communities.map(function (community) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
           name: community.id,
           value: community.name
@@ -2937,7 +2943,7 @@ var PostCover = /*#__PURE__*/function (_React$Component) {
 
 var msp = function msp(state) {
   return {
-    urrentUser: state.entities.users[state.session.id]
+    currentUser: state.entities.users[state.session.id]
   };
 };
 

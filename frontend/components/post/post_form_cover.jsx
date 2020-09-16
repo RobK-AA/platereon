@@ -122,7 +122,7 @@ class PostCover extends React.Component {
 }
 
 const msp = (state) => ({
-  urrentUser: state.entities.users[state.session.id],
+  currentUser: state.entities.users[state.session.id],
 });
 
 export default connect(msp)(PostCover);

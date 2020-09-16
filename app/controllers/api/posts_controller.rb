@@ -1,7 +1,8 @@
 class Api::PostsController < ApplicationController
 
   def index
-    @posts = Post.all.with_attached_images
+    community_id = params[:community_id]
+    @posts = Post.select("*").where("posts.community_id = ?", community_id).order("created_at DESC").with_attached_images
     render :index
   end
 

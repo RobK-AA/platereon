@@ -38,6 +38,7 @@ class Community extends React.Component {
     this.renderJoinButton = this.renderJoinButton.bind(this);
     this.renderPostForm = this.renderPostForm.bind(this);
     this.renderPosts = this.renderPosts.bind(this);
+    this.getPosts = this.props.getPosts;
 
     if (this.currentUser && this.props.community) {
       
@@ -60,8 +61,7 @@ class Community extends React.Component {
         currentUserIsMember: false
       }
     }
-    
-    
+    this.getPosts(this.id);
     // this.state = {
     //   currentUserIsMember: false
     // }
@@ -192,7 +192,7 @@ class Community extends React.Component {
 
     
     
-    debugger
+  
     return (
       <div className="community-body-outer">
         <div className="community-body-mid">

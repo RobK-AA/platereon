@@ -42,6 +42,7 @@ class PostForm extends React.Component {
       <>
         <label htmlFor="communities-dropdown">
           <select onChange={this.handleSelect} id="communities-dropdown">
+            <option defaultValue="selected">Select One of Your Communities</option>
             {communities.map((community) => (
               <option name={community.id} value={community.name}>{community.name}</option>
             ))}
