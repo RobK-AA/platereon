@@ -684,6 +684,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var local_storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! local-storage */ "./node_modules/local-storage/local-storage.js");
 /* harmony import */ var local_storage__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(local_storage__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _post_post_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../post/post_form_container */ "./frontend/components/post/post_form_container.jsx");
+/* harmony import */ var _post_posts_index__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../post/posts_index */ "./frontend/components/post/posts_index.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -705,6 +706,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -886,7 +888,8 @@ var Community = /*#__PURE__*/function (_React$Component) {
     key: "renderPosts",
     value: function renderPosts() {
       if (this.state.currentUserIsMember) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_post_post_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        debugger;
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_post_posts_index__WEBPACK_IMPORTED_MODULE_5__["default"], {
           posts: this.props.posts
         });
       }
@@ -1213,7 +1216,8 @@ var msp = function msp(state, ownProps) {
   return {
     currentUser: state.entities.users[state.session.id],
     community: state.entities.communities[ownProps.match.params.communityId],
-    memberships: Object.values(state.entities.memberships)
+    memberships: Object.values(state.entities.memberships),
+    posts: Object.values(state.entities.posts)
   };
 };
 
@@ -2415,16 +2419,26 @@ var Post = /*#__PURE__*/function (_React$Component) {
 
   var _super = _createSuper(Post);
 
-  function Post() {
+  function Post(props) {
     _classCallCheck(this, Post);
 
-    return _super.apply(this, arguments);
+    return _super.call(this, props);
   }
 
   _createClass(Post, [{
     key: "render",
     value: function render() {
-      //   return (
+      var imgStyle;
+
+      if (this.props.post.images.length) {
+        imgStyle = {
+          display: "block"
+        };
+      } else {
+        imgStyle = {
+          display: "none"
+        };
+      } //   return (
       //     <>
       //       <ul className="post-list">
       //         {this.props.posts.map((post) => {
@@ -2446,6 +2460,8 @@ var Post = /*#__PURE__*/function (_React$Component) {
       //       </ul>
       //     </>
       //   );
+
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2461,6 +2477,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-media-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        style: imgStyle,
         src: this.props.post.images[0],
         alt: this.props.post.title
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2998,6 +3015,42 @@ var msp = function msp(state) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_5__["connect"])(msp)(PostCover));
+
+/***/ }),
+
+/***/ "./frontend/components/post/posts_index.jsx":
+/*!**************************************************!*\
+  !*** ./frontend/components/post/posts_index.jsx ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _post_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./post_container */ "./frontend/components/post/post_container.jsx");
+
+
+
+var PostsIndex = function PostsIndex(_ref) {
+  var posts = _ref.posts;
+  debugger;
+  return posts ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "post-list-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "post-list-container1"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "post-list"
+  }, posts.map(function (post, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_post_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      key: i,
+      post: post
+    }));
+  })))) : null;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (PostsIndex);
 
 /***/ }),
 

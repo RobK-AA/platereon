@@ -3,6 +3,7 @@ import PostsContainer from '../post/post_container'
 import {BrowserRouter } from 'react-router-dom';
 import ls from 'local-storage'
 import PostFormContainer from '../post/post_form_container';
+import PostsIndex from "../post/posts_index";
 
 class Community extends React.Component {
 
@@ -173,7 +174,8 @@ class Community extends React.Component {
 
   renderPosts() {
     if (this.state.currentUserIsMember) {
-      return (<PostsContainer posts={this.props.posts} />);
+      debugger
+      return (<PostsIndex posts={this.props.posts} />);
     }
   }
 

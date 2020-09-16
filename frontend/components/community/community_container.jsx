@@ -9,7 +9,8 @@ const msp = (state, ownProps) => {
   return {
     currentUser: state.entities.users[state.session.id],
     community: state.entities.communities[ownProps.match.params.communityId],
-    memberships: Object.values(state.entities.memberships)
+    memberships: Object.values(state.entities.memberships),
+    posts: Object.values(state.entities.posts),
   };
 };
 

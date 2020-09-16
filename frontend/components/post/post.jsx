@@ -1,9 +1,17 @@
 import React from 'react';
 
 class Post extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
   render() {
-    
+    let imgStyle;
+    if (this.props.post.images.length) {
+      imgStyle = { display: "block"}
+    } else {
+      imgStyle = { display: "none"}
+    }
   //   return (
   //     <>
   //       <ul className="post-list">
@@ -35,7 +43,7 @@ class Post extends React.Component {
               <div className="post1">
                 <div className="post-media">
                   <div className="post-media-container">
-                    <img src={this.props.post.images[0]} alt={this.props.post.title}/>
+                    <img style={imgStyle} src={this.props.post.images[0]} alt={this.props.post.title}/>
                   </div>
                 </div>
                 <div className="post-content">
