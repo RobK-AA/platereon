@@ -9,7 +9,7 @@ const PostsIndex = ({ posts }) => {
         <ul className="post-list">
           {posts.reverse().map((post, i) => {
             return (
-              <li>
+              <li key={`post-${i}`}>
                 <PostContainer key={i} post={post} />
               </li>
             );

@@ -1,4 +1,6 @@
 import React from 'react';
+// import Moment from 'react-moment';
+import Moment from "moment";
 import ReactPlayer from 'react-player';
 
 class Post extends React.Component {
@@ -9,7 +11,10 @@ class Post extends React.Component {
   render() {
 
     const { title, body, images } = this.props.post;
+    const createdAt = this.props.post.created_at;
     const videoUrl = this.props.post.video_url;
+
+    let date = new Moment(createdAt);
 
     let imgStyle;
     if (images.length) {
@@ -70,7 +75,9 @@ class Post extends React.Component {
                     <div className="post-title-date">
                       <div className="post-title-date1">
                         <div className="post-datetime">
-                          {this.props.post.created_at}
+                          {/* <Moment local> */}
+                          {date.format('ll')} at {date.format('LT')}
+                          {/* </Moment> */}
                         </div>
                         <div className="unlocked">
 
