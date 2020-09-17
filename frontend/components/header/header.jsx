@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {router} from 'react-router-dom';
-import Search from '../search/search';
+import NavSearch from '../search/nav_search';
 
 class Header extends React.Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class Header extends React.Component {
                 <Link to='/'>
                   <img src={window.platereonlogoimg} /> </Link>
                 <div className="signed-in-user-nav">
-                  <Search />
+                  <NavSearch />
                     <div className="current-user-menu">
                       <div className="logo-container">
                         <button className="user-logo" src="https://c8.patreon.com/2/200/7025471" ></button>
@@ -57,7 +57,7 @@ class Header extends React.Component {
               {(location.pathname === "/login") || (location.pathname === "/signup") ?
                 null :
               <div className="NavBar-login-signup">
-                <Search />
+                <NavSearch />
                 <Link className="header-login" to="/login">Log in</Link> 
                 <Link className="header-signup" to="/signup">Create on Platereon</Link>
               </div>

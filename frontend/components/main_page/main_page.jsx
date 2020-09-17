@@ -1,13 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import DemoContainer from '../demo/demo_container';
-import SearchContainer from '../search/search';
+import SearchContainer from '../search/nav_search';
 import Demo from '../demo/demo';
 
 class MainPage extends React.Component {
+  constructor(props) {
+    super(props)
 
+  }
   render() {
-
+ 
     return (
       <div className="outer-main">
         <div className="outer-main-2">
@@ -78,11 +81,11 @@ class MainPage extends React.Component {
                           <div className="search-main-inner1">
                             <SearchContainer />
                             <div className="search-main-button">
-                              <Link>
-                                <div className="search-main-button1">
-
+                              <Link id="main-page-search-button">
+                                <div className="search-main-button1"></div>
+                                <div className="search-main-button2">
+                                  Search
                                 </div>
-                                <div className="search-main-button2">Search</div>
                               </Link>
                             </div>
                           </div>
