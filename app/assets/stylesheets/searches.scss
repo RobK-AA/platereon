@@ -223,3 +223,95 @@
     font-weight: 700 !important;
     font-size: 1rem !important;
 }
+
+.search-main4 {
+  display: block;
+  box-sizing: border-box;
+  transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+  padding: 0rem;
+  margin: 0rem;
+  background-image: none;
+  background-color: rgb(255, 255, 255);
+}
+
+.search-main3 {
+  width: 100%;       
+}
+
+.search-main2 {
+    box-sizing: border-box;
+    margin: 0px auto;
+    max-width: 72rem;
+    width: 100%;          
+}
+
+.search-main1 {
+  padding-top: 6rem;
+  padding-left: 3rem;
+  padding-bottom: 6rem;
+  padding-right: 3rem;
+}
+
+.search-main-title5 {
+  align-items: flex-start;
+  place-content: flex-start;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row wrap;
+  -webkit-box-pack: start;
+  transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+  padding: 0rem;
+  margin: 0rem -0.5rem;               
+}
+
+.search-main-title4 {
+  display: block;
+  box-sizing: border-box;
+  flex: 0 0 100%;
+  padding: 0rem 0.5rem;
+  max-width: 100%;                 
+}
+
+.search-main-title3 {
+    box-sizing: border-box;
+    display: block;
+    transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+    padding: 0rem 0rem 1rem;
+    margin: 0rem;                   
+}
+
+.search-main-title2 {
+    box-sizing: border-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+    padding: 0rem;
+    margin: 0rem;                      
+}
+
+.search-main-title1 {
+  display: block;
+  box-sizing: border-box;
+  transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+  padding: 0rem;
+  margin: 0rem 0rem 2rem;
+}
+
+.search-title-text {
+    color: rgb(36, 30, 18);
+    font-family: Walsheim, sans-serif;
+    margin: 0px;
+    position: relative;
+    transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+    text-align: center;
+    font-weight: 700 !important;
+    display: block;
+    font-size: 2.625rem !important;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    line-height: 1.25 !important;
+    text-rendering: optimizeLegibility;
+}
