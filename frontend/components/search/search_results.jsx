@@ -44,6 +44,19 @@ class SearchResults extends React.Component {
                       {community.name}
                       {/* </li> */}
                     </Link>
+                    <div className="search-desc">
+                      <span className="search-desc1">
+                        {`creating ${community.short_description}`}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="count">
+                    <span className="count1">{community.members.length}</span>
+                    <div className="plateron">
+                      <span className="plateron1">
+                        {community.members.length === 1 ? "Plateron" : "Platerons"}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>

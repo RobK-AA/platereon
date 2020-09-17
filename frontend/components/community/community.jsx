@@ -192,9 +192,6 @@ class Community extends React.Component {
         isPlural,
       } = this;
 
-    
-    
-  
     return (
       <div className="community-body-outer">
         <div className="community-body-mid">

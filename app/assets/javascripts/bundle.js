@@ -3310,7 +3310,19 @@ var SearchResults = /*#__PURE__*/function (_React$Component) {
           className: "search-results-list-item",
           key: "community-".concat(i),
           to: "/communities/".concat(community.id)
-        }, community.name))));
+        }, community.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "search-desc"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "search-desc1"
+        }, "creating ".concat(community.short_description)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "count"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "count1"
+        }, community.members.length), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "plateron"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "plateron1"
+        }, community.members.length === 1 ? "Plateron" : "Platerons")))));
       }));
     }
   }, {
