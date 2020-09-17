@@ -13,7 +13,7 @@ class Post extends React.Component {
     const { title, body, images } = this.props.post;
     const createdAt = this.props.post.created_at;
     const videoUrl = this.props.post.video_url;
-
+    const  { currentUserIsMember } = this.props;
     let date = new Moment(createdAt);
 
     let imgStyle;
@@ -81,7 +81,23 @@ class Post extends React.Component {
                             </span>
                           </div>
                         </div>
-                        <div className="unlocked"></div>
+                        <div className="unlocked">
+                          <div className="unlocked1">
+                            <div className="lock-image">
+                              <div className="lock-image1">
+                                <span>
+                                  <img
+                                    className="lock-image2"
+                                    src="https://img.icons8.com/metro/10/000000/unlock.png"
+                                  />
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <span className="lock-status">
+                            {currentUserIsMember ? "Unlocked" : "Locked"}
+                          </span>
+                        </div>
                       </div>
                     </div>
                     <div className="post-title-title">

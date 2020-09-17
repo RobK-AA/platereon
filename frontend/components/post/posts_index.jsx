@@ -1,7 +1,7 @@
 import React from 'react';
 import PostContainer from './post_container';
 
-const PostsIndex = ({ posts }) => {
+const PostsIndex = ({ posts, currentUserIsMember }) => {
   
   return posts ? (
     <div className="post-list-container">
@@ -10,7 +10,11 @@ const PostsIndex = ({ posts }) => {
           {posts.reverse().map((post, i) => {
             return (
               <li key={`post-${i}`}>
-                <PostContainer key={i} post={post} />
+                <PostContainer
+                  currentUserIsMember={currentUserIsMember}
+                  key={i}
+                  post={post}
+                />
               </li>
             );
           })}

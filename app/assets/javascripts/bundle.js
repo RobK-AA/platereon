@@ -888,6 +888,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
     value: function renderPosts() {
       if (this.state.currentUserIsMember) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_post_posts_index__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          currentUserIsMember: this.state.currentUserIsMember,
           posts: this.props.posts
         });
       }
@@ -2453,6 +2454,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
           images = _this$props$post.images;
       var createdAt = this.props.post.created_at;
       var videoUrl = this.props.post.video_url;
+      var currentUserIsMember = this.props.currentUserIsMember;
       var date = new moment__WEBPACK_IMPORTED_MODULE_1___default.a(createdAt);
       var imgStyle;
 
@@ -2528,7 +2530,18 @@ var Post = /*#__PURE__*/function (_React$Component) {
         className: "post-datetime2"
       }, date.format("ll"), " at ", date.format("LT")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "unlocked"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "unlocked1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "lock-image"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "lock-image1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "lock-image2",
+        src: "https://img.icons8.com/metro/10/000000/unlock.png"
+      }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "lock-status"
+      }, currentUserIsMember ? "Unlocked" : "Locked")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-title-title"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: ""
@@ -3110,7 +3123,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var PostsIndex = function PostsIndex(_ref) {
-  var posts = _ref.posts;
+  var posts = _ref.posts,
+      currentUserIsMember = _ref.currentUserIsMember;
   return posts ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "post-list-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3121,6 +3135,7 @@ var PostsIndex = function PostsIndex(_ref) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       key: "post-".concat(i)
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_post_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      currentUserIsMember: currentUserIsMember,
       key: i,
       post: post
     }));

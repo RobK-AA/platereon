@@ -175,7 +175,7 @@ class Community extends React.Component {
   renderPosts() {
     if (this.state.currentUserIsMember) {
       
-      return (<PostsIndex posts={this.props.posts} />);
+      return <PostsIndex currentUserIsMember={this.state.currentUserIsMember} posts={this.props.posts} />;
     }
   }
 
