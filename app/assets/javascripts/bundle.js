@@ -2637,6 +2637,7 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
     _this.handleSelect = _this.handleSelect.bind(_assertThisInitialized(_this));
     _this.renderDropDown = _this.renderDropDown.bind(_assertThisInitialized(_this));
     _this.renderImageForm = _this.renderImageForm.bind(_assertThisInitialized(_this));
+    _this.renderVideoUrlForm = _this.renderVideoUrlForm.bind(_assertThisInitialized(_this));
     _this.currentUser = _this.props.currentUser;
     _this.state = _this.props.post;
     _this.state.imageUrls = [];
@@ -2716,6 +2717,20 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
       }))));
     }
   }, {
+    key: "renderVideoUrlForm",
+    value: function renderVideoUrlForm() {
+      var videoUrl = this.state.videoUrl;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "video-input"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: ""
+      }, "Add a video URL", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "image-input",
+        type: "text",
+        onChange: this.update("videoUrl")
+      })));
+    }
+  }, {
     key: "handleSelect",
     value: function handleSelect(e) {
       var _this3 = this;
@@ -2747,13 +2762,15 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
           title = _this$state.title,
           body = _this$state.body,
           images = _this$state.images,
-          imageUrls = _this$state.imageUrls;
+          imageUrls = _this$state.imageUrls,
+          videoUrl = _this$state.videoUrl;
       var authorId = this.props.currentUser.id;
       var communityId = this.state.communityId;
       post.append("post[title]", title);
       post.append("post[body]", body);
       post.append("post[author_id]", authorId);
       post.append("post[community_id]", parseInt($("option:selected").attr("name")));
+      post.append("post[video_url]", videoUrl);
       var attachedImages = images;
 
       for (var i = 0; i < attachedImages.length; i++) {
@@ -2790,7 +2807,7 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
         type: "text",
         value: title,
         onChange: this.update("title")
-      }))), imagePost ? this.renderImageForm() : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }))), imagePost ? this.renderImageForm() : null, videoPost ? this.renderVideoUrlForm() : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-body-container"
@@ -2844,7 +2861,8 @@ var msp = function msp(state, ownProps) {
       communityId: ownProps.communityId,
       title: "",
       body: "",
-      images: []
+      images: [],
+      videoUrl: ""
     }
   };
 };

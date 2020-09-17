@@ -9,8 +9,9 @@ class PostForm extends React.Component {
     this.handleSelect = this.handleSelect.bind(this);
     this.renderDropDown = this.renderDropDown.bind(this);
     this.renderImageForm = this.renderImageForm.bind(this);
+    this.renderVideoUrlForm = this.renderVideoUrlForm.bind(this);
     this.currentUser = this.props.currentUser;
-    this.state = this.props.post
+    this.state = this.props.post;
     this.state.imageUrls = [];
   }
 
@@ -77,7 +78,19 @@ class PostForm extends React.Component {
             </div>
             </>)
   }
-    
+  
+  renderVideoUrlForm() {
+    const { videoUrl } = this.state;
+
+    return (
+      <div className="video-input">
+        <label htmlFor="">
+          Add a video URL
+          <input id="image-input" type="text" onChange={this.update("videoUrl")} />
+        </label>
+      </div>
+    );
+  }
 
   handleSelect(e) {
     e.preventDefault();
@@ -92,13 +105,14 @@ class PostForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const post = new FormData();
-    const { title, body, images, imageUrls } = this.state;
+    const { title, body, images, imageUrls, videoUrl } = this.state;
     const authorId = this.props.currentUser.id;
     const communityId = this.state.communityId;
     post.append("post[title]", title)
     post.append("post[body]", body)
     post.append("post[author_id]", authorId)
     post.append("post[community_id]", parseInt($("option:selected").attr("name")))
+    post.append("post[video_url]", videoUrl)
 
     const attachedImages = images;
 
@@ -142,10 +156,8 @@ class PostForm extends React.Component {
                 />
               </label>
             </div>
-            {imagePost ? 
-            this.renderImageForm()
-             : null }
-          
+            {imagePost ? this.renderImageForm() : null}
+            {videoPost ? this.renderVideoUrlForm() : null}
             <div className="post-body">
               {/* <label htmlFor="">Body */}
               <div className="post-body-container">

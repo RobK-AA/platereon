@@ -16,7 +16,8 @@ const msp = (state, ownProps) => {
       communityId: ownProps.communityId,
       title: "",
       body: "",
-      images: []
+      images: [], 
+      videoUrl: ""
     }
   };
 };
