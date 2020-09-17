@@ -53,21 +53,21 @@ class Post extends React.Component {
               <div className="post1">
                 <div className="post-media">
                   <div className="post-media-container">
-                    {images.length ? 
-                      (<ul>
-                       {images.map((image, i) => <img key={i} src={image} />)}
-                      </ul>) : null
-                    }
-                    {videoUrl ?
-                      (<ReactPlayer
+                    {images.length ? (
+                      <ul>
+                        {images.map((image, i) => (
+                          <img key={i} src={image} />
+                        ))}
+                      </ul>
+                    ) : null}
+                    {videoUrl ? (
+                      <ReactPlayer
                         className="react-player"
                         url={videoUrl}
                         // width="850px"
                         // height="400px"
-                      />  
-                        
-                      ) : null
-                    }
+                      />
+                    ) : null}
                   </div>
                 </div>
                 <div className="post-content">
@@ -75,17 +75,19 @@ class Post extends React.Component {
                     <div className="post-title-date">
                       <div className="post-title-date1">
                         <div className="post-datetime">
-                          {/* <Moment local> */}
-                          {date.format('ll')} at {date.format('LT')}
-                          {/* </Moment> */}
+                          <div className="post-datetime1">
+                            <span className="post-datetime2">
+                              {date.format("ll")} at {date.format("LT")}
+                            </span>
+                          </div>
                         </div>
-                        <div className="unlocked">
-
-                        </div>
+                        <div className="unlocked"></div>
                       </div>
                     </div>
                     <div className="post-title-title">
-                      <span><a href="">{title}</a></span>
+                      <span>
+                        <a href="">{title}</a>
+                      </span>
                     </div>
                   </div>
                   <div className="post-body1">
