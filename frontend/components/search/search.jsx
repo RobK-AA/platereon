@@ -42,15 +42,18 @@ class Search extends React.Component {
     return (
       <div id="nav-search">
         <form action="submit" onSubmit={this.handleSubmit}>
-          <input 
-            type="text" 
-            placeholder="Find a creator"
-            onChange={this.update()}
-            value={this.state.query}
+          <div className="main-search-container">
+            <input
+              className="main-search-input"
+              type="text"
+              placeholder="Find a creator"
+              onChange={this.update()}
+              value={this.state.query}
             ></input>
+          </div>
         </form>
       </div>
-    )
+    );
   }
 }
 
@@ -60,5 +63,6 @@ const msp = state => ({
 const mdp = dispatch => ({
   search: (keyword) => dispatch(receiveResults(keyword))
 })
+
 export default withRouter(connect(msp, mdp)(Search));
 

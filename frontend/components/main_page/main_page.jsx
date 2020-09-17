@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import DemoContainer from '../demo/demo_container';
+import SearchContainer from '../search/search';
 import Demo from '../demo/demo';
 
 class MainPage extends React.Component {
@@ -75,13 +76,13 @@ class MainPage extends React.Component {
                       <div className="search-main-inner3">
                         <div className="search-main-inner2">
                           <div className="search-main-inner1">
-                            <div className="search-main-input">
-                              <form action=""></form>
-                            </div>
+                            <SearchContainer />
                             <div className="search-main-button">
                               <Link>
-                                <div></div>
-                                <div></div>
+                                <div className="search-main-button1">
+
+                                </div>
+                                <div className="search-main-button2">Search</div>
                               </Link>
                             </div>
                           </div>
