@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import DemoContainer from '../demo/demo_container';
+import SplashSearch from '../search/splash_search'
 import SearchContainer from '../search/nav_search';
 import Demo from '../demo/demo';
 
@@ -58,7 +59,8 @@ class MainPage extends React.Component {
                 </div>
               </div>
             </div>
-            <div className="search-main4">
+            <SplashSearch />
+            {/* <div className="search-main4">
               <div className="search-main3">
                 <div className="search-main2">
                   <div className="search-main1">
@@ -95,7 +97,7 @@ class MainPage extends React.Component {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="mid-main1">
               <div className="mid-main2">
                 <div className="mid-main3">
