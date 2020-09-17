@@ -3526,7 +3526,7 @@ var Search = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "main-search-input",
         type: "text",
-        placeholder: "Find a creator",
+        placeholder: "Find a creator you love",
         onChange: this.update(),
         value: this.state.query
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

@@ -73,7 +73,7 @@ class Search extends React.Component {
                             <input
                               className="main-search-input"
                               type="text"
-                              placeholder="Find a creator"
+                              placeholder="Find a creator you love"
                               onChange={this.update()}
                               value={this.state.query}
                             ></input>
