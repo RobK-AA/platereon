@@ -27,12 +27,13 @@ export const removePost = post => ({
   post
 })
 
-export const fetchPosts = communityId => dispatch => (
-  PostApiUtil.fetchPosts(communityId).then(
+export const fetchPosts = communityId => dispatch => {
+
+  return PostApiUtil.fetchPosts(communityId).then(
     posts => dispatch(receivePosts(posts)),
     errors => dispatch(receiveErrors(errors.responseJSON))
   )
-)
+}
 
 export const fetchPost = postId => dispatch => (
   PostApiUtil.fetchPost(postId).then(

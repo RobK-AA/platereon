@@ -3,6 +3,7 @@ class Api::PostsController < ApplicationController
   def index
     community_id = params[:community_id]
     @posts = Post.select("*").where("posts.community_id = ?", community_id).order("created_at DESC").with_attached_images
+    
     render :index
   end
 
@@ -46,7 +47,7 @@ class Api::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:community_id, :author_id, :body, :title, images: [], :video_url, :link_url)
+    params.require(:post).permit(:community_id, :author_id, :body, :title, :video_url, :link_url, images: [])
   end
 
 end

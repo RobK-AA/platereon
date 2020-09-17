@@ -887,7 +887,6 @@ var Community = /*#__PURE__*/function (_React$Component) {
     key: "renderPosts",
     value: function renderPosts() {
       if (this.state.currentUserIsMember) {
-        debugger;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_post_posts_index__WEBPACK_IMPORTED_MODULE_5__["default"], {
           posts: this.props.posts
         });
@@ -3061,7 +3060,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var PostsIndex = function PostsIndex(_ref) {
   var posts = _ref.posts;
-  debugger;
   return posts ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "post-list-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
