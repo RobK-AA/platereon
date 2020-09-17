@@ -174,7 +174,7 @@ class Community extends React.Component {
 
   renderPosts() {
     if (this.state.currentUserIsMember) {
-      
+      debugger
       return (<PostsIndex posts={this.props.posts} />);
     }
   }
@@ -222,7 +222,7 @@ class Community extends React.Component {
                   <div className="perks-title">
                     {/* <h2 className="perks-title-text"> */}
                     {this.renderCommunityWelcome()}
-                    {this.renderPostForm()}
+                    {/* {this.renderPostForm()} */}
                     {/* hi
                     </h2> */}
                   </div>

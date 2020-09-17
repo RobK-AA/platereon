@@ -887,6 +887,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
     key: "renderPosts",
     value: function renderPosts() {
       if (this.state.currentUserIsMember) {
+        debugger;
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_post_posts_index__WEBPACK_IMPORTED_MODULE_5__["default"], {
           posts: this.props.posts
         });
@@ -934,7 +935,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
         className: "perks-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "perks-title"
-      }, this.renderCommunityWelcome(), this.renderPostForm()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.renderCommunityWelcome()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "perks-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "perks"
@@ -3060,6 +3061,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var PostsIndex = function PostsIndex(_ref) {
   var posts = _ref.posts;
+  debugger;
   return posts ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "post-list-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3289,17 +3291,29 @@ var SearchResults = /*#__PURE__*/function (_React$Component) {
     key: "renderSearchResults",
     value: function renderSearchResults() {
       var searchResults = this.props.searchResults;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "search-results-list"
-      }, searchResults.map(function (community, i) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, searchResults.map(function (community, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "search-item2",
+          key: "search-item2-".concat(i)
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "search-item1",
+          key: "search-item2-".concat(i)
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          className: "result-icon",
+          key: "result-icon-".concat(i),
+          to: "/communities/".concat(community.id)
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "result-icon1",
+          key: "result-icon1-".concat(i)
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "result-name",
+          key: "result-name-".concat(i)
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          className: "search-results-list-item",
           key: "community-".concat(i),
           to: "/communities/".concat(community.id)
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          className: "search-results-list-item",
-          key: i
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, community.name)));
-      })));
+        }, community.name))));
+      }));
     }
   }, {
     key: "render",
@@ -3315,9 +3329,9 @@ var SearchResults = /*#__PURE__*/function (_React$Component) {
         id: "search-results1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "results-header-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "results-header"
-      }, "Results: \"", search.slice(2, search.length), "\"")), this.renderSearchResults()))));
+      }, "Search \"", search.slice(2, search.length), "\"")), this.renderSearchResults()))));
     }
   }]);
 

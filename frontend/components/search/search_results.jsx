@@ -18,15 +18,37 @@ class SearchResults extends React.Component {
     
     return (
       <>
-        <ul className="search-results-list">
+        {/* <ul className="search-results-list"> */}
           {searchResults.map((community, i) => {
             
             return (
-              <Link key={`community-${i}`} to={`/communities/${community.id}`}>
-                <li className="search-results-list-item" key={i}><div>{community.name}</div></li>
-              </Link>
-          )})}
-        </ul>
+              <div className="search-item2" key={`search-item2-${i}`}>
+                <div className="search-item1" key={`search-item2-${i}`}>
+                  <Link
+                    className="result-icon"
+                    key={`result-icon-${i}`}
+                    to={`/communities/${community.id}`}
+                  >
+                    <div
+                      className="result-icon1"
+                      key={`result-icon1-${i}`}
+                    ></div>
+                  </Link>
+                  <div className="result-name" key={`result-name-${i}`}>
+                    <Link
+                      className="search-results-list-item"
+                      key={`community-${i}`}
+                      to={`/communities/${community.id}`}
+                    >
+                      {/* <li className="search-results-list-item" key={i}> */}
+                      {community.name}
+                      {/* </li> */}
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            );})}
+        {/* </ul> */}
       </>
     )
   }
@@ -39,7 +61,7 @@ class SearchResults extends React.Component {
           <div id="search-results2">
             <div id="search-results1">
               <div className="results-header-container">
-                <h3 className="results-header">Results: "{search.slice(2, search.length)}"</h3>
+                <h5 className="results-header">Search "{search.slice(2, search.length)}"</h5>
               </div>
               {this.renderSearchResults()}
             </div>
