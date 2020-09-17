@@ -7,7 +7,7 @@ const PostsIndex = ({ posts }) => {
     <div className="post-list-container">
       <div className="post-list-container1">
         <ul className="post-list">
-          {posts.map((post, i) => {
+          {posts.reverse().map((post, i) => {
             return (
               <li>
                 <PostContainer key={i} post={post} />

@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactPlayer from 'react-player';
 
 class Post extends React.Component {
   constructor(props) {
@@ -8,6 +9,8 @@ class Post extends React.Component {
   render() {
 
     const { title, body, images } = this.props.post;
+    const videoUrl = this.props.post.video_url;
+
     let imgStyle;
     if (images.length) {
       imgStyle = { display: "block"}
@@ -36,7 +39,7 @@ class Post extends React.Component {
   //       </ul>
   //     </>
   //   );
-
+   
     return (
       <div className="post5">
         <div className="post4">
@@ -49,6 +52,16 @@ class Post extends React.Component {
                       (<ul>
                        {images.map((image, i) => <img key={i} src={image} />)}
                       </ul>) : null
+                    }
+                    {videoUrl ?
+                      (<ReactPlayer
+                        className="react-player"
+                        url={videoUrl}
+                        // width="850px"
+                        // height="400px"
+                      />  
+                        
+                      ) : null
                     }
                   </div>
                 </div>
