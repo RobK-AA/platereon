@@ -1324,7 +1324,7 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       shortDesc: "Cooking with ".concat(_this.props.currentUser.name, " tutorials, pasta recipes, etc."),
       isPlural: false,
       backgroundImage: null,
-      backgroundImageUrl: "'https://cdn.pixabay.com/photo/2018/09/22/18/27/healthy-3695814_1280.jpg",
+      backgroundImageUrl: "https://cdn.pixabay.com/photo/2018/09/22/18/27/healthy-3695814_1280.jpg",
       errors: {}
     };
     return _this;
@@ -1564,7 +1564,7 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
         htmlFor: ""
       }, "Cover photo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "background-image-left2"
-      }, "If blank, a default will be used."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, "Upload or use default."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "background-image-left3"
       }, "We recommend an image at least 1600px wide and 400px tall.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "background-image-right"
@@ -1576,13 +1576,9 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       }, backgroundImageUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "images-attached"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        className: "post-img",
+        className: "form-img",
         src: backgroundImageUrl
-      })) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "background-image-input",
-        onChange: this.addImage,
-        type: "file"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "background-image-right3"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "background-image-right4"
@@ -1598,7 +1594,11 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
         className: "background-image-inner212"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "background-image-inner22"
-      }, "Edit Cover Photo (1,600px x 400px)")))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Edit Cover Photo (1,600px x 400px)"))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "background-image-input",
+        onChange: this.addImage,
+        type: "file"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "bronze-div"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "bronze-col"

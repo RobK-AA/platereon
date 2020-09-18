@@ -787,3 +787,10 @@
   height: 3rem;
   width: 3rem;
 }
+
+.form-img {
+    object-fit: cover;
+    max-width: 100%;
+    max-height: -webkit-fill-available;
+    border-radius: 4px !important;
+}

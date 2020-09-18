@@ -32,7 +32,7 @@ class CommunityForm extends React.Component {
       shortDesc: `Cooking with ${this.props.currentUser.name} tutorials, pasta recipes, etc.`,
       isPlural: false,
       backgroundImage: null,
-      backgroundImageUrl: "'https://cdn.pixabay.com/photo/2018/09/22/18/27/healthy-3695814_1280.jpg",
+      backgroundImageUrl: "https://cdn.pixabay.com/photo/2018/09/22/18/27/healthy-3695814_1280.jpg",
       errors: {}
     };
   };
@@ -244,7 +244,7 @@ class CommunityForm extends React.Component {
                 <div className="background-image-div1">
                   <div className="background-image-left">
                     <label className="background-image-left1" htmlFor="">Cover photo</label>
-                    <div className="background-image-left2">If blank, a default will be used.</div>
+                    <div className="background-image-left2">Upload or use default.</div>
                     <p className="background-image-left3">We recommend an image at least 1600px wide and 400px tall.</p>
                   </div>
                   <div className="background-image-right">
@@ -253,11 +253,11 @@ class CommunityForm extends React.Component {
                         {backgroundImageUrl ? (
                           <div className="images-attached">
                             
-                              <img className="post-img" src={backgroundImageUrl} />
+                              <img className="form-img" src={backgroundImageUrl} />
                           
                           </div>
                         ) : null}
-                        <input className="background-image-input" onChange={this.addImage} type="file" />
+                        
                         <div className="background-image-right3">
                           <div className="background-image-right4">
                             <label>
@@ -277,12 +277,14 @@ class CommunityForm extends React.Component {
                                 </div>
                               </div>
                             </label>
+                            
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <input className="background-image-input" onChange={this.addImage} type="file" />
               </div>
               <div className="bronze-div">
                 <div className="bronze-col">
