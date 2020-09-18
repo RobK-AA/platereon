@@ -2140,6 +2140,7 @@ Header {
     font-size: 0.625rem !important;
     line-height: 1.5 !important;
     border-radius: 4px;
+    text-decoration: none;
 }
 
 .footer-ul11, .footer-ul12, .footer-ul13, .footer-ul14 {
@@ -2151,7 +2152,18 @@ Header {
     line-height: 1.5 !important;
     border-radius: 4px;
     overflow: hidden;
+    text-decoration: none;
 }
+
+.footer-ul1 a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-ul111, .footer-ul112, .footer-ul113, .footer-ul114 {
+  width: fit-content;
+}
+
 .footer-ul10 {
     color: rgb(255, 255, 255);
     font-family: aktiv-grotesk, sans-serif;
