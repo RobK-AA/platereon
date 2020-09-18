@@ -211,6 +211,43 @@ class CommunityForm extends React.Component {
                   </fieldset>
                 </div>
               </div>
+              <div className="background-image-div">
+                <div className="background-image-div1">
+                  <div className="background-image-left">
+                    <label className="background-image-left1" htmlFor="">Cover photo</label>
+                    <div className="background-image-left2">If blank, a default will be used.</div>
+                    <p className="background-image-left3">We recommend an image at least 1600px wide and 400px tall.</p>
+                  </div>
+                  <div className="background-image-right">
+                    <div className="background-image-right1">
+                      <div className="background-image-right2">
+                        <input lassName="background-image-input" type="file" />
+                        <div className="background-image-right3">
+                          <div className="background-image-right4">
+                            <label>
+                              <div className="background-image-inner1">
+                                
+                              </div>
+                              <div className="background-image-inner2">
+                                <div className="background-image-inner21">
+                                  <div className="background-image-inner211">
+                                    <span className="background-image-inner212">
+
+                                    </span>
+                                  </div>
+                                </div>
+                                <div className="background-image-inner22">
+                                  Edit Cover Photo (1,600px x 400px)
+                                </div>
+                              </div>
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div className="bronze-div">
                 <div className="bronze-col">
                   <label className="create-form-short-desc">What are your perks for Bronze tier subscribers?</label>
