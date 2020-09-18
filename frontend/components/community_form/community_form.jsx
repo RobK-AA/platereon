@@ -50,7 +50,6 @@ class CommunityForm extends React.Component {
     e.preventDefault();
     const backgroundImage = new FileReader();
     const image = e.target.files[0];
-    const preview = document.getElementById('cover-image');
 
     backgroundImage.onloadend = () => {
       let newImageUrl = this.state.backgroundImageUrl;
@@ -83,10 +82,10 @@ class CommunityForm extends React.Component {
     community.append("community[plural]", this.state.plural);
     community.append("community[background_image]", this.state.backgroundImage);
   
-    debugger
+    
     this.props.submitCommunity(community).then(
       () => {
-        debugger
+        
         //Fix when DB is reset
         return this.props.history.push(`communities/${this.props.communities[Object.keys(this.props.communities).length].id + 1}`, this.state)
       });
@@ -170,9 +169,6 @@ class CommunityForm extends React.Component {
             </div>
             <div className="create-form-nav-right">
               <div className="create-form-launch">
-                {/* <Link to={`/communities/${action.community.id}`}>
-                  <button form="community-form" type="submit" >Launch</button>
-                </Link> */}
                 <button form="community-form" type="submit" >Launch</button>
               </div>
             </div>

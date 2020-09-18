@@ -14,17 +14,32 @@ class Body extends React.Component {
 
   constructor(props) {
     super(props);
+    this.props.getCommunities();
   };
 
-  componentWillMount() {
+  // componentWillMount() {
     
-    this.props.getCommunities();
-    // if (this.props.currentUser) this.props.getMemberships(this.props.currentUser.id);
-    // localStorage.setItem('communities', this.props.communities)
+  //   this.props.getCommunities();
+  //   // if (this.props.currentUser) this.props.getMemberships(this.props.currentUser.id);
+  //   // localStorage.setItem('communities', this.props.communities)
+  // }
+  // componentDidMount() {
+  //   this.props.getCommunities();
+  // }
+  componentDidCatch() {
+    if (!this.props.communities.length) {
+      this.props.getCommunities();
+    }
   }
-
+  // componentWillUnmount() {
+  //   if (!this.props.communities.length) {
+  //     this.props.getCommunities();
+  //   }
+  // }
   render() {
     const { currentUser, location } = this.props;
+    // this.props.getCommunities();
+    
     return (
 
       <div className="body-container">

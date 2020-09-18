@@ -556,23 +556,44 @@ var Body = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(Body);
 
   function Body(props) {
+    var _this;
+
     _classCallCheck(this, Body);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+
+    _this.props.getCommunities();
+
+    return _this;
   }
 
   _createClass(Body, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
-      this.props.getCommunities(); // if (this.props.currentUser) this.props.getMemberships(this.props.currentUser.id);
-      // localStorage.setItem('communities', this.props.communities)
-    }
+    key: "componentDidCatch",
+    // componentWillMount() {
+    //   this.props.getCommunities();
+    //   // if (this.props.currentUser) this.props.getMemberships(this.props.currentUser.id);
+    //   // localStorage.setItem('communities', this.props.communities)
+    // }
+    // componentDidMount() {
+    //   this.props.getCommunities();
+    // }
+    value: function componentDidCatch() {
+      if (!this.props.communities.length) {
+        this.props.getCommunities();
+      }
+    } // componentWillUnmount() {
+    //   if (!this.props.communities.length) {
+    //     this.props.getCommunities();
+    //   }
+    // }
+
   }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
-          location = _this$props.location;
+          location = _this$props.location; // this.props.getCommunities();
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "body-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__["AuthRoute"], {
@@ -1355,7 +1376,6 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       e.preventDefault();
       var backgroundImage = new FileReader();
       var image = e.target.files[0];
-      var preview = document.getElementById('cover-image');
 
       backgroundImage.onloadend = function () {
         var newImageUrl = _this3.state.backgroundImageUrl;
@@ -1391,10 +1411,8 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       community.append("community[short_description]", this.state.shortDesc);
       community.append("community[plural]", this.state.plural);
       community.append("community[background_image]", this.state.backgroundImage);
-      debugger;
       this.props.submitCommunity(community).then(function () {
-        debugger; //Fix when DB is reset
-
+        //Fix when DB is reset
         return _this4.props.history.push("communities/".concat(_this4.props.communities[Object.keys(_this4.props.communities).length].id + 1), _this4.state);
       });
     }

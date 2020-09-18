@@ -5,7 +5,7 @@ import { createMembership, deleteMembership } from "../../actions/membership_act
 import { fetchPosts, fetchPost, createPost, updatePost, deletePost } from '../../actions/post_actions';
 
 const msp = (state, ownProps) => {
-
+  
   return {
     currentUser: state.entities.users[state.session.id],
     community: state.entities.communities[ownProps.match.params.communityId],
