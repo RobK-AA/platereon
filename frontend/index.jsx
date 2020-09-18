@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
       session: { id: window.currentUser.id },
       entities: {
         users: { [window.currentUser.id]: window.currentUser },
-        communities: window.communities 
       }
     };
     store = configureStore(preloadedState);
@@ -23,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.getState = store.getState
   window.currentUser = store.currentUser
-  window.communities = store.communities
 
   ReactDOM.render(<Root store={store}/>, root);
 });

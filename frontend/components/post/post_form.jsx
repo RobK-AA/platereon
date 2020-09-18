@@ -141,44 +141,104 @@ class PostForm extends React.Component {
     const linkPost = this.props.location.pathname.includes("link");
 
     return (
-      <div className="new-post-form">
-        <form id="post-form" action="submit" onSubmit={this.handleSubmit}>
-          <h4>Post content for your subscribers:</h4>
-          {this.renderDropDown()}
-          <div className="new-post-form-container">
-            <div className="post-title">
-              <label htmlFor="">
-                Title
-                <input
-                  type="text"
-                  value={title}
-                  onChange={this.update("title")}
-                />
-              </label>
-            </div>
-            {imagePost ? this.renderImageForm() : null}
-            {videoPost ? this.renderVideoUrlForm() : null}
-            <div className="post-body">
-              {/* <label htmlFor="">Body */}
-              <div className="post-body-container">
-                <textarea
-                  className="post-textarea"
-                  onChange={this.update("body")}
-                  value={body}
-                  placeholder={
-                    "What would you like to share with your supporters?"
-                  }
-                />
-                {/* </label> */}
+      // <div className="new-post-form">
+      //   <form id="post-form" action="submit" onSubmit={this.handleSubmit}>
+      //     <h4>Post content for your subscribers:</h4>
+      //     {this.renderDropDown()}
+      //     <div className="new-post-form-container">
+      //       <div className="post-title">
+      //         <label htmlFor="">
+      //           Title
+      //           <input
+      //             type="text"
+      //             value={title}
+      //             onChange={this.update("title")}
+      //           />
+      //         </label>
+      //       </div>
+      //       {imagePost ? this.renderImageForm() : null}
+      //       {videoPost ? this.renderVideoUrlForm() : null}
+      //       <div className="post-body">
+      //         {/* <label htmlFor="">Body */}
+      //         <div className="post-body-container">
+      //           <textarea
+      //             className="post-textarea"
+      //             onChange={this.update("body")}
+      //             value={body}
+      //             placeholder={
+      //               "What would you like to share with your supporters?"
+      //             }
+      //           />
+      //           {/* </label> */}
+      //         </div>
+      //       </div>
+      //     </div>
+      //     <div className="post-create">
+      //       <button className="post-button" type="submit" disabled={!filledOut}>
+      //         Share
+      //       </button>
+      //     </div>
+      //   </form>
+      // </div>
+      <div className="text-form1">
+        <div className="text-form2">
+          <div className="text-form3">
+            <div className="text-form4">
+              <div className="text-form5">
+                <div className="text-form6">
+                  <div className="text-form7">
+                    <div className="text-form8">
+                      <div className="text-form9">
+                        <div className="text-form10">
+                          <div className="text-form-left">
+                            <div className="text-form-left1">
+                              <div className="text-form-left2">
+                                <div className="text-form-left3">
+                                  <div className="text-form-left4">
+                                    <div className="text-post-type">
+                                      <div className="text-post-type-img">
+                                        <img src="https://img.icons8.com/office/16/000000/lowercase.png" />
+                                      </div>
+                                      <span className="text-form-type-text">
+                                        Text
+                                      </span>
+                                    </div>
+                                    <div className="text-post-x">
+                                      <div className="text-post-x1">
+                                        <span className="text-post-x2">X</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div className="text-form-left41"></div>
+                                  <div className="text-form-title">
+                                    <div className="text-form-title1">
+                                      <div className="text-form-title-input1">
+                                        <input
+                                          className="text-form-title-input1"
+                                          type="text"
+                                          placeholder="Post title (required)"
+                                        />
+                                      </div>
+                                      <div className="text-form-title2">
+                                        <div className="text-form-title3"></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div className="text-form-post"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="text-form-right"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div className="post-create">
-            <button className="post-button" type="submit" disabled={!filledOut}>
-              Share
-            </button>
-          </div>
-        </form>
+        </div>
       </div>
     );
   }

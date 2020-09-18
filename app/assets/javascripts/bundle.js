@@ -2944,38 +2944,113 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
       var imagePost = this.props.location.pathname.includes('images');
       var videoPost = this.props.location.pathname.includes('video');
       var linkPost = this.props.location.pathname.includes("link");
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "new-post-form"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        id: "post-form",
-        action: "submit",
-        onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Post content for your subscribers:"), this.renderDropDown(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "new-post-form-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "post-title"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: ""
-      }, "Title", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        value: title,
-        onChange: this.update("title")
-      }))), imagePost ? this.renderImageForm() : null, videoPost ? this.renderVideoUrlForm() : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "post-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "post-body-container"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        className: "post-textarea",
-        onChange: this.update("body"),
-        value: body,
-        placeholder: "What would you like to share with your supporters?"
-      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "post-create"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "post-button",
-        type: "submit",
-        disabled: !filledOut
-      }, "Share"))));
+      return (
+        /*#__PURE__*/
+        // <div className="new-post-form">
+        //   <form id="post-form" action="submit" onSubmit={this.handleSubmit}>
+        //     <h4>Post content for your subscribers:</h4>
+        //     {this.renderDropDown()}
+        //     <div className="new-post-form-container">
+        //       <div className="post-title">
+        //         <label htmlFor="">
+        //           Title
+        //           <input
+        //             type="text"
+        //             value={title}
+        //             onChange={this.update("title")}
+        //           />
+        //         </label>
+        //       </div>
+        //       {imagePost ? this.renderImageForm() : null}
+        //       {videoPost ? this.renderVideoUrlForm() : null}
+        //       <div className="post-body">
+        //         {/* <label htmlFor="">Body */}
+        //         <div className="post-body-container">
+        //           <textarea
+        //             className="post-textarea"
+        //             onChange={this.update("body")}
+        //             value={body}
+        //             placeholder={
+        //               "What would you like to share with your supporters?"
+        //             }
+        //           />
+        //           {/* </label> */}
+        //         </div>
+        //       </div>
+        //     </div>
+        //     <div className="post-create">
+        //       <button className="post-button" type="submit" disabled={!filledOut}>
+        //         Share
+        //       </button>
+        //     </div>
+        //   </form>
+        // </div>
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form1"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form2"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form3"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form4"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form5"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form6"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form7"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form8"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form9"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form10"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form-left"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form-left1"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form-left2"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form-left3"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form-left4"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-post-type"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-post-type-img"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: "https://img.icons8.com/office/16/000000/lowercase.png"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "text-form-type-text"
+        }, "Text")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-post-x"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-post-x1"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "text-post-x2"
+        }, "X")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form-left41"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form-title"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form-title1"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form-title-input1"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "text-form-title-input1",
+          type: "text",
+          placeholder: "Post title (required)"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form-title2"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form-title3"
+        })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form-post"
+        }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form-right"
+        })))))))))))
+      );
     }
   }]);
 
@@ -3181,18 +3256,18 @@ var PostCover = /*#__PURE__*/function (_React$Component) {
         viewBox: "0 0 172 172"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
         fill: "none",
-        "fill-rule": "nonzero",
+        fillRule: "nonzero",
         stroke: "none",
-        "stroke-width": "1",
-        "stroke-linecap": "butt",
-        "stroke-linejoin": "miter",
-        "stroke-miterlimit": "10",
-        "stroke-dasharray": "",
-        "stroke-dashoffset": "0",
-        "font-family": "none",
-        "font-weight": "none",
-        "font-size": "none",
-        "text-anchor": "none"
+        strokeWidth: "1",
+        strokeLinecap: "butt",
+        strokeLinejoin: "miter",
+        strokeMiterlimit: "10",
+        strokeDasharray: "",
+        strokeDashoffset: "0",
+        fontFamily: "none",
+        fontWeight: "none",
+        fontSize: "none",
+        textAnchor: "none"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
         d: "M0,172v-172h172v172z",
         fill: "none"
@@ -4570,8 +4645,7 @@ document.addEventListener('DOMContentLoaded', function () {
         id: window.currentUser.id
       },
       entities: {
-        users: _defineProperty({}, window.currentUser.id, window.currentUser),
-        communities: window.communities
+        users: _defineProperty({}, window.currentUser.id, window.currentUser)
       }
     };
     store = Object(_store_store__WEBPACK_IMPORTED_MODULE_3__["default"])(preloadedState);
@@ -4582,7 +4656,6 @@ document.addEventListener('DOMContentLoaded', function () {
   var root = document.getElementById('root');
   window.getState = store.getState;
   window.currentUser = store.currentUser;
-  window.communities = store.communities;
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_2__["default"], {
     store: store
   }), root);
