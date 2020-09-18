@@ -29,6 +29,7 @@ class Community extends React.Component {
     this.bronzePerks = this.props.community.bronze_perks || "";
     this.isPlural = this.props.community.plural || "";
     this.creatorId = this.props.community.creator_id || "";
+    this.backgroundImage = this.props.community.background_image;
     this.id = this.props.community.id || "";
     this.currentUser = this.props.currentUser;
     this.joinCommunity = this.props.joinCommunity.bind(this);
@@ -190,14 +191,16 @@ class Community extends React.Component {
         bronzePerks,
         silverPerks,
         isPlural,
+        backgroundImage
       } = this;
-
+      let background = backgroundImage || 'https://cdn.pixabay.com/photo/2018/09/22/18/27/healthy-3695814_1280.jpg'
+      debugger
     return (
       <div className="community-body-outer">
         <div className="community-body-mid">
           <div className="community-body-inner">
             <div className="community-banner">
-              <div className="community-banner-top">
+              <div style={{ backgroundImage: `url(${background})`}} className="community-banner-top">
                 <div className="creator-logo-outer">
                   <div className="creator-logo"></div>
                 </div>

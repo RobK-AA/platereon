@@ -743,6 +743,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
     _this.bronzePerks = _this.props.community.bronze_perks || "";
     _this.isPlural = _this.props.community.plural || "";
     _this.creatorId = _this.props.community.creator_id || "";
+    _this.backgroundImage = _this.props.community.background_image;
     _this.id = _this.props.community.id || "";
     _this.currentUser = _this.props.currentUser;
     _this.joinCommunity = _this.props.joinCommunity.bind(_assertThisInitialized(_this));
@@ -902,7 +903,10 @@ var Community = /*#__PURE__*/function (_React$Component) {
           goldPerks = this.goldPerks,
           bronzePerks = this.bronzePerks,
           silverPerks = this.silverPerks,
-          isPlural = this.isPlural;
+          isPlural = this.isPlural,
+          backgroundImage = this.backgroundImage;
+      var background = backgroundImage || 'https://cdn.pixabay.com/photo/2018/09/22/18/27/healthy-3695814_1280.jpg';
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "community-body-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -912,6 +916,9 @@ var Community = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "community-banner"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: {
+          backgroundImage: "url(".concat(background, ")")
+        },
         className: "community-banner-top"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "creator-logo-outer"
@@ -1383,9 +1390,12 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
         silver_perks: this.state.silverPerks,
         gold_perks: this.state.goldPerks,
         short_description: this.state.shortDesc,
-        plural: this.state.isPlural
+        plural: this.state.isPlural,
+        background_image: [this.state.backgroundImage]
       };
+      debugger;
       this.props.submitCommunity(formData).then(function () {
+        debugger;
         return _this4.props.history.push("communities/".concat(_this4.props.communities[Object.keys(_this4.props.communities).length].id), _this4.state);
       });
     }

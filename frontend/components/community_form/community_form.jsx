@@ -80,11 +80,13 @@ class CommunityForm extends React.Component {
       silver_perks: this.state.silverPerks,
       gold_perks: this.state.goldPerks,
       short_description: this.state.shortDesc,
-      plural: this.state.isPlural
+      plural: this.state.isPlural,
+      background_image: [this.state.backgroundImage]
     }
-
+    debugger
     this.props.submitCommunity(formData).then(
       () => {
+        debugger
         return this.props.history.push(`communities/${this.props.communities[Object.keys(this.props.communities).length].id}`, this.state)
       });
   }
