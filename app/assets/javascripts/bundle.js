@@ -1312,6 +1312,7 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
     _this.renderErrors = _this.renderErrors.bind(_assertThisInitialized(_this));
     _this.highlightErrors = _this.highlightErrors.bind(_assertThisInitialized(_this));
     _this.submitCommunity = _this.props.submitCommunity;
+    _this.addImage = _this.addImage.bind(_assertThisInitialized(_this));
     _this.communities = _this.props.communities;
     _this.state = {
       name: _this.props.currentUser.name,
@@ -1322,6 +1323,8 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       goldPerks: 'Full library access plus all Silver perks',
       shortDesc: "Cooking with ".concat(_this.props.currentUser.name, " tutorials, pasta recipes, etc."),
       isPlural: false,
+      backgroundImage: null,
+      backgroundImageUrl: "'https://cdn.pixabay.com/photo/2018/09/22/18/27/healthy-3695814_1280.jpg",
       errors: {}
     };
     return _this;
@@ -1339,9 +1342,37 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       };
     }
   }, {
+    key: "addImage",
+    value: function addImage(e) {
+      var _this3 = this;
+
+      e.preventDefault();
+      var backgroundImage = new FileReader();
+      var image = e.target.files[0];
+      var preview = document.getElementById('cover-image');
+
+      backgroundImage.onloadend = function () {
+        var newImageUrl = _this3.state.backgroundImageUrl;
+        newImageUrl = backgroundImage.result;
+        var newImage = _this3.state.backgroundImage;
+        newImage = image;
+
+        _this3.setState({
+          backgroundImageUrl: newImageUrl,
+          backgroundImage: newImage
+        });
+      };
+
+      if (image) {
+        backgroundImage.readAsDataURL(image);
+      } else {
+        alert("Please choose another file type");
+      }
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      var _this3 = this;
+      var _this4 = this;
 
       e.preventDefault();
       var formData = {
@@ -1355,7 +1386,7 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
         plural: this.state.isPlural
       };
       this.props.submitCommunity(formData).then(function () {
-        return _this3.props.history.push("communities/".concat(_this3.props.communities[Object.keys(_this3.props.communities).length].id), _this3.state);
+        return _this4.props.history.push("communities/".concat(_this4.props.communities[Object.keys(_this4.props.communities).length].id), _this4.state);
       });
     }
   }, {
@@ -1412,6 +1443,7 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var backgroundImageUrl = this.state.backgroundImageUrl;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "create-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1539,9 +1571,16 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "background-image-right1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "cover-image",
         className: "background-image-right2"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        lassName: "background-image-input",
+      }, backgroundImageUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "images-attached"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "post-img",
+        src: backgroundImageUrl
+      })) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "background-image-input",
+        onChange: this.addImage,
         type: "file"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "background-image-right3"

@@ -19,6 +19,7 @@ class CommunityForm extends React.Component {
     this.renderErrors = this.renderErrors.bind(this);
     this.highlightErrors = this.highlightErrors.bind(this);
     this.submitCommunity = this.props.submitCommunity;
+    this.addImage = this.addImage.bind(this);
     this.communities = this.props.communities;
     
     this.state = {
@@ -30,6 +31,8 @@ class CommunityForm extends React.Component {
       goldPerks: 'Full library access plus all Silver perks',
       shortDesc: `Cooking with ${this.props.currentUser.name} tutorials, pasta recipes, etc.`,
       isPlural: false,
+      backgroundImage: null,
+      backgroundImageUrl: "'https://cdn.pixabay.com/photo/2018/09/22/18/27/healthy-3695814_1280.jpg",
       errors: {}
     };
   };
@@ -41,6 +44,30 @@ class CommunityForm extends React.Component {
       [field]: e.currentTarget.value
       });
     };
+  }
+
+  addImage(e) {
+    e.preventDefault();
+    const backgroundImage = new FileReader();
+    const image = e.target.files[0];
+    const preview = document.getElementById('cover-image');
+
+    backgroundImage.onloadend = () => {
+      let newImageUrl = this.state.backgroundImageUrl;
+      newImageUrl = backgroundImage.result
+
+      let newImage = this.state.backgroundImage;
+      newImage = image;
+
+      this.setState({ backgroundImageUrl: newImageUrl, backgroundImage: newImage });
+    }
+
+    if (image) {
+
+      backgroundImage.readAsDataURL(image);
+    } else {
+      alert("Please choose another file type")
+    }
   }
 
   handleSubmit(e) {
@@ -109,6 +136,8 @@ class CommunityForm extends React.Component {
   }
 
   render() {
+
+      const { backgroundImageUrl } = this.state; 
 
       return (
         <div className="create-form">
@@ -220,8 +249,15 @@ class CommunityForm extends React.Component {
                   </div>
                   <div className="background-image-right">
                     <div className="background-image-right1">
-                      <div className="background-image-right2">
-                        <input lassName="background-image-input" type="file" />
+                      <div id="cover-image" className="background-image-right2">
+                        {backgroundImageUrl ? (
+                          <div className="images-attached">
+                            
+                              <img className="post-img" src={backgroundImageUrl} />
+                          
+                          </div>
+                        ) : null}
+                        <input className="background-image-input" onChange={this.addImage} type="file" />
                         <div className="background-image-right3">
                           <div className="background-image-right4">
                             <label>
