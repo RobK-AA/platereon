@@ -224,7 +224,27 @@ class PostForm extends React.Component {
                                       </div>
                                     </div>
                                   </div>
-                                  <div className="text-form-post"></div>
+                                  <div className="text-form-post">
+                                    <div className="text-form-body1">
+                                      <div className="text-form-body2">
+                                        <div className="text-form-body3">
+                                          <div className="text-form-body4">
+                                            <div className="text-form-body-input">
+                                              <textarea
+                                                placeholder="What would you like to share?"
+                                                className="text-form-body-input1"
+                                                name=""
+                                                id=""
+                                                cols="30"
+                                                rows="10"
+                                              ></textarea>
+                                            </div>
+                                            <div></div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
