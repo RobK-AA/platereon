@@ -72,22 +72,23 @@ class CommunityForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const formData = { 
-      name: this.state.name,
-      description: this.state.description,
-      creator_id: this.state.creatorId,
-      bronze_perks: this.state.bronzePerks,
-      silver_perks: this.state.silverPerks,
-      gold_perks: this.state.goldPerks,
-      short_description: this.state.shortDesc,
-      plural: this.state.isPlural,
-      background_image: [this.state.backgroundImage]
-    }
+    const community = new FormData();
+    community.append("community[name]", this.state.name);
+    community.append("community[description]", this.state.description);
+    community.append("community[creator_id]", this.state.creatorId);
+    community.append("community[bronze_perks]", this.state.bronzePerks);
+    community.append("community[silver_perks]", this.state.silverPerks);
+    community.append("community[gold_perks]", this.state.goldPerks);
+    community.append("community[short_description]", this.state.shortDesc);
+    community.append("community[plural]", this.state.plural);
+    community.append("community[background_image]", this.state.backgroundImage);
+  
     debugger
-    this.props.submitCommunity(formData).then(
+    this.props.submitCommunity(community).then(
       () => {
         debugger
-        return this.props.history.push(`communities/${this.props.communities[Object.keys(this.props.communities).length].id}`, this.state)
+        //Fix when DB is reset
+        return this.props.history.push(`communities/${this.props.communities[Object.keys(this.props.communities).length].id + 1}`, this.state)
       });
   }
 

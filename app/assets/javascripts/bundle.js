@@ -906,7 +906,6 @@ var Community = /*#__PURE__*/function (_React$Component) {
           isPlural = this.isPlural,
           backgroundImage = this.backgroundImage;
       var background = backgroundImage || 'https://cdn.pixabay.com/photo/2018/09/22/18/27/healthy-3695814_1280.jpg';
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "community-body-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1382,21 +1381,21 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       var _this4 = this;
 
       e.preventDefault();
-      var formData = {
-        name: this.state.name,
-        description: this.state.description,
-        creator_id: this.state.creatorId,
-        bronze_perks: this.state.bronzePerks,
-        silver_perks: this.state.silverPerks,
-        gold_perks: this.state.goldPerks,
-        short_description: this.state.shortDesc,
-        plural: this.state.isPlural,
-        background_image: [this.state.backgroundImage]
-      };
+      var community = new FormData();
+      community.append("community[name]", this.state.name);
+      community.append("community[description]", this.state.description);
+      community.append("community[creator_id]", this.state.creatorId);
+      community.append("community[bronze_perks]", this.state.bronzePerks);
+      community.append("community[silver_perks]", this.state.silverPerks);
+      community.append("community[gold_perks]", this.state.goldPerks);
+      community.append("community[short_description]", this.state.shortDesc);
+      community.append("community[plural]", this.state.plural);
+      community.append("community[background_image]", this.state.backgroundImage);
       debugger;
-      this.props.submitCommunity(formData).then(function () {
-        debugger;
-        return _this4.props.history.push("communities/".concat(_this4.props.communities[Object.keys(_this4.props.communities).length].id), _this4.state);
+      this.props.submitCommunity(community).then(function () {
+        debugger; //Fix when DB is reset
+
+        return _this4.props.history.push("communities/".concat(_this4.props.communities[Object.keys(_this4.props.communities).length].id + 1), _this4.state);
       });
     }
   }, {
@@ -5047,13 +5046,13 @@ var fetchCommunity = function fetchCommunity(communityId) {
     url: "api/communities/".concat(communityId)
   });
 };
-var createCommunity = function createCommunity(community) {
+var createCommunity = function createCommunity(formData) {
   return $.ajax({
     url: 'api/communities',
     method: 'POST',
-    data: {
-      community: community
-    }
+    data: formData,
+    processData: false,
+    contentType: false
   });
 };
 var updateCommunity = function updateCommunity(community) {

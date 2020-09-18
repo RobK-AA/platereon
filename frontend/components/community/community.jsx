@@ -194,7 +194,7 @@ class Community extends React.Component {
         backgroundImage
       } = this;
       let background = backgroundImage || 'https://cdn.pixabay.com/photo/2018/09/22/18/27/healthy-3695814_1280.jpg'
-      debugger
+      
     return (
       <div className="community-body-outer">
         <div className="community-body-mid">

@@ -11,11 +11,13 @@ export const fetchCommunity = communityId => {
   })
 };
 
-export const createCommunity = community => (
+export const createCommunity = formData => (
   $.ajax({
     url: 'api/communities',
     method: 'POST',
-    data: { community }
+    data: formData,
+    processData: false,
+    contentType: false
   })
 );
 
