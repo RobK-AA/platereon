@@ -42,14 +42,24 @@ class PostForm extends React.Component {
     
     return (
       <>
-        <label htmlFor="communities-dropdown">
-          <select onChange={this.handleSelect} id="communities-dropdown">
-            <option defaultValue="selected">Select One of Your Communities</option>
-            {communities.map((community, i) => (
-              <option key={i} name={community.id} value={community.name}>{community.name}</option>
-            ))}
-          </select>
-        </label>
+        <div className="communities-dropdown">
+          <div className="communities-dropdown1">
+            <div className="communities-dropdown2">
+              <div className="communities-dropdown3">
+                <div className="communities-dropdown4">
+                  <div className="communities-dropdown5">
+                    <select onChange={this.update('communityId')} id="communities-dropdown">
+                      <option defaultValue="selected">Select One of Your Communities</option>
+                      {communities.map((community, i) => (
+                        <option key={i} name={community.id} value={community.name}>{community.name}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </>
     );
   }
@@ -93,13 +103,23 @@ class PostForm extends React.Component {
   }
 
   handleSelect(e) {
+    
     e.preventDefault();
     const id = parseInt($("option:selected").attr("name"));
-    (e) => this.setState({ communityId: id });
+    
+    return (e) => {
+      this.setState({ communityId: id })
+    };
+    
   }
   
   update(field) {
-    return e => this.setState({ [field]: e.target.value });
+    if (field === "title" || field === "body") {
+      return e => this.setState({ [field]: e.target.value });
+    } else if (field === "communityId") {
+      return e => this.setState({ [field]: parseInt($("option:selected").attr("name")) });
+    }
+    
   }
 
   handleSubmit(e) {
@@ -132,13 +152,14 @@ class PostForm extends React.Component {
 
   render() {
 
-    const { title, body, imageUrls } = this.state;
-    const filledOut = body.length > 0 && title.length > 0;
-
+    const { title, body, imageUrls, communityId } = this.state;
+    const filledOut = (body.length > 0 && title.length > 0) && communityId;
+    
     const textPost = this.props.location.pathname.includes('text');
     const imagePost = this.props.location.pathname.includes('images');
     const videoPost = this.props.location.pathname.includes('video');
     const linkPost = this.props.location.pathname.includes("link");
+    
     return (
       // <div className="new-post-form">
       //   <form id="post-form" action="submit" onSubmit={this.handleSubmit}>
@@ -193,7 +214,8 @@ class PostForm extends React.Component {
                             <div className="text-form-left1">
                               <div className="text-form-left2">
                                 <div className="text-form-left3">
-                                  <form id="text-post-form" action="">
+                                  <form id="text-post-form" onSubmit={this.handleSubmit}>
+                                    {this.renderDropDown()}
                                   <div className="text-form-left4">
                                     <div className="text-post-type">
                                       <div className="text-post-type-img">

@@ -1017,3 +1017,31 @@
     justify-content: center;
     visibility: visible;
 }
+
+.communities-dropdown {
+  
+}
+
+.communities-dropdown1 {
+  display: flex;
+}
+
+.communities-dropdown2 {
+  width: 100%;
+  font-family: sans-serif;
+  font-size: 16px;
+  text-align: left;
+}
+
+.communities-dropdown3 select {
+  width: -webkit-fill-available;
+  margin-top: 1rem;
+}
+
+#communities-dropdown {
+  font-family: sans-serif;
+  font-weight: bolder;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+}

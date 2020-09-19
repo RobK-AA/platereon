@@ -2828,10 +2828,20 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
     key: "renderDropDown",
     value: function renderDropDown() {
       var communities = this.currentUser.communities_created;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "communities-dropdown"
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "communities-dropdown"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "communities-dropdown1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "communities-dropdown2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "communities-dropdown3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "communities-dropdown4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "communities-dropdown5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-        onChange: this.handleSelect,
+        onChange: this.update('communityId'),
         id: "communities-dropdown"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
         defaultValue: "selected"
@@ -2841,7 +2851,7 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
           name: community.id,
           value: community.name
         }, community.name);
-      }))));
+      })))))))));
     }
   }, {
     key: "renderImageForm",
@@ -2890,21 +2900,26 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
 
       e.preventDefault();
       var id = parseInt($("option:selected").attr("name"));
-
-      (function (e) {
-        return _this3.setState({
+      return function (e) {
+        _this3.setState({
           communityId: id
         });
-      });
+      };
     }
   }, {
     key: "update",
     value: function update(field) {
       var _this4 = this;
 
-      return function (e) {
-        return _this4.setState(_defineProperty({}, field, e.target.value));
-      };
+      if (field === "title" || field === "body") {
+        return function (e) {
+          return _this4.setState(_defineProperty({}, field, e.target.value));
+        };
+      } else if (field === "communityId") {
+        return function (e) {
+          return _this4.setState(_defineProperty({}, field, parseInt($("option:selected").attr("name"))));
+        };
+      }
     }
   }, {
     key: "handleSubmit",
@@ -2938,8 +2953,9 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
       var _this$state2 = this.state,
           title = _this$state2.title,
           body = _this$state2.body,
-          imageUrls = _this$state2.imageUrls;
-      var filledOut = body.length > 0 && title.length > 0;
+          imageUrls = _this$state2.imageUrls,
+          communityId = _this$state2.communityId;
+      var filledOut = body.length > 0 && title.length > 0 && communityId;
       var textPost = this.props.location.pathname.includes('text');
       var imagePost = this.props.location.pathname.includes('images');
       var videoPost = this.props.location.pathname.includes('video');
@@ -3015,8 +3031,8 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
           className: "text-form-left3"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
           id: "text-post-form",
-          action: ""
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          onSubmit: this.handleSubmit
+        }, this.renderDropDown(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "text-form-left4"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "text-post-type"
