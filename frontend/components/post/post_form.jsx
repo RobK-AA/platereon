@@ -153,7 +153,7 @@ class PostForm extends React.Component {
   render() {
 
     const { title, body, imageUrls, communityId } = this.state;
-    const filledOut = (body.length > 0 && title.length > 0) && communityId;
+    const filledOut = (body.length > 0 && title.length > 0) && communityId > 0;
     
     const textPost = this.props.location.pathname.includes('text');
     const imagePost = this.props.location.pathname.includes('images');
@@ -214,61 +214,67 @@ class PostForm extends React.Component {
                             <div className="text-form-left1">
                               <div className="text-form-left2">
                                 <div className="text-form-left3">
-                                  <form id="text-post-form" onSubmit={this.handleSubmit}>
+                                  <form
+                                    id="text-post-form"
+                                    onSubmit={this.handleSubmit}
+                                  >
+                                    <div className="text-form-left4">
+                                      <div className="text-post-type">
+                                        <div className="text-post-type-img">
+                                          <img src="https://img.icons8.com/office/16/000000/lowercase.png" />
+                                        </div>
+                                        <span className="text-form-type-text">
+                                          Text
+                                        </span>
+                                      </div>
+                                      <div className="text-post-x">
+                                        <div className="text-post-x1">
+                                          <span className="text-post-x2">
+                                            X
+                                          </span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div className="text-form-left41"></div>
                                     {this.renderDropDown()}
-                                  <div className="text-form-left4">
-                                    <div className="text-post-type">
-                                      <div className="text-post-type-img">
-                                        <img src="https://img.icons8.com/office/16/000000/lowercase.png" />
-                                      </div>
-                                      <span className="text-form-type-text">
-                                        Text
-                                      </span>
-                                    </div>
-                                    <div className="text-post-x">
-                                      <div className="text-post-x1">
-                                        <span className="text-post-x2">X</span>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className="text-form-left41"></div>
-                                  <div className="text-form-title">
-                                    <div className="text-form-title1">
-                                      <div className="text-form-title-input1">
-                                        <input
-                                          onChange={this.update("title")}
-                                          className="text-form-title-input1"
-                                          type="text"
-                                          placeholder="Post title (required)"
-                                        />
-                                      </div>
-                                      <div className="text-form-title2">
-                                        <div className="text-form-title3"></div>
+                                    <div className="text-form-left41"></div>
+                                    <div className="text-form-title">
+                                      <div className="text-form-title1">
+                                        <div className="text-form-title-input1">
+                                          <input
+                                            onChange={this.update("title")}
+                                            className="text-form-title-input1"
+                                            type="text"
+                                            placeholder="Post title (required)"
+                                          />
+                                        </div>
+                                        <div className="text-form-title2">
+                                          <div className="text-form-title3"></div>
+                                        </div>
                                       </div>
                                     </div>
-                                  </div>
-                                  <div className="text-form-post">
-                                    <div className="text-form-body1">
-                                      <div className="text-form-body2">
-                                        <div className="text-form-body3">
-                                          <div className="text-form-body4">
-                                            <div className="text-form-body-input">
-                                              <textarea
-                                                onChange={this.update("body")}
-                                                placeholder="What would you like to share?"
-                                                className="text-form-body-input1"
-                                                name=""
-                                                id=""
-                                                cols="30"
-                                                rows="10"
-                                              ></textarea>
+                                    <div className="text-form-post">
+                                      <div className="text-form-body1">
+                                        <div className="text-form-body2">
+                                          <div className="text-form-body3">
+                                            <div className="text-form-body4">
+                                              <div className="text-form-body-input">
+                                                <textarea
+                                                  onChange={this.update("body")}
+                                                  placeholder="What would you like to share?"
+                                                  className="text-form-body-input1"
+                                                  name=""
+                                                  id=""
+                                                  cols="30"
+                                                  rows="10"
+                                                ></textarea>
+                                              </div>
+                                              <div></div>
                                             </div>
-                                            <div></div>
                                           </div>
                                         </div>
                                       </div>
                                     </div>
-                                  </div>
                                   </form>
                                 </div>
                               </div>
@@ -282,11 +288,24 @@ class PostForm extends React.Component {
                                     <div className="text-form-right5">
                                       <div className="text-form-right6">
                                         <div className="text-form-right7">
-                                          <button id="text-post-button" type="submit" form="text-post-form" disabled={!filledOut} style={{
-                                            backgroundColor: filledOut ? `rgb(0, 76, 129)` : `rgb(245, 244, 242)`,
-                                            border: filledOut ?  `1px solid rgb(0, 76, 129)` : `1px solid rgb(245, 244, 242)`,
-                                            color: filledOut ? `white` : `rgb(177, 172, 163) !important`
-                                          }}className="text-form-right8">
+                                          <button
+                                            id="text-post-button"
+                                            type="submit"
+                                            form="text-post-form"
+                                            disabled={!filledOut}
+                                            style={{
+                                              backgroundColor: filledOut
+                                                ? `rgb(0, 76, 129)`
+                                                : `rgb(245, 244, 242)`,
+                                              border: filledOut
+                                                ? `1px solid rgb(0, 76, 129)`
+                                                : `1px solid rgb(245, 244, 242)`,
+                                              color: filledOut
+                                                ? `white`
+                                                : `rgb(177, 172, 163)`,
+                                            }}
+                                            className="text-form-right8"
+                                          >
                                             <div>Publish now</div>
                                           </button>
                                           {/* <div className="text-form-right81">

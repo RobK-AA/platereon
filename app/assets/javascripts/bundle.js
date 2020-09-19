@@ -2955,7 +2955,7 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
           body = _this$state2.body,
           imageUrls = _this$state2.imageUrls,
           communityId = _this$state2.communityId;
-      var filledOut = body.length > 0 && title.length > 0 && communityId;
+      var filledOut = body.length > 0 && title.length > 0 && communityId > 0;
       var textPost = this.props.location.pathname.includes('text');
       var imagePost = this.props.location.pathname.includes('images');
       var videoPost = this.props.location.pathname.includes('video');
@@ -3032,7 +3032,7 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
           id: "text-post-form",
           onSubmit: this.handleSubmit
-        }, this.renderDropDown(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "text-form-left4"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "text-post-type"
@@ -3049,6 +3049,8 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "text-post-x2"
         }, "X")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form-left41"
+        }), this.renderDropDown(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "text-form-left41"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "text-form-title"
@@ -3109,7 +3111,7 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
           style: {
             backgroundColor: filledOut ? "rgb(0, 76, 129)" : "rgb(245, 244, 242)",
             border: filledOut ? "1px solid rgb(0, 76, 129)" : "1px solid rgb(245, 244, 242)",
-            color: filledOut ? "white" : "rgb(177, 172, 163) !important"
+            color: filledOut ? "white" : "rgb(177, 172, 163)"
           },
           className: "text-form-right8"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Publish now"))))))))))))))))))))
