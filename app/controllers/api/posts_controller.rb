@@ -19,13 +19,13 @@ class Api::PostsController < ApplicationController
   end
 
   def show
-    @post = Post.includes(:author, :community).find_by(id: params[:id])
+    @post = Post.includes(:author, :community, :comments).find_by(id: params[:id])
                 .with_attached_images
     render :show
   end
 
   def update
-    @post = Post.includes(:author, :community).find_by(id: params[:id]).with_attached_images
+    @post = Post.includes(:author, :community, :comments).find_by(id: params[:id]).with_attached_images
 
     if @post.update(post_params)
       render :show

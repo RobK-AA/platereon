@@ -85,8 +85,8 @@ class PostForm extends React.Component {
         <div className="post-upload">
           <label htmlFor="">
             Upload Images
-            <span class="file-wrapper">
-              <div class="button">
+            <span className="file-wrapper">
+              <div className="button">
                 Upload images
                 <input
                   name="photo"
