@@ -2858,6 +2858,8 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
     value: function renderImageForm() {
       var imageUrls = this.state.imageUrls;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "text-form-left41"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "attached-images-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "attached-images"
@@ -2883,7 +2885,9 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
     key: "renderVideoUrlForm",
     value: function renderVideoUrlForm() {
       var videoUrl = this.state.videoUrl;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "text-form-left41"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "video-input"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: ""
@@ -2891,7 +2895,7 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
         id: "image-input",
         type: "text",
         onChange: this.update("videoUrl")
-      })));
+      }))));
     }
   }, {
     key: "handleSelect",
@@ -3041,10 +3045,10 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "text-post-type-img"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: "https://img.icons8.com/office/16/000000/lowercase.png"
+          src: videoPost ? "https://img.icons8.com/color/16/000000/video.png" : imagePost ? "https://img.icons8.com/nolan/16/google-images.png" : "https://img.icons8.com/office/16/000000/lowercase.png"
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "text-form-type-text"
-        }, "Text")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, videoPost ? "Video" : imagePost ? "Images" : "Text")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "text-post-x"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "text-post-x1"
@@ -3052,9 +3056,7 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
           className: "text-post-x2"
         }, "X")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "text-form-left41"
-        }), this.renderDropDown(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "text-form-left41"
-        }), imagePost ? this.renderImageForm() : null, videoPost ? this.renderVideoUrlForm() : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }), this.renderDropDown(), imagePost ? this.renderImageForm() : null, videoPost ? this.renderVideoUrlForm() : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "text-form-left41"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "text-form-title"

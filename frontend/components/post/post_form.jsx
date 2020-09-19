@@ -68,37 +68,42 @@ class PostForm extends React.Component {
     const { imageUrls } = this.state;
     return (
       <>
-      <div id="attached-images-outer">
-        <div id="attached-images">
-          {imageUrls.length ? (
-            <div className="images-attached">
-              {imageUrls.map((url, i) => (
-                <img className="post-img" src={url} key={i} />
-              ))}
-            </div>
-          ) : null}
+        <div className="text-form-left41"></div>
+        <div id="attached-images-outer">
+          <div id="attached-images">
+            {imageUrls.length ? (
+              <div className="images-attached">
+                {imageUrls.map((url, i) => (
+                  <img className="post-img" src={url} key={i} />
+                ))}
+              </div>
+            ) : null}
+          </div>
         </div>
-      </div>
 
-            <div className="post-upload">
-              <label htmlFor="">
-                Upload Pictures
-                <input id="image-input" type="file" onChange={this.addImage} />
-              </label>
-            </div>
-            </>)
+        <div className="post-upload">
+          <label htmlFor="">
+            Upload Pictures
+            <input id="image-input" type="file" onChange={this.addImage} />
+          </label>
+        </div>
+      </>
+    );
   }
   
   renderVideoUrlForm() {
     const { videoUrl } = this.state;
 
     return (
+      <>
+      <div className="text-form-left41"></div>
       <div className="video-input">
         <label htmlFor="">
           Add a video URL
           <input id="image-input" type="text" onChange={this.update("videoUrl")} />
         </label>
       </div>
+      </>
     );
   }
 
@@ -173,6 +178,7 @@ class PostForm extends React.Component {
             videoUrl.length > 0 &&
             communityId > 0) :
             (filledOut = (body.length > 0 && title.length > 0) && communityId > 0);
+
     return (
       // <div className="new-post-form">
       //   <form id="post-form" action="submit" onSubmit={this.handleSubmit}>
@@ -234,10 +240,22 @@ class PostForm extends React.Component {
                                     <div className="text-form-left4">
                                       <div className="text-post-type">
                                         <div className="text-post-type-img">
-                                          <img src="https://img.icons8.com/office/16/000000/lowercase.png" />
+                                          <img
+                                            src={
+                                              videoPost
+                                                ? "https://img.icons8.com/color/16/000000/video.png"
+                                                : imagePost
+                                                ? "https://img.icons8.com/nolan/16/google-images.png"
+                                                : "https://img.icons8.com/office/16/000000/lowercase.png"
+                                            }
+                                          />
                                         </div>
                                         <span className="text-form-type-text">
-                                          Text
+                                          {videoPost
+                                            ? "Video"
+                                            : imagePost
+                                            ? "Images"
+                                            : "Text"}
                                         </span>
                                       </div>
                                       <div className="text-post-x">
@@ -250,7 +268,7 @@ class PostForm extends React.Component {
                                     </div>
                                     <div className="text-form-left41"></div>
                                     {this.renderDropDown()}
-                                    <div className="text-form-left41"></div>
+                                    
                                     {imagePost ? this.renderImageForm() : null}
                                     {videoPost
                                       ? this.renderVideoUrlForm()
