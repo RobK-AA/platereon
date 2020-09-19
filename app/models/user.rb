@@ -29,6 +29,10 @@ class User < ApplicationRecord
     through: :communities_joined,
     source: :posts
 
+  has_many :comments,
+    through: :posts_in_communities_joined,
+    source: :comments
+
   def self.find_by_credentials(email, password) 
     user = User.find_by(email: email)
     return nil unless user && user.is_password?(password)

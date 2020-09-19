@@ -1,8 +1,8 @@
 class Api::CommentsController < ApplicationController
-
+  protect_from_forgery except: :create
   def create
     @comment = Comment.includes(:commenter).new(comment_params)
-    @comment.commenter_id = current_user.commenter_id
+    
     if @comment.save
       render :show
     else
@@ -26,7 +26,7 @@ class Api::CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:body, :commentable_id, :commentable_type)
+    params.require(:comment).permit(:body, :commenter_id, :commentable_id, :commentable_type)
   end
 
 end
