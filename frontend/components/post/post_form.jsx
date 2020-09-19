@@ -152,14 +152,27 @@ class PostForm extends React.Component {
 
   render() {
 
-    const { title, body, imageUrls, communityId } = this.state;
-    const filledOut = (body.length > 0 && title.length > 0) && communityId > 0;
+    const { title, body, imageUrls, communityId, videoUrl } = this.state;
+    let filledOut = (body.length > 0 && title.length > 0) && communityId > 0;
     
     const textPost = this.props.location.pathname.includes('text');
     const imagePost = this.props.location.pathname.includes('images');
     const videoPost = this.props.location.pathname.includes('video');
     const linkPost = this.props.location.pathname.includes("link");
     
+    imagePost
+      ? (filledOut =
+          body.length > 0 &&
+          title.length > 0 &&
+          imageUrls.length > 0 &&
+          communityId > 0)
+      : videoPost ? 
+          (filledOut =
+            body.length > 0 &&
+            title.length > 0 &&
+            videoUrl.length > 0 &&
+            communityId > 0) :
+            (filledOut = (body.length > 0 && title.length > 0) && communityId > 0);
     return (
       // <div className="new-post-form">
       //   <form id="post-form" action="submit" onSubmit={this.handleSubmit}>
@@ -237,6 +250,11 @@ class PostForm extends React.Component {
                                     </div>
                                     <div className="text-form-left41"></div>
                                     {this.renderDropDown()}
+                                    <div className="text-form-left41"></div>
+                                    {imagePost ? this.renderImageForm() : null}
+                                    {videoPost
+                                      ? this.renderVideoUrlForm()
+                                      : null}
                                     <div className="text-form-left41"></div>
                                     <div className="text-form-title">
                                       <div className="text-form-title1">

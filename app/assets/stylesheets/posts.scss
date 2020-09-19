@@ -23,8 +23,10 @@
   }
 
   #attached-images-outer {
-    width: 500px;
     display: inline-flex;
+    margin-left: 2.1%;
+    display: inline-flex;
+    margin-right: 2.1%;
   }
 
   #attached-images {
@@ -578,6 +580,8 @@
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizelegibility;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 .text-form2 {
@@ -1046,4 +1050,15 @@
 
 .communities-dropdown5 {
   margin-bottom: 2.1%;
+}
+
+.post-upload {
+  text-align: left;
+  margin-left: 2.1%;
+  margin-bottom: 2.1%;
+  font: 700 13.3333px Arial !important;
+}
+
+#image-input {
+  margin-left: 1rem;
 }

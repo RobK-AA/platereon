@@ -2954,12 +2954,14 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
           title = _this$state2.title,
           body = _this$state2.body,
           imageUrls = _this$state2.imageUrls,
-          communityId = _this$state2.communityId;
+          communityId = _this$state2.communityId,
+          videoUrl = _this$state2.videoUrl;
       var filledOut = body.length > 0 && title.length > 0 && communityId > 0;
       var textPost = this.props.location.pathname.includes('text');
       var imagePost = this.props.location.pathname.includes('images');
       var videoPost = this.props.location.pathname.includes('video');
       var linkPost = this.props.location.pathname.includes("link");
+      imagePost ? filledOut = body.length > 0 && title.length > 0 && imageUrls.length > 0 && communityId > 0 : videoPost ? filledOut = body.length > 0 && title.length > 0 && videoUrl.length > 0 && communityId > 0 : filledOut = body.length > 0 && title.length > 0 && communityId > 0;
       return (
         /*#__PURE__*/
         // <div className="new-post-form">
@@ -3051,6 +3053,8 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
         }, "X")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "text-form-left41"
         }), this.renderDropDown(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "text-form-left41"
+        }), imagePost ? this.renderImageForm() : null, videoPost ? this.renderVideoUrlForm() : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "text-form-left41"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "text-form-title"
