@@ -721,6 +721,11 @@
   width: 1rem;
 }
 
+.text-post-close {
+  text-decoration: none;
+  color: black;
+}
+
 .text-post-x1 {
     align-self: center;
     -webkit-box-align: center;
@@ -1061,4 +1066,18 @@
 
 #image-input {
   margin-left: 1rem;
+}
+
+#video-input {
+  margin-left: 1rem;
+  min-width: 65%;
+  border: none;
+}
+
+.video-input {
+    text-align: left;
+    margin-left: 2.5%;
+    font: 700 13.3333px Arial !important;
+    margin-top: 2.1%;
+    margin-bottom: 2.1%;
 }

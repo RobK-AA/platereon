@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 class PostForm extends React.Component {
   constructor(props) {
@@ -100,7 +101,7 @@ class PostForm extends React.Component {
       <div className="video-input">
         <label htmlFor="">
           Add a video URL
-          <input id="image-input" type="text" onChange={this.update("videoUrl")} />
+          <input id="video-input" placeholder="Video Link" type="text" onChange={this.update("videoUrl")} />
         </label>
       </div>
       </>
@@ -119,7 +120,7 @@ class PostForm extends React.Component {
   }
   
   update(field) {
-    if (field === "title" || field === "body") {
+    if (field === "title" || field === "body" || field === "videoUrl") {
       return e => this.setState({ [field]: e.target.value });
     } else if (field === "communityId") {
       return e => this.setState({ [field]: parseInt($("option:selected").attr("name")) });
@@ -178,7 +179,7 @@ class PostForm extends React.Component {
             videoUrl.length > 0 &&
             communityId > 0) :
             (filledOut = (body.length > 0 && title.length > 0) && communityId > 0);
-
+    
     return (
       // <div className="new-post-form">
       //   <form id="post-form" action="submit" onSubmit={this.handleSubmit}>
@@ -260,15 +261,17 @@ class PostForm extends React.Component {
                                       </div>
                                       <div className="text-post-x">
                                         <div className="text-post-x1">
-                                          <span className="text-post-x2">
-                                            X
-                                          </span>
+                                          <Link className="text-post-close" to="/postform">
+                                            <span className="text-post-x2">
+                                              X
+                                            </span>
+                                          </Link>
                                         </div>
                                       </div>
                                     </div>
                                     <div className="text-form-left41"></div>
                                     {this.renderDropDown()}
-                                    
+
                                     {imagePost ? this.renderImageForm() : null}
                                     {videoPost
                                       ? this.renderVideoUrlForm()
