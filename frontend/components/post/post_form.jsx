@@ -139,7 +139,6 @@ class PostForm extends React.Component {
     const imagePost = this.props.location.pathname.includes('images');
     const videoPost = this.props.location.pathname.includes('video');
     const linkPost = this.props.location.pathname.includes("link");
-
     return (
       // <div className="new-post-form">
       //   <form id="post-form" action="submit" onSubmit={this.handleSubmit}>
@@ -194,6 +193,7 @@ class PostForm extends React.Component {
                             <div className="text-form-left1">
                               <div className="text-form-left2">
                                 <div className="text-form-left3">
+                                  <form id="text-post-form" action="">
                                   <div className="text-form-left4">
                                     <div className="text-post-type">
                                       <div className="text-post-type-img">
@@ -214,6 +214,7 @@ class PostForm extends React.Component {
                                     <div className="text-form-title1">
                                       <div className="text-form-title-input1">
                                         <input
+                                          onChange={this.update("title")}
                                           className="text-form-title-input1"
                                           type="text"
                                           placeholder="Post title (required)"
@@ -231,6 +232,7 @@ class PostForm extends React.Component {
                                           <div className="text-form-body4">
                                             <div className="text-form-body-input">
                                               <textarea
+                                                onChange={this.update("body")}
                                                 placeholder="What would you like to share?"
                                                 className="text-form-body-input1"
                                                 name=""
@@ -245,11 +247,40 @@ class PostForm extends React.Component {
                                       </div>
                                     </div>
                                   </div>
+                                  </form>
                                 </div>
                               </div>
                             </div>
                           </div>
-                          <div className="text-form-right"></div>
+                          <div className="text-form-right">
+                            <div className="text-form-right1">
+                              <div className="text-form-right2">
+                                <div className="text-form-right3">
+                                  <div className="text-form-right4">
+                                    <div className="text-form-right5">
+                                      <div className="text-form-right6">
+                                        <div className="text-form-right7">
+                                          <button id="text-post-button" type="submit" form="text-post-form" disabled={!filledOut} style={{
+                                            backgroundColor: filledOut ? `rgb(0, 76, 129)` : `rgb(245, 244, 242)`,
+                                            border: filledOut ?  `1px solid rgb(0, 76, 129)` : `1px solid rgb(245, 244, 242)`,
+                                            color: filledOut ? `white` : `rgb(177, 172, 163) !important`
+                                          }}className="text-form-right8">
+                                            <div>Publish now</div>
+                                          </button>
+                                          {/* <div className="text-form-right81">
+
+                                          </div>
+                                          <button className="text-form-right82">
+
+                                          </button> */}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
