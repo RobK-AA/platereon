@@ -84,8 +84,20 @@ class PostForm extends React.Component {
 
         <div className="post-upload">
           <label htmlFor="">
-            Upload Pictures
-            <input id="image-input" type="file" onChange={this.addImage} />
+            Upload Images
+            <span class="file-wrapper">
+              <div class="button">
+                Upload images
+                <input
+                  name="photo"
+                  id="image-input"
+                  // id="image-input"
+                  type="file"
+                  onChange={this.addImage}
+                />
+              </div>
+            </span>
+            {/* <input id="image-input" type="file" onChange={this.addImage} /> */}
           </label>
         </div>
       </>
@@ -97,13 +109,18 @@ class PostForm extends React.Component {
 
     return (
       <>
-      <div className="text-form-left41"></div>
-      <div className="video-input">
-        <label htmlFor="">
-          Add a video URL
-          <input id="video-input" placeholder="Video Link" type="text" onChange={this.update("videoUrl")} />
-        </label>
-      </div>
+        <div className="text-form-left41"></div>
+        <div className="video-input">
+          <label htmlFor="">
+            Add a video URL
+            <input
+              id="video-input"
+              placeholder="Video Link"
+              type="text"
+              onChange={this.update("videoUrl")}
+            />
+          </label>
+        </div>
       </>
     );
   }

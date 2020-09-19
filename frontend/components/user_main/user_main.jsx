@@ -36,12 +36,9 @@ class UserMain extends React.Component {
           {this.renderJoinMessage()}
           {this.communitiesJoined.map((community, i) => {
                 return (
-                  <>
-                    
                     <Link key={`community-${i}`} to={`/communities/${community.id}`}>
                       <li key={i}>{community.name}</li>
                     </Link>
-                  </>
                 )
               }
           )}

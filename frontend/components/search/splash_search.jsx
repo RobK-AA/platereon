@@ -81,10 +81,10 @@ class Search extends React.Component {
                         </form>
                       </div>
                       <div className="search-main-button">
-                        <Link onClick={this.handleSubmit} id="main-page-search-button">
+                        <div onClick={this.handleSubmit} id="main-page-search-button">
                           <div className="search-main-button1"></div>
                           <div className="search-main-button2">Search</div>
-                        </Link>
+                        </div>
                       </div>
                     </div>
                   </div>
