@@ -42,7 +42,7 @@ class Post extends React.Component {
 
   render() {
 
-    const { title, body, images } = this.props.post;
+    const { title, body, images, comments } = this.props.post;
     const createdAt = this.props.post.created_at;
     const videoUrl = this.props.post.video_url;
     const  { currentUserIsMember } = this.props;
@@ -54,6 +54,7 @@ class Post extends React.Component {
     } else {
       imgStyle = { display: "none"}
     }
+  
   //   return (
   //     <>
   //       <ul className="post-list">
@@ -164,6 +165,23 @@ class Post extends React.Component {
                         </div>
                       </div>
                     </div>
+                  </div>
+                  <div className="post-comments">
+                      <div>
+                      <div className="post-comments1">
+                        <div>Load more comments</div>
+                        <span>0 of 0</span>
+                        </div>
+                      <div className="post-comments2">
+                          {comments.length ? comments.reverse()[0].body : null}
+                        </div>
+                      <div className="post-comments3">
+                        {comments.length > 1 ? comments.reverse()[1].body : null}
+                        </div>
+                      <div className="post-comments4">
+
+                        </div>
+                      </div>
                   </div>
                 </div>
               </div>

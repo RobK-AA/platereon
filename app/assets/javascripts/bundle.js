@@ -2681,7 +2681,8 @@ var Post = /*#__PURE__*/function (_React$Component) {
       var _this$props$post = this.props.post,
           title = _this$props$post.title,
           body = _this$props$post.body,
-          images = _this$props$post.images;
+          images = _this$props$post.images,
+          comments = _this$props$post.comments;
       var createdAt = this.props.post.created_at;
       var videoUrl = this.props.post.video_url;
       var currentUserIsMember = this.props.currentUserIsMember;
@@ -2804,7 +2805,17 @@ var Post = /*#__PURE__*/function (_React$Component) {
         className: "post-lower-right1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "like-counter"
-      }, "0 Likes")))))))))));
+      }, "0 Likes"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "post-comments"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "post-comments1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Load more comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "0 of 0")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "post-comments2"
+      }, comments.length ? comments.reverse()[0].body : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "post-comments3"
+      }, comments.length > 1 ? comments.reverse()[1].body : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "post-comments4"
+      })))))))));
     }
   }]);
 
