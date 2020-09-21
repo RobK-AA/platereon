@@ -8,6 +8,7 @@
       :body,
       :video_url,
       :link_url,
+      :comments,
       :created_at
 
     json.images post.images.map { |image| url_for(image) }
