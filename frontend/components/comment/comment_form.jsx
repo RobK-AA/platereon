@@ -6,6 +6,7 @@ class CommentForm extends React.Component {
   constructor(props) {
     super(props);
     this.submitComment = this.submitComment.bind(this);
+    this.state = this.props.comment;
     // this.updatePostComment = this.updatePostComment.bind(this);
   }
 
@@ -14,11 +15,18 @@ class CommentForm extends React.Component {
     if (e.key === 'Enter' || e.which === 13) {
       e.preventDefault();
       const newBody = $(e.target);
-      const comment = merge({}, this.props.comment, { body: newBody.text() });
-      
+      const comment = merge({}, this.props.comment, { body: newBody.val() });
+  
       this.props.submitComment(comment).then(() => {
-        newBody.text("Join the conversation...")
-      });
+        newBody.attr("placeholder", "Join the conversation...").placeholder()
+      }).then(() => { 
+
+          this.setState({
+            body: ""
+          })
+        }).then(() => {
+          this.props.rerenderParentCallback();
+        })
     }
   }
 
@@ -33,8 +41,8 @@ class CommentForm extends React.Component {
       <>
         <div className="post-comments-comment">
           <form onSubmit={this.submitComment}>
-            <p role="textbox" contentEditable onKeyPress={this.submitComment}
-            type="text" rows="1" placeholder="Join the conversation..." id="" cols="30" rows="10"></p>
+            <textarea role="textbox" onKeyPress={this.submitComment}
+            type="text" rows="1" placeholder="Join the conversation..." id="" cols="30" rows="1"></textarea>
           </form>
         </div>
       </>

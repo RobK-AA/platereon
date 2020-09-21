@@ -812,7 +812,8 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, CommentForm);
 
     _this = _super.call(this, props);
-    _this.submitComment = _this.submitComment.bind(_assertThisInitialized(_this)); // this.updatePostComment = this.updatePostComment.bind(this);
+    _this.submitComment = _this.submitComment.bind(_assertThisInitialized(_this));
+    _this.state = _this.props.comment; // this.updatePostComment = this.updatePostComment.bind(this);
 
     return _this;
   }
@@ -820,14 +821,22 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
   _createClass(CommentForm, [{
     key: "submitComment",
     value: function submitComment(e) {
+      var _this2 = this;
+
       if (e.key === 'Enter' || e.which === 13) {
         e.preventDefault();
         var newBody = $(e.target);
         var comment = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, this.props.comment, {
-          body: newBody.text()
+          body: newBody.val()
         });
         this.props.submitComment(comment).then(function () {
-          newBody.text("Join the conversation...");
+          newBody.attr("placeholder", "Join the conversation...").placeholder();
+        }).then(function () {
+          _this2.setState({
+            body: ""
+          });
+        }).then(function () {
+          _this2.props.rerenderParentCallback();
         });
       }
     } // updatePostComment() {
@@ -843,16 +852,15 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
         className: "post-comments-comment"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.submitComment
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", _defineProperty({
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", _defineProperty({
         role: "textbox",
-        contentEditable: true,
         onKeyPress: this.submitComment,
         type: "text",
         rows: "1",
         placeholder: "Join the conversation...",
         id: "",
         cols: "30"
-      }, "rows", "10")))));
+      }, "rows", "1")))));
     }
   }]);
 
@@ -2786,6 +2794,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.renderLike = _this.renderLike.bind(_assertThisInitialized(_this));
     _this.renderUnlike = _this.renderUnlike.bind(_assertThisInitialized(_this));
+    _this.rerenderParentCallback = _this.rerenderParentCallback.bind(_assertThisInitialized(_this));
     _this.state = {
       likedByCurrentUser: false,
       postComment: {
@@ -2832,14 +2841,31 @@ var Post = /*#__PURE__*/function (_React$Component) {
       }));
     }
   }, {
+    key: "rerenderParentCallback",
+    value: function rerenderParentCallback() {
+      this.forceUpdate();
+    }
+  }, {
     key: "renderFirstComment",
     value: function renderFirstComment() {
       var comments = Object.values(this.props.post.comments);
-      var createdAt = this.props.post.created_at;
-      var date = new moment__WEBPACK_IMPORTED_MODULE_1___default.a(createdAt);
-      var days = parseInt(date.fromNow());
       var firstCommentName = Object.values(this.props.post.comments).reverse()[0].author.name;
       var firstCommentBody = Object.values(this.props.post.comments).reverse()[0].body;
+      var createdAt = Object.values(this.props.post.comments).reverse()[0].created_at;
+      var date = new moment__WEBPACK_IMPORTED_MODULE_1___default.a(createdAt);
+      var days = "".concat(parseInt(date.fromNow()), "d");
+      var time;
+
+      if (!!parseInt(date.fromNow)) {
+        time = days;
+      } else {
+        time = "today";
+      }
+
+      if (!time) {
+        time = "today";
+      }
+
       return comments ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-outer1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2876,17 +2902,29 @@ var Post = /*#__PURE__*/function (_React$Component) {
         className: "comment-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-time"
-      }, "".concat(days, "d"))))))) : null;
+      }, time)))))) : null;
     }
   }, {
     key: "renderSecondComment",
     value: function renderSecondComment() {
       var comments = Object.values(this.props.post.comments);
-      var createdAt = this.props.post.created_at;
-      var date = new moment__WEBPACK_IMPORTED_MODULE_1___default.a(createdAt);
-      var days = parseInt(date.fromNow());
       var secondCommentName = Object.values(this.props.post.comments).reverse()[1].author.name;
       var secondCommentBody = Object.values(this.props.post.comments).reverse()[1].body;
+      var createdAt = Object.values(this.props.post.comments).reverse()[1].created_at;
+      var date = new moment__WEBPACK_IMPORTED_MODULE_1___default.a(createdAt);
+      var days = "".concat(parseInt(date.fromNow()), "d");
+      var time;
+
+      if (!!parseInt(date.fromNow)) {
+        time = days;
+      } else {
+        time = "today";
+      }
+
+      if (!time) {
+        time = "today";
+      }
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-outer1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2923,7 +2961,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
         className: "comment-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-time"
-      }, "".concat(days, "d")))))));
+      }, time))))));
     }
   }, {
     key: "handleLike",
@@ -3093,6 +3131,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-comments-logo2"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comment_comment_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        rerenderParentCallback: this.rerenderParentCallback,
         commentableType: "Post",
         commentableId: id
       }))))))))));

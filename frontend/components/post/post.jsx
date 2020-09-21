@@ -10,6 +10,7 @@ class Post extends React.Component {
     super(props);
     this.renderLike = this.renderLike.bind(this);
     this.renderUnlike = this.renderUnlike.bind(this);
+    this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
     this.state = {
       likedByCurrentUser: false,
       postComment: {
@@ -51,14 +52,30 @@ class Post extends React.Component {
     )
   }
 
+  rerenderParentCallback() {
+   
+    this.forceUpdate();
+  }
+
   renderFirstComment() {
     const comments = Object.values(this.props.post.comments);
-    const createdAt = this.props.post.created_at;
-    let date = new Moment(createdAt);
-    let days = parseInt(date.fromNow());
     const firstCommentName = Object.values(this.props.post.comments).reverse()[0].author.name;
     const firstCommentBody = Object.values(this.props.post.comments).reverse()[0].body;
+    const createdAt = Object.values(this.props.post.comments).reverse()[0].created_at;
+    let date = new Moment(createdAt);
+    let days = `${parseInt(date.fromNow())}d`;
+    let time;
+
+    if (!!parseInt(date.fromNow)) {
+      time = days;
+    } else {
+      time = "today";
+    }
     
+    if (!time) {
+      time = "today"
+    }
+
     return (comments ?
       <>
         <div className="comment-outer1">
@@ -98,7 +115,7 @@ class Post extends React.Component {
             <div className="comment-right">
               <span>
                 <div className="comment-time">
-                  {`${days}d`}
+                  {time}
                 </div>
               </span>
             </div>
@@ -110,12 +127,22 @@ class Post extends React.Component {
 
   renderSecondComment() {
     const comments = Object.values(this.props.post.comments);
-    const createdAt = this.props.post.created_at;
-    let date = new Moment(createdAt);
-    let days = parseInt(date.fromNow());
-
     const secondCommentName = Object.values(this.props.post.comments).reverse()[1].author.name;
     const secondCommentBody = Object.values(this.props.post.comments).reverse()[1].body;
+    const createdAt = Object.values(this.props.post.comments).reverse()[1].created_at;
+    let date = new Moment(createdAt);
+    let days = `${parseInt(date.fromNow())}d`;
+    let time;
+    if (!!parseInt(date.fromNow)) {
+      time = days;
+    } else {
+      time = "today";
+    }
+
+    if (!time) {
+      time = "today"
+    }
+    
     return (
       <>
         <div className="comment-outer1">
@@ -155,7 +182,7 @@ class Post extends React.Component {
             <div className="comment-right">
               <span>
                 <div className="comment-time">
-                  {`${days}d`}
+                  {time}
                 </div>
               </span>
             </div>
@@ -327,7 +354,7 @@ class Post extends React.Component {
                             </div>
                           </div>
                         </div>
-                        <CommentFormContainer commentableType="Post" commentableId={id} />
+                        <CommentFormContainer rerenderParentCallback={this.rerenderParentCallback} commentableType="Post" commentableId={id} />
                         {/* <div className="post-comments-comment">
                           <form onSubmit={this.submitComment}>
                             <textarea onChange={this.updatePostComment} type="text" rows="1" placeholder="Join the conversation..." id="" cols="30" rows="10"></textarea>
