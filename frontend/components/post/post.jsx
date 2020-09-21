@@ -30,6 +30,116 @@ class Post extends React.Component {
     )
   }
 
+  renderFirstComment() {
+    const { comments } = this.props.post;
+    const createdAt = this.props.post.created_at;
+    let date = new Moment(createdAt);
+    let days = parseInt(date.fromNow());
+
+    return (
+      <>
+        <div className="comment-outer1">
+          <div className="comment-outer2">
+            <div className="comment-left">
+              <div className="commenter-logo">
+                <div className="commenter-logo1">
+                  <span className="commenter-log2">
+                    <div className="commenter-logo3">
+                    </div>
+                  </span>
+                </div>
+              </div>
+              <div className="comment-body">
+                <div className="comment-body-name">
+                  <div className="comment-body-name1">
+                    User {comments.reverse()[0].commenter_id}
+                  </div>
+                </div>
+                <div className="comment-body-body">
+                  <p>
+                    <span>
+                      {comments.reverse()[0].body}
+                    </span>
+                  </p>
+                </div>
+                <div className="comment-body-icons">
+                  <div className="comment-body-icons-left">
+                    <img src="https://img.icons8.com/material-outlined/16/000000/filled-like.png" />
+                  </div>
+                  <div className="comment-body-icons-right">
+                    <img src="https://img.icons8.com/ios/16/000000/reply-arrow.png" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="comment-right">
+              <span>
+                <div className="comment-time">
+                  {`${days}d`}
+                </div>
+              </span>
+            </div>
+          </div>
+        </div>
+      </>
+    )
+  }
+
+  renderSecondComment() {
+    const { comments } = this.props.post;
+    const createdAt = this.props.post.created_at;
+    let date = new Moment(createdAt);
+    let days = parseInt(date.fromNow());
+
+    return (
+      <>
+        <div className="comment-outer1">
+          <div className="comment-outer2">
+            <div className="comment-left">
+              <div className="commenter-logo">
+                <div className="commenter-logo1">
+                  <span className="commenter-log2">
+                    <div className="commenter-logo3">
+                    </div>
+                  </span>
+                </div>
+              </div>
+              <div className="comment-body">
+                <div className="comment-body-name">
+                  <div className="comment-body-name1">
+                    User {comments.reverse()[1].commenter_id}
+                  </div>
+                </div>
+                <div className="comment-body-body">
+                  <p>
+                    <span>
+                      {comments.reverse()[1].body}
+                    </span>
+                  </p>
+                </div>
+                <div className="comment-body-icons">
+                  <div className="comment-body-icons-left">
+                    <img src="https://img.icons8.com/material-outlined/16/000000/filled-like.png" />
+                  </div>
+                  <div className="comment-body-icons-right">
+                    <img src="https://img.icons8.com/ios/16/000000/reply-arrow.png" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="comment-right">
+              <span>
+                <div className="comment-time">
+                  {`${days}d`}
+                </div>
+              </span>
+            </div>
+          </div>
+        </div>
+      </>
+    )
+  }
+
   handleLike() {
     if (!this.state.likedByCurrentUser) {
       
@@ -47,7 +157,7 @@ class Post extends React.Component {
     const videoUrl = this.props.post.video_url;
     const  { currentUserIsMember } = this.props;
     let date = new Moment(createdAt);
-
+    
     let imgStyle;
     if (images.length) {
       imgStyle = { display: "block"}
@@ -167,21 +277,30 @@ class Post extends React.Component {
                     </div>
                   </div>
                   <div className="post-comments">
-                      <div>
-                      <div className="post-comments1">
-                        <div>Load more comments</div>
-                        <span>0 of 0</span>
-                        </div>
-                      <div className="post-comments2">
-                          {comments.length ? comments.reverse()[0].body : null}
-                        </div>
-                      <div className="post-comments3">
-                        {comments.length > 1 ? comments.reverse()[1].body : null}
-                        </div>
-                      <div className="post-comments4">
+                    <div className="post-comments1">
+                      <div>Load more comments</div>
+                      <span>0 of 0</span>
+                    </div>
+                    <div className="post-comments2">
+                      {comments.length ? this.renderFirstComment() : null}
+                    </div>
+                    <div className="post-comments3">
+                      {comments.length > 1 ? this.renderSecondComment() : null}
+                    </div>
+                    <div className="post-comments4">
+                      <div className="post-comments41">
+                        <div className="post-comments-logo">
+                          <div className="post-comments-logo1">
+                            <div className="post-comments-logo2">
 
+                            </div>
+                          </div>
+                        </div>
+                        <div className="post-comments-comment">
+                          <textarea type="text" rows="1" placeholder="Join the conversation..." id="" cols="30" rows="10"></textarea>
                         </div>
                       </div>
+                    </div>
                   </div>
                 </div>
               </div>
