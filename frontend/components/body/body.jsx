@@ -28,6 +28,7 @@ class Body extends React.Component {
   // }
   componentDidCatch() {
     if (!this.props.communities.length) {
+      
       this.props.getCommunities();
     }
   }

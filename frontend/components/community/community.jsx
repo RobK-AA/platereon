@@ -63,6 +63,7 @@ class Community extends React.Component {
         currentUserIsMember: false
       }
     }
+    
     this.getPosts(this.id);
     // this.state = {
     //   currentUserIsMember: false

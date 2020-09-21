@@ -2667,7 +2667,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "renderFirstComment",
     value: function renderFirstComment() {
-      var comments = this.props.post.comments;
+      var comments = Object.values(this.props.post.comments);
       var createdAt = this.props.post.created_at;
       var date = new moment__WEBPACK_IMPORTED_MODULE_1___default.a(createdAt);
       var days = parseInt(date.fromNow());
@@ -2691,9 +2691,9 @@ var Post = /*#__PURE__*/function (_React$Component) {
         className: "comment-body-name"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-body-name1"
-      }, "User ", comments.reverse()[0].commenter_id)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, comments.reverse()[0].author.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-body-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, comments.reverse()[0].body))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, Object.values(comments).reverse()[0].body))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-body-icons"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-body-icons-left"
@@ -2712,7 +2712,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "renderSecondComment",
     value: function renderSecondComment() {
-      var comments = this.props.post.comments;
+      var comments = Object.values(this.props.post.comments);
       var createdAt = this.props.post.created_at;
       var date = new moment__WEBPACK_IMPORTED_MODULE_1___default.a(createdAt);
       var days = parseInt(date.fromNow());
@@ -2736,7 +2736,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
         className: "comment-body-name"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-body-name1"
-      }, "User ", comments.reverse()[1].commenter_id)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, comments.reverse()[1].author.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-body-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, comments.reverse()[1].body))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-body-icons"
@@ -2773,12 +2773,17 @@ var Post = /*#__PURE__*/function (_React$Component) {
       var _this$props$post = this.props.post,
           title = _this$props$post.title,
           body = _this$props$post.body,
-          images = _this$props$post.images,
-          comments = _this$props$post.comments;
+          images = _this$props$post.images;
       var createdAt = this.props.post.created_at;
       var videoUrl = this.props.post.video_url;
       var currentUserIsMember = this.props.currentUserIsMember;
       var date = new moment__WEBPACK_IMPORTED_MODULE_1___default.a(createdAt);
+      var comments;
+
+      if (this.props.post.comments) {
+        comments = Object.values(this.props.post.comments);
+      }
+
       var imgStyle;
 
       if (images.length) {
@@ -2903,9 +2908,9 @@ var Post = /*#__PURE__*/function (_React$Component) {
         className: "post-comments1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Load more comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "0 of 0")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-comments2"
-      }, comments.length ? this.renderFirstComment() : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, comments && comments.length ? this.renderFirstComment() : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-comments3"
-      }, comments.length > 1 ? this.renderSecondComment() : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, (comments && comments.length) > 1 ? this.renderSecondComment() : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-comments4"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-comments41"

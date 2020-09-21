@@ -4,6 +4,7 @@ import Moment from "moment";
 import ReactPlayer from 'react-player';
 
 class Post extends React.Component {
+  
   constructor(props) {
     super(props);
     this.renderLike = this.renderLike.bind(this);
@@ -12,6 +13,7 @@ class Post extends React.Component {
       likedByCurrentUser: false
     }
     this.handleLike = this.handleLike.bind(this);
+    
   }
 
   renderUnlike() {
@@ -31,11 +33,11 @@ class Post extends React.Component {
   }
 
   renderFirstComment() {
-    const { comments } = this.props.post;
+    const comments = Object.values(this.props.post.comments);
     const createdAt = this.props.post.created_at;
     let date = new Moment(createdAt);
     let days = parseInt(date.fromNow());
-
+    
     return (
       <>
         <div className="comment-outer1">
@@ -52,13 +54,13 @@ class Post extends React.Component {
               <div className="comment-body">
                 <div className="comment-body-name">
                   <div className="comment-body-name1">
-                    User {comments.reverse()[0].commenter_id}
+                    {comments.reverse()[0].author.name}
                   </div>
                 </div>
                 <div className="comment-body-body">
                   <p>
                     <span>
-                      {comments.reverse()[0].body}
+                      {Object.values(comments).reverse()[0].body}
                     </span>
                   </p>
                 </div>
@@ -86,7 +88,7 @@ class Post extends React.Component {
   }
 
   renderSecondComment() {
-    const { comments } = this.props.post;
+    const comments = Object.values(this.props.post.comments);
     const createdAt = this.props.post.created_at;
     let date = new Moment(createdAt);
     let days = parseInt(date.fromNow());
@@ -107,7 +109,7 @@ class Post extends React.Component {
               <div className="comment-body">
                 <div className="comment-body-name">
                   <div className="comment-body-name1">
-                    User {comments.reverse()[1].commenter_id}
+                    {comments.reverse()[1].author.name}
                   </div>
                 </div>
                 <div className="comment-body-body">
@@ -152,19 +154,23 @@ class Post extends React.Component {
 
   render() {
 
-    const { title, body, images, comments } = this.props.post;
+    const { title, body, images } = this.props.post;
     const createdAt = this.props.post.created_at;
     const videoUrl = this.props.post.video_url;
     const  { currentUserIsMember } = this.props;
     let date = new Moment(createdAt);
-    
+    let comments;
+    if (this.props.post.comments) {
+      comments = Object.values(this.props.post.comments);
+    }
+
     let imgStyle;
     if (images.length) {
       imgStyle = { display: "block"}
     } else {
       imgStyle = { display: "none"}
     }
-  
+    
   //   return (
   //     <>
   //       <ul className="post-list">
@@ -282,10 +288,10 @@ class Post extends React.Component {
                       <span>0 of 0</span>
                     </div>
                     <div className="post-comments2">
-                      {comments.length ? this.renderFirstComment() : null}
+                      {(comments && comments.length) ? this.renderFirstComment() : null}
                     </div>
                     <div className="post-comments3">
-                      {comments.length > 1 ? this.renderSecondComment() : null}
+                      {(comments && comments.length) > 1 ? this.renderSecondComment() : null}
                     </div>
                     <div className="post-comments4">
                       <div className="post-comments41">
