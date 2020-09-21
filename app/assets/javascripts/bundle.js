@@ -2641,6 +2641,10 @@ var Post = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.renderLike = _this.renderLike.bind(_assertThisInitialized(_this));
     _this.renderUnlike = _this.renderUnlike.bind(_assertThisInitialized(_this));
+    _this.state = {
+      likedByCurrentUser: false
+    };
+    _this.handleLike = _this.handleLike.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2657,6 +2661,19 @@ var Post = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "https://img.icons8.com/material-outlined/20/000000/filled-like.png"
       }));
+    }
+  }, {
+    key: "handleLike",
+    value: function handleLike() {
+      if (!this.state.likedByCurrentUser) {
+        this.setState({
+          likedByCurrentUser: true
+        });
+      } else {
+        this.setState({
+          likedByCurrentUser: false
+        });
+      }
     }
   }, {
     key: "render",
@@ -2771,8 +2788,9 @@ var Post = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-lower-left1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: this.handleLike,
         className: "post-lower-leftL"
-      }, this.renderLike()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.state.likedByCurrentUser ? this.renderUnlike() : this.renderLike()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-lower-leftM"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "https://img.icons8.com/ios/20/000000/upload.png"

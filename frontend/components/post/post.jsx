@@ -8,6 +8,10 @@ class Post extends React.Component {
     super(props);
     this.renderLike = this.renderLike.bind(this);
     this.renderUnlike = this.renderUnlike.bind(this);
+    this.state = {
+      likedByCurrentUser: false
+    }
+    this.handleLike = this.handleLike.bind(this);
   }
 
   renderUnlike() {
@@ -24,6 +28,16 @@ class Post extends React.Component {
         <img src="https://img.icons8.com/material-outlined/20/000000/filled-like.png" />
       </>
     )
+  }
+
+  handleLike() {
+    if (!this.state.likedByCurrentUser) {
+      
+      this.setState({ likedByCurrentUser: true })
+    } else {
+      
+      this.setState({ likedByCurrentUser: false })
+    }
   }
 
   render() {
@@ -131,8 +145,8 @@ class Post extends React.Component {
                     <div className="post-lower1">
                       <div className="post-lower-left">
                         <div className="post-lower-left1">
-                          <div className="post-lower-leftL">
-                            {this.renderLike()}
+                          <div onClick={this.handleLike} className="post-lower-leftL">
+                            {this.state.likedByCurrentUser ? this.renderUnlike() : this.renderLike()}
                           </div>
                           <div className="post-lower-leftM">
                             <img src="https://img.icons8.com/ios/20/000000/upload.png" />
