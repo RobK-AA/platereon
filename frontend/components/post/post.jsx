@@ -109,6 +109,23 @@ class Post extends React.Component {
                   <div className="post-body1">
                     <p className="post-body2">{body}</p>
                   </div>
+                  <div className="post-lower">
+                    <div className="post-lower1">
+                      <div className="post-lower-left">
+                        <div className="post-lower-left1">
+                          <div className="post-lower-leftL">
+                            <img src="https://img.icons8.com/ios/20/000000/upload.png" />
+                          </div>
+                          <div className="post-lower-leftR">
+                            <img src="https://img.icons8.com/windows/20/000000/ellipsis.png" />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="post-lower-right">
+                        
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
