@@ -2,6 +2,7 @@ import React from 'react';
 // import Moment from 'react-moment';
 import Moment from "moment";
 import ReactPlayer from 'react-player';
+import CommentFormContainer from "../comment/comment_form_container";
 
 class Post extends React.Component {
   
@@ -10,10 +11,28 @@ class Post extends React.Component {
     this.renderLike = this.renderLike.bind(this);
     this.renderUnlike = this.renderUnlike.bind(this);
     this.state = {
-      likedByCurrentUser: false
+      likedByCurrentUser: false,
+      postComment: {
+        body: "",
+        commenter_id: this.props.currentUser.id,
+        commentable_id: null,
+        commentable_type: "Post"
+      },
+      commentComment: {
+        body: "",
+        commenter_id: this.props.currentUser.id,
+        commentable_id: null,
+        commentable_type: "Comment"
+      }
     }
     this.handleLike = this.handleLike.bind(this);
-    
+  }
+
+  updatePostComment() {
+    return e => this.setState({ [postComment]: {
+      body: e.target.value ,
+      commentable_id: this.props.post.id
+    }})
   }
 
   renderUnlike() {
@@ -37,8 +56,10 @@ class Post extends React.Component {
     const createdAt = this.props.post.created_at;
     let date = new Moment(createdAt);
     let days = parseInt(date.fromNow());
+    const firstCommentName = Object.values(this.props.post.comments).reverse()[0].author.name;
+    const firstCommentBody = Object.values(this.props.post.comments).reverse()[0].body;
     
-    return (
+    return (comments ?
       <>
         <div className="comment-outer1">
           <div className="comment-outer2">
@@ -54,13 +75,13 @@ class Post extends React.Component {
               <div className="comment-body">
                 <div className="comment-body-name">
                   <div className="comment-body-name1">
-                    {comments.reverse()[0].author.name}
+                    {firstCommentName}
                   </div>
                 </div>
                 <div className="comment-body-body">
                   <p>
                     <span>
-                      {Object.values(comments).reverse()[0].body}
+                      {firstCommentBody}
                     </span>
                   </p>
                 </div>
@@ -83,8 +104,8 @@ class Post extends React.Component {
             </div>
           </div>
         </div>
-      </>
-    )
+      </> : null
+    ) 
   }
 
   renderSecondComment() {
@@ -93,6 +114,8 @@ class Post extends React.Component {
     let date = new Moment(createdAt);
     let days = parseInt(date.fromNow());
 
+    const secondCommentName = Object.values(this.props.post.comments).reverse()[1].author.name;
+    const secondCommentBody = Object.values(this.props.post.comments).reverse()[1].body;
     return (
       <>
         <div className="comment-outer1">
@@ -109,13 +132,13 @@ class Post extends React.Component {
               <div className="comment-body">
                 <div className="comment-body-name">
                   <div className="comment-body-name1">
-                    {comments.reverse()[1].author.name}
+                    {secondCommentName}
                   </div>
                 </div>
                 <div className="comment-body-body">
                   <p>
                     <span>
-                      {comments.reverse()[1].body}
+                      {secondCommentBody}
                     </span>
                   </p>
                 </div>
@@ -154,7 +177,7 @@ class Post extends React.Component {
 
   render() {
 
-    const { title, body, images } = this.props.post;
+    const { id, title, body, images } = this.props.post;
     const createdAt = this.props.post.created_at;
     const videoUrl = this.props.post.video_url;
     const  { currentUserIsMember } = this.props;
@@ -285,13 +308,15 @@ class Post extends React.Component {
                   <div className="post-comments">
                     <div className="post-comments1">
                       <div>Load more comments</div>
-                      <span>0 of 0</span>
+                      <span>{(comments && comments.length) ? 
+                      (comments.length > 1 ? "2" : "1")
+                      : "0"} of {(comments && comments.length) ? comments.length : "0"}</span>
                     </div>
                     <div className="post-comments2">
                       {(comments && comments.length) ? this.renderFirstComment() : null}
                     </div>
                     <div className="post-comments3">
-                      {(comments && comments.length) > 1 ? this.renderSecondComment() : null}
+                      {(comments && comments.length > 1) ? this.renderSecondComment() : null}
                     </div>
                     <div className="post-comments4">
                       <div className="post-comments41">
@@ -302,9 +327,13 @@ class Post extends React.Component {
                             </div>
                           </div>
                         </div>
-                        <div className="post-comments-comment">
-                          <textarea type="text" rows="1" placeholder="Join the conversation..." id="" cols="30" rows="10"></textarea>
-                        </div>
+                        <CommentFormContainer commentableType="Post" commentableId={id} />
+                        {/* <div className="post-comments-comment">
+                          <form onSubmit={this.submitComment}>
+                            <textarea onChange={this.updatePostComment} type="text" rows="1" placeholder="Join the conversation..." id="" cols="30" rows="10"></textarea>
+                          </form>
+                        </div> */}
+                        
                       </div>
                     </div>
                   </div>

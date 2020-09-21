@@ -3,6 +3,7 @@ import Post from './post';
 import { createPost, updatePost, deletePost } from '../../actions/post_actions';
 import { fetchCommunity } from '../../actions/community_actions';
 import { createMembership, deleteMembership } from "../../actions/membership_actions";
+import { createComment } from "../../actions/comment_actions";
 
 const msp = (state, ownProps) => {
   
@@ -16,6 +17,7 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => {
 
   return {
+    submitComment: comment => dispatch(createComment(comment)),
     fetchCommunity: communityId => dispatch(fetchCommunity(communityId)),
     joinCommunity: membership => dispatch(createMembership(membership)),
     unjoinCommunity: membershipId => dispatch(deleteMembership(membershipId)),

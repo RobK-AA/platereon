@@ -142,7 +142,6 @@ class PostForm extends React.Component {
     } else if (field === "communityId") {
       return e => this.setState({ [field]: parseInt($("option:selected").attr("name")) });
     }
-    
   }
 
   handleSubmit(e) {

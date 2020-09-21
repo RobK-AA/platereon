@@ -1341,7 +1341,11 @@ input[type='file'] {
   position: relative;
 }
 
-.post-comments-comment > textarea {
+.post-comments-comment > form {
+  width: 100%;
+}
+
+.post-comments-comment p {
     font: inherit;
     margin: 0px;
     overflow: auto;
