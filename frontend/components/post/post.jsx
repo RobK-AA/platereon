@@ -6,6 +6,24 @@ import ReactPlayer from 'react-player';
 class Post extends React.Component {
   constructor(props) {
     super(props);
+    this.renderLike = this.renderLike.bind(this);
+    this.renderUnlike = this.renderUnlike.bind(this);
+  }
+
+  renderUnlike() {
+    return (
+      <>
+        <img src="https://img.icons8.com/fluent/20/000000/filled-like.png" />
+      </>
+    )
+  }
+
+  renderLike() {
+    return (
+      <>
+        <img src="https://img.icons8.com/material-outlined/20/000000/filled-like.png" />
+      </>
+    )
   }
 
   render() {
@@ -114,6 +132,9 @@ class Post extends React.Component {
                       <div className="post-lower-left">
                         <div className="post-lower-left1">
                           <div className="post-lower-leftL">
+                            {this.renderLike()}
+                          </div>
+                          <div className="post-lower-leftM">
                             <img src="https://img.icons8.com/ios/20/000000/upload.png" />
                           </div>
                           <div className="post-lower-leftR">
@@ -122,7 +143,11 @@ class Post extends React.Component {
                         </div>
                       </div>
                       <div className="post-lower-right">
-                        
+                        <div className="post-lower-right1">
+                          <div className="like-counter">
+                            0 Likes
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

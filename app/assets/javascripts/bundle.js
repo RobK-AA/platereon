@@ -2634,12 +2634,31 @@ var Post = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(Post);
 
   function Post(props) {
+    var _this;
+
     _classCallCheck(this, Post);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.renderLike = _this.renderLike.bind(_assertThisInitialized(_this));
+    _this.renderUnlike = _this.renderUnlike.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Post, [{
+    key: "renderUnlike",
+    value: function renderUnlike() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://img.icons8.com/fluent/20/000000/filled-like.png"
+      }));
+    }
+  }, {
+    key: "renderLike",
+    value: function renderLike() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://img.icons8.com/material-outlined/20/000000/filled-like.png"
+      }));
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props$post = this.props.post,
@@ -2753,6 +2772,8 @@ var Post = /*#__PURE__*/function (_React$Component) {
         className: "post-lower-left1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-lower-leftL"
+      }, this.renderLike()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "post-lower-leftM"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "https://img.icons8.com/ios/20/000000/upload.png"
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2761,7 +2782,11 @@ var Post = /*#__PURE__*/function (_React$Component) {
         src: "https://img.icons8.com/windows/20/000000/ellipsis.png"
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-lower-right"
-      })))))))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "post-lower-right1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "like-counter"
+      }, "0 Likes")))))))))));
     }
   }]);
 
