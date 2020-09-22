@@ -2860,7 +2860,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
 
     _this.props.getPosts(_this.props.community.id);
 
-    _this.rerenderParentCallback = _this.rerenderParentCallback.bind(_assertThisInitialized(_this));
+    _this.rerenderParentCallback = _this.rerenderParentCallback.bind(_assertThisInitialized(_this)); // this.loadMoreComments = this.loadMoreComments.bind(this);
 
     if (_this.props.post && _this.props.post.comments) {
       _this.state = {
@@ -2959,10 +2959,6 @@ var Post = /*#__PURE__*/function (_React$Component) {
         time = "today";
       }
 
-      if (!time) {
-        time = "today";
-      }
-
       return comments ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-outer1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3018,10 +3014,6 @@ var Post = /*#__PURE__*/function (_React$Component) {
         time = "today";
       }
 
-      if (!time) {
-        time = "today";
-      }
-
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-outer1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3059,14 +3051,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-time"
       }, time))))));
-    } // handleLike(like) {
-    //   if (like) {
-    //     return this.unlike;
-    //   } else {
-    //     return this.like;
-    //   }
-    // }
-
+    }
   }, {
     key: "handleLike",
     value: function handleLike(e) {
@@ -3122,12 +3107,20 @@ var Post = /*#__PURE__*/function (_React$Component) {
           id = _this$props$post.id,
           title = _this$props$post.title,
           body = _this$props$post.body,
-          images = _this$props$post.images;
+          images = _this$props$post.images,
+          likes = _this$props$post.likes;
       var createdAt = this.props.post.created_at;
       var videoUrl = this.props.post.video_url;
       var currentUserIsMember = this.props.currentUserIsMember;
       var date = new moment__WEBPACK_IMPORTED_MODULE_1___default.a(createdAt);
       var comments;
+      var numLikes;
+
+      if (likes) {
+        numLikes = Object.values(likes).length;
+      } else {
+        numLikes = 0;
+      }
 
       if (this.props.post.comments) {
         comments = Object.values(this.props.post.comments);
@@ -3226,13 +3219,14 @@ var Post = /*#__PURE__*/function (_React$Component) {
         className: "post-lower-right1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "like-counter"
-      }, "0 Likes"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "".concat(numLikes, " Likes")))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-comments"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-comments1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Load more comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, comments && comments.length ? comments.length > 1 ? "2" : "1" : "0", " ", "of ", comments && comments.length ? comments.length : "0")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-comments2"
       }, comments && comments.length ? this.renderFirstComment() : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "commentsPreview",
         className: "post-comments3"
       }, comments && comments.length > 1 ? this.renderSecondComment() : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-comments4"

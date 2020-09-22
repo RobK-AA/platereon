@@ -9,6 +9,7 @@ class Post extends React.Component {
     super(props);
     this.props.getPosts(this.props.community.id);
     this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
+    // this.loadMoreComments = this.loadMoreComments.bind(this);
 
     if (this.props.post && this.props.post.comments) {
       this.state = {
@@ -113,9 +114,7 @@ class Post extends React.Component {
       time = "today";
     }
 
-    if (!time) {
-      time = "today";
-    }
+    
 
     return comments ? (
       <>
@@ -178,9 +177,7 @@ class Post extends React.Component {
       time = "today";
     }
 
-    if (!time) {
-      time = "today";
-    }
+    
 
     return (
       <>
@@ -223,14 +220,6 @@ class Post extends React.Component {
       </>
     );
   }
-
-  // handleLike(like) {
-  //   if (like) {
-  //     return this.unlike;
-  //   } else {
-  //     return this.like;
-  //   }
-  // }
 
   handleLike(e) {
     e.preventDefault();
@@ -285,12 +274,20 @@ class Post extends React.Component {
   // }
 
   render() {
-    const { id, title, body, images } = this.props.post;
+    const { id, title, body, images, likes } = this.props.post;
     const createdAt = this.props.post.created_at;
     const videoUrl = this.props.post.video_url;
     const { currentUserIsMember } = this.props;
     let date = new Moment(createdAt);
     let comments;
+    let numLikes;
+
+    if (likes) {
+      numLikes = Object.values(likes).length;
+    } else {
+      numLikes = 0;
+    }
+
     if (this.props.post.comments) {
       comments = Object.values(this.props.post.comments);
     }
@@ -380,14 +377,14 @@ class Post extends React.Component {
                       </div>
                       <div className="post-lower-right">
                         <div className="post-lower-right1">
-                          <div className="like-counter">0 Likes</div>
+                          <div className="like-counter">{`${numLikes} Likes`}</div>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className="post-comments">
                     <div className="post-comments1">
-                      <div>Load more comments</div>
+                      <div /* onClick={this.loadMoreComments} */>Load more comments</div>
                       <span>
                         {comments && comments.length
                           ? comments.length > 1
@@ -402,7 +399,7 @@ class Post extends React.Component {
                         ? this.renderFirstComment()
                         : null}
                     </div>
-                    <div className="post-comments3">
+                    <div id="commentsPreview" className="post-comments3">
                       {comments && comments.length > 1
                         ? this.renderSecondComment()
                         : null}
