@@ -28,10 +28,10 @@ export const like = like => dispatch => {
   )
 };
 
-export const unlike = (like) => (dispatch) => {
-  return LikeApiUtil.unlike(like).then(
-    (like) => {
-      return dispatch(removeLike(like));
+export const unlike = (likeId) => (dispatch) => {
+  return LikeApiUtil.unlike(likeId).then(
+    (likeId) => {
+      return dispatch(removeLike(likeId));
     },
     (errors) => dispatch(receiveErrors(errors.responseJSON))
   );

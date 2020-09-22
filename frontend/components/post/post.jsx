@@ -5,10 +5,9 @@ import ReactPlayer from 'react-player';
 import CommentFormContainer from "../comment/comment_form_container";
 
 class Post extends React.Component {
-  
   constructor(props) {
     super(props);
-    
+
     this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
     this.state = this.props.post;
     // this.state = {
@@ -28,42 +27,61 @@ class Post extends React.Component {
     // }
     // this.renderLike = this.renderLike.bind(this);
     // this.renderUnlike = this.renderUnlike.bind(this);
-    // this.handleLike = this.handleLike.bind(this);
+    this.handleLike = this.handleLike.bind(this);
+    this.like = this.like.bind(this);
+    this.unlike = this.unlike.bind(this);
   }
 
   updatePostComment() {
-    return e => this.setState({ [postComment]: {
-      body: e.target.value ,
-      commentable_id: this.props.post.id
-    }})
+    return (e) =>
+      this.setState({
+        [postComment]: {
+          body: e.target.value,
+          commentable_id: this.props.post.id,
+        },
+      });
   }
 
   renderUnlike() {
+    const { likedByCurrentUser } = this.props;
+    debugger
     return (
       <>
-        <img src="https://img.icons8.com/fluent/20/000000/filled-like.png" />
+        <img
+          onClick={this.handleLike(likedByCurrentUser)}
+          src="https://img.icons8.com/fluent/20/000000/filled-like.png"
+        />
       </>
-    )
+    );
   }
 
   renderLike() {
+    const { likedByCurrentUser } = this.props;
+    debugger
     return (
       <>
-        <img src="https://img.icons8.com/material-outlined/20/000000/filled-like.png" />
+        <img
+          onClick={this.handleLike(likedByCurrentUser)}
+          src="https://img.icons8.com/material-outlined/20/000000/filled-like.png"
+        />
       </>
-    )
+    );
   }
 
   rerenderParentCallback() {
-   
     this.forceUpdate();
   }
 
   renderFirstComment() {
     const comments = Object.values(this.props.post.comments);
-    const firstCommentName = Object.values(this.props.post.comments).reverse()[0].author.name;
-    const firstCommentBody = Object.values(this.props.post.comments).reverse()[0].body;
-    const createdAt = Object.values(this.props.post.comments).reverse()[0].created_at;
+    const firstCommentName = Object.values(
+      this.props.post.comments
+    ).reverse()[0].author.name;
+    const firstCommentBody = Object.values(
+      this.props.post.comments
+    ).reverse()[0].body;
+    const createdAt = Object.values(this.props.post.comments).reverse()[0]
+      .created_at;
     let date = new Moment(createdAt);
     let days = `${parseInt(date.fromNow())}d`;
     let time;
@@ -73,12 +91,12 @@ class Post extends React.Component {
     } else {
       time = "today";
     }
-    
+
     if (!time) {
-      time = "today"
+      time = "today";
     }
 
-    return (comments ?
+    return comments ? (
       <>
         <div className="comment-outer1">
           <div className="comment-outer2">
@@ -86,22 +104,17 @@ class Post extends React.Component {
               <div className="commenter-logo">
                 <div className="commenter-logo1">
                   <span className="commenter-log2">
-                    <div className="commenter-logo3">
-                    </div>
+                    <div className="commenter-logo3"></div>
                   </span>
                 </div>
               </div>
               <div className="comment-body">
                 <div className="comment-body-name">
-                  <div className="comment-body-name1">
-                    {firstCommentName}
-                  </div>
+                  <div className="comment-body-name1">{firstCommentName}</div>
                 </div>
                 <div className="comment-body-body">
                   <p>
-                    <span>
-                      {firstCommentBody}
-                    </span>
+                    <span>{firstCommentBody}</span>
                   </p>
                 </div>
                 <div className="comment-body-icons">
@@ -116,22 +129,25 @@ class Post extends React.Component {
             </div>
             <div className="comment-right">
               <span>
-                <div className="comment-time">
-                  {time}
-                </div>
+                <div className="comment-time">{time}</div>
               </span>
             </div>
           </div>
         </div>
-      </> : null
-    ) 
+      </>
+    ) : null;
   }
 
   renderSecondComment() {
     const comments = Object.values(this.props.post.comments);
-    const secondCommentName = Object.values(this.props.post.comments).reverse()[1].author.name;
-    const secondCommentBody = Object.values(this.props.post.comments).reverse()[1].body;
-    const createdAt = Object.values(this.props.post.comments).reverse()[1].created_at;
+    const secondCommentName = Object.values(
+      this.props.post.comments
+    ).reverse()[1].author.name;
+    const secondCommentBody = Object.values(
+      this.props.post.comments
+    ).reverse()[1].body;
+    const createdAt = Object.values(this.props.post.comments).reverse()[1]
+      .created_at;
     let date = new Moment(createdAt);
     let days = `${parseInt(date.fromNow())}d`;
     let time;
@@ -142,9 +158,9 @@ class Post extends React.Component {
     }
 
     if (!time) {
-      time = "today"
+      time = "today";
     }
-    
+
     return (
       <>
         <div className="comment-outer1">
@@ -153,22 +169,17 @@ class Post extends React.Component {
               <div className="commenter-logo">
                 <div className="commenter-logo1">
                   <span className="commenter-log2">
-                    <div className="commenter-logo3">
-                    </div>
+                    <div className="commenter-logo3"></div>
                   </span>
                 </div>
               </div>
               <div className="comment-body">
                 <div className="comment-body-name">
-                  <div className="comment-body-name1">
-                    {secondCommentName}
-                  </div>
+                  <div className="comment-body-name1">{secondCommentName}</div>
                 </div>
                 <div className="comment-body-body">
                   <p>
-                    <span>
-                      {secondCommentBody}
-                    </span>
+                    <span>{secondCommentBody}</span>
                   </p>
                 </div>
                 <div className="comment-body-icons">
@@ -183,33 +194,49 @@ class Post extends React.Component {
             </div>
             <div className="comment-right">
               <span>
-                <div className="comment-time">
-                  {time}
-                </div>
+                <div className="comment-time">{time}</div>
               </span>
             </div>
           </div>
         </div>
       </>
-    )
+    );
   }
 
-  // handleLike() {
-  //   if (!this.state.likedByCurrentUser) {
-      
-  //     this.setState({ likedByCurrentUser: true })
-  //   } else {
-      
-  //     this.setState({ likedByCurrentUser: false })
-  //   }
-  // }
+  handleLike(like) {
+    if (like) {
+      debugger
+      return this.unlike;
+    } else {
+      debugger
+      return this.like;
+    }
+  }
+
+  like(e) {
+    e.preventDefault();
+    const { currentUser } = this.props;
+    const id = this.props.post.id;
+    debugger
+    this.props.likePost({
+      liker_id: currentUser.id,
+      likeable_id: id,
+      likeable_type: "Post",
+    });
+  }
+
+  unlike(e) {
+    e.preventDefault();
+    const { likeId } = this.props;
+    debugger
+    this.props.unlikePost(likeId);
+  }
 
   render() {
-
     const { id, title, body, images } = this.props.post;
     const createdAt = this.props.post.created_at;
     const videoUrl = this.props.post.video_url;
-    const  { currentUserIsMember } = this.props;
+    const { currentUserIsMember } = this.props;
     let date = new Moment(createdAt);
     let comments;
     if (this.props.post.comments) {
@@ -218,12 +245,12 @@ class Post extends React.Component {
 
     let imgStyle;
     if (images.length) {
-      imgStyle = { display: "block"}
+      imgStyle = { display: "block" };
     } else {
-      imgStyle = { display: "none"}
+      imgStyle = { display: "none" };
     }
-    
-   
+    debugger;
+
     return (
       <div className="post5">
         <div className="post4">
@@ -240,10 +267,7 @@ class Post extends React.Component {
                       </ul>
                     ) : null}
                     {videoUrl ? (
-                      <ReactPlayer
-                        className="react-player"
-                        url={videoUrl}
-                      />
+                      <ReactPlayer className="react-player" url={videoUrl} />
                     ) : null}
                   </div>
                 </div>
@@ -290,8 +314,13 @@ class Post extends React.Component {
                     <div className="post-lower1">
                       <div className="post-lower-left">
                         <div className="post-lower-left1">
-                          <div /* onClick={this.handleLike} */className="post-lower-leftL"> 
-                            {/* this.state.likedByCurrentUser ? this.renderUnlike() :*/ this.renderLike()}
+                          <div
+                            
+                            className="post-lower-leftL"
+                          >
+                            {this.props.likedByCurrentUser
+                              ? this.renderUnlike()
+                              : this.renderLike()}
                           </div>
                           <div className="post-lower-leftM">
                             <img src="https://img.icons8.com/ios/20/000000/upload.png" />
@@ -303,9 +332,7 @@ class Post extends React.Component {
                       </div>
                       <div className="post-lower-right">
                         <div className="post-lower-right1">
-                          <div className="like-counter">
-                            0 Likes
-                          </div>
+                          <div className="like-counter">0 Likes</div>
                         </div>
                       </div>
                     </div>
@@ -313,26 +340,37 @@ class Post extends React.Component {
                   <div className="post-comments">
                     <div className="post-comments1">
                       <div>Load more comments</div>
-                      <span>{(comments && comments.length) ? 
-                      (comments.length > 1 ? "2" : "1")
-                      : "0"} of {(comments && comments.length) ? comments.length : "0"}</span>
+                      <span>
+                        {comments && comments.length
+                          ? comments.length > 1
+                            ? "2"
+                            : "1"
+                          : "0"}{" "}
+                        of {comments && comments.length ? comments.length : "0"}
+                      </span>
                     </div>
                     <div className="post-comments2">
-                      {(comments && comments.length) ? this.renderFirstComment() : null}
+                      {comments && comments.length
+                        ? this.renderFirstComment()
+                        : null}
                     </div>
                     <div className="post-comments3">
-                      {(comments && comments.length > 1) ? this.renderSecondComment() : null}
+                      {comments && comments.length > 1
+                        ? this.renderSecondComment()
+                        : null}
                     </div>
                     <div className="post-comments4">
                       <div className="post-comments41">
                         <div className="post-comments-logo">
                           <div className="post-comments-logo1">
-                            <div className="post-comments-logo2">
-
-                            </div>
+                            <div className="post-comments-logo2"></div>
                           </div>
                         </div>
-                        <CommentFormContainer rerenderParentCallback={this.rerenderParentCallback} commentableType="Post" commentableId={id} />
+                        <CommentFormContainer
+                          rerenderParentCallback={this.rerenderParentCallback}
+                          commentableType="Post"
+                          commentableId={id}
+                        />
                       </div>
                     </div>
                   </div>

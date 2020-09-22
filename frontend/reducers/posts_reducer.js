@@ -25,7 +25,7 @@ const PostsReducer = (oldState = {}, action) => {
       return newState;
     case RECEIVE_COMMENT:
       if (action.comment.commentable_type === "Post") {
-        return commentMerge(oldState, action.comment)
+        return commentMerge(oldState, action.like)
       }
       return oldState;
     case REMOVE_POST:

@@ -297,10 +297,10 @@ var like = function like(_like) {
     });
   };
 };
-var unlike = function unlike(like) {
+var unlike = function unlike(likeId) {
   return function (dispatch) {
-    return _util_like_api_util__WEBPACK_IMPORTED_MODULE_0__["unlike"](like).then(function (like) {
-      return dispatch(removeLike(like));
+    return _util_like_api_util__WEBPACK_IMPORTED_MODULE_0__["unlike"](likeId).then(function (likeId) {
+      return dispatch(removeLike(likeId));
     }, function (errors) {
       return dispatch(receiveErrors(errors.responseJSON));
     });
@@ -1031,7 +1031,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
     //   this.id = this.props.community.id || "";
     // }
 
-    _this.name = _this.props.community.name || localStorage.getItem("community").name;
+    _this.name = _this.props.community.name || "";
     _this.description = _this.props.community.description || "";
     _this.shortDesc = _this.props.community.short_description || "";
     _this.goldPerks = _this.props.community.gold_perks || "";
@@ -1179,6 +1179,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
     value: function renderPosts() {
       if (this.state.currentUserIsMember) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_post_posts_index__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          community: this.props.community,
           currentUserIsMember: this.state.currentUserIsMember,
           posts: this.props.posts
         });
@@ -2875,8 +2876,10 @@ var Post = /*#__PURE__*/function (_React$Component) {
     // }
     // this.renderLike = this.renderLike.bind(this);
     // this.renderUnlike = this.renderUnlike.bind(this);
-    // this.handleLike = this.handleLike.bind(this);
 
+    _this.handleLike = _this.handleLike.bind(_assertThisInitialized(_this));
+    _this.like = _this.like.bind(_assertThisInitialized(_this));
+    _this.unlike = _this.unlike.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2895,14 +2898,20 @@ var Post = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "renderUnlike",
     value: function renderUnlike() {
+      var likedByCurrentUser = this.props.likedByCurrentUser;
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        onClick: this.handleLike(likedByCurrentUser),
         src: "https://img.icons8.com/fluent/20/000000/filled-like.png"
       }));
     }
   }, {
     key: "renderLike",
     value: function renderLike() {
+      var likedByCurrentUser = this.props.likedByCurrentUser;
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        onClick: this.handleLike(likedByCurrentUser),
         src: "https://img.icons8.com/material-outlined/20/000000/filled-like.png"
       }));
     }
@@ -3028,14 +3037,39 @@ var Post = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-time"
       }, time))))));
-    } // handleLike() {
-    //   if (!this.state.likedByCurrentUser) {
-    //     this.setState({ likedByCurrentUser: true })
-    //   } else {
-    //     this.setState({ likedByCurrentUser: false })
-    //   }
-    // }
-
+    }
+  }, {
+    key: "handleLike",
+    value: function handleLike(like) {
+      if (like) {
+        debugger;
+        return this.unlike;
+      } else {
+        debugger;
+        return this.like;
+      }
+    }
+  }, {
+    key: "like",
+    value: function like(e) {
+      e.preventDefault();
+      var currentUser = this.props.currentUser;
+      var id = this.props.post.id;
+      debugger;
+      this.props.likePost({
+        liker_id: currentUser.id,
+        likeable_id: id,
+        likeable_type: "Post"
+      });
+    }
+  }, {
+    key: "unlike",
+    value: function unlike(e) {
+      e.preventDefault();
+      var likeId = this.props.likeId;
+      debugger;
+      this.props.unlikePost(likeId);
+    }
   }, {
     key: "render",
     value: function render() {
@@ -3066,6 +3100,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
         };
       }
 
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3132,11 +3167,8 @@ var Post = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-lower-left1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        /* onClick={this.handleLike} */
         className: "post-lower-leftL"
-      },
-      /* this.state.likedByCurrentUser ? this.renderUnlike() :*/
-      this.renderLike()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.props.likedByCurrentUser ? this.renderUnlike() : this.renderLike()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-lower-leftM"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "https://img.icons8.com/ios/20/000000/upload.png"
@@ -3154,7 +3186,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
         className: "post-comments"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-comments1"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Load more comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, comments && comments.length ? comments.length > 1 ? "2" : "1" : "0", " of ", comments && comments.length ? comments.length : "0")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Load more comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, comments && comments.length ? comments.length > 1 ? "2" : "1" : "0", " ", "of ", comments && comments.length ? comments.length : "0")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-comments2"
       }, comments && comments.length ? this.renderFirstComment() : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-comments3"
@@ -3198,6 +3230,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_community_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/community_actions */ "./frontend/actions/community_actions.js");
 /* harmony import */ var _actions_membership_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/membership_actions */ "./frontend/actions/membership_actions.js");
 /* harmony import */ var _actions_comment_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/comment_actions */ "./frontend/actions/comment_actions.js");
+/* harmony import */ var _reducers_selectors__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../reducers/selectors */ "./frontend/reducers/selectors.js");
+/* harmony import */ var _actions_like_actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../actions/like_actions */ "./frontend/actions/like_actions.js");
+
+
 
 
 
@@ -3206,8 +3242,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
+  var currentUser = Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_6__["selectCurrentUser"])(state);
+  var likes = Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_6__["selectPostLikes"])(ownProps.post.id, state);
+  var like = likes ? likes[currentUser.id] : undefined;
+  var likeId = like ? like.id : undefined;
   return {
-    currentUser: state.entities.users[state.session.id],
+    post: ownProps.post,
+    currentUser: currentUser,
+    likes: likes,
+    likeId: likeId,
+    likedByCurrentUser: likes ? likes[currentUser.id] : undefined,
     memberships: Object.values(state.entities.memberships),
     posts: Object.values(state.entities.posts)
   };
@@ -3235,6 +3279,12 @@ var mdp = function mdp(dispatch) {
     },
     deletePost: function deletePost(postId) {
       return dispatch(Object(_actions_post_actions__WEBPACK_IMPORTED_MODULE_2__["deletePost"])(postId));
+    },
+    likePost: function likePost(likeObj) {
+      return dispatch(Object(_actions_like_actions__WEBPACK_IMPORTED_MODULE_7__["like"])(likeObj));
+    },
+    unlikePost: function unlikePost(likeId) {
+      return dispatch(Object(_actions_like_actions__WEBPACK_IMPORTED_MODULE_7__["unlike"])(likeId));
     }
   };
 };
@@ -3910,7 +3960,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var PostsIndex = function PostsIndex(_ref) {
   var posts = _ref.posts,
-      currentUserIsMember = _ref.currentUserIsMember;
+      currentUserIsMember = _ref.currentUserIsMember,
+      community = _ref.community;
   return posts ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "post-list-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3921,6 +3972,7 @@ var PostsIndex = function PostsIndex(_ref) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       key: "post-".concat(i)
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_post_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      community: community,
       currentUserIsMember: currentUserIsMember,
       key: i,
       post: post
@@ -5602,7 +5654,7 @@ var PostsReducer = function PostsReducer() {
 
     case _actions_comment_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_COMMENT"]:
       if (action.comment.commentable_type === "Post") {
-        return Object(_comments_merge__WEBPACK_IMPORTED_MODULE_5__["default"])(oldState, action.comment);
+        return Object(_comments_merge__WEBPACK_IMPORTED_MODULE_5__["default"])(oldState, action.like);
       }
 
       return oldState;
@@ -5675,6 +5727,26 @@ var SearchReducer = function SearchReducer() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SearchReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/selectors.js":
+/*!****************************************!*\
+  !*** ./frontend/reducers/selectors.js ***!
+  \****************************************/
+/*! exports provided: selectCurrentUser, selectPostLikes */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectCurrentUser", function() { return selectCurrentUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "selectPostLikes", function() { return selectPostLikes; });
+var selectCurrentUser = function selectCurrentUser(state) {
+  return state.entities.users[state.session.id];
+};
+var selectPostLikes = function selectPostLikes(postId, state) {
+  return state.entities.posts[postId].likes;
+};
 
 /***/ }),
 

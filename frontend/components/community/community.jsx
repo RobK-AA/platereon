@@ -21,7 +21,7 @@ class Community extends React.Component {
     //   this.creatorId = this.props.community.creator_id || "";
     //   this.id = this.props.community.id || "";
     // }
-    this.name = this.props.community.name || localStorage.getItem("community").name;
+    this.name = this.props.community.name || "";
     this.description = this.props.community.description || "";
     this.shortDesc = this.props.community.short_description || "";
     this.goldPerks = this.props.community.gold_perks || "";
@@ -171,7 +171,7 @@ class Community extends React.Component {
   renderPosts() {
     if (this.state.currentUserIsMember) {
       
-      return <PostsIndex currentUserIsMember={this.state.currentUserIsMember} posts={this.props.posts} />;
+      return <PostsIndex community={this.props.community} currentUserIsMember={this.state.currentUserIsMember} posts={this.props.posts} />;
     }
   }
 
