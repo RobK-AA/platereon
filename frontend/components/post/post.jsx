@@ -222,7 +222,7 @@ class Post extends React.Component {
     } else {
       imgStyle = { display: "none"}
     }
-    debugger
+    
    
     return (
       <div className="post5">

@@ -14,7 +14,7 @@ class Api::CommentsController < ApplicationController
   end
 
   def update
-    @comment = Comment.includes(:commenter, :comments).find(params[:id])
+    @comment = Comment.includes(:commenter, :comments, :likes).find(params[:id])
 
     if @comment.update(comment_params)
       render :show

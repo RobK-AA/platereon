@@ -2,7 +2,7 @@ class Api::PostsController < ApplicationController
 
   def index
     community_id = params[:community_id]
-    @posts = Post.select("*").where("posts.community_id = ?", community_id).order("created_at DESC").with_attached_images
+    @posts = Post.includes(:author, :community, :comments, :likes).select("*").where("posts.community_id = ?", community_id).order("created_at DESC").with_attached_images
     
     render :index
   end
@@ -19,13 +19,13 @@ class Api::PostsController < ApplicationController
   end
 
   def show
-    @post = Post.includes(:author, :community, :comments).find_by(id: params[:id])
+    @post = Post.includes(:author, :community, :comments, :likes).find_by(id: params[:id])
                 .with_attached_images
     render :show
   end
 
   def update
-    @post = Post.includes(:author, :community, :comments).find_by(id: params[:id]).with_attached_images
+    @post = Post.includes(:author, :community, :comments, :likes).find_by(id: params[:id]).with_attached_images
 
     if @post.update(post_params)
       render :show

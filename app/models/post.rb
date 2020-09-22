@@ -13,5 +13,12 @@ class Post < ApplicationRecord
 
   has_many :comments, as: :commentable, dependent: :destroy
 
+  has_many :likes, as: :likeable, dependent: :destroy
+
+  has_many :likers,
+    through: :likes,
+    source: :liker,
+    dependent: :destroy
+
   has_many_attached :images
 end
