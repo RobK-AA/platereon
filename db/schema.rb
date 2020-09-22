@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_19_190411) do
+ActiveRecord::Schema.define(version: 2020_09_22_122459) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,16 @@ ActiveRecord::Schema.define(version: 2020_09_19_190411) do
     t.boolean "plural", default: false
     t.index ["creator_id"], name: "index_communities_on_creator_id"
     t.index ["description"], name: "index_communities_on_description"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "liker_id", null: false
+    t.integer "likeable_id", null: false
+    t.string "likeable_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["likeable_id"], name: "index_likes_on_likeable_id"
+    t.index ["liker_id"], name: "index_likes_on_liker_id"
   end
 
   create_table "memberships", force: :cascade do |t|
