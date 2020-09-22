@@ -2857,6 +2857,9 @@ var Post = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Post);
 
     _this = _super.call(this, props);
+
+    _this.props.getPosts(_this.props.community.id);
+
     _this.rerenderParentCallback = _this.rerenderParentCallback.bind(_assertThisInitialized(_this));
 
     if (_this.props.post && _this.props.post.comments) {
@@ -2866,7 +2869,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
       };
     } else {
       _this.state = {
-        likedByCurrentUser: false,
+        likedByCurrentUser: _this.props.likedByCurrentUser,
         numComments: 0
       };
     } // this.state = {
@@ -2897,6 +2900,11 @@ var Post = /*#__PURE__*/function (_React$Component) {
   _createClass(Post, [{
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
+      this.props.getPosts(this.props.community.id);
+    }
+  }, {
+    key: "componentDidCatch",
+    value: function componentDidCatch() {
       this.props.getPosts(this.props.community.id);
     }
   }, {
@@ -5561,7 +5569,7 @@ var likeMerge = function likeMerge() {
   Object.freeze(oldState);
   var likeState = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["merge"])({}, oldState[like.likeable_id]);
   var newLike = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["merge"])({}, likeState, {
-    likes: _defineProperty({}, like.liker_id, like)
+    likes: _defineProperty({}, like.liker.id, like)
   });
   var likeId = newLike.id;
   return Object(lodash__WEBPACK_IMPORTED_MODULE_0__["merge"])({}, oldState, _defineProperty({}, likeId, newLike));
@@ -5688,7 +5696,7 @@ var PostsReducer = function PostsReducer() {
       return oldState;
 
     case _actions_like_actions__WEBPACK_IMPORTED_MODULE_2__["REMOVE_LIKE"]:
-      delete newState[action.like.likeable_id].likes[action.like.liker_id];
+      delete newState[action.like.likeable_id].likes[action.like.liker.id];
       return newState;
 
     case _actions_comment_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_COMMENT"]:

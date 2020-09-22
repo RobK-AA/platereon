@@ -21,7 +21,8 @@ const PostsReducer = (oldState = {}, action) => {
       }
       return oldState;
     case REMOVE_LIKE:
-      delete newState[action.like.likeable_id].likes[action.like.liker_id];
+      
+      delete newState[action.like.likeable_id].likes[action.like.liker.id];
       return newState;
     case RECEIVE_COMMENT:
       if (action.comment.commentable_type === "Post") {

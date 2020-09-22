@@ -7,7 +7,7 @@ import CommentFormContainer from "../comment/comment_form_container";
 class Post extends React.Component {
   constructor(props) {
     super(props);
-    
+    this.props.getPosts(this.props.community.id);
     this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
 
     if (this.props.post && this.props.post.comments) {
@@ -17,7 +17,7 @@ class Post extends React.Component {
       };
     } else {
       this.state = {
-        likedByCurrentUser: false,
+        likedByCurrentUser: this.props.likedByCurrentUser,
         numComments: 0,
       };
     }
@@ -45,6 +45,10 @@ class Post extends React.Component {
   }
 
   componentWillUnmount(){
+    this.props.getPosts(this.props.community.id);
+  }
+    
+  componentDidCatch() {
     this.props.getPosts(this.props.community.id);
   }
 
