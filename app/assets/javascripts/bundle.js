@@ -888,25 +888,23 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
           body: newBody.val()
         });
         this.props.submitComment(comment).then(function () {
-          newBody.attr("placeholder", "Join the conversation...").placeholder();
-        }).then(function () {
-          _this2.setState({
-            body: ""
-          });
+          newBody.attr("placeholder", "Join the conversation...");
+        }).then(this.setState({
+          body: ""
+        })).then(function () {
+          _this2.props.rerenderParentCallback();
         });
-        /*.then(() => {
-          this.props.rerenderParentCallback();
-        })*/
       }
     }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {}
   }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-comments-comment"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.submitComment
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", _defineProperty({
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", _defineProperty({
         role: "textbox",
         onKeyPress: this.submitComment,
         type: "text",
@@ -2858,16 +2856,17 @@ var Post = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, Post);
 
-    _this = _super.call(this, props); // this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
+    _this = _super.call(this, props);
+    _this.rerenderParentCallback = _this.rerenderParentCallback.bind(_assertThisInitialized(_this));
 
-    if (_this.props.post.comments) {
+    if (_this.props.post && _this.props.post.comments) {
       _this.state = {
         likedByCurrentUser: _this.props.likedByCurrentUser,
         numComments: _this.props.post.comments.length
       };
     } else {
       _this.state = {
-        likedByCurrentUser: _this.props.likedByCurrentUser,
+        likedByCurrentUser: false,
         numComments: 0
       };
     } // this.state = {
@@ -2896,6 +2895,11 @@ var Post = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Post, [{
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.getPosts(this.props.community.id);
+    }
+  }, {
     key: "updatePostComment",
     value: function updatePostComment() {
       var _this2 = this;
@@ -2924,10 +2928,12 @@ var Post = /*#__PURE__*/function (_React$Component) {
         onClick: this.handleLike,
         src: "https://img.icons8.com/material-outlined/20/000000/filled-like.png"
       }));
-    } // rerenderParentCallback() {
-    //   this.forceUpdate();
-    // }
-
+    }
+  }, {
+    key: "rerenderParentCallback",
+    value: function rerenderParentCallback() {
+      console.log("Hi"); // this.forceUpdate();
+    }
   }, {
     key: "renderFirstComment",
     value: function renderFirstComment() {
@@ -3062,7 +3068,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
           likeId = _this$props.likeId;
       var id = this.props.post.id;
 
-      if (!this.state.likedByCurrentUser) {
+      if (!this.props.likedByCurrentUser) {
         this.props.likePost({
           liker_id: currentUser.id,
           likeable_id: id,
@@ -3198,7 +3204,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
         className: "post-lower-left1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-lower-leftL"
-      }, this.props.likedByCurrentUser ? this.renderUnlike() : this.renderLike()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.state.likedByCurrentUser ? this.renderUnlike() : this.renderLike()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-lower-leftM"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "https://img.icons8.com/ios/20/000000/upload.png"
@@ -3230,9 +3236,8 @@ var Post = /*#__PURE__*/function (_React$Component) {
         className: "post-comments-logo1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-comments-logo2"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comment_comment_form_container__WEBPACK_IMPORTED_MODULE_3__["default"]
-      /*rerenderParentCallback={this.rerenderParentCallback} */
-      , {
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comment_comment_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        rerenderParentCallback: this.rerenderParentCallback,
         commentableType: "Post",
         commentableId: id
       }))))))))));
@@ -3301,6 +3306,9 @@ var mdp = function mdp(dispatch) {
     },
     unjoinCommunity: function unjoinCommunity(membershipId) {
       return dispatch(Object(_actions_membership_actions__WEBPACK_IMPORTED_MODULE_4__["deleteMembership"])(membershipId));
+    },
+    getPosts: function getPosts(communityId) {
+      return dispatch(Object(_actions_post_actions__WEBPACK_IMPORTED_MODULE_2__["fetchPosts"])(communityId));
     },
     submitPost: function submitPost(post) {
       return dispatch(Object(_actions_post_actions__WEBPACK_IMPORTED_MODULE_2__["createPost"])(post));
@@ -5685,7 +5693,7 @@ var PostsReducer = function PostsReducer() {
 
     case _actions_comment_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_COMMENT"]:
       if (action.comment.commentable_type === "Post") {
-        return Object(_comments_merge__WEBPACK_IMPORTED_MODULE_5__["default"])(oldState, action.like);
+        return Object(_comments_merge__WEBPACK_IMPORTED_MODULE_5__["default"])(oldState, action.comment);
       }
 
       return oldState;

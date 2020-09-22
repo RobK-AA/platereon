@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Post from './post';
-import { createPost, updatePost, deletePost } from '../../actions/post_actions';
+import { createPost, updatePost, deletePost, fetchPosts } from '../../actions/post_actions';
 import { fetchCommunity } from '../../actions/community_actions';
 import { createMembership, deleteMembership } from "../../actions/membership_actions";
 import { createComment } from "../../actions/comment_actions";
@@ -27,16 +27,17 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => {
   
   return {
-    submitComment: comment => dispatch(createComment(comment)),
-    fetchCommunity: communityId => dispatch(fetchCommunity(communityId)),
-    joinCommunity: membership => dispatch(createMembership(membership)),
-    unjoinCommunity: membershipId => dispatch(deleteMembership(membershipId)),
-    submitPost: post => dispatch(createPost(post)),
-    updatePost: post => dispatch(updatePost(post)),
-    deletePost: postId => dispatch(deletePost(postId)),
-    likePost: likeObj => dispatch(like(likeObj)),
-    unlikePost: likeId => dispatch(unlike(likeId)),
-  }
+    submitComment: (comment) => dispatch(createComment(comment)),
+    fetchCommunity: (communityId) => dispatch(fetchCommunity(communityId)),
+    joinCommunity: (membership) => dispatch(createMembership(membership)),
+    unjoinCommunity: (membershipId) => dispatch(deleteMembership(membershipId)),
+    getPosts: (communityId) => dispatch(fetchPosts(communityId)),
+    submitPost: (post) => dispatch(createPost(post)),
+    updatePost: (post) => dispatch(updatePost(post)),
+    deletePost: (postId) => dispatch(deletePost(postId)),
+    likePost: (likeObj) => dispatch(like(likeObj)),
+    unlikePost: (likeId) => dispatch(unlike(likeId)),
+  };
 };
 
 export default connect(msp, mdp)(Post);

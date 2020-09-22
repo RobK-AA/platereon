@@ -7,17 +7,17 @@ import CommentFormContainer from "../comment/comment_form_container";
 class Post extends React.Component {
   constructor(props) {
     super(props);
+    
+    this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
 
-    // this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
-
-    if (this.props.post.comments) {
+    if (this.props.post && this.props.post.comments) {
       this.state = {
         likedByCurrentUser: this.props.likedByCurrentUser,
         numComments: this.props.post.comments.length,
       };
     } else {
       this.state = {
-        likedByCurrentUser: this.props.likedByCurrentUser,
+        likedByCurrentUser: false,
         numComments: 0,
       };
     }
@@ -42,6 +42,10 @@ class Post extends React.Component {
     this.handleLike = this.handleLike.bind(this);
     // this.like = this.like.bind(this);
     // this.unlike = this.unlike.bind(this);
+  }
+
+  componentWillUnmount(){
+    this.props.getPosts(this.props.community.id);
   }
 
   updatePostComment() {
@@ -80,9 +84,10 @@ class Post extends React.Component {
     );
   }
 
-  // rerenderParentCallback() {
-  //   this.forceUpdate();
-  // }
+  rerenderParentCallback() {
+    console.log("Hi");
+    // this.forceUpdate();
+  }
 
   renderFirstComment() {
     const comments = Object.values(this.props.post.comments);
@@ -97,7 +102,7 @@ class Post extends React.Component {
     let date = new Moment(createdAt);
     let days = `${parseInt(date.fromNow())}d`;
     let time;
-
+    
     if (!!parseInt(date.fromNow)) {
       time = days;
     } else {
@@ -227,7 +232,7 @@ class Post extends React.Component {
     e.preventDefault();
     const { currentUser, likeId } = this.props;
     const id = this.props.post.id;
-    if (!this.state.likedByCurrentUser) {
+    if (!this.props.likedByCurrentUser) {
       this.props
         .likePost({
           liker_id: currentUser.id,
@@ -292,7 +297,7 @@ class Post extends React.Component {
     } else {
       imgStyle = { display: "none" };
     }
-
+    
     return (
       <div className="post5">
         <div className="post4">
@@ -357,7 +362,7 @@ class Post extends React.Component {
                       <div className="post-lower-left">
                         <div className="post-lower-left1">
                           <div className="post-lower-leftL">
-                            {this.props.likedByCurrentUser
+                            {this.state.likedByCurrentUser
                               ? this.renderUnlike()
                               : this.renderLike()}
                           </div>
@@ -406,7 +411,7 @@ class Post extends React.Component {
                           </div>
                         </div>
                         <CommentFormContainer
-                          /*rerenderParentCallback={this.rerenderParentCallback} */
+                          rerenderParentCallback={this.rerenderParentCallback} 
                           commentableType="Post"
                           commentableId={id}
                         />

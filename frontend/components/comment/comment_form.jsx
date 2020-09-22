@@ -17,24 +17,25 @@ class CommentForm extends React.Component {
       const comment = merge({}, this.props.comment, { body: newBody.val() });
   
       this.props.submitComment(comment).then(() => {
-        newBody.attr("placeholder", "Join the conversation...").placeholder()
-      }).then(() => { 
+        newBody.attr("placeholder", "Join the conversation...")
+      }).then(
 
           this.setState({
             body: ""
           })
-        })
-        /*.then(() => {
+        ).then(() => {
           this.props.rerenderParentCallback();
-        })*/
+        })
     }
   }
+  componentDidMount() {
 
+  }
   render() {
     return (
       <>
         <div className="post-comments-comment">
-          <form onSubmit={this.submitComment}>
+          <form >
             <textarea role="textbox" onKeyPress={this.submitComment}
             type="text" rows="1" placeholder="Join the conversation..." id="" cols="30" rows="1"></textarea>
           </form>
