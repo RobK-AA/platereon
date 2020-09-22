@@ -872,6 +872,8 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.submitComment = _this.submitComment.bind(_assertThisInitialized(_this));
+    _this.background = _this.background.bind(_assertThisInitialized(_this));
+    _this.revertBackground = _this.revertBackground.bind(_assertThisInitialized(_this));
     _this.state = _this.props.comment;
     return _this;
   }
@@ -881,7 +883,7 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
     value: function submitComment(e) {
       var _this2 = this;
 
-      if (e.key === 'Enter' || e.which === 13) {
+      if (e.key === "Enter" || e.which === 13) {
         e.preventDefault();
         var newBody = $(e.target);
         var comment = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, this.props.comment, {
@@ -897,20 +899,40 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
       }
     }
   }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {}
+    key: "background",
+    value: function background() {
+      $(".".concat(this.props.postId)).css({
+        "border-color": "rgb(0, 76, 129)",
+        "border-width": "1px",
+        "border-style": "solid",
+        "background": "white"
+      });
+    }
+  }, {
+    key: "revertBackground",
+    value: function revertBackground() {
+      $(".".concat(this.props.postId)).css({
+        "border-color": "#e5e3dd",
+        "border-width": "1px",
+        "border-style": "solid",
+        "background-color": "#f5f4f2"
+      });
+    }
   }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-comments-comment"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", _defineProperty({
+        className: this.props.postId,
+        onFocus: this.background,
+        onBlur: this.revertBackground,
         role: "textbox",
         onKeyPress: this.submitComment,
         type: "text",
         rows: "1",
         placeholder: "Join the conversation...",
-        id: "",
+        id: this.props.postId,
         cols: "30"
       }, "rows", "1")))));
     }
@@ -3219,13 +3241,13 @@ var Post = /*#__PURE__*/function (_React$Component) {
         className: "post-lower-right1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "like-counter"
-      }, "".concat(numLikes, " Likes")))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "".concat(numLikes, " "), numLikes === 1 ? "Like" : "Likes"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-comments"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-comments1"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Load more comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, comments && comments.length ? comments.length > 1 ? "2" : "1" : "0", " ", "of ", comments && comments.length ? comments.length : "0")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Load more comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, comments ? comments.length > 1 ? "2" : "1" : "0", " ", "of ", comments && comments.length ? comments.length : "0")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-comments2"
-      }, comments && comments.length ? this.renderFirstComment() : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, comments ? this.renderFirstComment() : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "commentsPreview",
         className: "post-comments3"
       }, comments && comments.length > 1 ? this.renderSecondComment() : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3239,6 +3261,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-comments-logo2"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comment_comment_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        postId: this.props.post.id,
         rerenderParentCallback: this.rerenderParentCallback,
         commentableType: "Post",
         commentableId: id

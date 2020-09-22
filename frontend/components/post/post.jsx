@@ -377,7 +377,7 @@ class Post extends React.Component {
                       </div>
                       <div className="post-lower-right">
                         <div className="post-lower-right1">
-                          <div className="like-counter">{`${numLikes} Likes`}</div>
+                            <div className="like-counter">{`${numLikes} `}{numLikes === 1 ? `Like` : `Likes`}</div>
                         </div>
                       </div>
                     </div>
@@ -386,7 +386,7 @@ class Post extends React.Component {
                     <div className="post-comments1">
                       <div /* onClick={this.loadMoreComments} */>Load more comments</div>
                       <span>
-                        {comments && comments.length
+                        {comments
                           ? comments.length > 1
                             ? "2"
                             : "1"
@@ -395,7 +395,7 @@ class Post extends React.Component {
                       </span>
                     </div>
                     <div className="post-comments2">
-                      {comments && comments.length
+                      {comments
                         ? this.renderFirstComment()
                         : null}
                     </div>
@@ -412,6 +412,7 @@ class Post extends React.Component {
                           </div>
                         </div>
                         <CommentFormContainer
+                          postId={this.props.post.id}
                           rerenderParentCallback={this.rerenderParentCallback} 
                           commentableType="Post"
                           commentableId={id}
