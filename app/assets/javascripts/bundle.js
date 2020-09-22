@@ -893,9 +893,10 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
           _this2.setState({
             body: ""
           });
-        }).then(function () {
-          _this2.props.rerenderParentCallback();
         });
+        /*.then(() => {
+          this.props.rerenderParentCallback();
+        })*/
       }
     }
   }, {
@@ -2857,9 +2858,19 @@ var Post = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, Post);
 
-    _this = _super.call(this, props);
-    _this.rerenderParentCallback = _this.rerenderParentCallback.bind(_assertThisInitialized(_this));
-    _this.state = _this.props.post; // this.state = {
+    _this = _super.call(this, props); // this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
+
+    if (_this.props.post.comments) {
+      _this.state = {
+        likedByCurrentUser: _this.props.likedByCurrentUser,
+        numComments: _this.props.post.comments.length
+      };
+    } else {
+      _this.state = {
+        likedByCurrentUser: _this.props.likedByCurrentUser,
+        numComments: 0
+      };
+    } // this.state = {
     //   likedByCurrentUser: false,
     //   postComment: {
     //     body: "",
@@ -2877,9 +2888,10 @@ var Post = /*#__PURE__*/function (_React$Component) {
     // this.renderLike = this.renderLike.bind(this);
     // this.renderUnlike = this.renderUnlike.bind(this);
 
-    _this.handleLike = _this.handleLike.bind(_assertThisInitialized(_this));
-    _this.like = _this.like.bind(_assertThisInitialized(_this));
-    _this.unlike = _this.unlike.bind(_assertThisInitialized(_this));
+
+    _this.handleLike = _this.handleLike.bind(_assertThisInitialized(_this)); // this.like = this.like.bind(this);
+    // this.unlike = this.unlike.bind(this);
+
     return _this;
   }
 
@@ -2898,28 +2910,24 @@ var Post = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "renderUnlike",
     value: function renderUnlike() {
-      var likedByCurrentUser = this.props.likedByCurrentUser;
-      debugger;
+      var likedByCurrentUser = this.state.likedByCurrentUser;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        onClick: this.handleLike(likedByCurrentUser),
+        onClick: this.handleLike,
         src: "https://img.icons8.com/fluent/20/000000/filled-like.png"
       }));
     }
   }, {
     key: "renderLike",
     value: function renderLike() {
-      var likedByCurrentUser = this.props.likedByCurrentUser;
-      debugger;
+      var likedByCurrentUser = this.state.likedByCurrentUser;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        onClick: this.handleLike(likedByCurrentUser),
+        onClick: this.handleLike,
         src: "https://img.icons8.com/material-outlined/20/000000/filled-like.png"
       }));
-    }
-  }, {
-    key: "rerenderParentCallback",
-    value: function rerenderParentCallback() {
-      this.forceUpdate();
-    }
+    } // rerenderParentCallback() {
+    //   this.forceUpdate();
+    // }
+
   }, {
     key: "renderFirstComment",
     value: function renderFirstComment() {
@@ -3037,39 +3045,62 @@ var Post = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-time"
       }, time))))));
-    }
+    } // handleLike(like) {
+    //   if (like) {
+    //     return this.unlike;
+    //   } else {
+    //     return this.like;
+    //   }
+    // }
+
   }, {
     key: "handleLike",
-    value: function handleLike(like) {
-      if (like) {
-        debugger;
-        return this.unlike;
-      } else {
-        debugger;
-        return this.like;
-      }
-    }
-  }, {
-    key: "like",
-    value: function like(e) {
+    value: function handleLike(e) {
       e.preventDefault();
-      var currentUser = this.props.currentUser;
+      var _this$props = this.props,
+          currentUser = _this$props.currentUser,
+          likeId = _this$props.likeId;
       var id = this.props.post.id;
-      debugger;
-      this.props.likePost({
-        liker_id: currentUser.id,
-        likeable_id: id,
-        likeable_type: "Post"
-      });
-    }
-  }, {
-    key: "unlike",
-    value: function unlike(e) {
-      e.preventDefault();
-      var likeId = this.props.likeId;
-      debugger;
-      this.props.unlikePost(likeId);
-    }
+
+      if (!this.state.likedByCurrentUser) {
+        this.props.likePost({
+          liker_id: currentUser.id,
+          likeable_id: id,
+          likeable_type: "Post"
+        }).then(this.setState({
+          likedByCurrentUser: true
+        }));
+      } else {
+        this.props.unlikePost(likeId).then(this.setState({
+          likedByCurrentUser: false
+        }));
+      }
+    } // like(e) {
+    //   e.preventDefault();
+    //   const { currentUser, likeId } = this.props;
+    //   const id = this.props.post.id;
+    //   this.props
+    //     .likePost({
+    //       liker_id: currentUser.id,
+    //       likeable_id: id,
+    //       likeable_type: "Post",
+    //     })
+    //     .then(() => {
+    //       this.setState({
+    //         likedByCurrentUser: true,
+    //       });
+    //     });
+    // }
+    // unlike(e) {
+    //   e.preventDefault();
+    //   const { likeId } = this.props;
+    //   this.props.unlikePost(likeId).then(() => {
+    //     this.setState({
+    //       likedByCurrentUser: false,
+    //     });
+    //   });
+    // }
+
   }, {
     key: "render",
     value: function render() {
@@ -3100,7 +3131,6 @@ var Post = /*#__PURE__*/function (_React$Component) {
         };
       }
 
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3200,8 +3230,9 @@ var Post = /*#__PURE__*/function (_React$Component) {
         className: "post-comments-logo1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-comments-logo2"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comment_comment_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        rerenderParentCallback: this.rerenderParentCallback,
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comment_comment_form_container__WEBPACK_IMPORTED_MODULE_3__["default"]
+      /*rerenderParentCallback={this.rerenderParentCallback} */
+      , {
         commentableType: "Post",
         commentableId: id
       }))))))))));

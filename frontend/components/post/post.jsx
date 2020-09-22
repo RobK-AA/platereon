@@ -8,8 +8,20 @@ class Post extends React.Component {
   constructor(props) {
     super(props);
 
-    this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
-    this.state = this.props.post;
+    // this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
+
+    if (this.props.post.comments) {
+      this.state = {
+        likedByCurrentUser: this.props.likedByCurrentUser,
+        numComments: this.props.post.comments.length,
+      };
+    } else {
+      this.state = {
+        likedByCurrentUser: this.props.likedByCurrentUser,
+        numComments: 0,
+      };
+    }
+
     // this.state = {
     //   likedByCurrentUser: false,
     //   postComment: {
@@ -28,8 +40,8 @@ class Post extends React.Component {
     // this.renderLike = this.renderLike.bind(this);
     // this.renderUnlike = this.renderUnlike.bind(this);
     this.handleLike = this.handleLike.bind(this);
-    this.like = this.like.bind(this);
-    this.unlike = this.unlike.bind(this);
+    // this.like = this.like.bind(this);
+    // this.unlike = this.unlike.bind(this);
   }
 
   updatePostComment() {
@@ -43,12 +55,12 @@ class Post extends React.Component {
   }
 
   renderUnlike() {
-    const { likedByCurrentUser } = this.props;
-    debugger
+    const { likedByCurrentUser } = this.state;
+
     return (
       <>
         <img
-          onClick={this.handleLike(likedByCurrentUser)}
+          onClick={this.handleLike}
           src="https://img.icons8.com/fluent/20/000000/filled-like.png"
         />
       </>
@@ -56,21 +68,21 @@ class Post extends React.Component {
   }
 
   renderLike() {
-    const { likedByCurrentUser } = this.props;
-    debugger
+    const { likedByCurrentUser } = this.state;
+
     return (
       <>
         <img
-          onClick={this.handleLike(likedByCurrentUser)}
+          onClick={this.handleLike}
           src="https://img.icons8.com/material-outlined/20/000000/filled-like.png"
         />
       </>
     );
   }
 
-  rerenderParentCallback() {
-    this.forceUpdate();
-  }
+  // rerenderParentCallback() {
+  //   this.forceUpdate();
+  // }
 
   renderFirstComment() {
     const comments = Object.values(this.props.post.comments);
@@ -203,34 +215,65 @@ class Post extends React.Component {
     );
   }
 
-  handleLike(like) {
-    if (like) {
-      debugger
-      return this.unlike;
+  // handleLike(like) {
+  //   if (like) {
+  //     return this.unlike;
+  //   } else {
+  //     return this.like;
+  //   }
+  // }
+
+  handleLike(e) {
+    e.preventDefault();
+    const { currentUser, likeId } = this.props;
+    const id = this.props.post.id;
+    if (!this.state.likedByCurrentUser) {
+      this.props
+        .likePost({
+          liker_id: currentUser.id,
+          likeable_id: id,
+          likeable_type: "Post",
+        })
+        .then(
+          this.setState({
+            likedByCurrentUser: true,
+          }));
     } else {
-      debugger
-      return this.like;
+      this.props.unlikePost(likeId).then(
+        this.setState({
+          likedByCurrentUser: false,
+        }));
     }
   }
 
-  like(e) {
-    e.preventDefault();
-    const { currentUser } = this.props;
-    const id = this.props.post.id;
-    debugger
-    this.props.likePost({
-      liker_id: currentUser.id,
-      likeable_id: id,
-      likeable_type: "Post",
-    });
-  }
+  // like(e) {
+  //   e.preventDefault();
+  //   const { currentUser, likeId } = this.props;
+  //   const id = this.props.post.id;
 
-  unlike(e) {
-    e.preventDefault();
-    const { likeId } = this.props;
-    debugger
-    this.props.unlikePost(likeId);
-  }
+  //   this.props
+  //     .likePost({
+  //       liker_id: currentUser.id,
+  //       likeable_id: id,
+  //       likeable_type: "Post",
+  //     })
+  //     .then(() => {
+  //       this.setState({
+  //         likedByCurrentUser: true,
+  //       });
+  //     });
+  // }
+
+  // unlike(e) {
+  //   e.preventDefault();
+  //   const { likeId } = this.props;
+
+  //   this.props.unlikePost(likeId).then(() => {
+  //     this.setState({
+  //       likedByCurrentUser: false,
+  //     });
+  //   });
+  // }
 
   render() {
     const { id, title, body, images } = this.props.post;
@@ -249,7 +292,6 @@ class Post extends React.Component {
     } else {
       imgStyle = { display: "none" };
     }
-    debugger;
 
     return (
       <div className="post5">
@@ -314,10 +356,7 @@ class Post extends React.Component {
                     <div className="post-lower1">
                       <div className="post-lower-left">
                         <div className="post-lower-left1">
-                          <div
-                            
-                            className="post-lower-leftL"
-                          >
+                          <div className="post-lower-leftL">
                             {this.props.likedByCurrentUser
                               ? this.renderUnlike()
                               : this.renderLike()}
@@ -367,7 +406,7 @@ class Post extends React.Component {
                           </div>
                         </div>
                         <CommentFormContainer
-                          rerenderParentCallback={this.rerenderParentCallback}
+                          /*rerenderParentCallback={this.rerenderParentCallback} */
                           commentableType="Post"
                           commentableId={id}
                         />

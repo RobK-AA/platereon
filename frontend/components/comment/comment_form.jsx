@@ -23,9 +23,10 @@ class CommentForm extends React.Component {
           this.setState({
             body: ""
           })
-        }).then(() => {
-          this.props.rerenderParentCallback();
         })
+        /*.then(() => {
+          this.props.rerenderParentCallback();
+        })*/
     }
   }
 
