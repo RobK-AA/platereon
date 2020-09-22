@@ -813,8 +813,7 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.submitComment = _this.submitComment.bind(_assertThisInitialized(_this));
-    _this.state = _this.props.comment; // this.updatePostComment = this.updatePostComment.bind(this);
-
+    _this.state = _this.props.comment;
     return _this;
   }
 
@@ -839,12 +838,7 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
           _this2.props.rerenderParentCallback();
         });
       }
-    } // updatePostComment() {
-    //   return e => this.setState({
-    //       body: e.target.value,
-    //   })
-    // }
-
+    }
   }, {
     key: "render",
     value: function render() {
@@ -1019,10 +1013,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
       };
     }
 
-    _this.getPosts(_this.id); // this.state = {
-    //   currentUserIsMember: false
-    // }
-
+    _this.getPosts(_this.id);
 
     return _this;
   }
@@ -1035,9 +1026,6 @@ var Community = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "componentDidUpdate",
-    // componentDidMount() {
-    //   this.renderCommunityWelcome();
-    // }
     value: function componentDidUpdate() {
       this.renderCommunityWelcome();
       this.renderJoinButton();
@@ -2810,25 +2798,26 @@ var Post = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Post);
 
     _this = _super.call(this, props);
-    _this.renderLike = _this.renderLike.bind(_assertThisInitialized(_this));
-    _this.renderUnlike = _this.renderUnlike.bind(_assertThisInitialized(_this));
     _this.rerenderParentCallback = _this.rerenderParentCallback.bind(_assertThisInitialized(_this));
-    _this.state = {
-      likedByCurrentUser: false,
-      postComment: {
-        body: "",
-        commenter_id: _this.props.currentUser.id,
-        commentable_id: null,
-        commentable_type: "Post"
-      },
-      commentComment: {
-        body: "",
-        commenter_id: _this.props.currentUser.id,
-        commentable_id: null,
-        commentable_type: "Comment"
-      }
-    };
-    _this.handleLike = _this.handleLike.bind(_assertThisInitialized(_this));
+    _this.state = _this.props.post; // this.state = {
+    //   likedByCurrentUser: false,
+    //   postComment: {
+    //     body: "",
+    //     commenter_id: this.props.currentUser.id,
+    //     commentable_id: null,
+    //     commentable_type: "Post"
+    //   },
+    //   commentComment: {
+    //     body: "",
+    //     commenter_id: this.props.currentUser.id,
+    //     commentable_id: null,
+    //     commentable_type: "Comment"
+    //   }
+    // }
+    // this.renderLike = this.renderLike.bind(this);
+    // this.renderUnlike = this.renderUnlike.bind(this);
+    // this.handleLike = this.handleLike.bind(this);
+
     return _this;
   }
 
@@ -2980,20 +2969,14 @@ var Post = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-time"
       }, time))))));
-    }
-  }, {
-    key: "handleLike",
-    value: function handleLike() {
-      if (!this.state.likedByCurrentUser) {
-        this.setState({
-          likedByCurrentUser: true
-        });
-      } else {
-        this.setState({
-          likedByCurrentUser: false
-        });
-      }
-    }
+    } // handleLike() {
+    //   if (!this.state.likedByCurrentUser) {
+    //     this.setState({ likedByCurrentUser: true })
+    //   } else {
+    //     this.setState({ likedByCurrentUser: false })
+    //   }
+    // }
+
   }, {
     key: "render",
     value: function render() {
@@ -3022,30 +3005,9 @@ var Post = /*#__PURE__*/function (_React$Component) {
         imgStyle = {
           display: "none"
         };
-      } //   return (
-      //     <>
-      //       <ul className="post-list">
-      //         {this.props.posts.map((post) => {
-      //           return (
-      //             <li>
-      //               <h4>{post.title}</h4>
-      //               <div>{post.body}</div>
-      //               <div>{post.created_at}</div>
-      //               <ul className="post-image-list">{post.images.map((image, i) => {
-      //                 return (
-      //                   <li className="post-image-list-item">
-      //                     <img className="post-image" key={i} src={image} />
-      //                   </li>
-      //                 );
-      //               })}</ul>
-      //             </li>
-      //           )
-      //         })}
-      //       </ul>
-      //     </>
-      //   );
+      }
 
-
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3067,9 +3029,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
         });
       })) : null, videoUrl ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_player__WEBPACK_IMPORTED_MODULE_2___default.a, {
         className: "react-player",
-        url: videoUrl // width="850px"
-        // height="400px"
-
+        url: videoUrl
       }) : null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-content"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3114,9 +3074,11 @@ var Post = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-lower-left1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        onClick: this.handleLike,
+        /* onClick={this.handleLike} */
         className: "post-lower-leftL"
-      }, this.state.likedByCurrentUser ? this.renderUnlike() : this.renderLike()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      },
+      /* this.state.likedByCurrentUser ? this.renderUnlike() :*/
+      this.renderLike()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-lower-leftM"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: "https://img.icons8.com/ios/20/000000/upload.png"

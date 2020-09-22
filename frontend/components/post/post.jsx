@@ -8,25 +8,27 @@ class Post extends React.Component {
   
   constructor(props) {
     super(props);
-    this.renderLike = this.renderLike.bind(this);
-    this.renderUnlike = this.renderUnlike.bind(this);
+    
     this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
-    this.state = {
-      likedByCurrentUser: false,
-      postComment: {
-        body: "",
-        commenter_id: this.props.currentUser.id,
-        commentable_id: null,
-        commentable_type: "Post"
-      },
-      commentComment: {
-        body: "",
-        commenter_id: this.props.currentUser.id,
-        commentable_id: null,
-        commentable_type: "Comment"
-      }
-    }
-    this.handleLike = this.handleLike.bind(this);
+    this.state = this.props.post;
+    // this.state = {
+    //   likedByCurrentUser: false,
+    //   postComment: {
+    //     body: "",
+    //     commenter_id: this.props.currentUser.id,
+    //     commentable_id: null,
+    //     commentable_type: "Post"
+    //   },
+    //   commentComment: {
+    //     body: "",
+    //     commenter_id: this.props.currentUser.id,
+    //     commentable_id: null,
+    //     commentable_type: "Comment"
+    //   }
+    // }
+    // this.renderLike = this.renderLike.bind(this);
+    // this.renderUnlike = this.renderUnlike.bind(this);
+    // this.handleLike = this.handleLike.bind(this);
   }
 
   updatePostComment() {
@@ -192,15 +194,15 @@ class Post extends React.Component {
     )
   }
 
-  handleLike() {
-    if (!this.state.likedByCurrentUser) {
+  // handleLike() {
+  //   if (!this.state.likedByCurrentUser) {
       
-      this.setState({ likedByCurrentUser: true })
-    } else {
+  //     this.setState({ likedByCurrentUser: true })
+  //   } else {
       
-      this.setState({ likedByCurrentUser: false })
-    }
-  }
+  //     this.setState({ likedByCurrentUser: false })
+  //   }
+  // }
 
   render() {
 
@@ -220,29 +222,7 @@ class Post extends React.Component {
     } else {
       imgStyle = { display: "none"}
     }
-    
-  //   return (
-  //     <>
-  //       <ul className="post-list">
-  //         {this.props.posts.map((post) => {
-  //           return (
-  //             <li>
-  //               <h4>{post.title}</h4>
-  //               <div>{post.body}</div>
-  //               <div>{post.created_at}</div>
-  //               <ul className="post-image-list">{post.images.map((image, i) => {
-  //                 return (
-  //                   <li className="post-image-list-item">
-  //                     <img className="post-image" key={i} src={image} />
-  //                   </li>
-  //                 );
-  //               })}</ul>
-  //             </li>
-  //           )
-  //         })}
-  //       </ul>
-  //     </>
-  //   );
+    debugger
    
     return (
       <div className="post5">
@@ -263,8 +243,6 @@ class Post extends React.Component {
                       <ReactPlayer
                         className="react-player"
                         url={videoUrl}
-                        // width="850px"
-                        // height="400px"
                       />
                     ) : null}
                   </div>
@@ -312,8 +290,8 @@ class Post extends React.Component {
                     <div className="post-lower1">
                       <div className="post-lower-left">
                         <div className="post-lower-left1">
-                          <div onClick={this.handleLike} className="post-lower-leftL">
-                            {this.state.likedByCurrentUser ? this.renderUnlike() : this.renderLike()}
+                          <div /* onClick={this.handleLike} */className="post-lower-leftL"> 
+                            {/* this.state.likedByCurrentUser ? this.renderUnlike() :*/ this.renderLike()}
                           </div>
                           <div className="post-lower-leftM">
                             <img src="https://img.icons8.com/ios/20/000000/upload.png" />
@@ -355,12 +333,6 @@ class Post extends React.Component {
                           </div>
                         </div>
                         <CommentFormContainer rerenderParentCallback={this.rerenderParentCallback} commentableType="Post" commentableId={id} />
-                        {/* <div className="post-comments-comment">
-                          <form onSubmit={this.submitComment}>
-                            <textarea onChange={this.updatePostComment} type="text" rows="1" placeholder="Join the conversation..." id="" cols="30" rows="10"></textarea>
-                          </form>
-                        </div> */}
-                        
                       </div>
                     </div>
                   </div>

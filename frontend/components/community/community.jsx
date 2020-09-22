@@ -46,7 +46,8 @@ class Community extends React.Component {
       
       const ids = Object.values(this.currentUser.communities_joined).map((community) => {
         return community.id;
-      })
+      });
+      
       if (ids.includes(props.community.id)) {
 
         this.state = {
@@ -65,20 +66,13 @@ class Community extends React.Component {
     }
     
     this.getPosts(this.id);
-    // this.state = {
-    //   currentUserIsMember: false
-    // }
+
   };
   
   componentWillMount() {
     this.props.fetchCommunity(parseInt(this.props.match.params.communityId));
     this.props.getCommunities();
   };
-
-  
-  // componentDidMount() {
-  //   this.renderCommunityWelcome();
-  // }
 
   componentDidUpdate() {
     this.renderCommunityWelcome();

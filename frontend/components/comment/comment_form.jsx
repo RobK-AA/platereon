@@ -7,7 +7,6 @@ class CommentForm extends React.Component {
     super(props);
     this.submitComment = this.submitComment.bind(this);
     this.state = this.props.comment;
-    // this.updatePostComment = this.updatePostComment.bind(this);
   }
 
   submitComment(e) {
@@ -29,12 +28,6 @@ class CommentForm extends React.Component {
         })
     }
   }
-
-  // updatePostComment() {
-  //   return e => this.setState({
-  //       body: e.target.value,
-  //   })
-  // }
 
   render() {
     return (
