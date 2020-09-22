@@ -248,6 +248,67 @@ var updateCommunity = function updateCommunity(community) {
 
 /***/ }),
 
+/***/ "./frontend/actions/like_actions.js":
+/*!******************************************!*\
+  !*** ./frontend/actions/like_actions.js ***!
+  \******************************************/
+/*! exports provided: RECEIVE_LIKE, REMOVE_LIKE, RECEIVE_LIKE_ERRORS, receiveLike, removeLike, receiveErrors, like, unlike */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LIKE", function() { return RECEIVE_LIKE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_LIKE", function() { return REMOVE_LIKE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LIKE_ERRORS", function() { return RECEIVE_LIKE_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveLike", function() { return receiveLike; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeLike", function() { return removeLike; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "like", function() { return like; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unlike", function() { return unlike; });
+/* harmony import */ var _util_like_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/like_api_util */ "./frontend/util/like_api_util.jsx");
+
+var RECEIVE_LIKE = "RECEIVE_LIKE";
+var REMOVE_LIKE = "REMOVE_LIKE";
+var RECEIVE_LIKE_ERRORS = "RECEIVE_LIKE_ERRORS";
+var receiveLike = function receiveLike(like) {
+  return {
+    type: RECEIVE_LIKE,
+    like: like
+  };
+};
+var removeLike = function removeLike(like) {
+  return {
+    type: REMOVE_LIKE,
+    like: like
+  };
+};
+var receiveErrors = function receiveErrors(errors) {
+  return {
+    type: RECEIVE_LIKE_ERRORS,
+    errors: errors
+  };
+};
+var like = function like(_like) {
+  return function (dispatch) {
+    return _util_like_api_util__WEBPACK_IMPORTED_MODULE_0__["like"](_like).then(function (like) {
+      return dispatch(receiveLike(like));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+var unlike = function unlike(like) {
+  return function (dispatch) {
+    return _util_like_api_util__WEBPACK_IMPORTED_MODULE_0__["unlike"](like).then(function (like) {
+      return dispatch(removeLike(like));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/membership_actions.js":
 /*!************************************************!*\
   !*** ./frontend/actions/membership_actions.js ***!
@@ -343,8 +404,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePost", function() { return updatePost; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePost", function() { return deletePost; });
 /* harmony import */ var _util_post_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/post_api_util */ "./frontend/util/post_api_util.jsx");
-/* harmony import */ var _membership_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./membership_actions */ "./frontend/actions/membership_actions.js");
-
 
 var RECEIVE_POSTS = 'RECEIVE_POSTS';
 var RECEIVE_POST = 'RECEIVE_POST';
@@ -5194,6 +5253,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
 /***/ }),
 
+/***/ "./frontend/reducers/comments_merge.js":
+/*!*********************************************!*\
+  !*** ./frontend/reducers/comments_merge.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var commentMerge = function commentMerge() {
+  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var comment = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(oldState);
+  var commentState = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["merge"])({}, oldState[comment.commentable_id]);
+  var newComment = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["merge"])({}, commentState, {
+    comments: _defineProperty({}, comment.id, comment)
+  });
+  var commentId = newComment.id;
+  return Object(lodash__WEBPACK_IMPORTED_MODULE_0__["merge"])({}, oldState, _defineProperty({}, commentId, newComment));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (commentMerge);
+
+/***/ }),
+
 /***/ "./frontend/reducers/comments_reducer.js":
 /*!***********************************************!*\
   !*** ./frontend/reducers/comments_reducer.js ***!
@@ -5359,6 +5449,37 @@ var ErrorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"]
 
 /***/ }),
 
+/***/ "./frontend/reducers/likes_merge.js":
+/*!******************************************!*\
+  !*** ./frontend/reducers/likes_merge.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var likeMerge = function likeMerge() {
+  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var like = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(oldState);
+  var likeState = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["merge"])({}, oldState[like.likeable_id]);
+  var newLike = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["merge"])({}, likeState, {
+    likes: _defineProperty({}, like.liker_id, like)
+  });
+  var likeId = newLike.id;
+  return Object(lodash__WEBPACK_IMPORTED_MODULE_0__["merge"])({}, oldState, _defineProperty({}, likeId, newLike));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (likeMerge);
+
+/***/ }),
+
 /***/ "./frontend/reducers/memberships_reducer.js":
 /*!**************************************************!*\
   !*** ./frontend/reducers/memberships_reducer.js ***!
@@ -5441,6 +5562,17 @@ var PostErrorsReducer = function PostErrorsReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_post_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/post_actions */ "./frontend/actions/post_actions.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _actions_like_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/like_actions */ "./frontend/actions/like_actions.js");
+/* harmony import */ var _actions_comment_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/comment_actions */ "./frontend/actions/comment_actions.js");
+/* harmony import */ var _likes_merge__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./likes_merge */ "./frontend/reducers/likes_merge.js");
+/* harmony import */ var _comments_merge__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./comments_merge */ "./frontend/reducers/comments_merge.js");
+
+
+
+
+
 
 
 var PostsReducer = function PostsReducer() {
@@ -5456,6 +5588,24 @@ var PostsReducer = function PostsReducer() {
     case _actions_post_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_POST"]:
       newState[action.post.id] = action.post;
       return newState;
+
+    case _actions_like_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_LIKE"]:
+      if (action.like.likeable_type === "Post") {
+        return Object(_likes_merge__WEBPACK_IMPORTED_MODULE_4__["default"])(oldState, action.like);
+      }
+
+      return oldState;
+
+    case _actions_like_actions__WEBPACK_IMPORTED_MODULE_2__["REMOVE_LIKE"]:
+      delete newState[action.like.likeable_id].likes[action.like.liker_id];
+      return newState;
+
+    case _actions_comment_actions__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_COMMENT"]:
+      if (action.comment.commentable_type === "Post") {
+        return Object(_comments_merge__WEBPACK_IMPORTED_MODULE_5__["default"])(oldState, action.comment);
+      }
+
+      return oldState;
 
     case _actions_post_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_POST"]:
       delete newState[action.post.id];
@@ -5762,6 +5912,35 @@ var updateCommunity = function updateCommunity(community) {
     data: {
       community: community
     }
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/like_api_util.jsx":
+/*!*****************************************!*\
+  !*** ./frontend/util/like_api_util.jsx ***!
+  \*****************************************/
+/*! exports provided: like, unlike */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "like", function() { return like; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "unlike", function() { return unlike; });
+var like = function like(_like) {
+  return $.ajax({
+    url: "api/likes",
+    method: "POST",
+    data: {
+      like: _like
+    }
+  });
+};
+var unlike = function unlike(likeId) {
+  return $.ajax({
+    url: "api/likes/".concat(likeId),
+    method: "DELETE"
   });
 };
 

@@ -1,5 +1,4 @@
 import * as PostApiUtil from '../util/post_api_util';
-import { REMOVE_MEMBERSHIP } from './membership_actions';
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const RECEIVE_POST = 'RECEIVE_POST';
