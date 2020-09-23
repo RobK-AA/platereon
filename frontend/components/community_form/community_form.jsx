@@ -87,7 +87,6 @@ class CommunityForm extends React.Component {
     
     this.props.submitCommunity(community).then(
       () => {
-        
         //Fix when DB is reset
         return this.props.history.push(`communities/${this.props.communities[Object.keys(this.props.communities).length].id + 1}`, this.state)
       });
@@ -183,7 +182,10 @@ class CommunityForm extends React.Component {
           </div>
           <br/>
           <div className="create-form-case">
-            <form id="community-form" onSubmit={this.copyContent && this.handleSubmit}>
+            <form 
+              id="community-form" 
+              onSubmit={this.copyContent && this.handleSubmit}
+              >
               <div className="name-div">
                 <div className="name-col">
                   <label className="create-form-name">Name of Platereon page</label>

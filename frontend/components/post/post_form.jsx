@@ -90,7 +90,7 @@ class PostForm extends React.Component {
               <div className="button">
                 Upload images
                 <input
-                  name="photo"
+                  name=""
                   id="image-input"
                   type="file"
                   onChange={this.addImage}
@@ -122,10 +122,10 @@ class PostForm extends React.Component {
           <label htmlFor="">
             Add a video URL
             <input
+              name=""
               id="video-input"
               placeholder="YouTube Video Link"
               type="text"
-              on
               onChange={this.update("videoUrl")}
             />
           </label>
@@ -154,6 +154,7 @@ class PostForm extends React.Component {
   }
 
   handleSubmit(e) {
+    debugger
     e.preventDefault();
     const post = new FormData();
     const { title, body, images, imageUrls, videoUrl } = this.state;
@@ -268,6 +269,7 @@ class PostForm extends React.Component {
                                       <div className="text-form-title1">
                                         <div className="text-form-title-input1">
                                           <input
+                                            name=""
                                             onChange={this.update("title")}
                                             className="text-form-title-input1"
                                             type="text"
@@ -301,6 +303,7 @@ class PostForm extends React.Component {
                                         </div>
                                       </div>
                                     </div>
+                                    <input type="submit" id="submit-form" />
                                   </form>
                                 </div>
                               </div>
@@ -315,9 +318,10 @@ class PostForm extends React.Component {
                                       <div className="text-form-right6">
                                         <div className="text-form-right7">
                                           <button
-                                            id="text-post-button"
                                             type="submit"
                                             form="text-post-form"
+                                            
+                                            className="text-form-right8"
                                             // onSubmit={this.handleSubmit}
                                             // disabled={!filledOut}
                                             style={{
@@ -331,7 +335,6 @@ class PostForm extends React.Component {
                                                 ? `white`
                                                 : `rgb(177, 172, 163)`,
                                             }}
-                                            className="text-form-right8"
                                           >
                                             <div>Publish now</div>
                                           </button>

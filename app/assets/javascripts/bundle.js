@@ -3673,7 +3673,7 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "button"
       }, "Upload images", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        name: "photo",
+        name: "",
         id: "image-input",
         type: "file",
         onChange: this.addImage
@@ -3699,10 +3699,10 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: ""
       }, "Add a video URL", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "",
         id: "video-input",
         placeholder: "YouTube Video Link",
         type: "text",
-        on: true,
         onChange: this.update("videoUrl")
       }))));
     }
@@ -3737,6 +3737,7 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      debugger;
       e.preventDefault();
       var post = new FormData();
       var _this$state = this.state,
@@ -3836,6 +3837,7 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "text-form-title-input1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "",
         onChange: this.update("title"),
         className: "text-form-title-input1",
         type: "text",
@@ -3864,7 +3866,10 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
         id: "",
         cols: "30",
         rows: "10"
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null))))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null)))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "submit",
+        id: "submit-form"
+      })))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "text-form-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "text-form-right1"
@@ -3881,17 +3886,16 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "text-form-right7"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        id: "text-post-button",
         type: "submit",
-        form: "text-post-form" // onSubmit={this.handleSubmit}
+        form: "text-post-form",
+        className: "text-form-right8" // onSubmit={this.handleSubmit}
         // disabled={!filledOut}
         ,
         style: {
           backgroundColor: filledOut ? "rgb(0, 76, 129)" : "rgb(245, 244, 242)",
           border: filledOut ? "1px solid rgb(0, 76, 129)" : "1px solid rgb(245, 244, 242)",
           color: filledOut ? "white" : "rgb(177, 172, 163)"
-        },
-        className: "text-form-right8"
+        }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Publish now"))))))))))))))))))));
     }
   }]);
