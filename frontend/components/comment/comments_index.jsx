@@ -1,4 +1,5 @@
 import React from 'react';
+import Comment from './comment';
 
 class CommentsIndex extends React.Component {
   constructor(props) {
@@ -6,12 +7,20 @@ class CommentsIndex extends React.Component {
   }
 
   render() {
+    let comments;
+    if (this.props.post.comments) {
+      comments = Object.values(this.props.post.comments).reverse().slice(2);
+    }
+    debugger
     return (
       <>
-        <div>Hello</div>
+        {this.props.post.comments ? 
+        comments.map((comment) => (
+          <Comment comment={comment} post={this.props.post}/>
+        )) : null
+      }
       </>
     )
-   
   }
   
 }
