@@ -2898,39 +2898,15 @@ var Post = /*#__PURE__*/function (_React$Component) {
         likedByCurrentUser: _this.props.likedByCurrentUser,
         numComments: 0
       };
-    } // this.state = {
-    //   likedByCurrentUser: false,
-    //   postComment: {
-    //     body: "",
-    //     commenter_id: this.props.currentUser.id,
-    //     commentable_id: null,
-    //     commentable_type: "Post"
-    //   },
-    //   commentComment: {
-    //     body: "",
-    //     commenter_id: this.props.currentUser.id,
-    //     commentable_id: null,
-    //     commentable_type: "Comment"
-    //   }
-    // }
-    // this.renderLike = this.renderLike.bind(this);
-    // this.renderUnlike = this.renderUnlike.bind(this);
+    }
 
-
-    _this.handleLike = _this.handleLike.bind(_assertThisInitialized(_this)); // this.like = this.like.bind(this);
-    // this.unlike = this.unlike.bind(this);
-
+    _this.handleLike = _this.handleLike.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Post, [{
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      this.props.getPosts(this.props.community.id);
-    }
-  }, {
-    key: "componentDidCatch",
-    value: function componentDidCatch() {
       this.props.getPosts(this.props.community.id);
     }
   }, {
@@ -2986,6 +2962,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
       if (date.fromNow().includes("minute")) time = minutes;
       if (date.fromNow().includes("second")) time = seconds;
       if (date.fromNow().includes("in ")) time = "just posted";
+      if (date.fromNow().includes("day ago")) time = "1d";
       return comments ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-outer1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3042,6 +3019,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
       if (date.fromNow().includes("minute")) time = minutes;
       if (date.fromNow().includes("second")) time = seconds;
       if (date.fromNow().includes("in ")) time = "just posted";
+      if (date.fromNow().includes("day ago")) time = "1d";
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-outer1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3102,32 +3080,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
           likedByCurrentUser: false
         }));
       }
-    } // like(e) {
-    //   e.preventDefault();
-    //   const { currentUser, likeId } = this.props;
-    //   const id = this.props.post.id;
-    //   this.props
-    //     .likePost({
-    //       liker_id: currentUser.id,
-    //       likeable_id: id,
-    //       likeable_type: "Post",
-    //     })
-    //     .then(() => {
-    //       this.setState({
-    //         likedByCurrentUser: true,
-    //       });
-    //     });
-    // }
-    // unlike(e) {
-    //   e.preventDefault();
-    //   const { likeId } = this.props;
-    //   this.props.unlikePost(likeId).then(() => {
-    //     this.setState({
-    //       likedByCurrentUser: false,
-    //     });
-    //   });
-    // }
-
+    }
   }, {
     key: "render",
     value: function render() {

@@ -23,33 +23,11 @@ class Post extends React.Component {
       };
     }
 
-    // this.state = {
-    //   likedByCurrentUser: false,
-    //   postComment: {
-    //     body: "",
-    //     commenter_id: this.props.currentUser.id,
-    //     commentable_id: null,
-    //     commentable_type: "Post"
-    //   },
-    //   commentComment: {
-    //     body: "",
-    //     commenter_id: this.props.currentUser.id,
-    //     commentable_id: null,
-    //     commentable_type: "Comment"
-    //   }
-    // }
-    // this.renderLike = this.renderLike.bind(this);
-    // this.renderUnlike = this.renderUnlike.bind(this);
     this.handleLike = this.handleLike.bind(this);
-    // this.like = this.like.bind(this);
-    // this.unlike = this.unlike.bind(this);
+
   }
 
   componentWillUnmount(){
-    this.props.getPosts(this.props.community.id);
-  }
-    
-  componentDidCatch() {
     this.props.getPosts(this.props.community.id);
   }
 
@@ -117,6 +95,8 @@ class Post extends React.Component {
     if (date.fromNow().includes("minute")) time = minutes;
     if (date.fromNow().includes("second")) time = seconds;
     if (date.fromNow().includes("in ")) time = "just posted";
+    if (date.fromNow().includes("day ago")) time = "1d";
+
     return comments ? (
       <>
         <div className="comment-outer1">
@@ -181,7 +161,8 @@ class Post extends React.Component {
     if (date.fromNow().includes("minute")) time = minutes;
     if (date.fromNow().includes("second")) time = seconds;
     if (date.fromNow().includes("in ")) time = "just posted";
-
+    if (date.fromNow().includes("day ago")) time = "1d";
+    
     return (
       <>
         <div className="comment-outer1">
@@ -246,35 +227,6 @@ class Post extends React.Component {
         }));
     }
   }
-
-  // like(e) {
-  //   e.preventDefault();
-  //   const { currentUser, likeId } = this.props;
-  //   const id = this.props.post.id;
-
-  //   this.props
-  //     .likePost({
-  //       liker_id: currentUser.id,
-  //       likeable_id: id,
-  //       likeable_type: "Post",
-  //     })
-  //     .then(() => {
-  //       this.setState({
-  //         likedByCurrentUser: true,
-  //       });
-  //     });
-  // }
-
-  // unlike(e) {
-  //   e.preventDefault();
-  //   const { likeId } = this.props;
-
-  //   this.props.unlikePost(likeId).then(() => {
-  //     this.setState({
-  //       likedByCurrentUser: false,
-  //     });
-  //   });
-  // }
 
   render() {
     const { id, title, body, images, likes } = this.props.post;
