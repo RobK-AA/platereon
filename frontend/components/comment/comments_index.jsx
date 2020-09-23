@@ -11,7 +11,7 @@ class CommentsIndex extends React.Component {
     if (this.props.post.comments) {
       comments = Object.values(this.props.post.comments).reverse().slice(2);
     }
-    debugger
+    
     return (
       <>
         {this.props.post.comments ? 

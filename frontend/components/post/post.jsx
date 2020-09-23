@@ -207,7 +207,7 @@ class Post extends React.Component {
   }
 
   loadMoreComments() {
-    $(`.${this.props.post.id}`).css({
+    $(`.comments-${this.props.post.id}`).css({
       "display": "block",
     });
   }
@@ -323,7 +323,14 @@ class Post extends React.Component {
                   </div>
                   <div className="post-comments">
                     <div className="post-comments1">
-                      <div onClick={this.loadMoreComments} >Load more comments</div>
+                      
+                      <div onClick={this.loadMoreComments} >
+                        {comments
+                          ? comments.length > 2
+                            ? "Load more comments"
+                            : "Add a comment"
+                          : "Be the first to comment"}
+                      </div>
                       <span>
                         {comments
                           ? comments.length > 1
@@ -343,7 +350,7 @@ class Post extends React.Component {
                         ? this.renderSecondComment()
                         : null}
                     </div>
-                    <div className={`more-comments ${this.props.post.id}`}>
+                    <div className={`more-comments comments-${this.props.post.id}`}>
                       <CommentsIndexContainer post={this.props.post} />
                     </div>
                     

@@ -1161,7 +1161,6 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
         comments = Object.values(this.props.post.comments).reverse().slice(2);
       }
 
-      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this.props.post.comments ? comments.map(function (comment) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comment__WEBPACK_IMPORTED_MODULE_1__["default"], {
           comment: comment,
@@ -3281,7 +3280,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "loadMoreComments",
     value: function loadMoreComments() {
-      $(".".concat(this.props.post.id)).css({
+      $(".comments-".concat(this.props.post.id)).css({
         "display": "block"
       });
     }
@@ -3410,13 +3409,13 @@ var Post = /*#__PURE__*/function (_React$Component) {
         className: "post-comments1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         onClick: this.loadMoreComments
-      }, "Load more comments"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, comments ? comments.length > 1 ? "2" : "1" : "0", " ", "of ", comments && comments.length ? comments.length : "0")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, comments ? comments.length > 2 ? "Load more comments" : "Add a comment" : "Be the first to comment"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, comments ? comments.length > 1 ? "2" : "1" : "0", " ", "of ", comments && comments.length ? comments.length : "0")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-comments2"
       }, comments ? this.renderFirstComment() : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "commentsPreview",
         className: "post-comments3"
       }, comments && comments.length > 1 ? this.renderSecondComment() : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "more-comments ".concat(this.props.post.id)
+        className: "more-comments comments-".concat(this.props.post.id)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comment_comments_index_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
         post: this.props.post
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
