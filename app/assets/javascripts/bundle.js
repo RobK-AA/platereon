@@ -3584,7 +3584,6 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
     _this.renderDropDown = _this.renderDropDown.bind(_assertThisInitialized(_this));
     _this.renderImageForm = _this.renderImageForm.bind(_assertThisInitialized(_this));
     _this.renderVideoUrlForm = _this.renderVideoUrlForm.bind(_assertThisInitialized(_this));
-    _this.handleVideoUrl = _this.handleVideoUrl.bind(_assertThisInitialized(_this));
     _this.currentUser = _this.props.currentUser;
     _this.state = _this.props.post;
     _this.state.imageUrls = [];
@@ -3695,13 +3694,13 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_player__WEBPACK_IMPORTED_MODULE_2___default.a, {
         className: "react-player",
         url: videoUrl
-      })) : this.handleVideoUrl)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })) : null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "video-input"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: ""
       }, "Add a video URL", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "video-input",
-        placeholder: "Video Link",
+        placeholder: "YouTube Video Link",
         type: "text",
         on: true,
         onChange: this.update("videoUrl")
@@ -3775,7 +3774,7 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
       var imagePost = this.props.location.pathname.includes('images');
       var videoPost = this.props.location.pathname.includes('video');
       var linkPost = this.props.location.pathname.includes("link");
-      imagePost ? filledOut = body.length > 0 && title.length > 0 && imageUrls.length > 0 && communityId > 0 : videoPost ? filledOut = body.length > 0 && title.length > 0 && videoUrl.length > 0 && communityId > 0 : filledOut = body.length > 0 && title.length > 0 && communityId > 0;
+      imagePost ? filledOut = body.length > 0 && title.length > 0 && imageUrls.length > 0 && communityId > 0 : videoPost ? filledOut = body.length > 0 && title.length > 0 && videoUrl.length > 0 && videoUrl.includes('youtube') && videoUrl.includes('watch?') && communityId > 0 : filledOut = body.length > 0 && title.length > 0 && communityId > 0;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "text-form1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3884,8 +3883,9 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         id: "text-post-button",
         type: "submit",
-        form: "text-post-form",
-        disabled: !filledOut,
+        form: "text-post-form" // onSubmit={this.handleSubmit}
+        // disabled={!filledOut}
+        ,
         style: {
           backgroundColor: filledOut ? "rgb(0, 76, 129)" : "rgb(245, 244, 242)",
           border: filledOut ? "1px solid rgb(0, 76, 129)" : "1px solid rgb(245, 244, 242)",

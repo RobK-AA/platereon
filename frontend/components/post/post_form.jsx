@@ -12,7 +12,6 @@ class PostForm extends React.Component {
     this.renderDropDown = this.renderDropDown.bind(this);
     this.renderImageForm = this.renderImageForm.bind(this);
     this.renderVideoUrlForm = this.renderVideoUrlForm.bind(this);
-    this.handleVideoUrl = this.handleVideoUrl.bind(this);
     this.currentUser = this.props.currentUser;
     this.state = this.props.post;
     this.state.imageUrls = [];
@@ -116,7 +115,7 @@ class PostForm extends React.Component {
               <div className="">
                 <ReactPlayer className="react-player" url={videoUrl} />
               </div>
-            ) : this.handleVideoUrl}
+            ) : null}
           </div>
         </div>
         <div className="video-input">
@@ -124,7 +123,7 @@ class PostForm extends React.Component {
             Add a video URL
             <input
               id="video-input"
-              placeholder="Video Link"
+              placeholder="YouTube Video Link"
               type="text"
               on
               onChange={this.update("videoUrl")}
@@ -202,7 +201,8 @@ class PostForm extends React.Component {
           (filledOut =
             body.length > 0 &&
             title.length > 0 &&
-            videoUrl.length > 0 &&
+            videoUrl.length > 0 && 
+            (videoUrl.includes('youtube') && videoUrl.includes('watch?')) &&
             communityId > 0) :
             (filledOut = (body.length > 0 && title.length > 0) && communityId > 0);
     
@@ -318,7 +318,8 @@ class PostForm extends React.Component {
                                             id="text-post-button"
                                             type="submit"
                                             form="text-post-form"
-                                            disabled={!filledOut}
+                                            // onSubmit={this.handleSubmit}
+                                            // disabled={!filledOut}
                                             style={{
                                               backgroundColor: filledOut
                                                 ? `rgb(0, 76, 129)`
