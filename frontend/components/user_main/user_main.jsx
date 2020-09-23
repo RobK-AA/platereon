@@ -3,6 +3,8 @@ import CommunityFormContainer from '../community_form/community_form_container'
 import { Route, Link } from 'react-router-dom';
 import CommunitiesReducer from '../../reducers/communities_reducer';
 import community_container from '../community/community_container';
+import PostContainer from '../post/post_container'
+import MainFeedPostContainer from '../post/main_feed_post_container';
 
 
 class UserMain extends React.Component {
@@ -19,7 +21,8 @@ class UserMain extends React.Component {
   };
   
   componentDidMount() {
-    this.getMemberships();
+    
+    this.getMemberships().then(this.props.getCommunities()).then(this.props.getCurrentUser(this.currentUserId));
   }
 
   componentDidUpdate() {
@@ -101,7 +104,8 @@ class UserMain extends React.Component {
   render() {
     const { currentUser } = this.props;
     const { communities } = this.props || [];
-    
+    const feedPosts = this.currentUser.posts_in_communities_joined;
+
     return (
       <div className="user-main5">
         <div className="user-main4">
@@ -155,7 +159,18 @@ class UserMain extends React.Component {
                   <div className="community-links3">
                     <div className="community-links2">
                       <div className="community-links1">
-                        {this.renderLinks()}
+                        {/* {this.renderLinks()} */}
+                        {feedPosts.map((post, i) => {
+                          return (
+                            <>
+                              <MainFeedPostContainer
+                                communityId={post.community_id}
+                                key={i}
+                                post={post}
+                                />
+                            </>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>

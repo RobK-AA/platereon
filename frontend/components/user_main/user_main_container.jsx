@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
 import UserMain from './user_main';
-import { fetchMemberships } from '../../actions/membership_actions'
+import { fetchMemberships } from '../../actions/membership_actions';
+import { fetchCommunities } from '../../actions/community_actions';
+import { fetchCurrentUser } from '../../actions/user_actions';
 
 const msp = state => {
   
@@ -12,9 +14,11 @@ const msp = state => {
     membershipsMessage: state.entities.memberships
 }};
 
-const mdp = dispatch => ({
+const mdp = (dispatch) => ({
   logout: () => dispatch(logout()),
-  getMemberships: (userId) => dispatch(fetchMemberships(userId))
+  getMemberships: (userId) => dispatch(fetchMemberships(userId)),
+  getCommunities: () => dispatch(fetchCommunities()),
+  getCurrentUser: (userId) => dispatch(fetchCurrentUser(userId)),
 });
 
 export default connect(msp, mdp)(UserMain);
