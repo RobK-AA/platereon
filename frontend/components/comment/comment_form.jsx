@@ -26,9 +26,6 @@ class CommentForm extends React.Component {
             body: "",
           })
         )
-        .then(() => {
-          this.props.rerenderParentCallback();
-        });
     }
   }
 
@@ -49,6 +46,7 @@ class CommentForm extends React.Component {
       "background-color": "#f5f4f2",
     });
   }
+  
   render() {
     return (
       <>

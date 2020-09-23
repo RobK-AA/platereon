@@ -1,16 +1,14 @@
 import React from 'react';
-// import Moment from 'react-moment';
 import Moment from "moment";
 import ReactPlayer from 'react-player';
 import CommentFormContainer from "../comment/comment_form_container";
+import CommentsIndexContainer from "../comment/comments_index_container";
 
 class Post extends React.Component {
   constructor(props) {
     super(props);
     this.props.getPosts(this.props.community.id);
-    this.rerenderParentCallback = this.rerenderParentCallback.bind(this);
-    // this.loadMoreComments = this.loadMoreComments.bind(this);
-
+    
     if (this.props.post && this.props.post.comments) {
       this.state = {
         likedByCurrentUser: this.props.likedByCurrentUser,
@@ -22,28 +20,15 @@ class Post extends React.Component {
         numComments: 0,
       };
     }
-
+    this.loadMoreComments = this.loadMoreComments.bind(this);
     this.handleLike = this.handleLike.bind(this);
-
   }
 
   componentWillUnmount(){
     this.props.getPosts(this.props.community.id);
   }
 
-  updatePostComment() {
-    return (e) =>
-      this.setState({
-        [postComment]: {
-          body: e.target.value,
-          commentable_id: this.props.post.id,
-        },
-      });
-  }
-
   renderUnlike() {
-    const { likedByCurrentUser } = this.state;
-
     return (
       <>
         <img
@@ -55,8 +40,6 @@ class Post extends React.Component {
   }
 
   renderLike() {
-    const { likedByCurrentUser } = this.state;
-
     return (
       <>
         <img
@@ -67,9 +50,27 @@ class Post extends React.Component {
     );
   }
 
-  rerenderParentCallback() {
-    console.log("Hi");
-    // this.forceUpdate();
+  handleLike(e) {
+    e.preventDefault();
+    const { currentUser, likeId } = this.props;
+    const id = this.props.post.id;
+    if (!this.props.likedByCurrentUser) {
+      this.props
+        .likePost({
+          liker_id: currentUser.id,
+          likeable_id: id,
+          likeable_type: "Post",
+        })
+        .then(
+          this.setState({
+            likedByCurrentUser: true,
+          }));
+    } else {
+      this.props.unlikePost(likeId).then(
+        this.setState({
+          likedByCurrentUser: false,
+        }));
+    }
   }
 
   renderFirstComment() {
@@ -205,27 +206,10 @@ class Post extends React.Component {
     );
   }
 
-  handleLike(e) {
-    e.preventDefault();
-    const { currentUser, likeId } = this.props;
-    const id = this.props.post.id;
-    if (!this.props.likedByCurrentUser) {
-      this.props
-        .likePost({
-          liker_id: currentUser.id,
-          likeable_id: id,
-          likeable_type: "Post",
-        })
-        .then(
-          this.setState({
-            likedByCurrentUser: true,
-          }));
-    } else {
-      this.props.unlikePost(likeId).then(
-        this.setState({
-          likedByCurrentUser: false,
-        }));
-    }
+  loadMoreComments() {
+    $(`.${this.props.post.id}`).css({
+      "display": "block",
+    });
   }
 
   render() {
@@ -339,7 +323,7 @@ class Post extends React.Component {
                   </div>
                   <div className="post-comments">
                     <div className="post-comments1">
-                      <div /* onClick={this.loadMoreComments} */>Load more comments</div>
+                      <div onClick={this.loadMoreComments} >Load more comments</div>
                       <span>
                         {comments
                           ? comments.length > 1
@@ -359,6 +343,10 @@ class Post extends React.Component {
                         ? this.renderSecondComment()
                         : null}
                     </div>
+                    <div className={`more-comments ${this.props.post.id}`}>
+                      <CommentsIndexContainer post={this.props.post} />
+                    </div>
+                    
                     <div className="post-comments4">
                       <div className="post-comments41">
                         <div className="post-comments-logo">
@@ -368,7 +356,6 @@ class Post extends React.Component {
                         </div>
                         <CommentFormContainer
                           postId={this.props.post.id}
-                          rerenderParentCallback={this.rerenderParentCallback} 
                           commentableType="Post"
                           commentableId={id}
                         />
