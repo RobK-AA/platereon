@@ -19,6 +19,7 @@ const mdp = (dispatch) => ({
   getMemberships: (userId) => dispatch(fetchMemberships(userId)),
   getCommunities: () => dispatch(fetchCommunities()),
   getCurrentUser: (userId) => dispatch(fetchCurrentUser(userId)),
+  getPosts: (communityId) => dispatch(fetchPosts(communityId))
 });
 
 export default connect(msp, mdp)(UserMain);

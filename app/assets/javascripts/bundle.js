@@ -3355,8 +3355,13 @@ var MainFeedPost = /*#__PURE__*/function (_React$Component) {
           id = _this$props$post.id,
           title = _this$props$post.title,
           body = _this$props$post.body,
-          images = _this$props$post.images,
           likes = _this$props$post.likes;
+      var images = this.props.post.images;
+
+      if (this.props.posts[this.props.post.id]) {
+        images = this.props.posts[this.props.post.id].images;
+      }
+
       var createdAt = this.props.post.created_at;
       var videoUrl = this.props.post.video_url;
       var currentUserIsMember = this.props.currentUserIsMember;
@@ -3540,7 +3545,6 @@ var msp = function msp(state, ownProps) {
   var likes = Object(_reducers_selectors__WEBPACK_IMPORTED_MODULE_6__["selectPostLikes"])(ownProps.post.id, state);
   var like = likes ? likes[currentUser.id] : undefined;
   var likeId = like ? like.id : undefined;
-  debugger;
   return {
     post: ownProps.post,
     currentUser: currentUser,
@@ -3548,7 +3552,7 @@ var msp = function msp(state, ownProps) {
     likeId: likeId,
     likedByCurrentUser: likes ? likes[currentUser.id] : undefined,
     memberships: Object.values(state.entities.memberships),
-    posts: Object.values(state.entities.posts)
+    posts: state.entities.posts
   };
 };
 
@@ -5631,7 +5635,7 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
       var _ref = this.props || [],
           communities = _ref.communities;
 
-      var feedPosts = this.currentUser.posts_in_communities_joined;
+      var feedPosts = this.currentUser.posts_in_communities_joined.reverse();
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-main5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5903,6 +5907,9 @@ var mdp = function mdp(dispatch) {
     },
     getCurrentUser: function getCurrentUser(userId) {
       return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_5__["fetchCurrentUser"])(userId));
+    },
+    getPosts: function getPosts(communityId) {
+      return dispatch(fetchPosts(communityId));
     }
   };
 };

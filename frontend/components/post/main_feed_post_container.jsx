@@ -22,7 +22,7 @@ const msp = (state, ownProps) => {
   const likes = selectPostLikes(ownProps.post.id, state);
   const like = likes ? likes[currentUser.id] : undefined;
   const likeId = like ? like.id : undefined;
-  debugger
+  
   return {
     post: ownProps.post,
     currentUser,
@@ -30,7 +30,7 @@ const msp = (state, ownProps) => {
     likeId,
     likedByCurrentUser: likes ? likes[currentUser.id] : undefined,
     memberships: Object.values(state.entities.memberships),
-    posts: Object.values(state.entities.posts),
+    posts: state.entities.posts,
   };
 };
 

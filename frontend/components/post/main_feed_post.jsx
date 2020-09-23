@@ -23,7 +23,7 @@ class MainFeedPost extends React.Component {
     this.loadMoreComments = this.loadMoreComments.bind(this);
     this.handleLike = this.handleLike.bind(this);
   }
-
+  
   componentWillUnmount() {
     this.props.getPosts(this.props.communityId);
     this.props.getMemberships(this.props.currentUser.id);
@@ -217,7 +217,13 @@ class MainFeedPost extends React.Component {
   }
 
   render() {
-    const { id, title, body, images, likes } = this.props.post;
+    const { id, title, body, likes } = this.props.post;
+    let images = this.props.post.images;
+
+    if (this.props.posts[this.props.post.id]) {
+      images = this.props.posts[this.props.post.id].images;
+    }
+      
     const createdAt = this.props.post.created_at;
     const videoUrl = this.props.post.video_url;
     const { currentUserIsMember } = this.props;
@@ -241,7 +247,7 @@ class MainFeedPost extends React.Component {
     } else {
       imgStyle = { display: "none" };
     }
-
+    
     return (
       <div className="post5">
         <div className="post4">
