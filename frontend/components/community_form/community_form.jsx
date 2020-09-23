@@ -80,8 +80,10 @@ class CommunityForm extends React.Component {
     community.append("community[gold_perks]", this.state.goldPerks);
     community.append("community[short_description]", this.state.shortDesc);
     community.append("community[plural]", this.state.plural);
-    community.append("community[background_image]", this.state.backgroundImage);
-  
+
+    if (this.state.backgroundImage) {
+      community.append("community[background_image]", this.state.backgroundImage);
+    }
     
     this.props.submitCommunity(community).then(
       () => {

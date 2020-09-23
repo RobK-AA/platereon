@@ -12,4 +12,4 @@ json.extract! @community,
   :plural,
   :posts
 
-json.background_image @community.background_image ? url_for(@community.background_image) : null
+json.background_image @community.background_image.attached? ? url_for(@community.background_image) : nil

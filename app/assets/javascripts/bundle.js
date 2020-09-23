@@ -1701,7 +1701,11 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       community.append("community[gold_perks]", this.state.goldPerks);
       community.append("community[short_description]", this.state.shortDesc);
       community.append("community[plural]", this.state.plural);
-      community.append("community[background_image]", this.state.backgroundImage);
+
+      if (this.state.backgroundImage) {
+        community.append("community[background_image]", this.state.backgroundImage);
+      }
+
       this.props.submitCommunity(community).then(function () {
         //Fix when DB is reset
         return _this4.props.history.push("communities/".concat(_this4.props.communities[Object.keys(_this4.props.communities).length].id + 1), _this4.state);
