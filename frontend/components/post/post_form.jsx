@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import ReactPlayer from 'react-player';
 
 class PostForm extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class PostForm extends React.Component {
     this.renderDropDown = this.renderDropDown.bind(this);
     this.renderImageForm = this.renderImageForm.bind(this);
     this.renderVideoUrlForm = this.renderVideoUrlForm.bind(this);
+    this.handleVideoUrl = this.handleVideoUrl.bind(this);
     this.currentUser = this.props.currentUser;
     this.state = this.props.post;
     this.state.imageUrls = [];
@@ -91,13 +93,11 @@ class PostForm extends React.Component {
                 <input
                   name="photo"
                   id="image-input"
-                  // id="image-input"
                   type="file"
                   onChange={this.addImage}
                 />
               </div>
             </span>
-            {/* <input id="image-input" type="file" onChange={this.addImage} /> */}
           </label>
         </div>
       </>
@@ -110,6 +110,15 @@ class PostForm extends React.Component {
     return (
       <>
         <div className="text-form-left41"></div>
+        <div id="">
+          <div id="">
+            {(videoUrl.includes('youtube') && videoUrl.includes('watch?')) ? (
+              <div className="">
+                <ReactPlayer className="react-player" url={videoUrl} />
+              </div>
+            ) : this.handleVideoUrl}
+          </div>
+        </div>
         <div className="video-input">
           <label htmlFor="">
             Add a video URL
@@ -117,6 +126,7 @@ class PostForm extends React.Component {
               id="video-input"
               placeholder="Video Link"
               type="text"
+              on
               onChange={this.update("videoUrl")}
             />
           </label>
@@ -197,45 +207,6 @@ class PostForm extends React.Component {
             (filledOut = (body.length > 0 && title.length > 0) && communityId > 0);
     
     return (
-      // <div className="new-post-form">
-      //   <form id="post-form" action="submit" onSubmit={this.handleSubmit}>
-      //     <h4>Post content for your subscribers:</h4>
-      //     {this.renderDropDown()}
-      //     <div className="new-post-form-container">
-      //       <div className="post-title">
-      //         <label htmlFor="">
-      //           Title
-      //           <input
-      //             type="text"
-      //             value={title}
-      //             onChange={this.update("title")}
-      //           />
-      //         </label>
-      //       </div>
-      //       {imagePost ? this.renderImageForm() : null}
-      //       {videoPost ? this.renderVideoUrlForm() : null}
-      //       <div className="post-body">
-      //         {/* <label htmlFor="">Body */}
-      //         <div className="post-body-container">
-      //           <textarea
-      //             className="post-textarea"
-      //             onChange={this.update("body")}
-      //             value={body}
-      //             placeholder={
-      //               "What would you like to share with your supporters?"
-      //             }
-      //           />
-      //           {/* </label> */}
-      //         </div>
-      //       </div>
-      //     </div>
-      //     <div className="post-create">
-      //       <button className="post-button" type="submit" disabled={!filledOut}>
-      //         Share
-      //       </button>
-      //     </div>
-      //   </form>
-      // </div>
       <div className="text-form1">
         <div className="text-form2">
           <div className="text-form3">
