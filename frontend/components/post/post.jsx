@@ -105,17 +105,18 @@ class Post extends React.Component {
     const createdAt = Object.values(this.props.post.comments).reverse()[0]
       .created_at;
     let date = new Moment(createdAt);
+    
     let days = `${parseInt(date.fromNow())}d`;
-    let time;
-    
-    if (!!parseInt(date.fromNow)) {
-      time = days;
-    } else {
-      time = "today";
-    }
+    let hours = `${parseInt(date.fromNow())}h`;
+    let minutes = `${parseInt(date.fromNow())}m`;
+    let seconds = `${parseInt(date.fromNow())}s`;
+    let time = days;
 
-    
-
+    if (date.fromNow().includes('day')) time = days;
+    if (date.fromNow().includes("hour")) time = hours;
+    if (date.fromNow().includes("minute")) time = minutes;
+    if (date.fromNow().includes("second")) time = seconds;
+    if (date.fromNow().includes("in ")) time = "just posted";
     return comments ? (
       <>
         <div className="comment-outer1">
@@ -170,14 +171,16 @@ class Post extends React.Component {
       .created_at;
     let date = new Moment(createdAt);
     let days = `${parseInt(date.fromNow())}d`;
-    let time;
-    if (!!parseInt(date.fromNow)) {
-      time = days;
-    } else {
-      time = "today";
-    }
+    let hours = `${parseInt(date.fromNow())}h`;
+    let minutes = `${parseInt(date.fromNow())}m`;
+    let seconds = `${parseInt(date.fromNow())}s`;
+    let time = days;
 
-    
+    if (date.fromNow().includes("day")) time = days;
+    if (date.fromNow().includes("hour")) time = hours;
+    if (date.fromNow().includes("minute")) time = minutes;
+    if (date.fromNow().includes("second")) time = seconds;
+    if (date.fromNow().includes("in ")) time = "just posted";
 
     return (
       <>

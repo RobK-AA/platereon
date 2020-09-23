@@ -2973,14 +2973,15 @@ var Post = /*#__PURE__*/function (_React$Component) {
       var createdAt = Object.values(this.props.post.comments).reverse()[0].created_at;
       var date = new moment__WEBPACK_IMPORTED_MODULE_1___default.a(createdAt);
       var days = "".concat(parseInt(date.fromNow()), "d");
-      var time;
-
-      if (!!parseInt(date.fromNow)) {
-        time = days;
-      } else {
-        time = "today";
-      }
-
+      var hours = "".concat(parseInt(date.fromNow()), "h");
+      var minutes = "".concat(parseInt(date.fromNow()), "m");
+      var seconds = "".concat(parseInt(date.fromNow()), "s");
+      var time = days;
+      if (date.fromNow().includes('day')) time = days;
+      if (date.fromNow().includes("hour")) time = hours;
+      if (date.fromNow().includes("minute")) time = minutes;
+      if (date.fromNow().includes("second")) time = seconds;
+      if (date.fromNow().includes("in ")) time = "just posted";
       return comments ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-outer1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3028,14 +3029,15 @@ var Post = /*#__PURE__*/function (_React$Component) {
       var createdAt = Object.values(this.props.post.comments).reverse()[1].created_at;
       var date = new moment__WEBPACK_IMPORTED_MODULE_1___default.a(createdAt);
       var days = "".concat(parseInt(date.fromNow()), "d");
-      var time;
-
-      if (!!parseInt(date.fromNow)) {
-        time = days;
-      } else {
-        time = "today";
-      }
-
+      var hours = "".concat(parseInt(date.fromNow()), "h");
+      var minutes = "".concat(parseInt(date.fromNow()), "m");
+      var seconds = "".concat(parseInt(date.fromNow()), "s");
+      var time = days;
+      if (date.fromNow().includes("day")) time = days;
+      if (date.fromNow().includes("hour")) time = hours;
+      if (date.fromNow().includes("minute")) time = minutes;
+      if (date.fromNow().includes("second")) time = seconds;
+      if (date.fromNow().includes("in ")) time = "just posted";
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-outer1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
