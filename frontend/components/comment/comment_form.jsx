@@ -25,8 +25,14 @@ class CommentForm extends React.Component {
           this.setState({
             body: "",
           })
-        )
+        );
     }
+  }
+
+  componentWillUnmount() {
+    this.props.getMemberships(this.props.currentUser.id);
+    // this.props.getCurrentUser(this.props.currentUser.id);
+    // this.props.getCommunities();
   }
 
   background() {
@@ -34,7 +40,7 @@ class CommentForm extends React.Component {
       "border-color": "rgb(0, 76, 129)",
       "border-width": "1px",
       "border-style": "solid",
-      "background": "white",
+      background: "white",
     });
   }
 
@@ -46,7 +52,7 @@ class CommentForm extends React.Component {
       "background-color": "#f5f4f2",
     });
   }
-  
+
   render() {
     return (
       <>
@@ -59,7 +65,6 @@ class CommentForm extends React.Component {
               role="textbox"
               onKeyPress={this.submitComment}
               type="text"
-              rows="1"
               placeholder="Join the conversation..."
               id={this.props.postId}
               cols="30"

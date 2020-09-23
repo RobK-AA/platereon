@@ -21,6 +21,7 @@ class Community extends React.Component {
     //   this.creatorId = this.props.community.creator_id || "";
     //   this.id = this.props.community.id || "";
     // }
+    
     this.name = this.props.community.name || "";
     this.description = this.props.community.description || "";
     this.shortDesc = this.props.community.short_description || "";
@@ -72,6 +73,8 @@ class Community extends React.Component {
   componentWillMount() {
     this.props.fetchCommunity(parseInt(this.props.match.params.communityId));
     this.props.getCommunities();
+    
+    this.props.getMemberships(this.currentUser.id);
   };
 
   componentDidUpdate() {
@@ -82,7 +85,7 @@ class Community extends React.Component {
   handleJoin() {
     if (this.currentUser !== undefined) {
       const membership = { member_id: this.currentUser.id, community_id: this.id }
-      this.joinCommunity(membership).then(this.setState({
+      this.joinCommunity(membership).then(this.props.getCurrentUser(this.currentUser.id)).then(this.setState({
           currentUserIsMember: true
         }))
     } else {
@@ -106,9 +109,14 @@ class Community extends React.Component {
       }
     }
     
-    this.unjoinCommunity(membershipId).then(this.setState({
-      currentUserIsMember: false
-    })).then(() => this.renderJoinButton());
+    this.unjoinCommunity(membershipId)
+      .then(this.props.getCurrentUser(this.currentUser.id))
+      .then(
+        this.setState({
+          currentUserIsMember: false,
+        })
+      )
+      .then(() => this.renderJoinButton());
   }
 
   renderCommunityWelcome() {
@@ -189,7 +197,7 @@ class Community extends React.Component {
         backgroundImage
       } = this;
       let background = backgroundImage || 'https://cdn.pixabay.com/photo/2018/09/22/18/27/healthy-3695814_1280.jpg'
-      
+    
     return (
       <div className="community-body-outer">
         <div className="community-body-mid">

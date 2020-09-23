@@ -28,8 +28,9 @@ class Body extends React.Component {
   // }
   componentDidCatch() {
     if (!this.props.communities.length) {
-      
+      // this.props.getMemberships(this.props.currentUser.id)
       this.props.getCommunities();
+      // this.props.getCurrentUser(this.props.currentUser.id)
     }
   }
   // componentWillUnmount() {

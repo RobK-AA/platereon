@@ -154,7 +154,7 @@ class PostForm extends React.Component {
   }
 
   handleSubmit(e) {
-    debugger
+    
     e.preventDefault();
     const post = new FormData();
     const { title, body, images, imageUrls, videoUrl } = this.state;
@@ -323,7 +323,7 @@ class PostForm extends React.Component {
                                             
                                             className="text-form-right8"
                                             // onSubmit={this.handleSubmit}
-                                            // disabled={!filledOut}
+                                            disabled={!filledOut}
                                             style={{
                                               backgroundColor: filledOut
                                                 ? `rgb(0, 76, 129)`

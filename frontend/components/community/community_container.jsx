@@ -1,8 +1,9 @@
 import { connect } from "react-redux";
 import Community from './community';
 import { fetchCommunity, fetchCommunities } from '../../actions/community_actions'
-import { createMembership, deleteMembership } from "../../actions/membership_actions";
+import { createMembership, deleteMembership, fetchMemberships } from "../../actions/membership_actions";
 import { fetchPosts, fetchPost, createPost, updatePost, deletePost } from '../../actions/post_actions';
+import { fetchCurrentUser } from "../../actions/user_actions";
 
 const msp = (state, ownProps) => {
   
@@ -26,6 +27,8 @@ const mdp = dispatch => {
     updatePost: (post) => dispatch(updatePost(post)),
     deletePost: (postId) => dispatch(deletePost(postId)),
     getCommunities: () => dispatch(fetchCommunities()),
+    getMemberships: (userId) => dispatch(fetchMemberships(userId)),
+    getCurrentUser: (userId) => dispatch(fetchCurrentUser(userId)),
   };
 };
 

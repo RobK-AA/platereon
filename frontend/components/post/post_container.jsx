@@ -2,10 +2,11 @@ import { connect } from "react-redux";
 import Post from './post';
 import { createPost, updatePost, deletePost, fetchPosts } from '../../actions/post_actions';
 import { fetchCommunity } from '../../actions/community_actions';
-import { createMembership, deleteMembership } from "../../actions/membership_actions";
+import { createMembership, deleteMembership, fetchMemberships } from "../../actions/membership_actions";
 import { createComment } from "../../actions/comment_actions";
 import { selectCurrentUser, selectPostLikes } from "../../reducers/selectors";
 import { like, unlike } from "../../actions/like_actions";
+import { fetchCurrentUser } from "../../actions/user_actions";
 
 const msp = (state, ownProps) => {
   const currentUser = selectCurrentUser(state);
@@ -37,6 +38,8 @@ const mdp = dispatch => {
     deletePost: (postId) => dispatch(deletePost(postId)),
     likePost: (likeObj) => dispatch(like(likeObj)),
     unlikePost: (likeId) => dispatch(unlike(likeId)),
+    getMemberships: (userId) => dispatch(fetchMemberships(userId)),
+    getCurrentUser: (userId) => dispatch(fetchCurrentUser(userId)),
   };
 };
 

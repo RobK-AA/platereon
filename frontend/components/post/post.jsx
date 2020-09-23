@@ -26,6 +26,8 @@ class Post extends React.Component {
 
   componentWillUnmount(){
     this.props.getPosts(this.props.community.id);
+    this.props.getMemberships(this.props.currentUser.id);
+    this.props.getCurrentUser(this.props.currentUser.id);
   }
 
   renderUnlike() {
