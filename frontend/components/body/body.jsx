@@ -10,11 +10,20 @@ import CommunityContainer from '../community/community_container';
 import CommunityFormContainer from '../community_form/community_form_container';
 import PostCoverContainer from '../post/post_form_cover';
 import PostFormContainer from '../post/post_form_container';
+
 class Body extends React.Component {
 
   constructor(props) {
     super(props);
     this.props.getCommunities();
+    const communityIds = props.currentUser.communities_joined.map((community) => {
+      return community.id;
+    })
+    communityIds.forEach((communityId) => (
+      props.getPosts(communityId)
+    ))
+    
+    console.log("hi")
   };
 
   // componentWillMount() {
@@ -28,6 +37,7 @@ class Body extends React.Component {
   // }
   componentDidCatch() {
     if (!this.props.communities.length) {
+      
       // this.props.getMemberships(this.props.currentUser.id)
       this.props.getCommunities();
       // this.props.getCurrentUser(this.props.currentUser.id)
@@ -38,8 +48,16 @@ class Body extends React.Component {
   //     this.props.getCommunities();
   //   }
   // }
+
+  // componentWillUnmount() {
+  //   if (!this.props.communities.length) {
+
+  //     this.props.getCommunities();
+  //   }
+  // }
+
   render() {
-    const { currentUser, location } = this.props;
+    const { currentUser, location, communities } = this.props;
     // this.props.getCommunities();
     
     return (
@@ -50,7 +68,7 @@ class Body extends React.Component {
           <AuthRoute exact path="/signup" component={SignUpFormContainer} />
           <AuthRoute exact path="/" component={MainPageContainer} />
           <Route exact path="/communities/:communityId" component={CommunityContainer} />
-          <ProtectedRoute exact path="/" component={UserShowContainer} />
+          <ProtectedRoute exact path="/" communities={communities} component={UserShowContainer} />
           <ProtectedRoute exact path="/createform" component={CommunityFormContainer} />
           <Switch>
             <ProtectedRoute exact path="/postform" component={PostCoverContainer} />

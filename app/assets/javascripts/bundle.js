@@ -723,6 +723,13 @@ var Body = /*#__PURE__*/function (_React$Component) {
 
     _this.props.getCommunities();
 
+    var communityIds = props.currentUser.communities_joined.map(function (community) {
+      return community.id;
+    });
+    communityIds.forEach(function (communityId) {
+      return props.getPosts(communityId);
+    });
+    console.log("hi");
     return _this;
   }
 
@@ -746,13 +753,19 @@ var Body = /*#__PURE__*/function (_React$Component) {
     //     this.props.getCommunities();
     //   }
     // }
+    // componentWillUnmount() {
+    //   if (!this.props.communities.length) {
+    //     this.props.getCommunities();
+    //   }
+    // }
 
   }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
-          location = _this$props.location; // this.props.getCommunities();
+          location = _this$props.location,
+          communities = _this$props.communities; // this.props.getCommunities();
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "body-container"
@@ -775,6 +788,7 @@ var Body = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__["ProtectedRoute"], {
         exact: true,
         path: "/",
+        communities: communities,
         component: _user_show_user_show_container__WEBPACK_IMPORTED_MODULE_3__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__["ProtectedRoute"], {
         exact: true,
@@ -818,6 +832,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _body__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./body */ "./frontend/components/body/body.jsx");
 /* harmony import */ var _actions_membership_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/membership_actions */ "./frontend/actions/membership_actions.js");
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _actions_post_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../actions/post_actions */ "./frontend/actions/post_actions.js");
+
 
 
 
@@ -845,6 +861,9 @@ var mdp = function mdp(dispatch) {
     },
     getCurrentUser: function getCurrentUser(userId) {
       return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_5__["fetchCurrentUser"])(userId));
+    },
+    getPosts: function getPosts(communityId) {
+      return dispatch(Object(_actions_post_actions__WEBPACK_IMPORTED_MODULE_6__["fetchPosts"])(communityId));
     }
   };
 };
@@ -3163,12 +3182,14 @@ var MainFeedPost = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, MainFeedPost);
 
-    _this = _super.call(this, props); // this.props.getPosts(this.props.communityId);
+    _this = _super.call(this, props);
+
+    _this.props.getPosts(_this.props.communityId);
 
     if (_this.props.post && _this.props.post.comments) {
       _this.state = {
         likedByCurrentUser: _this.props.likedByCurrentUser,
-        numComments: _this.props.post.comments.length
+        numComments: _this.props.posts[_this.props.post.id].comments.length
       };
     } else {
       _this.state = {
@@ -3183,9 +3204,12 @@ var MainFeedPost = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(MainFeedPost, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
-      this.props.getPosts(this.props.communityId);
+    key: "componentDidCatch",
+    value: function componentDidCatch() {
+      this.props.getPosts(this.props.communityId).then(this.setState({
+        likedByCurrentUser: this.props.likedByCurrentUser,
+        numComments: this.props.posts[this.props.post.id].comments.length
+      }));
     }
   }, {
     key: "componentWillUnmount",
@@ -3242,7 +3266,6 @@ var MainFeedPost = /*#__PURE__*/function (_React$Component) {
         comments = Object.values(this.props.posts[this.props.post.id].comments).reverse();
       }
 
-      debugger;
       var firstCommentName = comments[0].author.name;
       var firstCommentBody = comments[0].body;
       var createdAt = comments[0].created_at;
@@ -3371,12 +3394,13 @@ var MainFeedPost = /*#__PURE__*/function (_React$Component) {
       var _this$props$post = this.props.post,
           id = _this$props$post.id,
           title = _this$props$post.title,
-          body = _this$props$post.body,
-          likes = _this$props$post.likes;
+          body = _this$props$post.body;
       var images;
+      var likes;
 
       if (this.props.posts[this.props.post.id]) {
         images = this.props.posts[this.props.post.id].images;
+        likes = this.props.posts[this.props.post.id].likes;
       }
 
       var createdAt = this.props.post.created_at;
@@ -5710,13 +5734,7 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
         className: "community-links2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "community-links1"
-      }, feedPosts.map(function (post, i) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_post_main_feed_post_container__WEBPACK_IMPORTED_MODULE_6__["default"], {
-          communityId: post.community_id,
-          key: i,
-          post: post
-        }));
-      }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.renderLinks())))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "mid-panel1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "mid-panel2"
@@ -5983,9 +6001,16 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(UserShow);
 
   function UserShow(props) {
+    var _this;
+
     _classCallCheck(this, UserShow);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+
+    _this.props.getCommunities().then(console.log("hey"));
+
+    console.log("hey again");
+    return _this;
   }
 
   _createClass(UserShow, [{
@@ -6048,7 +6073,7 @@ __webpack_require__.r(__webpack_exports__);
 var msp = function msp(state) {
   return {
     currentUser: state.entities.users[state.session.id],
-    communites: Object.values(state.entities.communities)
+    communities: Object.values(state.entities.communities)
   };
 };
 
@@ -6558,7 +6583,7 @@ var selectCurrentUser = function selectCurrentUser(state) {
   return state.entities.users[state.session.id];
 };
 var selectPostLikes = function selectPostLikes(postId, state) {
-  if (state.entities.posts[postId]) {
+  if (state.entities.posts[postId] && state.entities.posts[postId].likes) {
     return state.entities.posts[postId].likes;
   } else {
     return {};

@@ -3,9 +3,9 @@ export const selectCurrentUser = state => {
 }
 
 export const selectPostLikes = (postId, state) => {
-  if (state.entities.posts[postId]) {
+  if (state.entities.posts[postId] && state.entities.posts[postId].likes) {
     return state.entities.posts[postId].likes;
   } else {
-    return {}
+    return {};
   };
 }

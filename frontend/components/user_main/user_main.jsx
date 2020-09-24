@@ -159,18 +159,21 @@ class UserMain extends React.Component {
                   <div className="community-links3">
                     <div className="community-links2">
                       <div className="community-links1">
-                        {/* {this.renderLinks()} */}
-                        {feedPosts.map((post, i) => {
+                        {this.renderLinks()}
+                        {/* {feedPosts.map((post, i) => {
                           return (
                             <>
                               <MainFeedPostContainer
                                 communityId={post.community_id}
+                                title={post.title}
+                                body={post.body}
+                                createdAt={post.created_at}
                                 key={i}
                                 post={post}
                                 />
                             </>
                           );
-                        })}
+                        })} */}
                       </div>
                     </div>
                   </div>

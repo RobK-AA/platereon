@@ -7,12 +7,12 @@ import CommentsIndexContainer from "../comment/comments_index_container";
 class MainFeedPost extends React.Component {
   constructor(props) {
     super(props);
-    // this.props.getPosts(this.props.communityId);
+    this.props.getPosts(this.props.communityId);
     
     if (this.props.post && this.props.post.comments) {
       this.state = {
         likedByCurrentUser: this.props.likedByCurrentUser,
-        numComments: this.props.post.comments.length,
+        numComments: this.props.posts[this.props.post.id].comments.length,
       };
     } else {
       this.state = {
@@ -20,11 +20,19 @@ class MainFeedPost extends React.Component {
         numComments: 0,
       };
     }
+    
     this.loadMoreComments = this.loadMoreComments.bind(this);
     this.handleLike = this.handleLike.bind(this);
   }
-  componentWillMount() {
-    this.props.getPosts(this.props.communityId);
+
+  componentDidCatch() {
+    
+    this.props.getPosts(this.props.communityId).then(
+      this.setState({
+        likedByCurrentUser: this.props.likedByCurrentUser,
+        numComments: this.props.posts[this.props.post.id].comments.length,
+      })
+    );
   }
 
   componentWillUnmount() {
@@ -85,7 +93,7 @@ class MainFeedPost extends React.Component {
      if (this.props.posts[this.props.post.id]) {
        comments = Object.values(this.props.posts[this.props.post.id].comments).reverse();
      }
-    debugger
+    
     const firstCommentName = comments[0].author.name;
     const firstCommentBody = comments[0].body;
     const createdAt = comments[0].created_at;
@@ -221,13 +229,15 @@ class MainFeedPost extends React.Component {
   }
 
   render() {
-    const { id, title, body, likes } = this.props.post;
+    const { id, title, body} = this.props.post;
     let images;
+    let likes;
 
     if (this.props.posts[this.props.post.id]) {
       images = this.props.posts[this.props.post.id].images;
+      likes = this.props.posts[this.props.post.id].likes;
     }
-      
+    
     const createdAt = this.props.post.created_at;
     const videoUrl = this.props.post.video_url;
     
