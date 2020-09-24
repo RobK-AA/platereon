@@ -4,13 +4,14 @@ import { createPost, updatePost, deletePost, fetchPosts } from '../../actions/po
 import { fetchCommunity } from '../../actions/community_actions';
 import { createMembership, deleteMembership, fetchMemberships } from "../../actions/membership_actions";
 import { createComment } from "../../actions/comment_actions";
-import { selectCurrentUser, selectPostLikes } from "../../reducers/selectors";
+// import { selectCurrentUser, selectPostLikes } from "../../reducers/selectors";
 import { like, unlike } from "../../actions/like_actions";
 import { fetchCurrentUser } from "../../actions/user_actions";
 
 const msp = (state, ownProps) => {
-  const currentUser = selectCurrentUser(state);
-  const likes = selectPostLikes(ownProps.post.id, state);
+  const currentUser = state.entities.users[state.session.id];
+  const likes = ownProps.post.likes;
+  // const likes = selectPostLikes(ownProps.post.id, state);
   const like = likes ? likes[currentUser.id] : undefined;
   const likeId =  like ? like.id : undefined;
   
@@ -19,7 +20,7 @@ const msp = (state, ownProps) => {
     currentUser,
     likes,
     likeId,
-    likedByCurrentUser: likes ? likes[currentUser.id] : undefined,
+    likedByCurrentUser: likes && likes[currentUser.id] ? true : undefined,
     memberships: Object.values(state.entities.memberships),
     posts: Object.values(state.entities.posts),
   };

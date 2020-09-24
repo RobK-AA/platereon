@@ -9,15 +9,17 @@ class Post extends React.Component {
     super(props);
     this.props.getPosts(this.props.post.community_id);
     
-    if (this.props.post && this.props.post.comments) {
+    if (this.props.post && this.props.post.comments && this.props.post.likes) {
       this.state = {
         likedByCurrentUser: this.props.likedByCurrentUser,
-        numComments: this.props.post.comments.length,
+        numComments: Object.values(props.post.comments).length,
+        numLikes: Object.values(this.props.post.likes).length
       };
     } else {
       this.state = {
         likedByCurrentUser: this.props.likedByCurrentUser,
         numComments: 0,
+        numLikes: 0
       };
     }
     this.loadMoreComments = this.loadMoreComments.bind(this);
@@ -56,7 +58,8 @@ class Post extends React.Component {
     e.preventDefault();
     const { currentUser, likeId } = this.props;
     const id = this.props.post.id;
-    if (!this.props.likedByCurrentUser) {
+    
+    if (!this.state.likedByCurrentUser) {
       this.props
         .likePost({
           liker_id: currentUser.id,
@@ -66,11 +69,13 @@ class Post extends React.Component {
         .then(
           this.setState({
             likedByCurrentUser: true,
+            numLikes: Object.values(this.props.post.likes).length
           }));
     } else {
       this.props.unlikePost(likeId).then(
         this.setState({
           likedByCurrentUser: false,
+          numLikes: Object.values(this.props.post.likes).length - 1
         }));
     }
   }
@@ -221,13 +226,13 @@ class Post extends React.Component {
     // const { currentUserIsMember } = this.props;
     let date = new Moment(createdAt);
     let comments;
-    let numLikes;
+    const { numLikes } = this.state;
 
-    if (likes) {
-      numLikes = Object.values(likes).length;
-    } else {
-      numLikes = 0;
-    }
+    // if (likes) {
+    //   numLikes = Object.values(likes).length;
+    // } else {
+    //   numLikes = 0;
+    // }
 
     if (this.props.post.comments) {
       comments = Object.values(this.props.post.comments);

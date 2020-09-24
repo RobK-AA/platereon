@@ -7,7 +7,7 @@ class Feed extends React.Component {
   }
 
   render() {
-    debugger
+    
     return(
       <>
         <PostsIndex posts={Object.values(this.props.posts)} />

@@ -17,11 +17,15 @@ const PostsReducer = (oldState = {}, action) => {
       return newState;
     case RECEIVE_LIKE:
       if (action.like.likeable_type === "Post") {
+        // newState[action.like.id] = action.like;
+        // return newState;
         return likeMerge(oldState, action.like)
+        // return merge({}, oldState, { [action.like.id]: action.like });
+        // return action.like;
       }
       return oldState;
     case REMOVE_LIKE:
-      
+      debugger
       delete newState[action.like.likeable_id].likes[action.like.liker.id];
       return newState;
     case RECEIVE_COMMENT:
