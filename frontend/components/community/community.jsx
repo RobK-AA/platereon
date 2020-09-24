@@ -73,8 +73,9 @@ class Community extends React.Component {
   componentWillMount() {
     this.props.fetchCommunity(parseInt(this.props.match.params.communityId));
     this.props.getCommunities();
-    
-    this.props.getMemberships(this.currentUser.id);
+    if (this.currentUser) {
+      this.props.getMemberships(this.currentUser.id);
+    }
   };
 
   componentDidUpdate() {

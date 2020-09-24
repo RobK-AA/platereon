@@ -1373,7 +1373,10 @@ var Community = /*#__PURE__*/function (_React$Component) {
     value: function componentWillMount() {
       this.props.fetchCommunity(parseInt(this.props.match.params.communityId));
       this.props.getCommunities();
-      this.props.getMemberships(this.currentUser.id);
+
+      if (this.currentUser) {
+        this.props.getMemberships(this.currentUser.id);
+      }
     }
   }, {
     key: "componentDidUpdate",
