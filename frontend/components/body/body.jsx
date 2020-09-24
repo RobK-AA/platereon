@@ -16,14 +16,19 @@ class Body extends React.Component {
   constructor(props) {
     super(props);
     this.props.getCommunities();
-    const communityIds = props.currentUser.communities_joined.map((community) => {
-      return community.id;
-    })
-    communityIds.forEach((communityId) => (
-      props.getPosts(communityId)
-    ))
     
-    console.log("hi")
+
+    // if (props.currentUser) {
+    //   const communityIds = props.currentUser.communities_joined.map(
+    //     (community) => {
+    //       return community.id;
+    //     }
+    //   );
+    //   communityIds.forEach((communityId) => props.getPosts(communityId));
+    // }
+    
+    
+    // console.log("hi")
   };
 
   // componentWillMount() {

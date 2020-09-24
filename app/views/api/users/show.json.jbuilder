@@ -1,23 +1,25 @@
+# json.partial! "api/users/user", user: @user #, community_posts: @posts
+    
 json.extract! @user, 
   :id, 
   :email, 
   :name, 
   :communities_created, 
-  :communities_joined, 
+  :communities_joined,
   :posts
 
-  json.posts_in_communities_joined do
-    @posts.each do |post| 
-      json.set! post.id do 
-        json.extract! post, 
-          :id, 
-          :author_id,
-          :community_id,
-          :title,
-          :body,
-          :video_url,
-          :link_url,
-          :created_at
+json.posts_in_communities_joined do
+  @posts.each do |post| 
+    json.set! post.id do 
+      json.extract! post, 
+        :id, 
+        :author_id,
+        :community_id,
+        :title,
+        :body,
+        :video_url,
+        :link_url,
+        :created_at
 
       json.comments do
         post.comments.each do |comment|
@@ -44,8 +46,7 @@ json.extract! @user,
           end
         end
       end
-
-      json.images post.images.map { |image| url_for(image) }
+    json.images post.images.map { |image| url_for(image) }
     end
   end
 end

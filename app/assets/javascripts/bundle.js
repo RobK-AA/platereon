@@ -721,15 +721,17 @@ var Body = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
 
-    _this.props.getCommunities();
+    _this.props.getCommunities(); // if (props.currentUser) {
+    //   const communityIds = props.currentUser.communities_joined.map(
+    //     (community) => {
+    //       return community.id;
+    //     }
+    //   );
+    //   communityIds.forEach((communityId) => props.getPosts(communityId));
+    // }
+    // console.log("hi")
 
-    var communityIds = props.currentUser.communities_joined.map(function (community) {
-      return community.id;
-    });
-    communityIds.forEach(function (communityId) {
-      return props.getPosts(communityId);
-    });
-    console.log("hi");
+
     return _this;
   }
 
@@ -5675,7 +5677,8 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
       var _ref = this.props || [],
           communities = _ref.communities;
 
-      var feedPosts = this.currentUser.posts_in_communities_joined.reverse();
+      debugger;
+      var feedPosts = Object.values(this.currentUser.posts_in_communities_joined).reverse();
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-main5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
