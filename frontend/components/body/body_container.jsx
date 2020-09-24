@@ -6,10 +6,12 @@ import { fetchMemberships } from '../../actions/membership_actions';
 import { fetchCurrentUser } from '../../actions/user_actions';
 import { fetchPosts } from '../../actions/post_actions';
 
-const msp = state => ({
-  currentUser: state.entities.users[state.session.id],
-  communities: Object.values(state.entities.communities)
-});
+const msp = state => {
+  
+  return {
+    currentUser: state.entities.users[state.session.id],
+    communities: Object.values(state.entities.communities)
+}};
 
 const mdp = dispatch => {
   

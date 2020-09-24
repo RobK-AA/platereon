@@ -104,7 +104,7 @@ class UserMain extends React.Component {
   render() {
     const { currentUser } = this.props;
     const { communities } = this.props || [];
-    debugger
+
     const feedPosts = Object.values(this.currentUser.posts_in_communities_joined).reverse();
 
     return (

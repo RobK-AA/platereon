@@ -5,9 +5,9 @@ class Api::SessionsController < ApplicationController
       params[:user][:email],
       params[:user][:password]
     )
-    @posts = @user.posts_in_communities_joined
+    
     if @user
-
+      @posts = @user.posts_in_communities_joined
       login!(@user)
       render 'api/users/show'
     else
