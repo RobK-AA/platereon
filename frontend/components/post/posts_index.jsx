@@ -1,7 +1,7 @@
 import React from 'react';
 import PostContainer from './post_container';
 
-const PostsIndex = ({ posts, currentUserIsMember, community }) => {
+const PostsIndex = ({ posts }) => {
   
   return posts ? (
     <div className="post-list-container">
@@ -11,8 +11,6 @@ const PostsIndex = ({ posts, currentUserIsMember, community }) => {
             return (
               <li key={`post-${i}`}>
                 <PostContainer
-                  community={community}
-                  currentUserIsMember={currentUserIsMember}
                   key={i}
                   post={post}
                 />

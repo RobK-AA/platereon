@@ -5,7 +5,7 @@ import CommunitiesReducer from '../../reducers/communities_reducer';
 import community_container from '../community/community_container';
 import PostContainer from '../post/post_container'
 import MainFeedPostContainer from '../post/main_feed_post_container';
-
+import Feed from "../feed/feed";
 
 class UserMain extends React.Component {
   constructor(props) {
@@ -21,13 +21,13 @@ class UserMain extends React.Component {
   };
   
   componentDidMount() {
-    
-    this.getMemberships().then(this.props.getCommunities()).then(this.props.getCurrentUser(this.currentUserId));
+    this.getMemberships().then(
+      this.props.getCommunities()).then(
+        this.props.getCurrentUser(this.currentUserId));
   }
 
   componentDidUpdate() {
     this.renderLinks();
-    // this.renderCommunitiesCreated();
   }
 
   renderCommunitiesJoined() {
@@ -160,7 +160,8 @@ class UserMain extends React.Component {
                   <div className="community-links3">
                     <div className="community-links2">
                       <div className="community-links1">
-                        {this.renderLinks()}
+                        {/* {this.renderLinks()} */}
+                        <Feed posts={this.currentUser.posts_in_communities_joined} />
                         {/* {feedPosts.map((post, i) => {
                           return (
                             <>

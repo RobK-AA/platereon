@@ -721,54 +721,25 @@ var Body = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
 
-    _this.props.getCommunities(); // if (props.currentUser) {
-    //   const communityIds = props.currentUser.communities_joined.map(
-    //     (community) => {
-    //       return community.id;
-    //     }
-    //   );
-    //   communityIds.forEach((communityId) => props.getPosts(communityId));
-    // }
-    // console.log("hi")
-
+    _this.props.getCommunities();
 
     return _this;
   }
 
   _createClass(Body, [{
     key: "componentDidCatch",
-    // componentWillMount() {
-    //   this.props.getCommunities();
-    //   // if (this.props.currentUser) this.props.getMemberships(this.props.currentUser.id);
-    //   // localStorage.setItem('communities', this.props.communities)
-    // }
-    // componentDidMount() {
-    //   this.props.getCommunities();
-    // }
     value: function componentDidCatch() {
       if (!this.props.communities.length) {
-        // this.props.getMemberships(this.props.currentUser.id)
-        this.props.getCommunities(); // this.props.getCurrentUser(this.props.currentUser.id)
+        this.props.getCommunities();
       }
-    } // componentWillUnmount() {
-    //   if (!this.props.communities.length) {
-    //     this.props.getCommunities();
-    //   }
-    // }
-    // componentWillUnmount() {
-    //   if (!this.props.communities.length) {
-    //     this.props.getCommunities();
-    //   }
-    // }
-
+    }
   }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
           location = _this$props.location,
-          communities = _this$props.communities; // this.props.getCommunities();
-
+          communities = _this$props.communities;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "body-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__["AuthRoute"], {
@@ -2452,6 +2423,71 @@ var mdp = function mdp(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/feed/feed.jsx":
+/*!*******************************************!*\
+  !*** ./frontend/components/feed/feed.jsx ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _post_posts_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../post/posts_index */ "./frontend/components/post/posts_index.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+var Feed = /*#__PURE__*/function (_React$Component) {
+  _inherits(Feed, _React$Component);
+
+  var _super = _createSuper(Feed);
+
+  function Feed(props) {
+    _classCallCheck(this, Feed);
+
+    return _super.call(this, props);
+  }
+
+  _createClass(Feed, [{
+    key: "render",
+    value: function render() {
+      debugger;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_post_posts_index__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        posts: Object.values(this.props.posts)
+      }));
+    }
+  }]);
+
+  return Feed;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Feed);
+
+/***/ }),
+
 /***/ "./frontend/components/header/header.jsx":
 /*!***********************************************!*\
   !*** ./frontend/components/header/header.jsx ***!
@@ -3700,7 +3736,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
 
-    _this.props.getPosts(_this.props.community.id);
+    _this.props.getPosts(_this.props.post.community_id);
 
     if (_this.props.post && _this.props.post.comments) {
       _this.state = {
@@ -3722,7 +3758,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
   _createClass(Post, [{
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      this.props.getPosts(this.props.community.id);
+      this.props.getPosts(this.props.post.community_id);
       this.props.getMemberships(this.props.currentUser.id);
       this.props.getCurrentUser(this.props.currentUser.id);
     }
@@ -3896,8 +3932,8 @@ var Post = /*#__PURE__*/function (_React$Component) {
           images = _this$props$post.images,
           likes = _this$props$post.likes;
       var createdAt = this.props.post.created_at;
-      var videoUrl = this.props.post.video_url;
-      var currentUserIsMember = this.props.currentUserIsMember;
+      var videoUrl = this.props.post.video_url; // const { currentUserIsMember } = this.props;
+
       var date = new moment__WEBPACK_IMPORTED_MODULE_1___default.a(createdAt);
       var comments;
       var numLikes;
@@ -3973,7 +4009,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
         src: "https://img.icons8.com/metro/10/000000/unlock.png"
       }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "lock-status"
-      }, currentUserIsMember ? "Unlocked" : "Locked")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "\"Unlocked\"")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-title-title"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: ""
@@ -4774,9 +4810,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var PostsIndex = function PostsIndex(_ref) {
-  var posts = _ref.posts,
-      currentUserIsMember = _ref.currentUserIsMember,
-      community = _ref.community;
+  var posts = _ref.posts;
   return posts ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "post-list-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4787,8 +4821,6 @@ var PostsIndex = function PostsIndex(_ref) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       key: "post-".concat(i)
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_post_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      community: community,
-      currentUserIsMember: currentUserIsMember,
       key: i,
       post: post
     }));
@@ -5548,6 +5580,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _community_community_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../community/community_container */ "./frontend/components/community/community_container.jsx");
 /* harmony import */ var _post_post_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../post/post_container */ "./frontend/components/post/post_container.jsx");
 /* harmony import */ var _post_main_feed_post_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../post/main_feed_post_container */ "./frontend/components/post/main_feed_post_container.jsx");
+/* harmony import */ var _feed_feed__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../feed/feed */ "./frontend/components/feed/feed.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -5569,6 +5602,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -5608,7 +5642,7 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      this.renderLinks(); // this.renderCommunitiesCreated();
+      this.renderLinks();
     }
   }, {
     key: "renderCommunitiesJoined",
@@ -5736,7 +5770,9 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
         className: "community-links2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "community-links1"
-      }, this.renderLinks())))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_feed_feed__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        posts: this.currentUser.posts_in_communities_joined
+      }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "mid-panel1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "mid-panel2"

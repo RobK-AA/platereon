@@ -7,7 +7,7 @@ import CommentsIndexContainer from "../comment/comments_index_container";
 class Post extends React.Component {
   constructor(props) {
     super(props);
-    this.props.getPosts(this.props.community.id);
+    this.props.getPosts(this.props.post.community_id);
     
     if (this.props.post && this.props.post.comments) {
       this.state = {
@@ -25,7 +25,7 @@ class Post extends React.Component {
   }
 
   componentWillUnmount(){
-    this.props.getPosts(this.props.community.id);
+    this.props.getPosts(this.props.post.community_id);
     this.props.getMemberships(this.props.currentUser.id);
     this.props.getCurrentUser(this.props.currentUser.id);
   }
@@ -218,7 +218,7 @@ class Post extends React.Component {
     const { id, title, body, images, likes } = this.props.post;
     const createdAt = this.props.post.created_at;
     const videoUrl = this.props.post.video_url;
-    const { currentUserIsMember } = this.props;
+    // const { currentUserIsMember } = this.props;
     let date = new Moment(createdAt);
     let comments;
     let numLikes;
@@ -285,7 +285,7 @@ class Post extends React.Component {
                             </div>
                           </div>
                           <span className="lock-status">
-                            {currentUserIsMember ? "Unlocked" : "Locked"}
+                            "Unlocked"
                           </span>
                         </div>
                       </div>

@@ -16,59 +16,19 @@ class Body extends React.Component {
   constructor(props) {
     super(props);
     this.props.getCommunities();
-    
-
-    // if (props.currentUser) {
-    //   const communityIds = props.currentUser.communities_joined.map(
-    //     (community) => {
-    //       return community.id;
-    //     }
-    //   );
-    //   communityIds.forEach((communityId) => props.getPosts(communityId));
-    // }
-    
-    
-    // console.log("hi")
   };
 
-  // componentWillMount() {
-    
-  //   this.props.getCommunities();
-  //   // if (this.props.currentUser) this.props.getMemberships(this.props.currentUser.id);
-  //   // localStorage.setItem('communities', this.props.communities)
-  // }
-  // componentDidMount() {
-  //   this.props.getCommunities();
-  // }
   componentDidCatch() {
     if (!this.props.communities.length) {
-      
-      // this.props.getMemberships(this.props.currentUser.id)
       this.props.getCommunities();
-      // this.props.getCurrentUser(this.props.currentUser.id)
     }
   }
-  // componentWillUnmount() {
-  //   if (!this.props.communities.length) {
-  //     this.props.getCommunities();
-  //   }
-  // }
-
-  // componentWillUnmount() {
-  //   if (!this.props.communities.length) {
-
-  //     this.props.getCommunities();
-  //   }
-  // }
 
   render() {
     const { currentUser, location, communities } = this.props;
-    // this.props.getCommunities();
     
     return (
-
       <div className="body-container">
-          
           <AuthRoute exact path="/login" component={LogInFormContainer} />
           <AuthRoute exact path="/signup" component={SignUpFormContainer} />
           <AuthRoute exact path="/" component={MainPageContainer} />
@@ -79,15 +39,10 @@ class Body extends React.Component {
             <ProtectedRoute exact path="/postform" component={PostCoverContainer} />
             <ProtectedRoute path="/postform/" component={PostFormContainer} />
           </Switch>
-          
 
         <Switch>
           <Route exact path="/search" component={SearchResultsContainer} />
-          
-          
         </Switch>
-        
-        
       </div>
     )
   }
