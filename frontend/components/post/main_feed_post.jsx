@@ -7,7 +7,7 @@ import CommentsIndexContainer from "../comment/comments_index_container";
 class MainFeedPost extends React.Component {
   constructor(props) {
     super(props);
-    this.props.getPosts(this.props.communityId);
+    // this.props.getPosts(this.props.communityId);
     
     if (this.props.post && this.props.post.comments) {
       this.state = {
@@ -23,7 +23,10 @@ class MainFeedPost extends React.Component {
     this.loadMoreComments = this.loadMoreComments.bind(this);
     this.handleLike = this.handleLike.bind(this);
   }
-  
+  componentWillMount() {
+    this.props.getPosts(this.props.communityId);
+  }
+
   componentWillUnmount() {
     this.props.getPosts(this.props.communityId);
     this.props.getMemberships(this.props.currentUser.id);
@@ -78,15 +81,15 @@ class MainFeedPost extends React.Component {
   }
 
   renderFirstComment() {
-    const comments = Object.values(this.props.post.comments);
-    const firstCommentName = Object.values(
-      this.props.post.comments
-    ).reverse()[0].author.name;
-    const firstCommentBody = Object.values(
-      this.props.post.comments
-    ).reverse()[0].body;
-    const createdAt = Object.values(this.props.post.comments).reverse()[0]
-      .created_at;
+    let comments;
+     if (this.props.posts[this.props.post.id]) {
+       comments = Object.values(this.props.posts[this.props.post.id].comments).reverse();
+     }
+    debugger
+    const firstCommentName = comments[0].author.name;
+    const firstCommentBody = comments[0].body;
+    const createdAt = comments[0].created_at;
+
     let date = new Moment(createdAt);
 
     let days = `${parseInt(date.fromNow())}d`;
@@ -145,15 +148,16 @@ class MainFeedPost extends React.Component {
   }
 
   renderSecondComment() {
-    const comments = Object.values(this.props.post.comments);
-    const secondCommentName = Object.values(
-      this.props.post.comments
-    ).reverse()[1].author.name;
-    const secondCommentBody = Object.values(
-      this.props.post.comments
-    ).reverse()[1].body;
-    const createdAt = Object.values(this.props.post.comments).reverse()[1]
-      .created_at;
+    let comments;
+    if (this.props.posts[this.props.post.id]) {
+      comments = Object.values(
+        this.props.posts[this.props.post.id].comments
+      ).reverse();
+    }
+
+    const secondCommentName = comments[1].author.name;
+    const secondCommentBody = comments[1].body;
+    const createdAt = comments[1].created_at;
     let date = new Moment(createdAt);
     let days = `${parseInt(date.fromNow())}d`;
     let hours = `${parseInt(date.fromNow())}h`;
@@ -218,7 +222,7 @@ class MainFeedPost extends React.Component {
 
   render() {
     const { id, title, body, likes } = this.props.post;
-    let images = this.props.post.images;
+    let images;
 
     if (this.props.posts[this.props.post.id]) {
       images = this.props.posts[this.props.post.id].images;
@@ -226,7 +230,7 @@ class MainFeedPost extends React.Component {
       
     const createdAt = this.props.post.created_at;
     const videoUrl = this.props.post.video_url;
-    const { currentUserIsMember } = this.props;
+    
     let date = new Moment(createdAt);
     let comments;
     let numLikes;
@@ -237,8 +241,11 @@ class MainFeedPost extends React.Component {
       numLikes = 0;
     }
 
-    if (this.props.post.comments) {
-      comments = Object.values(this.props.post.comments);
+    if (
+      this.props.posts[this.props.post.id] &&
+      this.props.posts[this.props.post.id].comments
+    ) {
+      comments = Object.values(this.props.posts[this.props.post.id].comments);
     }
 
     let imgStyle;
@@ -293,7 +300,7 @@ class MainFeedPost extends React.Component {
                             </div>
                           </div>
                           <span className="lock-status">
-                            {currentUserIsMember ? "Unlocked" : "Locked"}
+                            Unlocked
                           </span>
                         </div>
                       </div>

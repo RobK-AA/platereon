@@ -3163,9 +3163,7 @@ var MainFeedPost = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, MainFeedPost);
 
-    _this = _super.call(this, props);
-
-    _this.props.getPosts(_this.props.communityId);
+    _this = _super.call(this, props); // this.props.getPosts(this.props.communityId);
 
     if (_this.props.post && _this.props.post.comments) {
       _this.state = {
@@ -3185,6 +3183,11 @@ var MainFeedPost = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(MainFeedPost, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      this.props.getPosts(this.props.communityId);
+    }
+  }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       this.props.getPosts(this.props.communityId);
@@ -3233,10 +3236,16 @@ var MainFeedPost = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "renderFirstComment",
     value: function renderFirstComment() {
-      var comments = Object.values(this.props.post.comments);
-      var firstCommentName = Object.values(this.props.post.comments).reverse()[0].author.name;
-      var firstCommentBody = Object.values(this.props.post.comments).reverse()[0].body;
-      var createdAt = Object.values(this.props.post.comments).reverse()[0].created_at;
+      var comments;
+
+      if (this.props.posts[this.props.post.id]) {
+        comments = Object.values(this.props.posts[this.props.post.id].comments).reverse();
+      }
+
+      debugger;
+      var firstCommentName = comments[0].author.name;
+      var firstCommentBody = comments[0].body;
+      var createdAt = comments[0].created_at;
       var date = new moment__WEBPACK_IMPORTED_MODULE_1___default.a(createdAt);
       var days = "".concat(parseInt(date.fromNow()), "d");
       var hours = "".concat(parseInt(date.fromNow()), "h");
@@ -3290,10 +3299,15 @@ var MainFeedPost = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "renderSecondComment",
     value: function renderSecondComment() {
-      var comments = Object.values(this.props.post.comments);
-      var secondCommentName = Object.values(this.props.post.comments).reverse()[1].author.name;
-      var secondCommentBody = Object.values(this.props.post.comments).reverse()[1].body;
-      var createdAt = Object.values(this.props.post.comments).reverse()[1].created_at;
+      var comments;
+
+      if (this.props.posts[this.props.post.id]) {
+        comments = Object.values(this.props.posts[this.props.post.id].comments).reverse();
+      }
+
+      var secondCommentName = comments[1].author.name;
+      var secondCommentBody = comments[1].body;
+      var createdAt = comments[1].created_at;
       var date = new moment__WEBPACK_IMPORTED_MODULE_1___default.a(createdAt);
       var days = "".concat(parseInt(date.fromNow()), "d");
       var hours = "".concat(parseInt(date.fromNow()), "h");
@@ -3359,7 +3373,7 @@ var MainFeedPost = /*#__PURE__*/function (_React$Component) {
           title = _this$props$post.title,
           body = _this$props$post.body,
           likes = _this$props$post.likes;
-      var images = this.props.post.images;
+      var images;
 
       if (this.props.posts[this.props.post.id]) {
         images = this.props.posts[this.props.post.id].images;
@@ -3367,7 +3381,6 @@ var MainFeedPost = /*#__PURE__*/function (_React$Component) {
 
       var createdAt = this.props.post.created_at;
       var videoUrl = this.props.post.video_url;
-      var currentUserIsMember = this.props.currentUserIsMember;
       var date = new moment__WEBPACK_IMPORTED_MODULE_1___default.a(createdAt);
       var comments;
       var numLikes;
@@ -3378,8 +3391,8 @@ var MainFeedPost = /*#__PURE__*/function (_React$Component) {
         numLikes = 0;
       }
 
-      if (this.props.post.comments) {
-        comments = Object.values(this.props.post.comments);
+      if (this.props.posts[this.props.post.id] && this.props.posts[this.props.post.id].comments) {
+        comments = Object.values(this.props.posts[this.props.post.id].comments);
       }
 
       var imgStyle;
@@ -3443,7 +3456,7 @@ var MainFeedPost = /*#__PURE__*/function (_React$Component) {
         src: "https://img.icons8.com/metro/10/000000/unlock.png"
       }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "lock-status"
-      }, currentUserIsMember ? "Unlocked" : "Locked")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Unlocked")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-title-title"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: ""
