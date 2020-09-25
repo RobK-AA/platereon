@@ -565,11 +565,12 @@
   text-align: left;
   display: flex;
   flex-direction: column;
-  width: fit-content;
+  width: 100%;
 }
 
 .community-links4 {
   flex-basis: 50%;
+  max-width: 50%;
 }
 
 .community-links2 {

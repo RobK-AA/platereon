@@ -3738,47 +3738,39 @@ var Post = /*#__PURE__*/function (_React$Component) {
 
     _this.props.getPosts(_this.props.post.community_id);
 
-    if (_this.props.post && _this.props.post.comments && _this.props.post.likes) {
-      _this.numLikes = Object.values(_this.props.post.likes).length;
-      _this.state = {
-        likedByCurrentUser: _this.props.likedByCurrentUser,
-        numComments: Object.values(props.post.comments).length,
-        numLikes: _this.numLikes
-      };
+    if (_this.props.post && (_this.props.post.comments || _this.props.post.likes)) {
+      debugger;
+
+      if (!_this.props.post.comments) {
+        _this.numLikes = Object.values(_this.props.likes).length;
+        _this.state = {
+          likedByCurrentUser: _this.props.likedByCurrentUser,
+          numComments: 0,
+          numLikes: _this.numLikes
+        };
+      } else {
+        _this.state = {
+          likedByCurrentUser: _this.props.likedByCurrentUser,
+          numComments: Object.values(_this.props.post.comments).length,
+          numLikes: 0
+        };
+      }
+
+      ;
     } else {
+      debugger;
       _this.numLikes = 0;
       _this.state = {
-        likedByCurrentUser: _this.props.likedByCurrentUser,
+        likedByCurrentUser: false,
         numComments: 0,
-        numLikes: _this.numLikes
+        numLikes: 0
       };
     }
 
     _this.loadMoreComments = _this.loadMoreComments.bind(_assertThisInitialized(_this));
     _this.handleLike = _this.handleLike.bind(_assertThisInitialized(_this));
     return _this;
-  } // componentWillReceiveProps() {
-  //   this.props.getCurrentUser(this.props.currentUser.id)
-  // }
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if (
-  //     this.props.post.likes !== nextProps.post.likes &&
-  //     nextProps.post &&
-  //     nextProps.post.comments &&
-  //     nextProps.post.likes
-  //   ) {
-  //     this.props.getCurrentUser(this.props.currentUser.id).then(
-  //       this.setState({
-  //         likedByCurrentUser: nextProps.likedByCurrentUser,
-  //         numComments: Object.values(nextProps.post.comments).length,
-  //         numLikes: Object.values(this.props.post.likes).length,
-  //       })
-  //     );
-  //     return true;
-  //   }
-  //   return false;
-  // }
-
+  }
 
   _createClass(Post, [{
     key: "componentWillUnmount",
@@ -6732,6 +6724,37 @@ var SessionReducer = function SessionReducer() {
 
 /***/ }),
 
+/***/ "./frontend/reducers/user_comment_merge.js":
+/*!*************************************************!*\
+  !*** ./frontend/reducers/user_comment_merge.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_0__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var userCommentMerge = function userCommentMerge() {
+  var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var comment = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(oldState);
+  var commentState = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["merge"])({}, oldState[comment.commenter.id].posts_in_communities_joined[comment.commentable_id]);
+  var newComment = Object(lodash__WEBPACK_IMPORTED_MODULE_0__["merge"])({}, commentState, {
+    comments: _defineProperty({}, comment.id, comment)
+  });
+  var commentId = newComment.id;
+  return Object(lodash__WEBPACK_IMPORTED_MODULE_0__["merge"])({}, oldState, _defineProperty({}, commentId, newComment));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (userCommentMerge);
+
+/***/ }),
+
 /***/ "./frontend/reducers/user_like_merge.js":
 /*!**********************************************!*\
   !*** ./frontend/reducers/user_like_merge.js ***!
@@ -6776,7 +6799,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_like_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/like_actions */ "./frontend/actions/like_actions.js");
 /* harmony import */ var _actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/comment_actions */ "./frontend/actions/comment_actions.js");
 /* harmony import */ var _user_like_merge__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./user_like_merge */ "./frontend/reducers/user_like_merge.js");
-/* harmony import */ var _comments_merge__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./comments_merge */ "./frontend/reducers/comments_merge.js");
+/* harmony import */ var _user_comment_merge__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./user_comment_merge */ "./frontend/reducers/user_comment_merge.js");
 
 
 
@@ -6793,6 +6816,14 @@ var UsersReducer = function UsersReducer() {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
       newState[action.currentUser.id] = action.currentUser;
       return newState;
+
+    case _actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_COMMENT"]:
+      if (action.comment.commentable_type === "Post") {
+        // newState[action.like.liker.id].posts_in_communities_joined[
+        //   action.like.likeable_id
+        // ].likes[action.like.liker.id] = action.like;
+        return Object(_user_comment_merge__WEBPACK_IMPORTED_MODULE_4__["default"])(oldState, action.comment);
+      }
 
     case _actions_like_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_LIKE"]:
       if (action.like.likeable_type === "Post") {

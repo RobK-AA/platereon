@@ -9,46 +9,34 @@ class Post extends React.Component {
     super(props);
     this.props.getPosts(this.props.post.community_id);
     
-    if (this.props.post && this.props.post.comments && this.props.post.likes) {
-      this.numLikes = Object.values(this.props.post.likes).length;
-      this.state = {
-        likedByCurrentUser: this.props.likedByCurrentUser,
-        numComments: Object.values(props.post.comments).length,
-        numLikes: this.numLikes
+    if (this.props.post && (this.props.post.comments || this.props.post.likes)) {
+      debugger
+      if (!this.props.post.comments) {
+        this.numLikes = Object.values(this.props.likes).length;
+        this.state = {
+          likedByCurrentUser: this.props.likedByCurrentUser,
+          numComments: 0,
+          numLikes: this.numLikes,
+        }; 
+      } else {
+          this.state = {
+            likedByCurrentUser: this.props.likedByCurrentUser,
+            numComments: Object.values(this.props.post.comments).length,
+            numLikes: 0,
+          };
       };
     } else {
+      debugger
       this.numLikes = 0;
       this.state = {
-        likedByCurrentUser: this.props.likedByCurrentUser,
+        likedByCurrentUser: false,
         numComments: 0,
-        numLikes: this.numLikes,
+        numLikes: 0,
       };
     }
     this.loadMoreComments = this.loadMoreComments.bind(this);
     this.handleLike = this.handleLike.bind(this);
   }
-  // componentWillReceiveProps() {
-  //   this.props.getCurrentUser(this.props.currentUser.id)
-  // }
-
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   if (
-  //     this.props.post.likes !== nextProps.post.likes &&
-  //     nextProps.post &&
-  //     nextProps.post.comments &&
-  //     nextProps.post.likes
-  //   ) {
-  //     this.props.getCurrentUser(this.props.currentUser.id).then(
-  //       this.setState({
-  //         likedByCurrentUser: nextProps.likedByCurrentUser,
-  //         numComments: Object.values(nextProps.post.comments).length,
-  //         numLikes: Object.values(this.props.post.likes).length,
-  //       })
-  //     );
-  //     return true;
-  //   }
-  //   return false;
-  // }
 
   componentWillUnmount() {
     this.props.getPosts(this.props.post.community_id);
