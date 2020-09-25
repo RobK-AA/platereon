@@ -1042,7 +1042,7 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      this.props.getMemberships(this.props.currentUser.id); // this.props.getCurrentUser(this.props.currentUser.id);
+      this.props.getMemberships(this.props.currentUser.id).then(this.props.getCurrentUser(this.props.currentUser.id)); // this.props.getCurrentUser(this.props.currentUser.id);
       // this.props.getCommunities();
     }
   }, {
@@ -1068,6 +1068,8 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-comments-comment"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
@@ -1075,7 +1077,9 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
         onFocus: this.background,
         onBlur: this.revertBackground,
         role: "textbox",
-        onKeyPress: this.submitComment,
+        onKeyPress: function onKeyPress(e) {
+          return _this2.submitComment(e);
+        },
         type: "text",
         placeholder: "Join the conversation...",
         id: this.props.postId,
@@ -2435,6 +2439,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _post_posts_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../post/posts_index */ "./frontend/components/post/posts_index.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_post_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/post_actions */ "./frontend/actions/post_actions.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2460,6 +2466,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
 var Feed = /*#__PURE__*/function (_React$Component) {
   _inherits(Feed, _React$Component);
 
@@ -2469,7 +2477,12 @@ var Feed = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Feed);
 
     return _super.call(this, props);
-  }
+  } // componentDidCatch() {
+  //   this.props.currentUser.communities_joined.forEach(element => {
+  //     this.props.fetchPosts(element.id)
+  //   });
+  // }
+
 
   _createClass(Feed, [{
     key: "render",
@@ -2481,7 +2494,16 @@ var Feed = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return Feed;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component); // const msp = (state) => ({
+//   currentUser: state.entities.users[state.session.id],
+// });
+// const mdp = (dispatch) => {
+//   return {
+//     getPosts: (communityId) => dispatch(fetchPosts(communityId)),
+//   };
+// };
+// export default connect(msp)(mdp)(Feed);
+
 
 /* harmony default export */ __webpack_exports__["default"] = (Feed);
 
@@ -3736,12 +3758,10 @@ var Post = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
 
-    _this.props.getPosts(_this.props.post.community_id);
+    _this.props.getPosts(props.post.community_id);
 
     if (_this.props.post && (_this.props.post.comments || _this.props.post.likes)) {
-      debugger;
-
-      if (!_this.props.post.comments) {
+      if (!_this.props.post.comments.length && _this.props.post.likes) {
         _this.numLikes = Object.values(_this.props.likes).length;
         _this.state = {
           likedByCurrentUser: _this.props.likedByCurrentUser,
@@ -3758,7 +3778,6 @@ var Post = /*#__PURE__*/function (_React$Component) {
 
       ;
     } else {
-      debugger;
       _this.numLikes = 0;
       _this.state = {
         likedByCurrentUser: false,
@@ -6530,7 +6549,7 @@ var PostsReducer = function PostsReducer() {
 
   switch (action.type) {
     case _actions_post_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_POSTS"]:
-      return action.posts;
+      return Object(lodash__WEBPACK_IMPORTED_MODULE_1__["merge"])({}, oldState, action.posts);
 
     case _actions_post_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_POST"]:
       newState[action.post.id] = action.post;
@@ -6819,17 +6838,11 @@ var UsersReducer = function UsersReducer() {
 
     case _actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_COMMENT"]:
       if (action.comment.commentable_type === "Post") {
-        // newState[action.like.liker.id].posts_in_communities_joined[
-        //   action.like.likeable_id
-        // ].likes[action.like.liker.id] = action.like;
         return Object(_user_comment_merge__WEBPACK_IMPORTED_MODULE_4__["default"])(oldState, action.comment);
       }
 
     case _actions_like_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_LIKE"]:
       if (action.like.likeable_type === "Post") {
-        // newState[action.like.liker.id].posts_in_communities_joined[
-        //   action.like.likeable_id
-        // ].likes[action.like.liker.id] = action.like;
         return Object(_user_like_merge__WEBPACK_IMPORTED_MODULE_3__["default"])(oldState, action.like);
       }
 

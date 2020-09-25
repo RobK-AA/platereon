@@ -7,26 +7,27 @@ import CommentsIndexContainer from "../comment/comments_index_container";
 class Post extends React.Component {
   constructor(props) {
     super(props);
-    this.props.getPosts(this.props.post.community_id);
+    this.props.getPosts(props.post.community_id);
     
     if (this.props.post && (this.props.post.comments || this.props.post.likes)) {
-      debugger
-      if (!this.props.post.comments) {
+      
+      if (!this.props.post.comments.length && this.props.post.likes) {
+        
         this.numLikes = Object.values(this.props.likes).length;
         this.state = {
           likedByCurrentUser: this.props.likedByCurrentUser,
           numComments: 0,
           numLikes: this.numLikes,
-        }; 
+        };
       } else {
-          this.state = {
-            likedByCurrentUser: this.props.likedByCurrentUser,
-            numComments: Object.values(this.props.post.comments).length,
-            numLikes: 0,
-          };
+        this.state = {
+          likedByCurrentUser: this.props.likedByCurrentUser,
+          numComments: Object.values(this.props.post.comments).length,
+          numLikes: 0,
+        };
       };
     } else {
-      debugger
+      
       this.numLikes = 0;
       this.state = {
         likedByCurrentUser: false,

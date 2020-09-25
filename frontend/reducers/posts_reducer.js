@@ -11,7 +11,7 @@ const PostsReducer = (oldState = {}, action) => {
   let newState = Object.assign({}, oldState);
   switch (action.type) {
     case RECEIVE_POSTS:
-      return action.posts;
+      return merge({}, oldState, action.posts );
     case RECEIVE_POST:
       newState[action.post.id] = action.post;
       return newState;
@@ -25,6 +25,7 @@ const PostsReducer = (oldState = {}, action) => {
       }
       return oldState;
     case REMOVE_LIKE:
+      
       delete newState[action.like.likeable_id].likes[action.like.liker.id];
       return newState;
     case RECEIVE_COMMENT:

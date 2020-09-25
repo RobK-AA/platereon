@@ -30,7 +30,7 @@ class CommentForm extends React.Component {
   }
 
   componentWillUnmount() {
-    this.props.getMemberships(this.props.currentUser.id);
+    this.props.getMemberships(this.props.currentUser.id).then(this.props.getCurrentUser(this.props.currentUser.id));
     // this.props.getCurrentUser(this.props.currentUser.id);
     // this.props.getCommunities();
   }
@@ -63,7 +63,7 @@ class CommentForm extends React.Component {
               onFocus={this.background}
               onBlur={this.revertBackground}
               role="textbox"
-              onKeyPress={this.submitComment}
+              onKeyPress={(e) => this.submitComment(e)}
               type="text"
               placeholder="Join the conversation..."
               id={this.props.postId}
