@@ -3788,6 +3788,13 @@ var Post = /*#__PURE__*/function (_React$Component) {
           currentUser = _this$props.currentUser,
           likeId = _this$props.likeId;
       var id = this.props.post.id;
+      var likeCount;
+
+      if (this.props.likes !== undefined) {
+        likeCount ? likeCount : likeCount = Object.values(this.props.post.likes).length;
+      } else {
+        likeCount ? likeCount : likeCount = 0;
+      }
 
       if (!this.state.likedByCurrentUser) {
         this.props.likePost({
@@ -3796,12 +3803,12 @@ var Post = /*#__PURE__*/function (_React$Component) {
           likeable_type: "Post"
         }).then(this.setState({
           likedByCurrentUser: true,
-          numLikes: Object.values(this.props.post.likes).length
+          numLikes: likeCount
         }));
       } else {
         this.props.unlikePost(likeId).then(this.setState({
           likedByCurrentUser: false,
-          numLikes: Object.values(this.props.post.likes).length - 1
+          numLikes: likeCount -= 1
         }));
       }
     }
@@ -6531,7 +6538,6 @@ var PostsReducer = function PostsReducer() {
       return oldState;
 
     case _actions_like_actions__WEBPACK_IMPORTED_MODULE_2__["REMOVE_LIKE"]:
-      debugger;
       delete newState[action.like.likeable_id].likes[action.like.liker.id];
       return newState;
 
@@ -6719,6 +6725,14 @@ var SessionReducer = function SessionReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _actions_like_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/like_actions */ "./frontend/actions/like_actions.js");
+/* harmony import */ var _actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/comment_actions */ "./frontend/actions/comment_actions.js");
+/* harmony import */ var _likes_merge__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./likes_merge */ "./frontend/reducers/likes_merge.js");
+/* harmony import */ var _comments_merge__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./comments_merge */ "./frontend/reducers/comments_merge.js");
+
+
+
+
 
 
 var UsersReducer = function UsersReducer() {
@@ -6730,6 +6744,21 @@ var UsersReducer = function UsersReducer() {
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
       newState[action.currentUser.id] = action.currentUser;
+      return newState;
+
+    case _actions_like_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_LIKE"]:
+      if (action.like.likeable_type === "Post") {
+        // newState[action.like.liker.id].posts_in_communities_joined[
+        //   action.like.likeable_id
+        // ].likes[action.like.liker.id] = action.like;
+        return Object(_likes_merge__WEBPACK_IMPORTED_MODULE_3__["default"])(oldState, action.like);
+      }
+
+      return oldState;
+
+    case _actions_like_actions__WEBPACK_IMPORTED_MODULE_1__["REMOVE_LIKE"]:
+      debugger;
+      delete newState[action.like.liker.id].posts_in_communities_joined[action.like.likeable_id].likes[action.like.liker.id];
       return newState;
 
     default:

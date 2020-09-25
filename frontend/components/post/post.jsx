@@ -58,8 +58,15 @@ class Post extends React.Component {
     e.preventDefault();
     const { currentUser, likeId } = this.props;
     const id = this.props.post.id;
+    let likeCount;
+    if (this.props.likes !== undefined) {
+      likeCount ? likeCount : likeCount = Object.values(this.props.post.likes).length;
+    } else {
+      likeCount ? likeCount : (likeCount = 0);
+    }
     
     if (!this.state.likedByCurrentUser) {
+      
       this.props
         .likePost({
           liker_id: currentUser.id,
@@ -69,13 +76,14 @@ class Post extends React.Component {
         .then(
           this.setState({
             likedByCurrentUser: true,
-            numLikes: Object.values(this.props.post.likes).length
+            numLikes: likeCount 
           }));
     } else {
+      
       this.props.unlikePost(likeId).then(
         this.setState({
           likedByCurrentUser: false,
-          numLikes: Object.values(this.props.post.likes).length - 1
+          numLikes: likeCount -= 1
         }));
     }
   }

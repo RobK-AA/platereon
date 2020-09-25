@@ -25,7 +25,6 @@ const PostsReducer = (oldState = {}, action) => {
       }
       return oldState;
     case REMOVE_LIKE:
-      debugger
       delete newState[action.like.likeable_id].likes[action.like.liker.id];
       return newState;
     case RECEIVE_COMMENT:
