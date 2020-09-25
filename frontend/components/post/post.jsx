@@ -10,23 +10,47 @@ class Post extends React.Component {
     this.props.getPosts(this.props.post.community_id);
     
     if (this.props.post && this.props.post.comments && this.props.post.likes) {
+      this.numLikes = Object.values(this.props.post.likes).length;
       this.state = {
         likedByCurrentUser: this.props.likedByCurrentUser,
         numComments: Object.values(props.post.comments).length,
-        numLikes: Object.values(this.props.post.likes).length
+        numLikes: this.numLikes
       };
     } else {
+      this.numLikes = 0;
       this.state = {
         likedByCurrentUser: this.props.likedByCurrentUser,
         numComments: 0,
-        numLikes: 0
+        numLikes: this.numLikes,
       };
     }
     this.loadMoreComments = this.loadMoreComments.bind(this);
     this.handleLike = this.handleLike.bind(this);
   }
+  // componentWillReceiveProps() {
+  //   this.props.getCurrentUser(this.props.currentUser.id)
+  // }
 
-  componentWillUnmount(){
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   if (
+  //     this.props.post.likes !== nextProps.post.likes &&
+  //     nextProps.post &&
+  //     nextProps.post.comments &&
+  //     nextProps.post.likes
+  //   ) {
+  //     this.props.getCurrentUser(this.props.currentUser.id).then(
+  //       this.setState({
+  //         likedByCurrentUser: nextProps.likedByCurrentUser,
+  //         numComments: Object.values(nextProps.post.comments).length,
+  //         numLikes: Object.values(this.props.post.likes).length,
+  //       })
+  //     );
+  //     return true;
+  //   }
+  //   return false;
+  // }
+
+  componentWillUnmount() {
     this.props.getPosts(this.props.post.community_id);
     this.props.getMemberships(this.props.currentUser.id);
     this.props.getCurrentUser(this.props.currentUser.id);
@@ -58,33 +82,31 @@ class Post extends React.Component {
     e.preventDefault();
     const { currentUser, likeId } = this.props;
     const id = this.props.post.id;
-    let likeCount;
-    if (this.props.likes !== undefined) {
-      likeCount ? likeCount : likeCount = Object.values(this.props.post.likes).length;
-    } else {
-      likeCount ? likeCount : (likeCount = 0);
-    }
+    let count
     
     if (!this.state.likedByCurrentUser) {
-      
       this.props
         .likePost({
           liker_id: currentUser.id,
           likeable_id: id,
           likeable_type: "Post",
-        })
+        }).then(this.props.getCurrentUser(this.props.currentUser.id))
         .then(
           this.setState({
             likedByCurrentUser: true,
-            numLikes: likeCount 
-          }));
+            numLikes: this.state.numLikes =+ 1,
+          })
+        );
     } else {
-      
-      this.props.unlikePost(likeId).then(
-        this.setState({
-          likedByCurrentUser: false,
-          numLikes: likeCount -= 1
-        }));
+      this.props
+        .unlikePost(likeId)
+        .then(this.props.getCurrentUser(this.props.currentUser.id))
+        .then(
+          this.setState({
+            likedByCurrentUser: false,
+            numLikes: (this.state.numLikes -= 1),
+          })
+        );
     }
   }
 
@@ -99,14 +121,14 @@ class Post extends React.Component {
     const createdAt = Object.values(this.props.post.comments).reverse()[0]
       .created_at;
     let date = new Moment(createdAt);
-    
+
     let days = `${parseInt(date.fromNow())}d`;
     let hours = `${parseInt(date.fromNow())}h`;
     let minutes = `${parseInt(date.fromNow())}m`;
     let seconds = `${parseInt(date.fromNow())}s`;
     let time = days;
 
-    if (date.fromNow().includes('day')) time = days;
+    if (date.fromNow().includes("day")) time = days;
     if (date.fromNow().includes("hour")) time = hours;
     if (date.fromNow().includes("minute")) time = minutes;
     if (date.fromNow().includes("second")) time = seconds;
@@ -178,7 +200,7 @@ class Post extends React.Component {
     if (date.fromNow().includes("second")) time = seconds;
     if (date.fromNow().includes("in ")) time = "just posted";
     if (date.fromNow().includes("day ago")) time = "1d";
-    
+
     return (
       <>
         <div className="comment-outer1">
@@ -223,7 +245,7 @@ class Post extends React.Component {
 
   loadMoreComments() {
     $(`.comments-${this.props.post.id}`).css({
-      "display": "block",
+      display: "block",
     });
   }
 
@@ -252,7 +274,7 @@ class Post extends React.Component {
     } else {
       imgStyle = { display: "none" };
     }
-    
+
     return (
       <div className="post5">
         <div className="post4">
@@ -297,9 +319,7 @@ class Post extends React.Component {
                               </div>
                             </div>
                           </div>
-                          <span className="lock-status">
-                            "Unlocked"
-                          </span>
+                          <span className="lock-status">"Unlocked"</span>
                         </div>
                       </div>
                     </div>
@@ -331,15 +351,17 @@ class Post extends React.Component {
                       </div>
                       <div className="post-lower-right">
                         <div className="post-lower-right1">
-                            <div className="like-counter">{`${numLikes} `}{numLikes === 1 ? `Like` : `Likes`}</div>
+                          <div className="like-counter">
+                            {`${numLikes} `}
+                            {numLikes === 1 ? `Like` : `Likes`}
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className="post-comments">
                     <div className="post-comments1">
-                      
-                      <div onClick={this.loadMoreComments} >
+                      <div onClick={this.loadMoreComments}>
                         {comments
                           ? comments.length > 2
                             ? "Load more comments"
@@ -347,28 +369,24 @@ class Post extends React.Component {
                           : "Be the first to comment"}
                       </div>
                       <span>
-                        {comments
-                          ? comments.length > 1
-                            ? "2"
-                            : "1"
-                          : "0"}{" "}
-                        of {comments && comments.length ? comments.length : "0"}
+                        {comments ? (comments.length > 1 ? "2" : "1") : "0"} of{" "}
+                        {comments && comments.length ? comments.length : "0"}
                       </span>
                     </div>
                     <div className="post-comments2">
-                      {comments
-                        ? this.renderFirstComment()
-                        : null}
+                      {comments ? this.renderFirstComment() : null}
                     </div>
                     <div id="commentsPreview" className="post-comments3">
                       {comments && comments.length > 1
                         ? this.renderSecondComment()
                         : null}
                     </div>
-                    <div className={`more-comments comments-${this.props.post.id}`}>
+                    <div
+                      className={`more-comments comments-${this.props.post.id}`}
+                    >
                       <CommentsIndexContainer post={this.props.post} />
                     </div>
-                    
+
                     <div className="post-comments4">
                       <div className="post-comments41">
                         <div className="post-comments-logo">

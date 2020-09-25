@@ -1,7 +1,7 @@
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_LIKE, REMOVE_LIKE } from "../actions/like_actions";
 import { RECEIVE_COMMENT } from "../actions/comment_actions";
-import userLikeMerge from "./likes_merge";
+import userLikeMerge from "./user_like_merge";
 import commentMerge from "./comments_merge";
 
 const UsersReducer = (oldState = {}, action) => {
@@ -13,14 +13,16 @@ const UsersReducer = (oldState = {}, action) => {
       return newState;
     case RECEIVE_LIKE:
       if (action.like.likeable_type === "Post") {
+        
         // newState[action.like.liker.id].posts_in_communities_joined[
         //   action.like.likeable_id
         // ].likes[action.like.liker.id] = action.like;
+        
         return userLikeMerge(oldState, action.like);
       }
       return oldState;
     case REMOVE_LIKE:
-      debugger
+      
       delete newState[action.like.liker.id].posts_in_communities_joined[action.like.likeable_id].likes[action.like.liker.id];
       return newState;
     default:

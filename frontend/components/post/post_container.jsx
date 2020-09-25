@@ -20,7 +20,7 @@ const msp = (state, ownProps) => {
     currentUser,
     likes,
     likeId,
-    likedByCurrentUser: likes && likes[currentUser.id] ? true : undefined,
+    likedByCurrentUser: likes && likes[currentUser.id] ? true : false,
     memberships: Object.values(state.entities.memberships),
     posts: Object.values(state.entities.posts),
   };

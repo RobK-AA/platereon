@@ -5,8 +5,8 @@ const userLikeMerge = (oldState = {}, like) => {
 
   let likeState = merge(
     {},
-    oldState[action.like.liker.id].posts_in_communities_joined[
-      action.like.likeable_id
+    oldState[like.liker.id].posts_in_communities_joined[
+      like.likeable_id
     ]
   );
   let newLike = merge({}, likeState, { likes: { [like.liker.id]: like } });
