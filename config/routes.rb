@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       resources :posts, only: [:index]
     end
 
-    resources :users, only: [:create, :show] do
+    resources :users, only: [:create, :show, :update] do
       resources :memberships, only: [:index]
     end
     resources :posts, only: [:create, :show, :update, :destroy]

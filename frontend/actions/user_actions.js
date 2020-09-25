@@ -13,3 +13,13 @@ export const fetchCurrentUser = userId => dispatch => {
     }
   )
 };
+
+export const updateUser = (user) => (dispatch) => {
+  return UserApiUtil.updateUser(user).then(
+    user => {
+      dispatch(receiveCurrentUser(user));
+    }, (errors) => {
+      dispatch(receiveErrors(errors.responseJSON))
+    }
+  )
+};

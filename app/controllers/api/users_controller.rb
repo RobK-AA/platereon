@@ -18,6 +18,16 @@ class Api::UsersController < ApplicationController
     render :show
   end
 
+  def update
+    @user = current_user
+    @posts = @user.posts_in_communities_joined
+    if @user.update(user_params)
+      render :show
+    else
+      render :errors, status: 404
+    end
+  end
+
   private
 
   def user_params

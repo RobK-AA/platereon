@@ -10,6 +10,7 @@ import CommunityContainer from '../community/community_container';
 import CommunityFormContainer from '../community_form/community_form_container';
 import PostCoverContainer from '../post/post_form_cover';
 import PostFormContainer from '../post/post_form_container';
+import ProfileFormContainer from '../profile/profile_form_container';
 
 class Body extends React.Component {
 
@@ -35,6 +36,7 @@ class Body extends React.Component {
           <Route exact path="/communities/:communityId" component={CommunityContainer} />
           <ProtectedRoute exact path="/" communities={communities} component={UserShowContainer} />
           <ProtectedRoute exact path="/createform" component={CommunityFormContainer} />
+          <ProtectedRoute exact path="/profile" component={ProfileFormContainer} />
           <Switch>
             <ProtectedRoute exact path="/postform" component={PostCoverContainer} />
             <ProtectedRoute path="/postform/" component={PostFormContainer} />
