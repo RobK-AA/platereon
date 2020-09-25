@@ -37,7 +37,7 @@ class User < ApplicationRecord
     through: :posts_in_communities_joined,
     source: :comments
 
-    
+  has_one_attached :profile_photo
 
   def self.find_by_credentials(email, password) 
     user = User.find_by(email: email)

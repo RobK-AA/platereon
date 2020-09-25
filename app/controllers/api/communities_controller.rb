@@ -5,11 +5,13 @@ class Api::CommunitiesController < ApplicationController
   def index
     @communities = Community.search(params[:search])
                             .with_attached_background_image
+    @users = @communities.map { |community| community.creator }
   end
 
   def create
     
     @community = Community.new(community_params)
+    @user = @community.creator
     if @community.save
       render "api/communities/show"
     else
@@ -18,20 +20,19 @@ class Api::CommunitiesController < ApplicationController
         render json: ['There is already a community with this name. Please choose another name.'], status: 401
       else
         render json: ['Name can\'t be blank.'], status: 401
-      # render @community.errors.full_messages, status: 401
-      # render json: { communityErrors: "There is already a community with this name. Please choose another name." }
       end
     end
   end
 
   def show
     @community = Community.with_attached_background_image.find(params[:id])
+    @user = @community.creator
     render "api/communities/show"
   end
 
   def update
     @community = Community.find(params[:id])
-    
+    @user = @community.creator
     if @community.update(community_params)
       render "api/communities/show"
     else
