@@ -1,6 +1,7 @@
 import * as CommunityApiUtil from '../util/community_api_util';
 
 export const RECEIVE_SEARCH_RESULTS = 'RECEIVE_SEARCH_RESULTS';
+export const RECEIVE_SEARCH_ERRORS = "RECEIVE_SEARCH_ERRORS";
 
 export const receiveSearchResults = searchResults => {
   return {
@@ -8,6 +9,11 @@ export const receiveSearchResults = searchResults => {
     searchResults
   }
 };
+
+export const receiveErrors = (errors) => ({
+  type: RECEIVE_SEARCH_ERRORS,
+  errors,
+});
 
 export const receiveResults = (keyword) => dispatch => {
 

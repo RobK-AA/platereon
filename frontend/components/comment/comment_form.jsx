@@ -32,9 +32,10 @@ class CommentForm extends React.Component {
   }
 
   componentWillUnmount() {
-    this.props.getMemberships(this.props.currentUser.id).then(this.props.getCurrentUser(this.props.currentUser.id));
-    // this.props.getCurrentUser(this.props.currentUser.id);
-    // this.props.getCommunities();
+    this.props.getMemberships(this.props.currentUser.id)
+  
+  //   // this.props.getCurrentUser(this.props.currentUser.id);
+  //   // this.props.getCommunities();
   }
 
   background() {

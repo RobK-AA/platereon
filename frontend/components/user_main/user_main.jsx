@@ -21,9 +21,11 @@ class UserMain extends React.Component {
   };
   
   componentDidMount() {
+    
     this.getMemberships().then(
-      this.props.getCommunities()).then(
-        this.props.getCurrentUser(this.currentUserId));
+      this.props.getCommunities())
+      // .then(
+      //   this.props.getCurrentUser(this.currentUserId));
   }
 
   componentDidUpdate() {

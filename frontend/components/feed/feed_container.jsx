@@ -7,6 +7,7 @@ const msp = (state, ownProps) => {
   return {
     currentUser,
     posts: ownProps.posts,
+    signedIn: state.session.id ===  currentUser.id
   };
 };
 

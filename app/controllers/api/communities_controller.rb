@@ -5,13 +5,14 @@ class Api::CommunitiesController < ApplicationController
   def index
     @communities = Community.search(params[:search])
                             .with_attached_background_image
-    @users = @communities.map { |community| community.creator }
+                          
+    # @users = @communities.map { |community| community.creator.with_attached_profile_photo }
   end
 
   def create
     
     @community = Community.new(community_params)
-    @user = @community.creator
+    # @user = @community.creator.with_attached_profile_photo 
     if @community.save
       render "api/communities/show"
     else
@@ -26,13 +27,13 @@ class Api::CommunitiesController < ApplicationController
 
   def show
     @community = Community.with_attached_background_image.find(params[:id])
-    @user = @community.creator
+    # @user = @community.creator.with_attached_profile_photo 
     render "api/communities/show"
   end
 
   def update
     @community = Community.find(params[:id])
-    @user = @community.creator
+    # @user = @community.creator.with_attached_profile_photo 
     if @community.update(community_params)
       render "api/communities/show"
     else

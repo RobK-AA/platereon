@@ -39,11 +39,11 @@ class Post extends React.Component {
     this.handleLike = this.handleLike.bind(this);
   }
 
-  componentWillUnmount() {
-    this.props.getPosts(this.props.post.community_id);
-    this.props.getMemberships(this.props.currentUser.id);
-    this.props.getCurrentUser(this.props.currentUser.id);
-  }
+  // componentWillUnmount() {
+  //   this.props.getPosts(this.props.post.community_id);
+  //   this.props.getMemberships(this.props.currentUser.id);
+  //   this.props.getCurrentUser(this.props.currentUser.id);
+  // }
 
   renderUnlike() {
     return (

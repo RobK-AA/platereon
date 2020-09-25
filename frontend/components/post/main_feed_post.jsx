@@ -38,7 +38,7 @@ class MainFeedPost extends React.Component {
   componentWillUnmount() {
     this.props.getPosts(this.props.communityId);
     this.props.getMemberships(this.props.currentUser.id);
-    this.props.getCurrentUser(this.props.currentUser.id);
+    // this.props.getCurrentUser(this.props.currentUser.id);
   }
 
   renderUnlike() {

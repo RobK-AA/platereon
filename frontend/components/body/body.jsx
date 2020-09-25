@@ -37,13 +37,14 @@ class Body extends React.Component {
           <ProtectedRoute exact path="/" communities={communities} component={UserShowContainer} />
           <ProtectedRoute exact path="/createform" component={CommunityFormContainer} />
           <ProtectedRoute exact path="/profile" component={ProfileFormContainer} />
+          <Route exact path="/search" component={SearchResultsContainer} />
           <Switch>
             <ProtectedRoute exact path="/postform" component={PostCoverContainer} />
-            <ProtectedRoute path="/postform/" component={PostFormContainer} />
+            <ProtectedRoute exact path="/postform/" component={PostFormContainer} />
           </Switch>
 
         <Switch>
-          <Route exact path="/search" component={SearchResultsContainer} />
+          
         </Switch>
       </div>
     )

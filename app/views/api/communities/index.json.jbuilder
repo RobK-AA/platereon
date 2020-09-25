@@ -16,6 +16,6 @@
     
 
     json.background_image community.background_image.attached? ? url_for(community.background_image) : nil
-    json.profile.photo community.creator.profile_photo.attached? ? url_for(community.creator.profile_photo) : nil
+    json.profile_photo community.creator.profile_photo.attached? ? url_for(community.creator.profile_photo) : nil
   end
 end

@@ -11,7 +11,7 @@ class MainPage extends React.Component {
 
   }
   render() {
- 
+    
     return (
       <div className="outer-main">
         <div className="outer-main-2">

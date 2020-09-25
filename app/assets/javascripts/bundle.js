@@ -486,21 +486,30 @@ var deletePost = function deletePost(postId) {
 /*!********************************************!*\
   !*** ./frontend/actions/search_actions.js ***!
   \********************************************/
-/*! exports provided: RECEIVE_SEARCH_RESULTS, receiveSearchResults, receiveResults */
+/*! exports provided: RECEIVE_SEARCH_RESULTS, RECEIVE_SEARCH_ERRORS, receiveSearchResults, receiveErrors, receiveResults */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SEARCH_RESULTS", function() { return RECEIVE_SEARCH_RESULTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_SEARCH_ERRORS", function() { return RECEIVE_SEARCH_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveSearchResults", function() { return receiveSearchResults; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveResults", function() { return receiveResults; });
 /* harmony import */ var _util_community_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/community_api_util */ "./frontend/util/community_api_util.jsx");
 
 var RECEIVE_SEARCH_RESULTS = 'RECEIVE_SEARCH_RESULTS';
+var RECEIVE_SEARCH_ERRORS = "RECEIVE_SEARCH_ERRORS";
 var receiveSearchResults = function receiveSearchResults(searchResults) {
   return {
     type: RECEIVE_SEARCH_RESULTS,
     searchResults: searchResults
+  };
+};
+var receiveErrors = function receiveErrors(errors) {
+  return {
+    type: RECEIVE_SEARCH_ERRORS,
+    errors: errors
   };
 };
 var receiveResults = function receiveResults(keyword) {
@@ -783,18 +792,19 @@ var Body = /*#__PURE__*/function (_React$Component) {
         exact: true,
         path: "/profile",
         component: _profile_form_profile_form_container__WEBPACK_IMPORTED_MODULE_12__["default"]
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+        exact: true,
+        path: "/search",
+        component: _search_search_results_container__WEBPACK_IMPORTED_MODULE_7__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__["ProtectedRoute"], {
         exact: true,
         path: "/postform",
         component: _post_post_form_cover__WEBPACK_IMPORTED_MODULE_10__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__["ProtectedRoute"], {
+        exact: true,
         path: "/postform/",
         component: _post_post_form_container__WEBPACK_IMPORTED_MODULE_11__["default"]
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
-        exact: true,
-        path: "/search",
-        component: _search_search_results_container__WEBPACK_IMPORTED_MODULE_7__["default"]
-      })));
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null));
     }
   }]);
 
@@ -1059,8 +1069,8 @@ var CommentForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      this.props.getMemberships(this.props.currentUser.id).then(this.props.getCurrentUser(this.props.currentUser.id)); // this.props.getCurrentUser(this.props.currentUser.id);
-      // this.props.getCommunities();
+      this.props.getMemberships(this.props.currentUser.id); //   // this.props.getCurrentUser(this.props.currentUser.id);
+      //   // this.props.getCommunities();
     }
   }, {
     key: "background",
@@ -2505,9 +2515,11 @@ var Feed = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this = this;
 
-      (function () {
-        return _this.props.getCurrentUser(_this.props.getCurrentUser.id);
-      });
+      if (this.props.signedIn) {
+        (function () {
+          return _this.props.getCurrentUser(_this.props.CurrentUser.id);
+        });
+      }
     }
   }, {
     key: "render",
@@ -2554,7 +2566,8 @@ var msp = function msp(state, ownProps) {
   var currentUser = state.entities.users[state.session.id];
   return {
     currentUser: currentUser,
-    posts: ownProps.posts
+    posts: ownProps.posts,
+    signedIn: state.session.id === currentUser.id
   };
 };
 
@@ -3345,8 +3358,7 @@ var MainFeedPost = /*#__PURE__*/function (_React$Component) {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       this.props.getPosts(this.props.communityId);
-      this.props.getMemberships(this.props.currentUser.id);
-      this.props.getCurrentUser(this.props.currentUser.id);
+      this.props.getMemberships(this.props.currentUser.id); // this.props.getCurrentUser(this.props.currentUser.id);
     }
   }, {
     key: "renderUnlike",
@@ -3859,16 +3871,14 @@ var Post = /*#__PURE__*/function (_React$Component) {
     _this.loadMoreComments = _this.loadMoreComments.bind(_assertThisInitialized(_this));
     _this.handleLike = _this.handleLike.bind(_assertThisInitialized(_this));
     return _this;
-  }
+  } // componentWillUnmount() {
+  //   this.props.getPosts(this.props.post.community_id);
+  //   this.props.getMemberships(this.props.currentUser.id);
+  //   this.props.getCurrentUser(this.props.currentUser.id);
+  // }
+
 
   _createClass(Post, [{
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.props.getPosts(this.props.post.community_id);
-      this.props.getMemberships(this.props.currentUser.id);
-      this.props.getCurrentUser(this.props.currentUser.id);
-    }
-  }, {
     key: "renderUnlike",
     value: function renderUnlike() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -6077,7 +6087,8 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
   _createClass(UserMain, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.getMemberships().then(this.props.getCommunities()).then(this.props.getCurrentUser(this.currentUserId));
+      this.getMemberships().then(this.props.getCommunities()); // .then(
+      //   this.props.getCurrentUser(this.currentUserId));
     }
   }, {
     key: "componentDidUpdate",
@@ -7238,6 +7249,9 @@ var UsersReducer = function UsersReducer() {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
       newState[action.currentUser.id] = action.currentUser;
       return newState;
+
+    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["LOGOUT_CURRENT_USER"]:
+      return oldState;
 
     case _actions_comment_actions__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_COMMENT"]:
       if (action.comment.commentable_type === "Post") {
