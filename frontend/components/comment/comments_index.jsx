@@ -16,7 +16,7 @@ class CommentsIndex extends React.Component {
       <>
         {this.props.post.comments ? 
         comments.map((comment) => (
-          <Comment comment={comment} post={this.props.post}/>
+          <Comment key={comment.id} comment={comment} post={this.props.post}/>
         )) : null
       }
       </>

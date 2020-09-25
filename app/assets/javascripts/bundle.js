@@ -684,7 +684,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _community_form_community_form_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../community_form/community_form_container */ "./frontend/components/community_form/community_form_container.jsx");
 /* harmony import */ var _post_post_form_cover__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../post/post_form_cover */ "./frontend/components/post/post_form_cover.jsx");
 /* harmony import */ var _post_post_form_container__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../post/post_form_container */ "./frontend/components/post/post_form_container.jsx");
-!(function webpackMissingModule() { var e = new Error("Cannot find module '../profile/profile_form_container'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+/* harmony import */ var _profile_form_profile_form_container__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../profile_form/profile_form_container */ "./frontend/components/profile_form/profile_form_container.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -782,7 +782,7 @@ var Body = /*#__PURE__*/function (_React$Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__["ProtectedRoute"], {
         exact: true,
         path: "/profile",
-        component: !(function webpackMissingModule() { var e = new Error("Cannot find module '../profile/profile_form_container'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())
+        component: _profile_form_profile_form_container__WEBPACK_IMPORTED_MODULE_12__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_4__["ProtectedRoute"], {
         exact: true,
         path: "/postform",
@@ -1229,6 +1229,7 @@ var CommentsIndex = /*#__PURE__*/function (_React$Component) {
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this.props.post.comments ? comments.map(function (comment) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comment__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          key: comment.id,
           comment: comment,
           post: _this.props.post
         });
@@ -2657,12 +2658,12 @@ var Header = /*#__PURE__*/function (_React$Component) {
         className: "header-menu-creator",
         to: "/createform"
       }, "Become a Creator")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        key: "user-nav-list1"
+        key: "user-nav-list2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "header-menu-creator",
         to: "/profile"
       }, "Edit Profile")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        key: "user-nav-list2"
+        key: "user-nav-list3"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         className: "header-menu-logout",
         to: "/",
@@ -4951,6 +4952,322 @@ var PostsIndex = function PostsIndex(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (PostsIndex);
+
+/***/ }),
+
+/***/ "./frontend/components/profile_form/profile_form.jsx":
+/*!***********************************************************!*\
+  !*** ./frontend/components/profile_form/profile_form.jsx ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+var ProfileForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(ProfileForm, _React$Component);
+
+  var _super = _createSuper(ProfileForm);
+
+  function ProfileForm(props) {
+    _classCallCheck(this, ProfileForm);
+
+    return _super.call(this, props);
+  }
+
+  _createClass(ProfileForm, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-form"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-form-nav"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-form-nav-left"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-form-basics"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Basics")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-form-tiers"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Tiers")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-form-merch"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Merch")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-form-getting-paid"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Getting Paid")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-form-page-settings"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Page Settings")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-form-preview"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Preview")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-form-advanced"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Advanced"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-form-nav-right"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-form-launch"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        form: "community-form",
+        type: "submit"
+      }, "Launch")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-form-intro"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "create-form-basics-tiers"
+      }, "Basics and Tiers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "create-form-set-details"
+      }, "Set your creator details and choose what to offer your subscribers")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "create-form-case"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        id: "community-form" // onSubmit={this.copyContent && this.handleSubmit}
+
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "name-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "name-col"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "create-form-name"
+      }, "Name of Platereon page"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Required")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "community-name-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        id: "community-name" // autoComplete={this.state.name}
+        // defaultValue={`${this.props.currentUser.name}`}
+        // onChange={this.update('name')}
+        ,
+        className: "name-input"
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "short-desc-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "short-desc-col"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "create-form-short-desc"
+      }, "What are you creating?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        id: "short-desc" // autoComplete={this.state.shortDesc}
+        // defaultValue={`Cooking with ${this.state.name} tutorials, pasta recipes, etc.`}
+        // onChange={this.update('shortDesc')}
+        ,
+        className: "short-desc-input"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "plural-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "plural-label-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "plural-label"
+      }, "Which sounds more correct?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "plural-radio-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("fieldset", {
+        name: "isPlural"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "inner-plural-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "is-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "isOrAre",
+        id: "is-creating",
+        type: "radio",
+        readOnly: true,
+        className: "is-creating",
+        value: "false"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "is-label"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: ""
+      }), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "isare"
+      }, "is creating"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "are-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "isOrAre",
+        id: "are-creating",
+        type: "radio",
+        readOnly: true,
+        className: "are-creating",
+        value: "true"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "are-label"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "isare"
+      }, "are creating"))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "background-image-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "background-image-div1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "background-image-left"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "background-image-left1",
+        htmlFor: ""
+      }, "Cover photo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "background-image-left2"
+      }, "Upload or use default."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "background-image-left3"
+      }, "We recommend an image at least 1600px wide and 400px tall.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "background-image-right"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "background-image-right1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "cover-image",
+        className: "background-image-right2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "background-image-right3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "background-image-right4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "background-image-inner1"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "background-image-inner2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "background-image-inner21"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "background-image-inner211"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "background-image-inner212"
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "background-image-inner22"
+      }, "Edit Cover Photo (1,600px x 400px)"))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "background-image-input",
+        onChange: this.addImage,
+        type: "file"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "bronze-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "bronze-col"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "create-form-short-desc"
+      }, "What are your perks for Bronze tier subscribers?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        id: "short-desc" // autoComplete={this.state.bronzePerks}
+        ,
+        defaultValue: "Subscriber-only posts and messages" // onChange={this.update('bronzePerks')}
+        ,
+        className: "bronze-input"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "silver-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "silver-col"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "create-form-short-desc"
+      }, "What are your perks for Silver tier subscribers?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        id: "short-desc" // autoComplete={this.state.silverPerks}
+        ,
+        defaultValue: "Early access to content, subscriber-only voting power, all Bronze perks" // onChange={this.update('silverPerks')}
+        ,
+        className: "silver-input"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "gold-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "gold-col"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "create-form-short-desc"
+      }, "What are your perks for Gold tier subscribers?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        id: "short-desc" // autoComplete={this.state.goldPerks}
+        ,
+        defaultValue: "Full library access plus all Silver perks" // onChange={this.update('goldPerks')}
+        ,
+        className: "gold-input"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "outer-about-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "about-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "inner-about-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "about-span"
+      }, "About your Platereon page"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "about-required"
+      }, "Required"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "about-description-div"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "about-description"
+      }, "This is the first thing potential supporters will see when they land on your page, so make sure you cook up a delicious description of how they can join you on this adventure.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "about-input"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "about-editor-container"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "editor-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        contentEditable: "true",
+        id: "textdiv",
+        type: "submit",
+        dir: "ltr"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        name: "about",
+        id: "about",
+        className: "about-textarea",
+        defaultValue: "A page for supporters of all my delicious culinary creations!"
+      }))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "submit",
+        id: "submit-form"
+      })))));
+    }
+  }]);
+
+  return ProfileForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (ProfileForm);
+
+/***/ }),
+
+/***/ "./frontend/components/profile_form/profile_form_container.jsx":
+/*!*********************************************************************!*\
+  !*** ./frontend/components/profile_form/profile_form_container.jsx ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _profile_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_form */ "./frontend/components/profile_form/profile_form.jsx");
+/* harmony import */ var _actions_community_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/community_actions */ "./frontend/actions/community_actions.js");
+
+
+
+
+
+var msp = function msp(state) {
+  return {
+    currentUser: state.entities.users[state.session.id]
+  };
+};
+
+var mdp = function mdp(dispatch) {
+  return {
+    submitCommunity: function submitCommunity(community) {
+      return dispatch(Object(_actions_community_actions__WEBPACK_IMPORTED_MODULE_2__["createCommunity"])(community));
+    },
+    clearErrors: function clearErrors() {
+      return dispatch(Object(_actions_community_actions__WEBPACK_IMPORTED_MODULE_2__["clearCommunityErrors"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(msp, mdp)(_profile_form__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 

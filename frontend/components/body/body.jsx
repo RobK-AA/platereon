@@ -10,7 +10,7 @@ import CommunityContainer from '../community/community_container';
 import CommunityFormContainer from '../community_form/community_form_container';
 import PostCoverContainer from '../post/post_form_cover';
 import PostFormContainer from '../post/post_form_container';
-import ProfileFormContainer from '../profile/profile_form_container';
+import ProfileFormContainer from '../profile_form/profile_form_container';
 
 class Body extends React.Component {
 

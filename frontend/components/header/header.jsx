@@ -38,7 +38,7 @@ class Header extends React.Component {
                             Become a Creator
                           </Link>
                         </li>
-                        <li key="user-nav-list1">
+                        <li key="user-nav-list2">
                           <Link
                             className="header-menu-creator"
                             to="/profile"
@@ -46,7 +46,7 @@ class Header extends React.Component {
                             Edit Profile
                           </Link>
                         </li>
-                        <li key="user-nav-list2">
+                        <li key="user-nav-list3">
                           <Link
                             className="header-menu-logout"
                             to="/"

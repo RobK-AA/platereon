@@ -49,4 +49,4 @@ json.posts_in_communities_joined do
   end
 end
 
-json.profile.photo user.profile_photo.attached? ? url_for(user.profile_photo) : nil
+json.profile_photo user.profile_photo.attached? ? url_for(user.profile_photo) : nil
