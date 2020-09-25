@@ -13,7 +13,9 @@ class Feed extends React.Component {
   //     this.props.fetchPosts(element.id)
   //   });
   // }
-
+  componentDidMount() {
+    () => this.props.getCurrentUser(this.props.getCurrentUser.id);
+  }
   render() {
     
     return(

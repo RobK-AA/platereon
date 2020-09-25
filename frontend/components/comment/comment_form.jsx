@@ -11,6 +11,7 @@ class CommentForm extends React.Component {
   }
 
   submitComment(e) {
+    
     if (e.key === "Enter" || e.which === 13) {
       e.preventDefault();
       const newBody = $(e.target);
@@ -21,11 +22,12 @@ class CommentForm extends React.Component {
         .then(() => {
           newBody.attr("placeholder", "Join the conversation...");
         })
-        .then(
+        .then((e) =>
           this.setState({
             body: "",
           })
-        );
+        )
+        .then(() => this.props.callback());
     }
   }
 

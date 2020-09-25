@@ -7,8 +7,8 @@ import CommentsIndexContainer from "../comment/comments_index_container";
 class Post extends React.Component {
   constructor(props) {
     super(props);
-    this.props.getPosts(props.post.community_id);
     
+    this.callback = this.callback.bind(this);
     if (this.props.post && (this.props.post.comments || this.props.post.likes)) {
       
       if (!this.props.post.comments.length && this.props.post.likes) {
@@ -65,6 +65,17 @@ class Post extends React.Component {
         />
       </>
     );
+  }
+
+  callback() {
+    this.props
+      .getCurrentUser(this.props.currentUser.id)
+      .then(() =>
+        this.setState({
+          numComments: Object.values(this.props.post.comments).length,
+        })
+      )
+      .then(window.location.reload(false));
   }
 
   handleLike(e) {
@@ -373,7 +384,7 @@ class Post extends React.Component {
                     <div
                       className={`more-comments comments-${this.props.post.id}`}
                     >
-                      <CommentsIndexContainer post={this.props.post} />
+                      <CommentsIndexContainer numComments={this.state.numComments} post={this.props.post} />
                     </div>
 
                     <div className="post-comments4">
@@ -384,6 +395,7 @@ class Post extends React.Component {
                           </div>
                         </div>
                         <CommentFormContainer
+                          callback={() => this.callback()}
                           postId={this.props.post.id}
                           commentableType="Post"
                           commentableId={id}
