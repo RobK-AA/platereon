@@ -5016,32 +5016,39 @@ var ProfileForm = /*#__PURE__*/function (_React$Component) {
     _this.addPhoto = _this.addPhoto.bind(_assertThisInitialized(_this));
     _this.update = _this.update.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.state = {
+      name: _this.props.currentUser.name,
+      email: _this.props.currentUser.email,
+      profilePhoto: null,
+      profilePhotoUrl: "https://c8.patreon.com/2/200/c5055377",
+      errors: {}
+    };
     return _this;
   }
 
   _createClass(ProfileForm, [{
     key: "addPhoto",
-    value: function addPhoto() {
+    value: function addPhoto(e) {
       var _this2 = this;
 
       e.preventDefault();
-      var backgroundImage = new FileReader();
-      var image = e.target.files[0];
+      var profilePhoto = new FileReader();
+      var photo = e.target.files[0];
 
-      backgroundImage.onloadend = function () {
-        var newImageUrl = _this2.state.backgroundImageUrl;
-        newImageUrl = backgroundImage.result;
-        var newImage = _this2.state.backgroundImage;
-        newImage = image;
+      profilePhoto.onloadend = function () {
+        var newPhotoUrl = _this2.state.profilePhotoUrl;
+        newPhotoUrl = profilePhoto.result;
+        var newPhoto = _this2.state.profilePhoto;
+        newPhoto = photo;
 
         _this2.setState({
-          backgroundImageUrl: newImageUrl,
-          backgroundImage: newImage
+          profilePhotoUrl: newPhotoUrl,
+          profilePhoto: newPhoto
         });
       };
 
-      if (image) {
-        backgroundImage.readAsDataURL(image);
+      if (photo) {
+        profilePhoto.readAsDataURL(photo);
       } else {
         alert("Please choose another file type");
       }
@@ -5051,15 +5058,9 @@ var ProfileForm = /*#__PURE__*/function (_React$Component) {
     value: function update(field) {
       var _this3 = this;
 
-      if (field === "title" || field === "body" || field === "videoUrl") {
-        return function (e) {
-          return _this3.setState(_defineProperty({}, field, e.target.value));
-        };
-      } else if (field === "communityId") {
-        return function (e) {
-          return _this3.setState(_defineProperty({}, field, parseInt($("option:selected").attr("name"))));
-        };
-      }
+      return function (e) {
+        return _this3.setState(_defineProperty({}, field, e.target.value));
+      };
     }
   }, {
     key: "handleSubmit",
@@ -5090,6 +5091,7 @@ var ProfileForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      debugger;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-main-outer1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5129,6 +5131,7 @@ var ProfileForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-name-input2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        defaultValue: this.props.currentUser.name,
         className: "profile-name-input3",
         type: "text"
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5152,6 +5155,7 @@ var ProfileForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-email-input2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        defaultValue: this.props.currentUser.email,
         className: "profile-email-input3",
         type: "text"
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5167,14 +5171,17 @@ var ProfileForm = /*#__PURE__*/function (_React$Component) {
         htmlFor: ""
       }, "Profile photo"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-photo-left2"
-      }, "Upload or Use Default"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      }, "Upload or use default"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "profile-photo-left3"
       }, "We recommend a 256px by 256px image.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-photo-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-photo-right1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "profile-photo-right2"
+        className: "profile-photo-right2",
+        style: {
+          backgroundImage: "url(".concat(this.state.profilePhotoUrl, ")")
+        }
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-photo-right3"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5185,6 +5192,7 @@ var ProfileForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "photo-input"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.addPhoto,
         id: "profile-photo",
         className: "photo-input1",
         type: "file"
@@ -5200,11 +5208,11 @@ var ProfileForm = /*#__PURE__*/function (_React$Component) {
         viewBox: "0 0 24 24",
         xmlns: "http://www.w3.org/2000/svg"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-        "fill-rule": "evenodd",
-        "clip-rule": "evenodd",
+        fillRule: "evenodd",
+        clipRule: "evenodd",
         d: "M14 17.333A4.667 4.667 0 1 0 14 8a4.667 4.667 0 0 0 0 9.333z",
-        "stroke-linecap": "round",
-        "stroke-linejoin": "round"
+        strokeLinecap: "round",
+        strokeLinejoin: "round"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", null))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "photo-input4"
       })))))))))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
