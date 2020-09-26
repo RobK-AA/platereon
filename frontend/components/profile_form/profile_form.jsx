@@ -11,7 +11,7 @@ class ProfileForm extends React.Component {
       name: this.props.currentUser.name,
       email: this.props.currentUser.email,
       profilePhoto: null,
-      profilePhotoUrl: "https://c8.patreon.com/2/200/c5055377",
+      profilePhotoUrl: this.props.currentUser.profile_photo || "https://c8.patreon.com/2/200/c5055377",
       errors: {}
     };
   }
@@ -44,48 +44,41 @@ class ProfileForm extends React.Component {
   }
 
   handleSubmit(e) {
-
+    
     e.preventDefault();
-    const post = new FormData();
-    const { title, body, images, imageUrls, videoUrl } = this.state;
-    const authorId = this.props.currentUser.id;
-    const communityId = this.state.communityId;
-    post.append("post[title]", title)
-    post.append("post[body]", body)
-    post.append("post[author_id]", authorId)
-    post.append("post[community_id]", parseInt($("option:selected").attr("name")))
-    post.append("post[video_url]", videoUrl)
-
-    const attachedImages = images;
-
-    for (let i = 0; i < attachedImages.length; i++) {
-      post.append("post[images][]", attachedImages[i]);
+    const user = new FormData();
+    user.append("user[name]", this.state.name);
+    user.append("user[email]", this.state.email);
+    
+    if (this.state.profilePhoto) {
+      user.append("user[profile_photo]", this.state.profilePhoto);
     }
 
-    this.props
-      .submitPost(post)
-      .then(
-        this.props.history.push(
-          `/communities/${parseInt($("option:selected").attr("name"))}`,
-          this.state
-        )
-      );
+    this.props.updateProfile(user, this.props.currentUser.id).then(
+      () => {
+        return this.props.history.push(`/`, this.state)
+      });
   }
+
   render() {
-    debugger
+    
+    const { name, email } = this.state;
+    let filledOut = (name.length > 0 && email.length > 0)
+
     return(
       <>
         <div className="profile-main-outer1">
           <div className="profile-main-outer2">
+            <form id="profile-form" onSubmit={this.handleSubmit} >
             <div className="profile-main">
-              
-                <div className="profile-main1">
-                  <div className="profile-main-left">
-                  <form id="profile-form">
+              <div className="profile-main1">
+                <div className="profile-main-left">
+                  
                     <div className="profile1">
                       <div className="profile2">
                         <div className="profile3">
                           <div className="profile4">
+                          
                             <div className="profile-name1">
                               <div className="profile-name-left">
                                 <div className="profile-name-left1">Name</div>
@@ -96,7 +89,7 @@ class ProfileForm extends React.Component {
                                   <div className="profile-name-input">
                                     <div className="profile-name-input1">
                                       <div className="profile-name-input2">
-                                        <input defaultValue={this.props.currentUser.name}className="profile-name-input3" type="text"/>
+                                        <input onChange={this.update('name')} defaultValue={this.props.currentUser.name}className="profile-name-input3" type="text"/>
                                       </div>
                                     </div>
                                   </div>
@@ -120,7 +113,7 @@ class ProfileForm extends React.Component {
                                   <div className="profile-email-input">
                                     <div className="profile-email-input1">
                                       <div className="profile-email-input2">
-                                        <input defaultValue={this.props.currentUser.email} className="profile-email-input3" type="text" />
+                                        <input onChange={this.update('email')} defaultValue={this.props.currentUser.email} className="profile-email-input3" type="text" />
                                       </div>
                                     </div>
                                   </div>
@@ -180,27 +173,42 @@ class ProfileForm extends React.Component {
                                 </div>
                               </div>
                             </div>
-
+                            
                           </div>
                         </div>
                       </div>
                     </div>
-                    </form>
-                  </div>
-                  <div className="profile-main-right">
+                    
+                </div>
+                <div className="profile-main-right">
                     <div className="profile-main-right1">
                       <div className="profile-main-right2">
                         <div className="profile-main-right3">
-                          <button type="submit" form="profile-form" className="profile-main-right4">
-                            <div className="profile-main-right5">Save changes</div>
+                          <button 
+                              disabled={!filledOut} 
+                              type="submit" 
+                              // form="profile-form" 
+                              className="profile-main-right4" 
+                              style={{
+                                backgroundColor: filledOut
+                                  ? `rgb(0, 76, 129)`
+                                  : `rgb(245, 244, 242)`,
+                                border: filledOut
+                                  ? `1px solid rgb(0, 76, 129)`
+                                  : `1px solid rgb(245, 244, 242)`,
+                                color: filledOut
+                                  ? `white`
+                                  : `rgb(177, 172, 163)`
+                              }}>Save changes
                           </button>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              
+              </div>
             </div>
+              {/* <input type="submit" id="submit-form" /> */}
+          </form>
           </div>
         </div>
       </>

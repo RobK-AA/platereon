@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import ProfileForm from "./profile_form";
-import { createCommunity } from "../../actions/community_actions";
+import { updateUser } from "../../actions/user_actions";
 import { clearCommunityErrors } from "../../actions/community_actions";
 
 const msp = (state) => ({
@@ -9,7 +9,7 @@ const msp = (state) => ({
 
 const mdp = (dispatch) => {
   return {
-    submitCommunity: (community) => dispatch(createCommunity(community)),
+    updateProfile: (user, userId) => dispatch(updateUser(user, userId)),
     clearErrors: () => dispatch(clearCommunityErrors()),
   };
 };

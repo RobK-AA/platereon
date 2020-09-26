@@ -123,7 +123,11 @@ class UserMain extends React.Component {
                           <div className="main-logo-outer-frame">
                             <div className="main-logo-outer">
                               <div className="main-logo-container">
-                                <div className="main-logo"></div>
+                                <div style={currentUser.profile_photo ? 
+                                  { backgroundImage: `url(${currentUser.profile_photo})` } : 
+                                  { backgroundImage: `url("https://c8.patreon.com/2/200/40259219")` }} 
+                                  className="main-logo">
+                                </div>
                                 <div className="user-main-name-container">
                                   <span className="user-main-name">
                                     {currentUser.name}

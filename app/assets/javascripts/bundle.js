@@ -625,9 +625,9 @@ var fetchCurrentUser = function fetchCurrentUser(userId) {
     });
   };
 };
-var updateUser = function updateUser(user) {
+var updateUser = function updateUser(user, userId) {
   return function (dispatch) {
-    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["updateUser"](user).then(function (user) {
+    return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["updateUser"](user, userId).then(function (user) {
       dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["receiveCurrentUser"])(user));
     }, function (errors) {
       dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["receiveErrors"])(errors.responseJSON));
@@ -5020,7 +5020,7 @@ var ProfileForm = /*#__PURE__*/function (_React$Component) {
       name: _this.props.currentUser.name,
       email: _this.props.currentUser.email,
       profilePhoto: null,
-      profilePhotoUrl: "https://c8.patreon.com/2/200/c5055377",
+      profilePhotoUrl: _this.props.currentUser.profile_photo || "https://c8.patreon.com/2/200/c5055377",
       errors: {}
     };
     return _this;
@@ -5065,45 +5065,41 @@ var ProfileForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      e.preventDefault();
-      var post = new FormData();
-      var _this$state = this.state,
-          title = _this$state.title,
-          body = _this$state.body,
-          images = _this$state.images,
-          imageUrls = _this$state.imageUrls,
-          videoUrl = _this$state.videoUrl;
-      var authorId = this.props.currentUser.id;
-      var communityId = this.state.communityId;
-      post.append("post[title]", title);
-      post.append("post[body]", body);
-      post.append("post[author_id]", authorId);
-      post.append("post[community_id]", parseInt($("option:selected").attr("name")));
-      post.append("post[video_url]", videoUrl);
-      var attachedImages = images;
+      var _this4 = this;
 
-      for (var i = 0; i < attachedImages.length; i++) {
-        post.append("post[images][]", attachedImages[i]);
+      e.preventDefault();
+      var user = new FormData();
+      user.append("user[name]", this.state.name);
+      user.append("user[email]", this.state.email);
+
+      if (this.state.profilePhoto) {
+        user.append("user[profile_photo]", this.state.profilePhoto);
       }
 
-      this.props.submitPost(post).then(this.props.history.push("/communities/".concat(parseInt($("option:selected").attr("name"))), this.state));
+      this.props.updateProfile(user, this.props.currentUser.id).then(function () {
+        return _this4.props.history.push("/", _this4.state);
+      });
     }
   }, {
     key: "render",
     value: function render() {
-      debugger;
+      var _this$state = this.state,
+          name = _this$state.name,
+          email = _this$state.email;
+      var filledOut = name.length > 0 && email.length > 0;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-main-outer1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-main-outer2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        id: "profile-form",
+        onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-main"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-main1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-main-left"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        id: "profile-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5131,6 +5127,7 @@ var ProfileForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-name-input2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.update('name'),
         defaultValue: this.props.currentUser.name,
         className: "profile-name-input3",
         type: "text"
@@ -5155,6 +5152,7 @@ var ProfileForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-email-input2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.update('email'),
         defaultValue: this.props.currentUser.email,
         className: "profile-email-input3",
         type: "text"
@@ -5215,7 +5213,7 @@ var ProfileForm = /*#__PURE__*/function (_React$Component) {
         strokeLinejoin: "round"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", null))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "photo-input4"
-      })))))))))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }))))))))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-main-right"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-main-right1"
@@ -5224,11 +5222,15 @@ var ProfileForm = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-main-right3"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "submit",
-        form: "profile-form",
-        className: "profile-main-right4"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "profile-main-right5"
+        disabled: !filledOut,
+        type: "submit" // form="profile-form" 
+        ,
+        className: "profile-main-right4",
+        style: {
+          backgroundColor: filledOut ? "rgb(0, 76, 129)" : "rgb(245, 244, 242)",
+          border: filledOut ? "1px solid rgb(0, 76, 129)" : "1px solid rgb(245, 244, 242)",
+          color: filledOut ? "white" : "rgb(177, 172, 163)"
+        }
       }, "Save changes")))))))))));
     }
   }]);
@@ -5251,7 +5253,8 @@ var ProfileForm = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _profile_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./profile_form */ "./frontend/components/profile_form/profile_form.jsx");
-/* harmony import */ var _actions_community_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/community_actions */ "./frontend/actions/community_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+/* harmony import */ var _actions_community_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/community_actions */ "./frontend/actions/community_actions.js");
 
 
 
@@ -5265,11 +5268,11 @@ var msp = function msp(state) {
 
 var mdp = function mdp(dispatch) {
   return {
-    submitCommunity: function submitCommunity(community) {
-      return dispatch(Object(_actions_community_actions__WEBPACK_IMPORTED_MODULE_2__["createCommunity"])(community));
+    updateProfile: function updateProfile(user, userId) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__["updateUser"])(user, userId));
     },
     clearErrors: function clearErrors() {
-      return dispatch(Object(_actions_community_actions__WEBPACK_IMPORTED_MODULE_2__["clearCommunityErrors"])());
+      return dispatch(Object(_actions_community_actions__WEBPACK_IMPORTED_MODULE_3__["clearCommunityErrors"])());
     }
   };
 };
@@ -6187,6 +6190,11 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "main-logo-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: currentUser.profile_photo ? {
+          backgroundImage: "url(".concat(currentUser.profile_photo, ")")
+        } : {
+          backgroundImage: "url(\"https://c8.patreon.com/2/200/40259219\")"
+        },
         className: "main-logo"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-main-name-container"
@@ -7619,9 +7627,9 @@ var fetchUser = function fetchUser(userId) {
     url: "api/users/".concat(userId)
   });
 };
-var updateUser = function updateUser(formData) {
+var updateUser = function updateUser(formData, userId) {
   return $.ajax({
-    url: "api/users/".concat(user.id),
+    url: "api/users/".concat(userId),
     method: "PATCH",
     data: formData,
     processData: false,
