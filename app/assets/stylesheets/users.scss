@@ -1,3 +1,211 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.profile1 {
+    display: block;
+    box-sizing: border-box;
+    transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+    padding: 0rem;
+    margin: 0rem 0rem 1rem;
+}
+
+.profile2 {
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(229, 227, 221);
+    border-radius: 4px;
+    box-shadow: none;
+    background-color: rgb(255, 255, 255);
+    overflow: hidden;
+}
+
+.profile3 {
+    box-sizing: border-box;
+    transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+    padding: 2rem;
+    margin: 0rem;
+}
+
+.profile4 {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+  padding: 0rem;
+  margin: 0rem;
+}
+
+.profile-name1, .profile-email1, .profile-photo1 {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+  padding: 0rem 0rem 2rem;
+  margin: 0rem;
+}
+
+.profile-main {
+    align-items: flex-start;
+    place-content: flex-start;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: row wrap;
+    -webkit-box-pack: start;
+    transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+    padding: 0rem;
+    margin: 0rem -0.5rem;
+}
+
+.profile-main1 {
+  box-sizing: border-box;
+  display: block;
+  transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+  padding: 0rem 0rem 1rem;
+  margin: 0rem;
+  color: rgb(36, 30, 18);
+  font-family: sans-serif;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizelegibility;
+  width: -webkit-fill-available;
+}
+
+.profile-main-left {
+  flex-basis: 66.6667%;
+  max-width: 66.6667%;
+  display: block;
+  box-sizing: border-box;
+  flex: 0 0 100%;
+  padding: 0rem 0.5rem;
+}
+
+.profile-main-right {
+  flex-basis: 33.3333%;
+  max-width: 33.3333%;
+  display: block;
+  box-sizing: border-box;
+  flex: 0 0 100%;
+  padding: 0rem 0.5rem;
+}
+
+.profile-name-left {
+  display: block;
+  flex-basis: 30%;
+  font-weight: 700;
+  margin-right: 1rem;
+  margin-bottom: 0;
+}
+
+.profile-name-right {
+  display: block;
+  flex-basis: 70%;
+  width: 100%;
+}
+
+.profile-email-left {
+  display: block;
+  flex-basis: 30%;
+  font-weight: 700;
+  margin-right: 1rem;
+  margin-bottom: 0;
+}
+
+.profile-email-right {
+  display: block;
+  flex-basis: 70%;
+  width: 100%;
+}
+
+.profile-name-left1, .profile-email-left1 {
+  display: block;
+  flex-basis: 30%;
+  font-weight: 700;
+  margin-right: 1rem;
+  margin-bottom: 0;
+}
+
+.profile-name-left2, .profile-email-left2 {
+  color: rgb(112, 108, 100);
+  font-family: sans-serif;
+  margin: 0px;
+  position: relative;
+  transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+  font-weight: 400 !important;
+  font-size: 0.875rem !important;
+  line-height: 1.5 !important;
+}
+
+.profile-name-right1, .profile-email-right1 {
+    display: block;
+    width: 100%;
+}
+
+.profile-name-input, .profile-email-input {
+  background: rgb(245, 244, 242);
+  border-color: rgb(229, 227, 221);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  box-sizing: border-box;
+  cursor: text;
+  display: flex;
+  flex-direction: row;
+  transition: border-color 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+}
+
+.profile-name-right2 {
+    align-items: flex-start;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    transition: all 300ms cubic-bezier(0.19, 1, 0.22, 1) 0s;
+    padding: 0.25rem 0rem 0rem;
+    margin: 0rem;
+}
+
+.profile-main-outer1 {
+  width: 100%;
+  padding-top: 2rem;
+}
+
+.profile-main-outer2 {
+    box-sizing: border-box;
+    margin: 0px auto;
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    display: block;
+}
+
+.profile-name-input1, .profile-email-input1 {
+  -webkit-box-align: stretch;
+  align-items: stretch;
+  display: flex;
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+}
+
+.profile-name-input2, .profile-email-input2 {
+    display: flex;
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    position: relative;
+}
+
+.profile-name-input3, .profile-email-input3 {
+    appearance: none;
+    background: none;
+    font: inherit;
+    margin: 0px;
+    border: none;
+    box-sizing: border-box;
+    display: block;
+    line-height: 1.5;
+    resize: none;
+    text-align: left;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    color: rgb(36, 30, 18);
+    font-size: 1rem !important;
+}
