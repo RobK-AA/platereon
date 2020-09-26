@@ -4978,6 +4978,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -5006,12 +5008,86 @@ var ProfileForm = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(ProfileForm);
 
   function ProfileForm(props) {
+    var _this;
+
     _classCallCheck(this, ProfileForm);
 
-    return _super.call(this, props);
+    _this = _super.call(this, props);
+    _this.addPhoto = _this.addPhoto.bind(_assertThisInitialized(_this));
+    _this.update = _this.update.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(ProfileForm, [{
+    key: "addPhoto",
+    value: function addPhoto() {
+      var _this2 = this;
+
+      e.preventDefault();
+      var backgroundImage = new FileReader();
+      var image = e.target.files[0];
+
+      backgroundImage.onloadend = function () {
+        var newImageUrl = _this2.state.backgroundImageUrl;
+        newImageUrl = backgroundImage.result;
+        var newImage = _this2.state.backgroundImage;
+        newImage = image;
+
+        _this2.setState({
+          backgroundImageUrl: newImageUrl,
+          backgroundImage: newImage
+        });
+      };
+
+      if (image) {
+        backgroundImage.readAsDataURL(image);
+      } else {
+        alert("Please choose another file type");
+      }
+    }
+  }, {
+    key: "update",
+    value: function update(field) {
+      var _this3 = this;
+
+      if (field === "title" || field === "body" || field === "videoUrl") {
+        return function (e) {
+          return _this3.setState(_defineProperty({}, field, e.target.value));
+        };
+      } else if (field === "communityId") {
+        return function (e) {
+          return _this3.setState(_defineProperty({}, field, parseInt($("option:selected").attr("name"))));
+        };
+      }
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      var post = new FormData();
+      var _this$state = this.state,
+          title = _this$state.title,
+          body = _this$state.body,
+          images = _this$state.images,
+          imageUrls = _this$state.imageUrls,
+          videoUrl = _this$state.videoUrl;
+      var authorId = this.props.currentUser.id;
+      var communityId = this.state.communityId;
+      post.append("post[title]", title);
+      post.append("post[body]", body);
+      post.append("post[author_id]", authorId);
+      post.append("post[community_id]", parseInt($("option:selected").attr("name")));
+      post.append("post[video_url]", videoUrl);
+      var attachedImages = images;
+
+      for (var i = 0; i < attachedImages.length; i++) {
+        post.append("post[images][]", attachedImages[i]);
+      }
+
+      this.props.submitPost(post).then(this.props.history.push("/communities/".concat(parseInt($("option:selected").attr("name"))), this.state));
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5024,6 +5100,8 @@ var ProfileForm = /*#__PURE__*/function (_React$Component) {
         className: "profile-main1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-main-left"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        id: "profile-form"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5131,7 +5209,19 @@ var ProfileForm = /*#__PURE__*/function (_React$Component) {
         className: "photo-input4"
       })))))))))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "profile-main-right"
-      })))));
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "profile-main-right1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "profile-main-right2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "profile-main-right3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit",
+        form: "profile-form",
+        className: "profile-main-right4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "profile-main-right5"
+      }, "Save changes")))))))))));
     }
   }]);
 
