@@ -16,6 +16,7 @@ json.comments do
         :created_at,
       json.author do
         json.extract! comment.commenter, :id, :name
+        json.profile_photo comment.commenter.profile_photo.attached? ? url_for(comment.commenter.profile_photo) : nil
       end
     end
   end

@@ -18,7 +18,7 @@ class Body extends React.Component {
     super(props);
     this.props.getCommunities();
   };
-
+  
   componentDidCatch() {
     if (!this.props.communities.length) {
       this.props.getCommunities();

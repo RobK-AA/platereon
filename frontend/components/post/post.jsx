@@ -3,31 +3,38 @@ import Moment from "moment";
 import ReactPlayer from 'react-player';
 import CommentFormContainer from "../comment/comment_form_container";
 import CommentsIndexContainer from "../comment/comments_index_container";
+import { relativeTimeThreshold } from 'moment';
 
 class Post extends React.Component {
   constructor(props) {
     super(props);
     
     this.callback = this.callback.bind(this);
-    if (this.props.post && (this.props.post.comments || this.props.post.likes)) {
-      
-      if (!this.props.post.comments.length && this.props.post.likes) {
-        
-        this.numLikes = Object.values(this.props.likes).length;
+    
+    if (props.post && (props.post.comments || props.post.likes)) {
+
+      if (props.post.comments === undefined && props.likes !== undefined) {
+          relativeTimeThreshold.numLikes = Object.values(props.likes).length;
+          debugger
         this.state = {
           likedByCurrentUser: this.props.likedByCurrentUser,
           numComments: 0,
-          numLikes: this.numLikes,
+          numLikes: Object.values(this.props.post.likes).length,
         };
-      } else {
+      } else if (props.post.comments !== undefined && props.likes === undefined) {
         this.state = {
           likedByCurrentUser: this.props.likedByCurrentUser,
           numComments: Object.values(this.props.post.comments).length,
           numLikes: 0,
+        }
+       } else {
+        this.state = {
+          likedByCurrentUser: this.props.likedByCurrentUser,
+          numComments: Object.values(this.props.post.comments).length,
+          numLikes: Object.values(this.props.post.likes).length,
         };
       };
     } else {
-      
       this.numLikes = 0;
       this.state = {
         likedByCurrentUser: false,
@@ -118,6 +125,9 @@ class Post extends React.Component {
     const firstCommentBody = Object.values(
       this.props.post.comments
     ).reverse()[0].body;
+    const firstCommentPhoto = Object.values(
+      this.props.post.comments
+    ).reverse()[0].profile_photo;
     const createdAt = Object.values(this.props.post.comments).reverse()[0]
       .created_at;
     let date = new Moment(createdAt);
@@ -143,7 +153,18 @@ class Post extends React.Component {
               <div className="commenter-logo">
                 <div className="commenter-logo1">
                   <span className="commenter-log2">
-                    <div className="commenter-logo3"></div>
+                    <div
+                      style={
+                        firstCommentPhoto
+                          ? {
+                              backgroundImage: `url(${firstCommentPhoto})`,
+                            }
+                          : {
+                              backgroundImage: `url("https://c8.patreon.com/2/200/40259219")`,
+                            }
+                      }
+                      className="commenter-logo3"
+                    ></div>
                   </span>
                 </div>
               </div>
@@ -185,6 +206,9 @@ class Post extends React.Component {
     const secondCommentBody = Object.values(
       this.props.post.comments
     ).reverse()[1].body;
+    const secondCommentPhoto = Object.values(
+      this.props.post.comments
+    ).reverse()[1].profile_photo;
     const createdAt = Object.values(this.props.post.comments).reverse()[1]
       .created_at;
     let date = new Moment(createdAt);
@@ -208,8 +232,19 @@ class Post extends React.Component {
             <div className="comment-left">
               <div className="commenter-logo">
                 <div className="commenter-logo1">
-                  <span className="commenter-log2">
-                    <div className="commenter-logo3"></div>
+                  <span className="commenter-logo2">
+                    <div
+                      style={
+                        secondCommentPhoto
+                          ? {
+                              backgroundImage: `url(${secondCommentPhoto})`,
+                            }
+                          : {
+                              backgroundImage: `url("https://c8.patreon.com/2/200/40259219")`,
+                            }
+                      }
+                      className="commenter-logo3"
+                    ></div>
                   </span>
                 </div>
               </div>
@@ -224,7 +259,9 @@ class Post extends React.Component {
                 </div>
                 <div className="comment-body-icons">
                   <div className="comment-body-icons-left">
-                    <img src="https://img.icons8.com/material-outlined/16/000000/filled-like.png" />
+                    <img
+                      src="https://img.icons8.com/material-outlined/16/000000/filled-like.png"
+                    />
                   </div>
                   <div className="comment-body-icons-right">
                     <img src="https://img.icons8.com/ios/16/000000/reply-arrow.png" />
@@ -384,14 +421,28 @@ class Post extends React.Component {
                     <div
                       className={`more-comments comments-${this.props.post.id}`}
                     >
-                      <CommentsIndexContainer numComments={this.state.numComments} post={this.props.post} />
+                      <CommentsIndexContainer
+                        numComments={this.state.numComments}
+                        post={this.props.post}
+                      />
                     </div>
 
                     <div className="post-comments4">
                       <div className="post-comments41">
                         <div className="post-comments-logo">
                           <div className="post-comments-logo1">
-                            <div className="post-comments-logo2"></div>
+                            <div
+                              style={
+                                this.props.currentUser.profile_photo
+                                  ? {
+                                      backgroundImage: `url(${this.props.currentUser.profile_photo})`,
+                                    }
+                                  : {
+                                      backgroundImage: `url("https://c8.patreon.com/2/200/40259219")`,
+                                    }
+                              }
+                              className="post-comments-logo2"
+                            ></div>
                           </div>
                         </div>
                         <CommentFormContainer

@@ -30,6 +30,15 @@ class SearchResults extends React.Component {
                     to={`/communities/${community.id}`}
                   >
                     <div
+                      style={
+                        community.profile_photo
+                          ? {
+                              backgroundImage: `url(${community.profile_photo})`,
+                            }
+                          : {
+                              backgroundImage: `url("https://c8.patreon.com/2/200/40259219")`,
+                            }
+                      }
                       className="result-icon1"
                       key={`result-icon1-${i}`}
                     ></div>
@@ -54,7 +63,9 @@ class SearchResults extends React.Component {
                     <span className="count1">{community.members.length}</span>
                     <div className="plateron">
                       <span className="plateron1">
-                        {community.members.length === 1 ? "Plateron" : "Platerons"}
+                        {community.members.length === 1
+                          ? "Plateron"
+                          : "Platerons"}
                       </span>
                     </div>
                   </div>

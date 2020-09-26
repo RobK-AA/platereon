@@ -947,6 +947,11 @@ var Comment = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "commenter-log2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: comment.author.profile_photo ? {
+          backgroundImage: "url(".concat(comment.author.profile_photo, ")")
+        } : {
+          backgroundImage: "url(\"https://c8.patreon.com/2/200/40259219\")"
+        },
         className: "commenter-logo3"
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-body"
@@ -1355,6 +1360,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
     _this.isPlural = _this.props.community.plural || "";
     _this.creatorId = _this.props.community.creator_id || "";
     _this.backgroundImage = _this.props.community.background_image;
+    _this.profilePhoto = _this.props.community.profile_photo;
     _this.id = _this.props.community.id || "";
     _this.currentUser = _this.props.currentUser;
     _this.joinCommunity = _this.props.joinCommunity.bind(_assertThisInitialized(_this));
@@ -1512,7 +1518,8 @@ var Community = /*#__PURE__*/function (_React$Component) {
           bronzePerks = this.bronzePerks,
           silverPerks = this.silverPerks,
           isPlural = this.isPlural,
-          backgroundImage = this.backgroundImage;
+          backgroundImage = this.backgroundImage,
+          profilePhoto = this.profilePhoto;
       var background = backgroundImage || 'https://cdn.pixabay.com/photo/2018/09/22/18/27/healthy-3695814_1280.jpg';
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "community-body-outer"
@@ -1530,6 +1537,11 @@ var Community = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "creator-logo-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: profilePhoto ? {
+          backgroundImage: "url(".concat(profilePhoto, ")")
+        } : {
+          backgroundImage: "url(\"https://c8.patreon.com/2/200/40259219\")"
+        },
         className: "creator-logo"
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "community-main-outer"
@@ -3829,6 +3841,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Post = /*#__PURE__*/function (_React$Component) {
   _inherits(Post, _React$Component);
 
@@ -3842,19 +3855,26 @@ var Post = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.callback = _this.callback.bind(_assertThisInitialized(_this));
 
-    if (_this.props.post && (_this.props.post.comments || _this.props.post.likes)) {
-      if (!_this.props.post.comments.length && _this.props.post.likes) {
-        _this.numLikes = Object.values(_this.props.likes).length;
+    if (props.post && (props.post.comments || props.post.likes)) {
+      if (props.post.comments === undefined && props.likes !== undefined) {
+        moment__WEBPACK_IMPORTED_MODULE_1__["relativeTimeThreshold"].numLikes = Object.values(props.likes).length;
+        debugger;
         _this.state = {
           likedByCurrentUser: _this.props.likedByCurrentUser,
           numComments: 0,
-          numLikes: _this.numLikes
+          numLikes: Object.values(_this.props.post.likes).length
+        };
+      } else if (props.post.comments !== undefined && props.likes === undefined) {
+        _this.state = {
+          likedByCurrentUser: _this.props.likedByCurrentUser,
+          numComments: Object.values(_this.props.post.comments).length,
+          numLikes: 0
         };
       } else {
         _this.state = {
           likedByCurrentUser: _this.props.likedByCurrentUser,
           numComments: Object.values(_this.props.post.comments).length,
-          numLikes: 0
+          numLikes: Object.values(_this.props.post.likes).length
         };
       }
 
@@ -3937,6 +3957,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
       var comments = Object.values(this.props.post.comments);
       var firstCommentName = Object.values(this.props.post.comments).reverse()[0].author.name;
       var firstCommentBody = Object.values(this.props.post.comments).reverse()[0].body;
+      var firstCommentPhoto = Object.values(this.props.post.comments).reverse()[0].profile_photo;
       var createdAt = Object.values(this.props.post.comments).reverse()[0].created_at;
       var date = new moment__WEBPACK_IMPORTED_MODULE_1___default.a(createdAt);
       var days = "".concat(parseInt(date.fromNow()), "d");
@@ -3963,6 +3984,11 @@ var Post = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "commenter-log2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: firstCommentPhoto ? {
+          backgroundImage: "url(".concat(firstCommentPhoto, ")")
+        } : {
+          backgroundImage: "url(\"https://c8.patreon.com/2/200/40259219\")"
+        },
         className: "commenter-logo3"
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-body"
@@ -3994,6 +4020,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
       var comments = Object.values(this.props.post.comments);
       var secondCommentName = Object.values(this.props.post.comments).reverse()[1].author.name;
       var secondCommentBody = Object.values(this.props.post.comments).reverse()[1].body;
+      var secondCommentPhoto = Object.values(this.props.post.comments).reverse()[1].profile_photo;
       var createdAt = Object.values(this.props.post.comments).reverse()[1].created_at;
       var date = new moment__WEBPACK_IMPORTED_MODULE_1___default.a(createdAt);
       var days = "".concat(parseInt(date.fromNow()), "d");
@@ -4018,8 +4045,13 @@ var Post = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "commenter-logo1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "commenter-log2"
+        className: "commenter-logo2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: secondCommentPhoto ? {
+          backgroundImage: "url(".concat(secondCommentPhoto, ")")
+        } : {
+          backgroundImage: "url(\"https://c8.patreon.com/2/200/40259219\")"
+        },
         className: "commenter-logo3"
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-body"
@@ -4196,6 +4228,11 @@ var Post = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-comments-logo1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: this.props.currentUser.profile_photo ? {
+          backgroundImage: "url(".concat(this.props.currentUser.profile_photo, ")")
+        } : {
+          backgroundImage: "url(\"https://c8.patreon.com/2/200/40259219\")"
+        },
         className: "post-comments-logo2"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comment_comment_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
         callback: function callback() {
@@ -5507,6 +5544,11 @@ var SearchResults = /*#__PURE__*/function (_React$Component) {
           key: "result-icon-".concat(i),
           to: "/communities/".concat(community.id)
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: community.profile_photo ? {
+            backgroundImage: "url(".concat(community.profile_photo, ")")
+          } : {
+            backgroundImage: "url(\"https://c8.patreon.com/2/200/40259219\")"
+          },
           className: "result-icon1",
           key: "result-icon1-".concat(i)
         })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5574,7 +5616,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var msp = function msp(state) {
   return {
-    searchResults: Object.values(state.entities.search)
+    searchResults: Object.values(state.entities.search),
+    currentUser: state.entities.users[state.session.id]
   };
 };
 

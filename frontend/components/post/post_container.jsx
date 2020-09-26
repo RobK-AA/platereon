@@ -9,6 +9,7 @@ import { like, unlike } from "../../actions/like_actions";
 import { fetchCurrentUser } from "../../actions/user_actions";
 
 const msp = (state, ownProps) => {
+  
   const currentUser = state.entities.users[state.session.id];
   const likes = ownProps.post.likes;
   // const likes = selectPostLikes(ownProps.post.id, state);

@@ -32,13 +32,26 @@ class Comment extends React.Component {
               <div className="commenter-logo">
                 <div className="commenter-logo1">
                   <span className="commenter-log2">
-                    <div className="commenter-logo3"></div>
+                    <div
+                      style={
+                        comment.author.profile_photo
+                          ? {
+                              backgroundImage: `url(${comment.author.profile_photo})`,
+                            }
+                          : {
+                              backgroundImage: `url("https://c8.patreon.com/2/200/40259219")`,
+                            }
+                      }
+                      className="commenter-logo3"
+                    ></div>
                   </span>
                 </div>
               </div>
               <div className="comment-body">
                 <div className="comment-body-name">
-                  <div className="comment-body-name1">{comment.author.name}</div>
+                  <div className="comment-body-name1">
+                    {comment.author.name}
+                  </div>
                 </div>
                 <div className="comment-body-body">
                   <p>
@@ -63,7 +76,7 @@ class Comment extends React.Component {
           </div>
         </div>
       </>
-    )
+    );
   }
 }
 

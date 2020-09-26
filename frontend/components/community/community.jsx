@@ -31,6 +31,7 @@ class Community extends React.Component {
     this.isPlural = this.props.community.plural || "";
     this.creatorId = this.props.community.creator_id || "";
     this.backgroundImage = this.props.community.background_image;
+    this.profilePhoto = this.props.community.profile_photo;
     this.id = this.props.community.id || "";
     this.currentUser = this.props.currentUser;
     this.joinCommunity = this.props.joinCommunity.bind(this);
@@ -185,8 +186,7 @@ class Community extends React.Component {
   }
 
   render() {
-    
-  
+
       const {
         name,
         description,
@@ -195,7 +195,8 @@ class Community extends React.Component {
         bronzePerks,
         silverPerks,
         isPlural,
-        backgroundImage
+        backgroundImage, 
+        profilePhoto
       } = this;
       let background = backgroundImage || 'https://cdn.pixabay.com/photo/2018/09/22/18/27/healthy-3695814_1280.jpg'
     
@@ -204,9 +205,23 @@ class Community extends React.Component {
         <div className="community-body-mid">
           <div className="community-body-inner">
             <div className="community-banner">
-              <div style={{ backgroundImage: `url(${background})`}} className="community-banner-top">
+              <div
+                style={{ backgroundImage: `url(${background})` }}
+                className="community-banner-top"
+              >
                 <div className="creator-logo-outer">
-                  <div className="creator-logo"></div>
+                  <div
+                    style={
+                      profilePhoto
+                        ? {
+                            backgroundImage: `url(${profilePhoto})`,
+                          }
+                        : {
+                            backgroundImage: `url("https://c8.patreon.com/2/200/40259219")`,
+                          }
+                    }
+                    className="creator-logo"
+                  ></div>
                 </div>
               </div>
             </div>
