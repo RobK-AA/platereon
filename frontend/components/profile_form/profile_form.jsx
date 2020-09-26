@@ -61,9 +61,57 @@ class ProfileForm extends React.Component {
                               </div>
                             </div>
                           </div>
-                          <div className="profile-photo1">
 
+                          <div className="profile-photo1">
+                            <div className="profile-photo2">
+                              <div className="profile-photo-left">
+                                <label className="profile-photo-left1" htmlFor="">Profile photo</label>
+                                <div className="profile-photo-left2">Upload or Use Default</div>
+                                <p className="profile-photo-left3">We recommend a 256px by 256px image.</p>
+                              </div>
+                              <div className="profile-photo-right">
+                                <div className="profile-photo-right1">
+                                  <div className="profile-photo-right2">
+                                    <div className="profile-photo-right3" >
+                                      <div className="profile-photo-right4">
+                                        <label className="profile-photo-right5" htmlFor="profile-photo">
+                                          <div className="photo-input">
+                                            <input id="profile-photo" className="photo-input1" type="file"/>
+                                          </div>
+                                          <div className="photo-input2">
+                                            <div className="photo-input3">
+                                              <div className="photo-input5">
+                                                <span className="photo-input6">
+                                                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" >
+                                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M14 17.333A4.667 4.667 0 1 0 14 8a4.667 4.667 0 0 0 0 9.333z" 
+                                                      stroke-linecap="round" stroke-linejoin="round"
+                                                    >
+
+                                                    </path>
+                                                    <path></path>
+                                                  </svg>
+
+                                                </span>
+                                                
+                                              </div>
+                                            </div>
+                                            
+                                            <div className="photo-input4"></div>
+                                          </div>
+                                        </label>
+                                        
+                                      </div>
+                                    </div>
+                                    
+                                  </div>
+                                  
+                                </div>
+                                
+                                
+                              </div>
+                            </div>
                           </div>
+
                         </div>
                       </div>
                     </div>
