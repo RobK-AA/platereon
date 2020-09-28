@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 class PostCover extends React.Component {
 
   render() {
+    
     return (
       <div className="post-cover1">
         <div className="post-cover2">
@@ -60,7 +61,7 @@ class PostCover extends React.Component {
                               <span>Video</span>
                             </div>
                           </Link>
-                          <Link to={"/postform/audio"} className="posts post-audio">
+                          {/* <Link to={"/postform/audio"} className="posts post-audio">
                             <div className="posts-img post-audio">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -106,7 +107,7 @@ class PostCover extends React.Component {
                             <div className="posts-text post-link">
                               <span>Link</span>
                             </div>
-                          </Link>
+                          </Link> */}
                         </div>
                       </div>
                     </div>

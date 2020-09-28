@@ -10,15 +10,11 @@ class Search extends React.Component {
     super(props)
     this.update = this.update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.renderSearchResults = this.renderSearchResults.bind(this);
+
     this.state = {
       query: ""
     }
   }
-
-  // useQuery() {
-  //   return new URLSearchParams(useLocation().search);
-  // }
 
   handleSubmit(e) {
     e.preventDefault();

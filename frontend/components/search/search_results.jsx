@@ -49,9 +49,7 @@ class SearchResults extends React.Component {
                       key={`community-${i}`}
                       to={`/communities/${community.id}`}
                     >
-                      {/* <li className="search-results-list-item" key={i}> */}
                       {community.name}
-                      {/* </li> */}
                     </Link>
                     <div className="search-desc">
                       <span className="search-desc1">

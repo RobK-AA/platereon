@@ -148,37 +148,26 @@ class ProfileForm extends React.Component {
                                                       <path fillRule="evenodd" clipRule="evenodd" d="M14 17.333A4.667 4.667 0 1 0 14 8a4.667 4.667 0 0 0 0 9.333z" 
                                                         strokeLinecap="round" strokeLinejoin="round"
                                                       >
-
                                                       </path>
                                                       <path></path>
                                                     </svg>
-
                                                   </span>
-                                                  
                                                 </div>
                                               </div>
-                                              
                                               <div className="photo-input4"></div>
                                             </div>
                                           </label>
-                                          
                                         </div>
                                       </div>
-                                      
                                     </div>
-                                    
                                   </div>
-                                  
-                                  
                                 </div>
                               </div>
                             </div>
-                            
                           </div>
                         </div>
                       </div>
                     </div>
-                    
                 </div>
                 <div className="profile-main-right">
                     <div className="profile-main-right1">
@@ -187,7 +176,7 @@ class ProfileForm extends React.Component {
                           <button 
                               disabled={!filledOut} 
                               type="submit" 
-                              // form="profile-form" 
+
                               className="profile-main-right4" 
                               style={{
                                 backgroundColor: filledOut
@@ -207,7 +196,6 @@ class ProfileForm extends React.Component {
                   </div>
               </div>
             </div>
-              {/* <input type="submit" id="submit-form" /> */}
           </form>
           </div>
         </div>

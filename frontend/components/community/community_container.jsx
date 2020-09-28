@@ -6,7 +6,7 @@ import { fetchCommunityPosts, fetchPost, createPost, updatePost, deletePost } fr
 import { fetchCurrentUser } from "../../actions/user_actions";
 
 const msp = (state, ownProps) => {
-  debugger
+  
   return {
     currentUser: state.entities.users[state.session.id],
     community: state.entities.communities[ownProps.match.params.communityId],

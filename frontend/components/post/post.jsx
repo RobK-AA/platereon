@@ -45,12 +45,6 @@ class Post extends React.Component {
     this.handleLike = this.handleLike.bind(this);
   }
 
-  // componentWillUnmount() {
-  //   this.props.getPosts(this.props.post.community_id);
-  //   this.props.getMemberships(this.props.currentUser.id);
-  //   this.props.getCurrentUser(this.props.currentUser.id);
-  // }
-
   renderUnlike() {
     return (
       <>
@@ -91,7 +85,7 @@ class Post extends React.Component {
     let count
     
     if (!this.state.likedByCurrentUser) {
-      debugger
+      
       this.props
         .likePost({
           liker_id: currentUser.id,

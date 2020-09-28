@@ -249,7 +249,7 @@ class PostForm extends React.Component {
                                       </div>
                                       <div className="text-post-x">
                                         <div className="text-post-x1">
-                                          <Link className="text-post-close" to="/postform">
+                                          <Link className="text-post-close" to="/postforms">
                                             <span className="text-post-x2">
                                               X
                                             </span>
