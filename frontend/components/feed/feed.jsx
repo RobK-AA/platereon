@@ -21,11 +21,16 @@ class Feed extends React.Component {
   }
 
   render() {
-    
     return(
+    this.props.posts ? 
+    
       <>
         <PostsIndex posts={Object.values(this.props.posts)} />
       </>
+     :
+      <div>
+        Search for and join communities to see posts in your feed!
+      </div>
     )
   }
 }

@@ -2536,9 +2536,9 @@ var Feed = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_post_posts_index__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      return this.props.posts ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_post_posts_index__WEBPACK_IMPORTED_MODULE_1__["default"], {
         posts: Object.values(this.props.posts)
-      }));
+      })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Search for and join communities to see posts in your feed!");
     }
   }]);
 
@@ -3210,24 +3210,28 @@ var MainPage = /*#__PURE__*/function (_React$Component) {
       }, "FOR CREATORS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "footer-ul111"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        target: "_blank",
         href: "https://robk-aa.github.io/"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "footer-ul11"
       }, "About"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "footer-ul112"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        target: "_blank",
         href: "https://github.com/RobK-AA"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "footer-ul12"
       }, "GitHub"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "footer-ul113"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        target: "_blank",
         href: "https://www.linkedin.com/in/robert-kornblum-1b851b1a2/"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "footer-ul13"
       }, "LinkedIn"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "footer-ul114"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        target: "_blank",
         href: "https://angel.co/u/robert-kornblum-2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "footer-ul14"
@@ -3857,8 +3861,6 @@ var Post = /*#__PURE__*/function (_React$Component) {
 
     if (props.post && (props.post.comments || props.post.likes)) {
       if (props.post.comments === undefined && props.likes !== undefined) {
-        moment__WEBPACK_IMPORTED_MODULE_1__["relativeTimeThreshold"].numLikes = Object.values(props.likes).length;
-        debugger;
         _this.state = {
           likedByCurrentUser: _this.props.likedByCurrentUser,
           numComments: 0,
@@ -3880,7 +3882,6 @@ var Post = /*#__PURE__*/function (_React$Component) {
 
       ;
     } else {
-      _this.numLikes = 0;
       _this.state = {
         likedByCurrentUser: false,
         numComments: 0,
@@ -3936,13 +3937,14 @@ var Post = /*#__PURE__*/function (_React$Component) {
       var count;
 
       if (!this.state.likedByCurrentUser) {
+        debugger;
         this.props.likePost({
           liker_id: currentUser.id,
           likeable_id: id,
           likeable_type: "Post"
         }).then(this.props.getCurrentUser(this.props.currentUser.id)).then(this.setState({
           likedByCurrentUser: true,
-          numLikes: this.state.numLikes = +1
+          numLikes: this.state.numLikes += 1
         }));
       } else {
         this.props.unlikePost(likeId).then(this.props.getCurrentUser(this.props.currentUser.id)).then(this.setState({
@@ -6203,9 +6205,13 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
       var currentUser = this.props.currentUser;
 
       var _ref = this.props || [],
-          communities = _ref.communities;
+          communities = _ref.communities; // let feedPosts;
+      // if (this.currentUser.posts_in_communities_joined !== undefined) {
+      //   feedPosts = Object.values(
+      //     this.currentUser.posts_in_communities_joined).reverse();
+      // }
 
-      var feedPosts = Object.values(this.currentUser.posts_in_communities_joined).reverse();
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-main5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

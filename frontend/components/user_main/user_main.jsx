@@ -106,8 +106,12 @@ class UserMain extends React.Component {
   render() {
     const { currentUser } = this.props;
     const { communities } = this.props || [];
-
-    const feedPosts = Object.values(this.currentUser.posts_in_communities_joined).reverse();
+    // let feedPosts;
+    // if (this.currentUser.posts_in_communities_joined !== undefined) {
+    //   feedPosts = Object.values(
+    //     this.currentUser.posts_in_communities_joined).reverse();
+    // }
+    
 
     return (
       <div className="user-main5">

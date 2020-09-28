@@ -231,22 +231,34 @@ class MainPage extends React.Component {
                             <ul className="footer-ul1">
                               <li className="footer-ul10">FOR CREATORS</li>
                               <div className="footer-ul111">
-                                <a href="https://robk-aa.github.io/">
+                                <a
+                                  target="_blank"
+                                  href="https://robk-aa.github.io/"
+                                >
                                   <li className="footer-ul11">About</li>
                                 </a>
                               </div>
                               <div className="footer-ul112">
-                                <a href="https://github.com/RobK-AA">
+                                <a
+                                  target="_blank"
+                                  href="https://github.com/RobK-AA"
+                                >
                                   <li className="footer-ul12">GitHub</li>
                                 </a>
                               </div>
                               <div className="footer-ul113">
-                                <a href="https://www.linkedin.com/in/robert-kornblum-1b851b1a2/">
+                                <a
+                                  target="_blank"
+                                  href="https://www.linkedin.com/in/robert-kornblum-1b851b1a2/"
+                                >
                                   <li className="footer-ul13">LinkedIn</li>
                                 </a>
                               </div>
                               <div className="footer-ul114">
-                                <a href="https://angel.co/u/robert-kornblum-2">
+                                <a
+                                  target="_blank"
+                                  href="https://angel.co/u/robert-kornblum-2"
+                                >
                                   <li className="footer-ul14">AngelList</li>
                                 </a>
                               </div>

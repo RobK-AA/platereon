@@ -14,8 +14,7 @@ class Post extends React.Component {
     if (props.post && (props.post.comments || props.post.likes)) {
 
       if (props.post.comments === undefined && props.likes !== undefined) {
-          relativeTimeThreshold.numLikes = Object.values(props.likes).length;
-          debugger
+          
         this.state = {
           likedByCurrentUser: this.props.likedByCurrentUser,
           numComments: 0,
@@ -35,7 +34,6 @@ class Post extends React.Component {
         };
       };
     } else {
-      this.numLikes = 0;
       this.state = {
         likedByCurrentUser: false,
         numComments: 0,
@@ -92,6 +90,7 @@ class Post extends React.Component {
     let count
     
     if (!this.state.likedByCurrentUser) {
+      debugger
       this.props
         .likePost({
           liker_id: currentUser.id,
@@ -101,7 +100,7 @@ class Post extends React.Component {
         .then(
           this.setState({
             likedByCurrentUser: true,
-            numLikes: this.state.numLikes =+ 1,
+            numLikes: (this.state.numLikes += 1),
           })
         );
     } else {
