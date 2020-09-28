@@ -35,15 +35,15 @@ class Header extends React.Component {
                             className="header-menu-creator"
                             to="/createform"
                           >
-                            Become a Creator
+                            Become a Creator     
                           </Link>
                         </li>
                         <li key="user-nav-list2">
                           <Link
-                            className="header-menu-creator"
+                            className="header-menu-profile"
                             to="/profile"
                           >
-                            Edit Profile
+                            My Profile
                           </Link>
                         </li>
                         <li key="user-nav-list3">
@@ -52,7 +52,7 @@ class Header extends React.Component {
                             to="/"
                             onClick={logout}
                           >
-                            Log out
+                            Log out    
                           </Link>
                         </li>
                       </ul>

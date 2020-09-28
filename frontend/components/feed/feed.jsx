@@ -21,17 +21,62 @@ class Feed extends React.Component {
   }
 
   render() {
-    return(
-    this.props.posts ? 
-    
+    return this.props.posts ? (
       <>
-        <PostsIndex posts={Object.values(this.props.posts)} />
+        <div className="feed-outer">
+          <div className="feed-top">
+            <div className="feed-top1">
+              <div className="feed-top-left">
+                <div className="feed-top-left1">
+                  <div className="feed-top-left2">
+                    <div className="feed-top-left3">
+                      <div className="feed-top-left4">
+                        <ul className="feed-top-left-list">
+                          <li className="feed-top-list-item1">
+                            <a className="feed-top-list-item11" href="/">
+                              <div className="feed-top-list-item12">
+                                <div className="feed-top-list-item13">
+                                  <div className="feed-top-list-item14">
+                                    <span className="feed-top-list-item15">
+                                      <span className="feed-top-list-item16">
+                                        All posts
+                                      </span>
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                          <li className="feed-top-list-item2">
+                            <a className="feed-top-list-item11" href="/">
+                              <div className="feed-top-list-item12">
+                                <div className="feed-top-list-item13">
+                                  <div className="feed-top-list-item14">
+                                    <span className="feed-top-list-item15">
+                                      <span className="feed-top-list-item166">
+                                        Plateron-only posts
+                                      </span>
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="feed-top-right"></div>
+            </div>
+          </div>
+          <PostsIndex posts={Object.values(this.props.posts)} />
+        </div>
       </>
-     :
-      <div>
-        Search for and join communities to see posts in your feed!
-      </div>
-    )
+    ) : (
+      <div>Search for and join communities to see posts in your feed!</div>
+    );
   }
 }
 

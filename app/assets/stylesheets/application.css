@@ -691,12 +691,30 @@ html {
     flex-direction: column;
 }
 
-.header-menu-creator, .header-menu-logout {
+.header-menu-creator, .header-menu-logout, .header-menu-profile {
   width: 100%;
   text-decoration: none;
   margin-left: 20px;
   font-weight: 500;
   color: black;
+}
+
+.header-menu-creator {
+  padding-right: 40px;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+
+.header-menu-profile {
+  padding-right: 50px;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+
+.header-menu-logout {
+  padding-right: 100px;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
 }
 
 .list-container > ul > li {
