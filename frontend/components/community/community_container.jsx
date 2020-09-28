@@ -2,16 +2,20 @@ import { connect } from "react-redux";
 import Community from './community';
 import { fetchCommunity, fetchCommunities } from '../../actions/community_actions'
 import { createMembership, deleteMembership, fetchMemberships } from "../../actions/membership_actions";
-import { fetchPosts, fetchPost, createPost, updatePost, deletePost } from '../../actions/post_actions';
+import { fetchCommunityPosts, fetchPost, createPost, updatePost, deletePost } from '../../actions/post_actions';
 import { fetchCurrentUser } from "../../actions/user_actions";
 
 const msp = (state, ownProps) => {
-  
+  debugger
   return {
     currentUser: state.entities.users[state.session.id],
     community: state.entities.communities[ownProps.match.params.communityId],
     memberships: Object.values(state.entities.memberships),
-    posts: Object.values(state.entities.posts),
+    posts: Object.values(
+      state.entities.users[state.session.id].posts_in_communities_joined
+    ).filter((post) => {
+      return post.community_id === parseInt(ownProps.match.params.communityId);
+    }),
   };
 };
 
@@ -21,7 +25,7 @@ const mdp = dispatch => {
     fetchCommunity: (communityId) => dispatch(fetchCommunity(communityId)),
     joinCommunity: (membership) => dispatch(createMembership(membership)),
     unjoinCommunity: (membershipId) => dispatch(deleteMembership(membershipId)),
-    getPosts: (communityId) => dispatch(fetchPosts(communityId)),
+    getPosts: (communityId) => dispatch(fetchCommunityPosts(communityId)),
     getPost: (postId) => dispatch(fetchPost(postId)),
     submitPost: (post) => dispatch(createPost(post)),
     updatePost: (post) => dispatch(updatePost(post)),

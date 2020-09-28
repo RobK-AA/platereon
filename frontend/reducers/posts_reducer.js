@@ -1,4 +1,4 @@
-import { RECEIVE_POSTS, RECEIVE_POST, REMOVE_POST } from '../actions/post_actions';
+import { RECEIVE_POSTS, RECEIVE_POST, REMOVE_POST, RECEIVE_COMMUNITY_POSTS } from '../actions/post_actions';
 import { merge } from "lodash";
 import { RECEIVE_LIKE, REMOVE_LIKE } from "../actions/like_actions";
 import { RECEIVE_COMMENT } from "../actions/comment_actions";
@@ -12,6 +12,8 @@ const PostsReducer = (oldState = {}, action) => {
   switch (action.type) {
     case RECEIVE_POSTS:
       return merge({}, oldState, action.posts );
+    case RECEIVE_COMMUNITY_POSTS:
+      return action.posts;
     case RECEIVE_POST:
       newState[action.post.id] = action.post;
       return newState;

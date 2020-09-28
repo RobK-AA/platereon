@@ -4,7 +4,6 @@ import { Route, Link } from 'react-router-dom';
 import CommunitiesReducer from '../../reducers/communities_reducer';
 import community_container from '../community/community_container';
 import PostContainer from '../post/post_container'
-import MainFeedPostContainer from '../post/main_feed_post_container';
 import FeedContainer from "../feed/feed_container";
 
 class UserMain extends React.Component {
@@ -215,20 +214,6 @@ class UserMain extends React.Component {
                         <FeedContainer
                           posts={this.currentUser.posts_in_communities_joined}
                         />
-                        {/* {feedPosts.map((post, i) => {
-                          return (
-                            <>
-                              <MainFeedPostContainer
-                                communityId={post.community_id}
-                                title={post.title}
-                                body={post.body}
-                                createdAt={post.created_at}
-                                key={i}
-                                post={post}
-                                />
-                            </>
-                          );
-                        })} */}
                       </div>
                     </div>
                   </div>

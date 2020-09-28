@@ -103,16 +103,4 @@ class Feed extends React.Component {
   }
 }
 
-// const msp = (state) => ({
-//   currentUser: state.entities.users[state.session.id],
-// });
-
-// const mdp = (dispatch) => {
-//   return {
-//     getPosts: (communityId) => dispatch(fetchPosts(communityId)),
-//   };
-// };
-
-// export default connect(msp)(mdp)(Feed);
-
 export default Feed;
