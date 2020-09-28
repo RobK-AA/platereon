@@ -1,6 +1,6 @@
 import React from 'react';
 import PostsContainer from '../post/post_container'
-import {BrowserRouter } from 'react-router-dom';
+import Footer from '../footer/footer';
 import ls from 'local-storage'
 import PostFormContainer from '../post/post_form_container';
 import PostsIndex from "../post/posts_index";
@@ -447,7 +447,8 @@ class Community extends React.Component {
                 </div>
               </div>
               {this.renderPosts()}
-              <div className="outer-footer1">
+              <Footer />
+              {/* <div className="outer-footer1">
                 <div className="outer-footer2">
                   <div className="outer-footer3">
                     <div className="outer-footer4">
@@ -526,7 +527,7 @@ class Community extends React.Component {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import CommunityFormContainer from '../community_form/community_form_container'
 import { Route, Link } from 'react-router-dom';
-import CommunitiesReducer from '../../reducers/communities_reducer';
+import Footer from '../footer/footer';
 import community_container from '../community/community_container';
 import PostContainer from '../post/post_container'
 import FeedContainer from "../feed/feed_container";
@@ -293,7 +293,8 @@ class UserMain extends React.Component {
           </div>
         </div>
         <div></div>
-        <div className="outer-footer1">
+        <Footer />
+        {/* <div className="outer-footer1">
           <div className="outer-footer2">
             <div className="outer-footer3">
               <div className="outer-footer4">
@@ -382,7 +383,7 @@ class UserMain extends React.Component {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }
