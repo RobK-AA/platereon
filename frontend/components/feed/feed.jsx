@@ -68,7 +68,30 @@ class Feed extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className="feed-top-right"></div>
+              <div className="feed-top-right">
+                <div className="feed-top-right1">
+                  <div className="feed-top-right2">
+                    <div className="feed-top-right3">
+                      <div className="feed-top-right4">
+                        <div className="feed-top-right5">
+                          <div className="feed-top-right6">
+                            <span>Showing: All Creators</span>
+                          </div>
+                          <div className="feed-top-right7">
+                            <span>
+                              <svg
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path></path>
+                              </svg>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <PostsIndex posts={Object.values(this.props.posts)} />
