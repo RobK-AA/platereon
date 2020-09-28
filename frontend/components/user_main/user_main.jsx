@@ -127,11 +127,18 @@ class UserMain extends React.Component {
                           <div className="main-logo-outer-frame">
                             <div className="main-logo-outer">
                               <div className="main-logo-container">
-                                <div style={currentUser.profile_photo ? 
-                                  { backgroundImage: `url(${currentUser.profile_photo})` } : 
-                                  { backgroundImage: `url("https://c8.patreon.com/2/200/40259219")` }} 
-                                  className="main-logo">
-                                </div>
+                                <div
+                                  style={
+                                    currentUser.profile_photo
+                                      ? {
+                                          backgroundImage: `url(${currentUser.profile_photo})`,
+                                        }
+                                      : {
+                                          backgroundImage: `url("https://c8.patreon.com/2/200/c5055377")`,
+                                        }
+                                  }
+                                  className="main-logo"
+                                ></div>
                                 <div className="user-main-name-container">
                                   <span className="user-main-name">
                                     {currentUser.name}
@@ -171,7 +178,9 @@ class UserMain extends React.Component {
                     <div className="community-links2">
                       <div className="community-links1">
                         {/* {this.renderLinks()} */}
-                        <FeedContainer posts={this.currentUser.posts_in_communities_joined} />
+                        <FeedContainer
+                          posts={this.currentUser.posts_in_communities_joined}
+                        />
                         {/* {feedPosts.map((post, i) => {
                           return (
                             <>
@@ -200,15 +209,15 @@ class UserMain extends React.Component {
                             <div className="upper-right-title">
                               <div className="ur-title1">
                                 <div className="ur-title2">
-                                  <h5 className="ur-title">Become a creator</h5>
+                                  <h5 className="ur-title-creator">Become a creator</h5>
                                 </div>
                               </div>
                             </div>
-                            <p className="upper-right-text">
+                            <p className="upper-right-text-creator">
                               Build a membership for your fans and get paid to
                               create on your own terms.
                             </p>
-                            <div className="get-started-link">
+                            <div className="get-started-link-creator">
                               <Link
                                 className="main-create-link"
                                 to={`/createform`}
@@ -326,11 +335,21 @@ class UserMain extends React.Component {
                     <div className="footer31">
                       <div className="footer32">
                         <ul className="footer-ul1">
-                          <li key="1000" className="footer-ul10">FOR CREATORS</li>
-                          <li key="1001" className="footer-ul11">About</li>
-                          <li key="1002" className="footer-ul12">GitHub</li>
-                          <li key="1003" className="footer-ul13">LinkedIn</li>
-                          <li key="1004" className="footer-ul14">App Academy</li>
+                          <li key="1000" className="footer-ul10">
+                            FOR CREATORS
+                          </li>
+                          <li key="1001" className="footer-ul11">
+                            About
+                          </li>
+                          <li key="1002" className="footer-ul12">
+                            GitHub
+                          </li>
+                          <li key="1003" className="footer-ul13">
+                            LinkedIn
+                          </li>
+                          <li key="1004" className="footer-ul14">
+                            App Academy
+                          </li>
                         </ul>
                       </div>
                     </div>

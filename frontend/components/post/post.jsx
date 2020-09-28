@@ -3,6 +3,7 @@ import Moment from "moment";
 import ReactPlayer from 'react-player';
 import CommentFormContainer from "../comment/comment_form_container";
 import CommentsIndexContainer from "../comment/comments_index_container";
+import { Link } from 'react-router-dom';
 import { relativeTimeThreshold } from 'moment';
 
 class Post extends React.Component {
@@ -10,7 +11,7 @@ class Post extends React.Component {
     super(props);
     
     this.callback = this.callback.bind(this);
-    
+    this.renderPostCommunity = this.renderPostCommunity.bind(this);
     if (props.post && (props.post.comments || props.post.likes)) {
 
       if (props.post.comments === undefined && props.likes !== undefined) {
@@ -285,6 +286,34 @@ class Post extends React.Component {
     });
   }
 
+  renderPostCommunity() {
+    const { community, author } = this.props.post;
+
+    return (
+      <div className="post-community1">
+        <Link to={`/communities/${community.id}`} className="post-community2">
+          <div className="post-community-photo">
+            <div
+              style={
+                author.profile_photo
+                  ? {
+                      backgroundImage: `url(${author.profile_photo})`,
+                    }
+                  : {
+                      backgroundImage: `url("https://c8.patreon.com/2/200/c5055377")`,
+                    }
+              }
+              className="post-community-photo1"
+            ></div>
+          </div>
+          <div className="post-community-name">
+            <span className="post-community-name1">{community.name}</span>
+          </div>
+        </Link>
+      </div>
+    );
+  }
+
   render() {
     const { id, title, body, images, likes } = this.props.post;
     const createdAt = this.props.post.created_at;
@@ -316,6 +345,9 @@ class Post extends React.Component {
         <div className="post4">
           <div className="post3">
             <div className="post2">
+              {window.location.href.includes("communities")
+                ? null
+                : this.renderPostCommunity()}
               <div className="post1">
                 <div className="post-media">
                   <div className="post-media-container">

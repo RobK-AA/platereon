@@ -3884,6 +3884,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_player__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_player__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _comment_comment_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../comment/comment_form_container */ "./frontend/components/comment/comment_form_container.jsx");
 /* harmony import */ var _comment_comments_index_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../comment/comments_index_container */ "./frontend/components/comment/comments_index_container.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3913,6 +3914,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Post = /*#__PURE__*/function (_React$Component) {
   _inherits(Post, _React$Component);
 
@@ -3925,6 +3927,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.callback = _this.callback.bind(_assertThisInitialized(_this));
+    _this.renderPostCommunity = _this.renderPostCommunity.bind(_assertThisInitialized(_this));
 
     if (props.post && (props.post.comments || props.post.likes)) {
       if (props.post.comments === undefined && props.likes !== undefined) {
@@ -4154,16 +4157,42 @@ var Post = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "renderPostCommunity",
+    value: function renderPostCommunity() {
+      var _this$props$post = this.props.post,
+          community = _this$props$post.community,
+          author = _this$props$post.author;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "post-community1"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Link"], {
+        to: "/communities/".concat(community.id),
+        className: "post-community2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "post-community-photo"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: author.profile_photo ? {
+          backgroundImage: "url(".concat(author.profile_photo, ")")
+        } : {
+          backgroundImage: "url(\"https://c8.patreon.com/2/200/c5055377\")"
+        },
+        className: "post-community-photo1"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "post-community-name"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "post-community-name1"
+      }, community.name))));
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this3 = this;
 
-      var _this$props$post = this.props.post,
-          id = _this$props$post.id,
-          title = _this$props$post.title,
-          body = _this$props$post.body,
-          images = _this$props$post.images,
-          likes = _this$props$post.likes;
+      var _this$props$post2 = this.props.post,
+          id = _this$props$post2.id,
+          title = _this$props$post2.title,
+          body = _this$props$post2.body,
+          images = _this$props$post2.images,
+          likes = _this$props$post2.likes;
       var createdAt = this.props.post.created_at;
       var videoUrl = this.props.post.video_url; // const { currentUserIsMember } = this.props;
 
@@ -4199,7 +4228,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
         className: "post3"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post2"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, window.location.href.includes("communities") ? null : this.renderPostCommunity(), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post1"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "post-media"
@@ -6309,7 +6338,7 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
         style: currentUser.profile_photo ? {
           backgroundImage: "url(".concat(currentUser.profile_photo, ")")
         } : {
-          backgroundImage: "url(\"https://c8.patreon.com/2/200/40259219\")"
+          backgroundImage: "url(\"https://c8.patreon.com/2/200/c5055377\")"
         },
         className: "main-logo"
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -6363,11 +6392,11 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "ur-title2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
-        className: "ur-title"
+        className: "ur-title-creator"
       }, "Become a creator")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "upper-right-text"
+        className: "upper-right-text-creator"
       }, "Build a membership for your fans and get paid to create on your own terms."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "get-started-link"
+        className: "get-started-link-creator"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         className: "main-create-link",
         to: "/createform"

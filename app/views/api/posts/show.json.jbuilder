@@ -7,6 +7,10 @@ json.extract! @post,
   :video_url,
   :link_url
 
+json.community do
+      json.extract! post.community, :name, :id
+end
+
 json.comments do
   @post.comments.each do |comment|
     json.set! comment.id do
@@ -32,6 +36,11 @@ json.likes do
         :likeable_type
     end
   end
+end
+
+json.author do
+            json.extract! @post.author, :id, :name
+            json.profile_photo @post.author.profile_photo.attached? ? url_for(@post.author.profile_photo) : nil
 end
 
 json.images @post.images.map { |image| url_for(image) }
