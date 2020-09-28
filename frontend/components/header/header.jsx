@@ -25,7 +25,16 @@ class Header extends React.Component {
                   <div className="logo-container">
                     <button
                       className="user-logo"
-                      src="https://c8.patreon.com/2/200/7025471"
+                      style={
+                        this.props.currentUser.profile_photo
+                          ? {
+                              backgroundImage: `url(${this.props.currentUser.profile_photo})`,
+                            }
+                          : {
+                              backgroundImage: `url("https://c8.patreon.com/2/200/c5055377")`,
+                            }
+                      }
+                      // src="https://c8.patreon.com/2/200/7025471"
                     ></button>
 
                     <div className="list-container">
@@ -35,14 +44,11 @@ class Header extends React.Component {
                             className="header-menu-creator"
                             to="/createform"
                           >
-                            Become a Creator     
+                            Become a Creator
                           </Link>
                         </li>
                         <li key="user-nav-list2">
-                          <Link
-                            className="header-menu-profile"
-                            to="/profile"
-                          >
+                          <Link className="header-menu-profile" to="/profile">
                             My Profile
                           </Link>
                         </li>
@@ -52,7 +58,7 @@ class Header extends React.Component {
                             to="/"
                             onClick={logout}
                           >
-                            Log out    
+                            Log out
                           </Link>
                         </li>
                       </ul>

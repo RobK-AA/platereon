@@ -41,10 +41,43 @@ class UserMain extends React.Component {
           {this.renderJoinMessage()}
           {this.communitiesJoined.map((community, i) => {
                 return (
-                    <Link key={`community-${i}`} to={`/communities/${community.id}`}>
-                      <li key={i}>{community.name}</li>
-                    </Link>
-                )
+                  <li className="supporting-list-item" key={i}>
+                    <div className="supporting-list-item1">
+                      <Link
+                        className="supporting-list-item2"
+                        key={`community-${i}`}
+                        to={`/communities/${community.id}`}
+                      >
+                        <div className="supporting-list-item3">
+                          <div className="supporting-photo1">
+                            <div
+                              style={
+                                community.profile_photo
+                                  ? {
+                                      backgroundImage: `url(${community.profile_photo})`,
+                                    }
+                                  : {
+                                      backgroundImage: `url("https://c8.patreon.com/2/200/c5055377")`,
+                                    }
+                              }
+                              className="supporting-photo2"
+                            ></div>
+                          </div>
+                          <div className="supporting-name1">
+                            <div className="supporting-name2">
+                              {community.name}
+                            </div>
+                            <div className="supporting-amt1">
+                              <span className="supporting-amt2">
+                                Monthly fee waived (Demo User)
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </Link>
+                    </div>
+                  </li>
+                );
               }
           )}
         </ul>
@@ -58,7 +91,7 @@ class UserMain extends React.Component {
 
       return (
         <>
-        <li key="10000">
+        <li className="join-list-item" key="10000">
           {this.props.membershipsMessage.noMembershipsMessage}
         </li>
         </>

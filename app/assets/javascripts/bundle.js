@@ -2739,7 +2739,12 @@ var Header = /*#__PURE__*/function (_React$Component) {
         className: "logo-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "user-logo",
-        src: "https://c8.patreon.com/2/200/7025471"
+        style: this.props.currentUser.profile_photo ? {
+          backgroundImage: "url(".concat(this.props.currentUser.profile_photo, ")")
+        } : {
+          backgroundImage: "url(\"https://c8.patreon.com/2/200/c5055377\")"
+        } // src="https://c8.patreon.com/2/200/7025471"
+
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "list-container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
@@ -6243,12 +6248,35 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "community-links"
       }, this.renderJoinMessage(), this.communitiesJoined.map(function (community, i) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "supporting-list-item",
+          key: i
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "supporting-list-item1"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+          className: "supporting-list-item2",
           key: "community-".concat(i),
           to: "/communities/".concat(community.id)
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: i
-        }, community.name));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "supporting-list-item3"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "supporting-photo1"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          style: community.profile_photo ? {
+            backgroundImage: "url(".concat(community.profile_photo, ")")
+          } : {
+            backgroundImage: "url(\"https://c8.patreon.com/2/200/c5055377\")"
+          },
+          className: "supporting-photo2"
+        })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "supporting-name1"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "supporting-name2"
+        }, community.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "supporting-amt1"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "supporting-amt2"
+        }, "Monthly fee waived (Demo User)")))))));
       })));
     }
   }, {
@@ -6256,6 +6284,7 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
     value: function renderJoinMessage() {
       if (this.props.membershipsMessage.noMembershipsMessage && !$('community-link').innerHTML) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "join-list-item",
           key: "10000"
         }, this.props.membershipsMessage.noMembershipsMessage));
       }
