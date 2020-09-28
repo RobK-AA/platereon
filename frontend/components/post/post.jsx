@@ -126,7 +126,7 @@ class Post extends React.Component {
     ).reverse()[0].body;
     const firstCommentPhoto = Object.values(
       this.props.post.comments
-    ).reverse()[0].profile_photo;
+    ).reverse()[0].author.profile_photo;
     const createdAt = Object.values(this.props.post.comments).reverse()[0]
       .created_at;
     let date = new Moment(createdAt);
@@ -207,7 +207,7 @@ class Post extends React.Component {
     ).reverse()[1].body;
     const secondCommentPhoto = Object.values(
       this.props.post.comments
-    ).reverse()[1].profile_photo;
+    ).reverse()[1].author.profile_photo;
     const createdAt = Object.values(this.props.post.comments).reverse()[1]
       .created_at;
     let date = new Moment(createdAt);
@@ -437,7 +437,7 @@ class Post extends React.Component {
                                       backgroundImage: `url(${this.props.currentUser.profile_photo})`,
                                     }
                                   : {
-                                      backgroundImage: `url("https://c8.patreon.com/2/200/40259219")`,
+                                      backgroundImage: `url("https://c8.patreon.com/2/200/c5055377")`,
                                     }
                               }
                               className="post-comments-logo2"

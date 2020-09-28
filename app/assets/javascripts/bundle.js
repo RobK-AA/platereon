@@ -3959,7 +3959,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
       var comments = Object.values(this.props.post.comments);
       var firstCommentName = Object.values(this.props.post.comments).reverse()[0].author.name;
       var firstCommentBody = Object.values(this.props.post.comments).reverse()[0].body;
-      var firstCommentPhoto = Object.values(this.props.post.comments).reverse()[0].profile_photo;
+      var firstCommentPhoto = Object.values(this.props.post.comments).reverse()[0].author.profile_photo;
       var createdAt = Object.values(this.props.post.comments).reverse()[0].created_at;
       var date = new moment__WEBPACK_IMPORTED_MODULE_1___default.a(createdAt);
       var days = "".concat(parseInt(date.fromNow()), "d");
@@ -4022,7 +4022,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
       var comments = Object.values(this.props.post.comments);
       var secondCommentName = Object.values(this.props.post.comments).reverse()[1].author.name;
       var secondCommentBody = Object.values(this.props.post.comments).reverse()[1].body;
-      var secondCommentPhoto = Object.values(this.props.post.comments).reverse()[1].profile_photo;
+      var secondCommentPhoto = Object.values(this.props.post.comments).reverse()[1].author.profile_photo;
       var createdAt = Object.values(this.props.post.comments).reverse()[1].created_at;
       var date = new moment__WEBPACK_IMPORTED_MODULE_1___default.a(createdAt);
       var days = "".concat(parseInt(date.fromNow()), "d");
@@ -4233,7 +4233,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
         style: this.props.currentUser.profile_photo ? {
           backgroundImage: "url(".concat(this.props.currentUser.profile_photo, ")")
         } : {
-          backgroundImage: "url(\"https://c8.patreon.com/2/200/40259219\")"
+          backgroundImage: "url(\"https://c8.patreon.com/2/200/c5055377\")"
         },
         className: "post-comments-logo2"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comment_comment_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], {
