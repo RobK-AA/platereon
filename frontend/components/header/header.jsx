@@ -39,28 +39,32 @@ class Header extends React.Component {
 
                     <div className="list-container">
                       <ul className="user-nav-list">
-                        <li key="user-nav-list1">
-                          <Link
+                        <Link to="/createform">
+                          <li
                             className="header-menu-creator"
-                            to="/createform"
+                            key="user-nav-list1"
                           >
                             Become a Creator
-                          </Link>
-                        </li>
-                        <li key="user-nav-list2">
-                          <Link className="header-menu-profile" to="/profile">
+                          </li>
+                        </Link>
+
+                        <Link to="/profile">
+                          <li
+                            className="header-menu-profile"
+                            key="user-nav-list2"
+                          >
                             My Profile
-                          </Link>
-                        </li>
-                        <li key="user-nav-list3">
-                          <Link
+                          </li>
+                        </Link>
+
+                        <Link to="/" onClick={logout}>
+                          <li
                             className="header-menu-logout"
-                            to="/"
-                            onClick={logout}
+                            key="user-nav-list3"
                           >
                             Log out
-                          </Link>
-                        </li>
+                          </li>
+                        </Link>
                       </ul>
                     </div>
                   </div>

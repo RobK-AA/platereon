@@ -664,12 +664,25 @@ html {
   right: 5px;
   bottom: auto;
   color: black;
-  overflow: visible;
+  overflow: hidden;
   display: none;
   list-style: none;
   width: max-content;
   background-color: rgb(255, 255, 255);
   box-shadow: rgba(0, 0, 0, 0.15) 0px 8px 24px;
+}
+
+.list-container > ul {
+  margin: 0;
+}
+
+.user-nav-list li {
+    margin-left: -1.3rem;
+    padding-left: 1rem;
+}
+
+.user-nav-list a {
+  text-decoration: none;
 }
 
 .list-container > ul {
@@ -700,19 +713,16 @@ html {
 }
 
 .header-menu-creator {
-  padding-right: 40px;
   padding-top: .5rem;
   padding-bottom: .5rem;
 }
 
 .header-menu-profile {
-  padding-right: 50px;
   padding-top: .5rem;
   padding-bottom: .5rem;
 }
 
 .header-menu-logout {
-  padding-right: 100px;
   padding-top: .5rem;
   padding-bottom: .5rem;
 }
