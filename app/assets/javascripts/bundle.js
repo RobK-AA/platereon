@@ -1405,7 +1405,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
       this.props.getCommunities();
 
       if (this.currentUser) {
-        this.props.getMemberships(this.currentUser.id);
+        this.props.getMemberships(this.currentUser.id).then(this.getPosts(this.id));
       }
     }
   }, {
@@ -6361,9 +6361,7 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
         className: "supporting2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
         className: "supporting3"
-      }, "SUPPORTING"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "lower-left6"
-      }, "Go support other Platereon communities or create one yourself!"))))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "SUPPORTING"))), this.renderCommunitiesJoined())))))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "community-links4"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "community-links3"

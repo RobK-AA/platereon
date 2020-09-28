@@ -159,10 +159,11 @@ class UserMain extends React.Component {
                                         </h5>
                                       </div>
                                     </div>
-                                    <span className="lower-left6">
+                                    {this.renderCommunitiesJoined()}
+                                    {/* <span className="lower-left6">
                                       Go support other Platereon communities or
                                       create one yourself!
-                                    </span>
+                                    </span> */}
                                   </div>
                                 </div>
                               </div>
