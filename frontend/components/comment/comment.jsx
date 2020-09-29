@@ -39,7 +39,7 @@ class Comment extends React.Component {
                               backgroundImage: `url(${comment.author.profile_photo})`,
                             }
                           : {
-                              backgroundImage: `url("https://c8.patreon.com/2/200/40259219")`,
+                            backgroundImage: `url("https://c8.patreon.com/2/200/c5055377")`,
                             }
                       }
                       className="commenter-logo3"

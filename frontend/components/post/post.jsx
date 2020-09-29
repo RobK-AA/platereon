@@ -154,7 +154,7 @@ class Post extends React.Component {
                               backgroundImage: `url(${firstCommentPhoto})`,
                             }
                           : {
-                              backgroundImage: `url("https://c8.patreon.com/2/200/40259219")`,
+                            backgroundImage: `url("https://c8.patreon.com/2/200/c5055377")`,
                             }
                       }
                       className="commenter-logo3"
@@ -234,7 +234,7 @@ class Post extends React.Component {
                               backgroundImage: `url(${secondCommentPhoto})`,
                             }
                           : {
-                              backgroundImage: `url("https://c8.patreon.com/2/200/40259219")`,
+                            backgroundImage: `url("https://c8.patreon.com/2/200/c5055377")`,
                             }
                       }
                       className="commenter-logo3"

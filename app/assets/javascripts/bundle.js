@@ -771,44 +771,12 @@ var Body = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Body, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      this.props.getCommunities().then(function (res) {
-        return _this2.setState({
-          loading: false,
-          data: res
-        });
-      });
-    }
-  }, {
     key: "componentDidCatch",
     value: function componentDidCatch() {
-      var _this3 = this;
-
-      this.props.getCommunities().then(function (res) {
-        return _this3.setState({
-          loading: false,
-          data: res
-        });
-      });
-
+      // this.props.getCommunities().then((res) => this.setState({ loading: false, data: res }));
       if (!this.props.communities.length) {
         this.props.getCommunities();
       }
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      var _this4 = this;
-
-      this.props.getCommunities().then(function (res) {
-        return _this4.setState({
-          loading: false,
-          data: res
-        });
-      });
     }
   }, {
     key: "render",
@@ -1005,7 +973,7 @@ var Comment = /*#__PURE__*/function (_React$Component) {
         style: comment.author.profile_photo ? {
           backgroundImage: "url(".concat(comment.author.profile_photo, ")")
         } : {
-          backgroundImage: "url(\"https://c8.patreon.com/2/200/40259219\")"
+          backgroundImage: "url(\"https://c8.patreon.com/2/200/c5055377\")"
         },
         className: "commenter-logo3"
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1400,19 +1368,17 @@ var Community = /*#__PURE__*/function (_React$Component) {
 
     if (_this.currentUser) {
       _this.props.getMemberships(_this.currentUser.id).then(_this.getPosts(_this.id));
-    }
-
-    if (_this.props.community) {
-      _this.name = _this.props.community.name || "";
-      _this.description = _this.props.community.description || "";
-      _this.shortDesc = _this.props.community.short_description || "";
-      _this.goldPerks = _this.props.community.gold_perks || "";
-      _this.silverPerks = _this.props.community.silver_perks || "";
-      _this.bronzePerks = _this.props.community.bronze_perks || "";
-      _this.isPlural = _this.props.community.plural || "";
-      _this.creatorId = _this.props.community.creator_id || "";
-      _this.id = _this.props.community.id || "";
-    } // this.name = this.props.community.name || "";
+    } // if (this.props.community) {
+    //   this.name = this.props.community.name || "";
+    //   this.description = this.props.community.description || "";
+    //   this.shortDesc = this.props.community.short_description || "";
+    //   this.goldPerks = this.props.community.gold_perks || "";
+    //   this.silverPerks = this.props.community.silver_perks || "";
+    //   this.bronzePerks = this.props.community.bronze_perks || "";
+    //   this.isPlural = this.props.community.plural || "";
+    //   this.creatorId = this.props.community.creator_id || "";
+    // }
+    // this.name = this.props.community.name || "";
     // this.description = this.props.community.description || "";
     // this.shortDesc = this.props.community.short_description || "";
     // this.goldPerks = this.props.community.gold_perks || "";
@@ -1422,9 +1388,9 @@ var Community = /*#__PURE__*/function (_React$Component) {
     // this.creatorId = this.props.community.creator_id || "";
     // this.backgroundImage = this.props.community.background_image;
     // this.profilePhoto = this.props.community.profile_photo;
-    // this.id = this.props.community.id || "";
 
 
+    _this.id = _this.props.id;
     _this.currentUser = _this.props.currentUser;
     _this.joinCommunity = _this.props.joinCommunity.bind(_assertThisInitialized(_this));
     _this.unjoinCommunity = _this.props.unjoinCommunity.bind(_assertThisInitialized(_this));
@@ -1459,7 +1425,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
       };
     }
 
-    _this.getPosts(_this.id);
+    _this.props.getPosts(_this.props.id);
 
     return _this;
   }
@@ -1470,7 +1436,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
       this.props.getCommunities().then(this.props.fetchCommunity(parseInt(this.props.match.params.communityId)));
 
       if (this.currentUser) {
-        this.props.getMemberships(this.currentUser.id).then(this.getPosts(this.id));
+        this.props.getMemberships(this.currentUser.id).then(this.getPosts(this.props.id));
       }
     }
   }, {
@@ -1482,7 +1448,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
       this.props.getCommunities();
 
       if (this.currentUser) {
-        this.props.getMemberships(this.currentUser.id).then(this.getPosts(this.id));
+        this.props.getMemberships(this.currentUser.id).then(this.getPosts(this.props.id));
       }
     }
   }, {
@@ -1597,16 +1563,18 @@ var Community = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var name = this.name,
-          description = this.description,
-          shortDesc = this.shortDesc,
-          goldPerks = this.goldPerks,
-          bronzePerks = this.bronzePerks,
-          silverPerks = this.silverPerks,
-          isPlural = this.isPlural,
-          backgroundImage = this.backgroundImage,
-          profilePhoto = this.profilePhoto;
+      var _this$props$community = this.props.community,
+          name = _this$props$community.name,
+          description = _this$props$community.description,
+          shortDesc = _this$props$community.shortDesc,
+          goldPerks = _this$props$community.goldPerks,
+          bronzePerks = _this$props$community.bronzePerks,
+          silverPerks = _this$props$community.silverPerks,
+          isPlural = _this$props$community.isPlural,
+          backgroundImage = _this$props$community.backgroundImage,
+          profilePhoto = _this$props$community.profilePhoto;
       var background = backgroundImage || 'https://cdn.pixabay.com/photo/2018/09/22/18/27/healthy-3695814_1280.jpg';
+      var photo = profilePhoto || "https://c8.patreon.com/2/200/c5055377";
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "community-body-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1626,7 +1594,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
         style: profilePhoto ? {
           backgroundImage: "url(".concat(profilePhoto, ")")
         } : {
-          backgroundImage: "url(\"https://c8.patreon.com/2/200/40259219\")"
+          backgroundImage: "url(\"https://c8.patreon.com/2/200/c5055377\")"
         },
         className: "creator-logo"
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1849,6 +1817,7 @@ var msp = function msp(state, ownProps) {
   var currentUser = state.entities.users[state.session.id];
   return {
     currentUser: currentUser,
+    id: parseInt(ownProps.match.params.communityId),
     community: state.entities.communities[ownProps.match.params.communityId],
     memberships: Object.values(state.entities.memberships),
     posts: currentUser.posts_in_communities_joined !== undefined ? Object.values(state.entities.users[state.session.id].posts_in_communities_joined).filter(function (post) {
@@ -3665,7 +3634,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
         style: firstCommentPhoto ? {
           backgroundImage: "url(".concat(firstCommentPhoto, ")")
         } : {
-          backgroundImage: "url(\"https://c8.patreon.com/2/200/40259219\")"
+          backgroundImage: "url(\"https://c8.patreon.com/2/200/c5055377\")"
         },
         className: "commenter-logo3"
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3728,7 +3697,7 @@ var Post = /*#__PURE__*/function (_React$Component) {
         style: secondCommentPhoto ? {
           backgroundImage: "url(".concat(secondCommentPhoto, ")")
         } : {
-          backgroundImage: "url(\"https://c8.patreon.com/2/200/40259219\")"
+          backgroundImage: "url(\"https://c8.patreon.com/2/200/c5055377\")"
         },
         className: "commenter-logo3"
       })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5202,7 +5171,7 @@ var SearchResults = /*#__PURE__*/function (_React$Component) {
           style: community.profile_photo ? {
             backgroundImage: "url(".concat(community.profile_photo, ")")
           } : {
-            backgroundImage: "url(\"https://c8.patreon.com/2/200/40259219\")"
+            backgroundImage: "url(\"https://c8.patreon.com/2/200/c5055377\")"
           },
           className: "result-icon1",
           key: "result-icon1-".concat(i)

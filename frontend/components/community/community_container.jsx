@@ -10,6 +10,7 @@ const msp = (state, ownProps) => {
   
   return {
     currentUser,
+    id: parseInt(ownProps.match.params.communityId),
     community: state.entities.communities[ownProps.match.params.communityId],
     memberships: Object.values(state.entities.memberships),
     posts: currentUser.posts_in_communities_joined !== undefined ? Object.values(
