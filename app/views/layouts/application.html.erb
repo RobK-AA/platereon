@@ -3,10 +3,13 @@
   <head>
   <script type="text/javascript">
       window.favicon = "<%= image_url('favicon.png') %>"
-    </script>
+    </script> 
+    <%# <meta property='og:image' content="<%= image_url('favicon.png')"/>
+    <meta property="og:title" content="Platereon" /> %>
+
     <link rel="icon" 
       type="image/png" 
-      href="assets/favicon.png">
+      href="<%= image_url('favicon.png') %>">
     <title>Platereon</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
