@@ -14,7 +14,9 @@
       json.extract! post.community, :name, :id
     end
 
-    json.comments do
+    !post.comments.nil? ?
+
+    (json.comments do
       post.comments.each do |comment|
         json.set! comment.id do
           json.extract! comment,
@@ -27,9 +29,11 @@
           end
         end
       end
-    end
+    end) : nil
 
-    json.likes do
+    !post.likes.nil? ?
+
+    (json.likes do
       post.likes.each do |like|
         json.set! like.liker_id do
           json.extract! like,
@@ -39,7 +43,7 @@
             :likeable_type
         end
       end
-    end
+    end) : nil
 
     json.author do
             json.extract! post.author, :id, :name

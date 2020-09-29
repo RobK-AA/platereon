@@ -6,7 +6,9 @@ json.extract! user,
   :communities_joined,
   :posts
 
-json.posts_in_communities_joined do
+!posts.nil? ?
+
+(json.posts_in_communities_joined do
   posts.each do |post| 
     json.set! post.id do 
       json.extract! post, 
@@ -57,6 +59,6 @@ json.posts_in_communities_joined do
     json.images post.images.map { |image| url_for(image) }
     end
   end
-end
+end) : nil
 
 json.profile_photo user.profile_photo.attached? ? url_for(user.profile_photo) : nil

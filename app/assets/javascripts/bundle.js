@@ -760,6 +760,10 @@ var Body = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, Body);
 
     _this = _super.call(this, props);
+    _this.state = {
+      loading: true,
+      data: []
+    };
 
     _this.props.getCommunities();
 
@@ -767,11 +771,44 @@ var Body = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Body, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      this.props.getCommunities().then(function (res) {
+        return _this2.setState({
+          loading: false,
+          data: res
+        });
+      });
+    }
+  }, {
     key: "componentDidCatch",
     value: function componentDidCatch() {
+      var _this3 = this;
+
+      this.props.getCommunities().then(function (res) {
+        return _this3.setState({
+          loading: false,
+          data: res
+        });
+      });
+
       if (!this.props.communities.length) {
         this.props.getCommunities();
       }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      var _this4 = this;
+
+      this.props.getCommunities().then(function (res) {
+        return _this4.setState({
+          loading: false,
+          data: res
+        });
+      });
     }
   }, {
     key: "render",
@@ -1357,29 +1394,37 @@ var Community = /*#__PURE__*/function (_React$Component) {
 
     _classCallCheck(this, Community);
 
-    _this = _super.call(this, props); // if (this.props.community) {
-    //   this.name = this.props.community.name || "";
-    //   this.description = this.props.community.description || "";
-    //   this.shortDesc = this.props.community.short_description || "";
-    //   this.goldPerks = this.props.community.gold_perks || "";
-    //   this.silverPerks = this.props.community.silver_perks || "";
-    //   this.bronzePerks = this.props.community.bronze_perks || "";
-    //   this.isPlural = this.props.community.plural || "";
-    //   this.creatorId = this.props.community.creator_id || "";
-    //   this.id = this.props.community.id || "";
-    // }
+    _this = _super.call(this, props);
 
-    _this.name = _this.props.community.name || "";
-    _this.description = _this.props.community.description || "";
-    _this.shortDesc = _this.props.community.short_description || "";
-    _this.goldPerks = _this.props.community.gold_perks || "";
-    _this.silverPerks = _this.props.community.silver_perks || "";
-    _this.bronzePerks = _this.props.community.bronze_perks || "";
-    _this.isPlural = _this.props.community.plural || "";
-    _this.creatorId = _this.props.community.creator_id || "";
-    _this.backgroundImage = _this.props.community.background_image;
-    _this.profilePhoto = _this.props.community.profile_photo;
-    _this.id = _this.props.community.id || "";
+    _this.props.getCommunities();
+
+    if (_this.currentUser) {
+      _this.props.getMemberships(_this.currentUser.id).then(_this.getPosts(_this.id));
+    }
+
+    if (_this.props.community) {
+      _this.name = _this.props.community.name || "";
+      _this.description = _this.props.community.description || "";
+      _this.shortDesc = _this.props.community.short_description || "";
+      _this.goldPerks = _this.props.community.gold_perks || "";
+      _this.silverPerks = _this.props.community.silver_perks || "";
+      _this.bronzePerks = _this.props.community.bronze_perks || "";
+      _this.isPlural = _this.props.community.plural || "";
+      _this.creatorId = _this.props.community.creator_id || "";
+      _this.id = _this.props.community.id || "";
+    } // this.name = this.props.community.name || "";
+    // this.description = this.props.community.description || "";
+    // this.shortDesc = this.props.community.short_description || "";
+    // this.goldPerks = this.props.community.gold_perks || "";
+    // this.silverPerks = this.props.community.silver_perks || "";
+    // this.bronzePerks = this.props.community.bronze_perks || "";
+    // this.isPlural = this.props.community.plural || "";
+    // this.creatorId = this.props.community.creator_id || "";
+    // this.backgroundImage = this.props.community.background_image;
+    // this.profilePhoto = this.props.community.profile_photo;
+    // this.id = this.props.community.id || "";
+
+
     _this.currentUser = _this.props.currentUser;
     _this.joinCommunity = _this.props.joinCommunity.bind(_assertThisInitialized(_this));
     _this.unjoinCommunity = _this.props.unjoinCommunity.bind(_assertThisInitialized(_this));
@@ -1398,16 +1443,19 @@ var Community = /*#__PURE__*/function (_React$Component) {
 
       if (ids.includes(props.community.id)) {
         _this.state = {
-          currentUserIsMember: true
+          currentUserIsMember: true,
+          loading: true
         };
       } else {
         _this.state = {
-          currentUserIsMember: false
+          currentUserIsMember: false,
+          loading: true
         };
       }
     } else {
       _this.state = {
-        currentUserIsMember: false
+        currentUserIsMember: false,
+        loading: true
       };
     }
 
@@ -1417,14 +1465,34 @@ var Community = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Community, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
-      this.props.fetchCommunity(parseInt(this.props.match.params.communityId));
+    key: "componentDidCatch",
+    value: function componentDidCatch() {
+      this.props.getCommunities().then(this.props.fetchCommunity(parseInt(this.props.match.params.communityId)));
+
+      if (this.currentUser) {
+        this.props.getMemberships(this.currentUser.id).then(this.getPosts(this.id));
+      }
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchCommunity(parseInt(this.props.match.params.communityId)).then(this.setState({
+        loading: false
+      }));
       this.props.getCommunities();
 
       if (this.currentUser) {
         this.props.getMemberships(this.currentUser.id).then(this.getPosts(this.id));
       }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      var _this2 = this;
+
+      (function () {
+        return _this2.props.fetchCommunities();
+      });
     }
   }, {
     key: "componentDidUpdate",
@@ -1450,7 +1518,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleUnjoin",
     value: function handleUnjoin() {
-      var _this2 = this;
+      var _this3 = this;
 
       var memberships = this.props.memberships;
       var membershipId;
@@ -1466,7 +1534,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
       this.unjoinCommunity(membershipId).then(this.props.getCurrentUser(this.currentUser.id)).then(this.setState({
         currentUserIsMember: false
       })).then(function () {
-        return _this2.renderJoinButton();
+        return _this3.renderJoinButton();
       });
     }
   }, {
@@ -1778,13 +1846,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var msp = function msp(state, ownProps) {
+  var currentUser = state.entities.users[state.session.id];
   return {
-    currentUser: state.entities.users[state.session.id],
+    currentUser: currentUser,
     community: state.entities.communities[ownProps.match.params.communityId],
     memberships: Object.values(state.entities.memberships),
-    posts: Object.values(state.entities.users[state.session.id].posts_in_communities_joined).filter(function (post) {
+    posts: currentUser.posts_in_communities_joined !== undefined ? Object.values(state.entities.users[state.session.id].posts_in_communities_joined).filter(function (post) {
       return post.community_id === parseInt(ownProps.match.params.communityId);
-    })
+    }) : []
   };
 };
 
@@ -1963,8 +2032,7 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       }
 
       this.props.submitCommunity(community).then(function () {
-        //Fix when DB is reset
-        return _this4.props.history.push("communities/".concat(_this4.props.communities[Object.keys(_this4.props.communities).length].id + 1), _this4.state);
+        return _this4.props.history.push("communities/".concat(_this4.props.communities[Object.keys(_this4.props.communities).length].id), _this4.state);
       });
     }
   }, {
@@ -6061,13 +6129,21 @@ var UserShow = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
 
-    _this.props.getCommunities().then(console.log("hey"));
+    (function () {
+      return props.getCommunities();
+    });
 
-    console.log("hey again");
     return _this;
   }
 
   _createClass(UserShow, [{
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      (function () {
+        return props.getCommunities();
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,

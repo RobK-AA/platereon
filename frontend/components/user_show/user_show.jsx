@@ -7,14 +7,17 @@ import UserMainContainer from '../user_main/user_main_container'
 class UserShow extends React.Component {
   constructor(props) {
     super(props);
-    this.props.getCommunities().then(console.log("hey"));
     
-    console.log("hey again");
+    () => props.getCommunities();
   };
+
+  componentWillUnmount() {
+    () => props.getCommunities();
+  }
 
   render () {
     const { currentUser, location } = this.props;
-
+    
     return location.pathname === "/createform" ? (
       <Route exact path="/createform" component={CommunityFormContainer} />
     ) : location.pathname.includes("communities") || (location.href && location.href.split('/').includes('communities')) ? (

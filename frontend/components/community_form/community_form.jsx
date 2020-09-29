@@ -87,8 +87,7 @@ class CommunityForm extends React.Component {
     
     this.props.submitCommunity(community).then(
       () => {
-        //Fix when DB is reset
-        return this.props.history.push(`communities/${this.props.communities[Object.keys(this.props.communities).length].id + 1}`, this.state)
+        return this.props.history.push(`communities/${this.props.communities[Object.keys(this.props.communities).length].id}`, this.state)
       });
   }
 

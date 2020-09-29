@@ -16,15 +16,29 @@ class Body extends React.Component {
 
   constructor(props) {
     super(props);
+    
+    
+    this.state = {
+      loading: true,
+      data: []
+    }
     this.props.getCommunities();
   };
   
+  componentDidMount() {
+    this.props.getCommunities().then((res) => this.setState({ loading: false, data: res }));
+  }
+
   componentDidCatch() {
+    this.props.getCommunities().then((res) => this.setState({ loading: false, data: res }));
     if (!this.props.communities.length) {
+      
       this.props.getCommunities();
     }
   }
-
+  componentWillUnmount() {
+    this.props.getCommunities().then((res) => this.setState({ loading: false, data: res }));
+  }
   render() {
     const { currentUser, location, communities } = this.props;
     

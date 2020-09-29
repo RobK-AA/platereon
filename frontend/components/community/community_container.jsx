@@ -6,16 +6,17 @@ import { fetchCommunityPosts, fetchPost, createPost, updatePost, deletePost } fr
 import { fetchCurrentUser } from "../../actions/user_actions";
 
 const msp = (state, ownProps) => {
+  const currentUser = state.entities.users[state.session.id]
   
   return {
-    currentUser: state.entities.users[state.session.id],
+    currentUser,
     community: state.entities.communities[ownProps.match.params.communityId],
     memberships: Object.values(state.entities.memberships),
-    posts: Object.values(
+    posts: currentUser.posts_in_communities_joined !== undefined ? Object.values(
       state.entities.users[state.session.id].posts_in_communities_joined
     ).filter((post) => {
       return post.community_id === parseInt(ownProps.match.params.communityId);
-    }),
+    }) : [],
   };
 };
 

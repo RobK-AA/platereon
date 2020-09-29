@@ -10,29 +10,38 @@ class Community extends React.Component {
   
   constructor(props) {
     super(props);
-    // if (this.props.community) {
-    //   this.name = this.props.community.name || "";
-    //   this.description = this.props.community.description || "";
-    //   this.shortDesc = this.props.community.short_description || "";
-    //   this.goldPerks = this.props.community.gold_perks || "";
-    //   this.silverPerks = this.props.community.silver_perks || "";
-    //   this.bronzePerks = this.props.community.bronze_perks || "";
-    //   this.isPlural = this.props.community.plural || "";
-    //   this.creatorId = this.props.community.creator_id || "";
-    //   this.id = this.props.community.id || "";
-    // }
+    this.props.getCommunities();
+
+    if (this.currentUser) {
+      this.props
+        .getMemberships(this.currentUser.id)
+        .then(this.getPosts(this.id));
+    }
     
-    this.name = this.props.community.name || "";
-    this.description = this.props.community.description || "";
-    this.shortDesc = this.props.community.short_description || "";
-    this.goldPerks = this.props.community.gold_perks || "";
-    this.silverPerks = this.props.community.silver_perks || "";
-    this.bronzePerks = this.props.community.bronze_perks || "";
-    this.isPlural = this.props.community.plural || "";
-    this.creatorId = this.props.community.creator_id || "";
-    this.backgroundImage = this.props.community.background_image;
-    this.profilePhoto = this.props.community.profile_photo;
-    this.id = this.props.community.id || "";
+    if (this.props.community) {
+      
+      this.name = this.props.community.name || "";
+      this.description = this.props.community.description || "";
+      this.shortDesc = this.props.community.short_description || "";
+      this.goldPerks = this.props.community.gold_perks || "";
+      this.silverPerks = this.props.community.silver_perks || "";
+      this.bronzePerks = this.props.community.bronze_perks || "";
+      this.isPlural = this.props.community.plural || "";
+      this.creatorId = this.props.community.creator_id || "";
+      this.id = this.props.community.id || "";
+    }
+    
+    // this.name = this.props.community.name || "";
+    // this.description = this.props.community.description || "";
+    // this.shortDesc = this.props.community.short_description || "";
+    // this.goldPerks = this.props.community.gold_perks || "";
+    // this.silverPerks = this.props.community.silver_perks || "";
+    // this.bronzePerks = this.props.community.bronze_perks || "";
+    // this.isPlural = this.props.community.plural || "";
+    // this.creatorId = this.props.community.creator_id || "";
+    // this.backgroundImage = this.props.community.background_image;
+    // this.profilePhoto = this.props.community.profile_photo;
+    // this.id = this.props.community.id || "";
     this.currentUser = this.props.currentUser;
     this.joinCommunity = this.props.joinCommunity.bind(this);
     this.unjoinCommunity = this.props.unjoinCommunity.bind(this);
@@ -53,27 +62,30 @@ class Community extends React.Component {
       if (ids.includes(props.community.id)) {
 
         this.state = {
-          currentUserIsMember: true
+          currentUserIsMember: true,
+          loading: true
         }
       } else {
 
         this.state = {
-          currentUserIsMember: false
+          currentUserIsMember: false,
+          loading: true
         }
       }
     } else {
       this.state = {
-        currentUserIsMember: false
+        currentUserIsMember: false,
+        loading: true
       }
     }
     
     this.getPosts(this.id);
-
+    
   };
   
-  componentWillMount() {
-    this.props.fetchCommunity(parseInt(this.props.match.params.communityId));
-    this.props.getCommunities();
+  componentDidCatch() {
+    this.props.getCommunities().then(this.props.fetchCommunity(parseInt(this.props.match.params.communityId)));
+    
     if (this.currentUser) {
       this.props
         .getMemberships(this.currentUser.id)
@@ -81,6 +93,21 @@ class Community extends React.Component {
     }
     
   };
+  
+  componentDidMount() {
+    this.props.fetchCommunity(parseInt(this.props.match.params.communityId)).then(this.setState({ loading: false }));
+    this.props.getCommunities();
+    if (this.currentUser) {
+      this.props
+        .getMemberships(this.currentUser.id)
+        .then(this.getPosts(this.id));
+    }
+  };
+
+  componentWillUnmount() {
+    
+    () => this.props.fetchCommunities();
+  }
 
   componentDidUpdate() {
     this.renderCommunityWelcome();
