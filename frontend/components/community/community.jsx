@@ -29,16 +29,16 @@ class Community extends React.Component {
     //   this.creatorId = this.props.community.creator_id || "";
     // };
     
-    // this.name = this.props.community.name || "";
-    // this.description = this.props.community.description || "";
-    // this.shortDesc = this.props.community.short_description || "";
-    // this.goldPerks = this.props.community.gold_perks || "";
-    // this.silverPerks = this.props.community.silver_perks || "";
-    // this.bronzePerks = this.props.community.bronze_perks || "";
-    // this.isPlural = this.props.community.plural || "";
-    // this.creatorId = this.props.community.creator_id || "";
-    // this.backgroundImage = this.props.community.background_image;
-    // this.profilePhoto = this.props.community.profile_photo;
+    this.name = this.props.community.name || "";
+    this.description = this.props.community.description || "";
+    this.shortDesc = this.props.community.short_description || "";
+    this.goldPerks = this.props.community.gold_perks || "";
+    this.silverPerks = this.props.community.silver_perks || "";
+    this.bronzePerks = this.props.community.bronze_perks || "";
+    this.isPlural = this.props.community.plural || "";
+    this.creatorId = this.props.community.creator_id || "";
+    this.backgroundImage = this.props.community.background_image;
+    this.profilePhoto = this.props.community.profile_photo;
     this.id = this.props.id;
     this.currentUser = this.props.currentUser;
     this.joinCommunity = this.props.joinCommunity.bind(this);
@@ -223,7 +223,7 @@ class Community extends React.Component {
         isPlural,
         backgroundImage, 
         profilePhoto
-      } = this.props.community;
+      } = this;
     let background = backgroundImage || 'https://cdn.pixabay.com/photo/2018/09/22/18/27/healthy-3695814_1280.jpg';
     let photo = profilePhoto || "https://c8.patreon.com/2/200/c5055377";
     return (
