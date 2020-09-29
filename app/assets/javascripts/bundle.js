@@ -1377,7 +1377,7 @@ var Community = /*#__PURE__*/function (_React$Component) {
     //   this.bronzePerks = this.props.community.bronze_perks || "";
     //   this.isPlural = this.props.community.plural || "";
     //   this.creatorId = this.props.community.creator_id || "";
-    // }
+    // };
     // this.name = this.props.community.name || "";
     // this.description = this.props.community.description || "";
     // this.shortDesc = this.props.community.short_description || "";
