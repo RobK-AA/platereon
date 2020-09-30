@@ -15,7 +15,7 @@ class UserMain extends React.Component {
     this.renderCommunitiesJoined = this.renderCommunitiesJoined.bind(this);
     this.renderLinks = this.renderLinks.bind(this);
     this.getMemberships = this.props.getMemberships;
-    this.communitiesJoined = this.props.currentUser.communities_joined;
+    this.communitiesJoined = Object.values(this.props.currentUser.communities_joined_photos);
     this.renderJoinMessage = this.renderJoinMessage.bind(this);
   };
   
@@ -34,54 +34,54 @@ class UserMain extends React.Component {
   renderCommunitiesJoined() {
     
     const that = this.props.membershipsMessage || "";
-    return (
-      <>
-        <ul className="community-links">
-          {this.renderJoinMessage()}
-          {this.communitiesJoined.map((community, i) => {
-                return (
-                  <li className="supporting-list-item" key={i}>
-                    <div className="supporting-list-item1">
-                      <Link
-                        className="supporting-list-item2"
-                        key={`community-${i}`}
-                        to={`/communities/${community.id}`}
-                      >
-                        <div className="supporting-list-item3">
-                          <div className="supporting-photo1">
-                            <div
-                              style={
-                                community.profile_photo
-                                  ? {
-                                      backgroundImage: `url(${community.profile_photo})`,
-                                    }
-                                  : {
-                                      backgroundImage: `url("https://c8.patreon.com/2/200/c5055377")`,
-                                    }
-                              }
-                              className="supporting-photo2"
-                            ></div>
+      return (
+        <>
+          <ul className="community-links">
+            {this.renderJoinMessage()}
+            {this.communitiesJoined.map((community, i) => {
+              return (
+                <li className="supporting-list-item" key={i}>
+                  <div className="supporting-list-item1">
+                    <Link
+                      className="supporting-list-item2"
+                      key={`community-${i}`}
+                      to={`/communities/${community.id}`}
+                    >
+                      <div className="supporting-list-item3">
+                        <div className="supporting-photo1">
+                          <div
+                            style={
+                              community.profile_photo
+                                ? {
+                                    backgroundImage: `url(${community.profile_photo})`,
+                                  }
+                                : {
+                                    backgroundImage: `url("https://c8.patreon.com/2/200/c5055377")`,
+                                  }
+                            }
+                            className="supporting-photo2"
+                          ></div>
+                        </div>
+                        <div className="supporting-name1">
+                          <div className="supporting-name2">
+                            {community.name}
                           </div>
-                          <div className="supporting-name1">
-                            <div className="supporting-name2">
-                              {community.name}
-                            </div>
-                            <div className="supporting-amt1">
-                              <span className="supporting-amt2">
-                                Monthly fee waived (Demo User)
-                              </span>
-                            </div>
+                          <div className="supporting-amt1">
+                            <span className="supporting-amt2">
+                              Monthly fee waived (Demo User)
+                            </span>
                           </div>
                         </div>
-                      </Link>
-                    </div>
-                  </li>
-                );
-              }
-          )}
-        </ul>
-      </>
-    )
+                      </div>
+                    </Link>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </>
+      );
+    
   }
 
   renderJoinMessage() {

@@ -1993,7 +1993,7 @@ var CommunityForm = /*#__PURE__*/function (_React$Component) {
       community.append("community[silver_perks]", this.state.silverPerks);
       community.append("community[gold_perks]", this.state.goldPerks);
       community.append("community[short_description]", this.state.shortDesc);
-      community.append("community[plural]", this.state.plural);
+      community.append("community[plural]", this.state.isPlural);
 
       if (this.state.backgroundImage) {
         community.append("community[background_image]", this.state.backgroundImage);
@@ -5739,7 +5739,7 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
     _this.renderCommunitiesJoined = _this.renderCommunitiesJoined.bind(_assertThisInitialized(_this));
     _this.renderLinks = _this.renderLinks.bind(_assertThisInitialized(_this));
     _this.getMemberships = _this.props.getMemberships;
-    _this.communitiesJoined = _this.props.currentUser.communities_joined;
+    _this.communitiesJoined = Object.values(_this.props.currentUser.communities_joined_photos);
     _this.renderJoinMessage = _this.renderJoinMessage.bind(_assertThisInitialized(_this));
     return _this;
   }

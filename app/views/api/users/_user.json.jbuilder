@@ -3,7 +3,7 @@ json.extract! user,
   :email, 
   :name, 
   :communities_created, 
-  :communities_joined,
+  :communities_joined
   :posts
 
 !posts.nil? ?
@@ -57,6 +57,23 @@ json.extract! user,
             json.profile_photo post.author.profile_photo.attached? ? url_for(post.author.profile_photo) : nil
       end
     json.images post.images.map { |image| url_for(image) }
+    end
+  end
+end) : nil
+
+!user.communities_joined.nil? ?
+
+(json.communities_joined_photos do
+  user.communities_joined.each do |community| 
+    json.set! community.id do 
+      json.extract! community, 
+        :id, 
+        :creator_id, 
+        :name, 
+        :short_description,
+        :plural
+
+      json.profile_photo community.creator.profile_photo.attached? ? url_for(community.creator.profile_photo) : nil
     end
   end
 end) : nil
