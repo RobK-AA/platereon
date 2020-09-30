@@ -13,11 +13,17 @@ const msp = (state, ownProps) => {
     id: parseInt(ownProps.match.params.communityId),
     community: state.entities.communities[ownProps.match.params.communityId],
     memberships: Object.values(state.entities.memberships),
-    posts: currentUser.posts_in_communities_joined !== undefined ? Object.values(
-      state.entities.users[state.session.id].posts_in_communities_joined
-    ).filter((post) => {
-      return post.community_id === parseInt(ownProps.match.params.communityId);
-    }) : [],
+    posts:
+      currentUser !== undefined &&
+      currentUser.posts_in_communities_joined !== undefined
+        ? Object.values(
+            state.entities.users[state.session.id].posts_in_communities_joined
+          ).filter((post) => {
+            return (
+              post.community_id === parseInt(ownProps.match.params.communityId)
+            );
+          })
+        : [],
   };
 };
 

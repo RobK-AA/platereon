@@ -238,9 +238,9 @@ class Community extends React.Component {
                 <div className="creator-logo-outer">
                   <div
                     style={
-                      profilePhoto
+                      photo
                         ? {
-                            backgroundImage: `url(${profilePhoto})`,
+                            backgroundImage: `url(${photo})`,
                           }
                         : {
                           backgroundImage: `url("https://c8.patreon.com/2/200/c5055377")`,

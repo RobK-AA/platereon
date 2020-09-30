@@ -1590,8 +1590,8 @@ var Community = /*#__PURE__*/function (_React$Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "creator-logo-outer"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        style: profilePhoto ? {
-          backgroundImage: "url(".concat(profilePhoto, ")")
+        style: photo ? {
+          backgroundImage: "url(".concat(photo, ")")
         } : {
           backgroundImage: "url(\"https://c8.patreon.com/2/200/c5055377\")"
         },
@@ -1819,7 +1819,7 @@ var msp = function msp(state, ownProps) {
     id: parseInt(ownProps.match.params.communityId),
     community: state.entities.communities[ownProps.match.params.communityId],
     memberships: Object.values(state.entities.memberships),
-    posts: currentUser.posts_in_communities_joined !== undefined ? Object.values(state.entities.users[state.session.id].posts_in_communities_joined).filter(function (post) {
+    posts: currentUser !== undefined && currentUser.posts_in_communities_joined !== undefined ? Object.values(state.entities.users[state.session.id].posts_in_communities_joined).filter(function (post) {
       return post.community_id === parseInt(ownProps.match.params.communityId);
     }) : []
   };
