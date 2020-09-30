@@ -13,4 +13,4 @@ json.extract! @community,
   :posts
 
 json.background_image @community.background_image.attached? ? url_for(@community.background_image) : nil
-# json.profile_photo @user.profile_photo.attached? ? url_for(@user.profile_photo) : nil
+json.profile_photo @community.creator.profile_photo.attached? ? url_for(@community.creator.profile_photo) : nil
