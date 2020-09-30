@@ -15,7 +15,14 @@ class UserMain extends React.Component {
     this.renderCommunitiesJoined = this.renderCommunitiesJoined.bind(this);
     this.renderLinks = this.renderLinks.bind(this);
     this.getMemberships = this.props.getMemberships;
-    this.communitiesJoined = Object.values(this.props.currentUser.communities_joined_photos);
+    if (this.props.currentUser.communities_joined_photos !== undefined) {
+      this.communitiesJoined = Object.values(
+        this.props.currentUser.communities_joined_photos
+      );
+    } else {
+      this.communitiesJoined = this.props.currentUser.communities_joined;
+    }
+    
     this.renderJoinMessage = this.renderJoinMessage.bind(this);
   };
   

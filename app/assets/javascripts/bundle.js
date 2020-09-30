@@ -5739,7 +5739,13 @@ var UserMain = /*#__PURE__*/function (_React$Component) {
     _this.renderCommunitiesJoined = _this.renderCommunitiesJoined.bind(_assertThisInitialized(_this));
     _this.renderLinks = _this.renderLinks.bind(_assertThisInitialized(_this));
     _this.getMemberships = _this.props.getMemberships;
-    _this.communitiesJoined = Object.values(_this.props.currentUser.communities_joined_photos);
+
+    if (_this.props.currentUser.communities_joined_photos !== undefined) {
+      _this.communitiesJoined = Object.values(_this.props.currentUser.communities_joined_photos);
+    } else {
+      _this.communitiesJoined = _this.props.currentUser.communities_joined;
+    }
+
     _this.renderJoinMessage = _this.renderJoinMessage.bind(_assertThisInitialized(_this));
     return _this;
   }
