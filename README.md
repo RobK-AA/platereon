@@ -20,6 +20,13 @@ Platereon offers both creators and supporters a number of exciting features:
   * Create engaging communities 
     * Share your content 
     * Customize your membership levels to offer perks for your supporters
-    
-
+  * Post engaging content in your communities
+    * Members of communities can see community posts
+    * Members can like and comment on posts
+  * Search for creators for more communities to join
+  
+## Posts
  ![Posts](https://media2.giphy.com/media/mMxScwpJnzl9xiqKS2/giphy.gif)
+ 
+## Search
+ ![Search](https://media3.giphy.com/media/34e8OEmx5EUng8cyv7/giphy.gif)
