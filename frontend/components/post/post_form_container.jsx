@@ -6,6 +6,7 @@ import {
   createMembership,
   deleteMembership,
 } from "../../actions/membership_actions";
+import { fetchCurrentUser } from "../../actions/user_actions";
 
 const msp = (state, ownProps) => {
   
@@ -30,6 +31,7 @@ const mdp = (dispatch) => {
     submitPost: (post) => dispatch(createPost(post)),
     updatePost: (post) => dispatch(updatePost(post)),
     deletePost: (postId) => dispatch(deletePost(postId)),
+    getCurrentUser: (userId) => dispatch(fetchCurrentUser(userId)),
   };
 };
 

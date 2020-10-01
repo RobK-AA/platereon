@@ -173,7 +173,7 @@ class PostForm extends React.Component {
     }
     
     this.props
-      .submitPost(post)
+      .submitPost(post).then(this.props.getCurrentUser(this.props.currentUser.id))
       .then(
         this.props.history.push(
           `/communities/${parseInt($("option:selected").attr("name"))}`,

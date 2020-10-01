@@ -4247,7 +4247,7 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
         post.append("post[images][]", attachedImages[i]);
       }
 
-      this.props.submitPost(post).then(this.props.history.push("/communities/".concat(parseInt($("option:selected").attr("name"))), this.state));
+      this.props.submitPost(post).then(this.props.getCurrentUser(this.props.currentUser.id)).then(this.props.history.push("/communities/".concat(parseInt($("option:selected").attr("name"))), this.state));
     }
   }, {
     key: "render",
@@ -4409,6 +4409,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_post_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/post_actions */ "./frontend/actions/post_actions.js");
 /* harmony import */ var _actions_community_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/community_actions */ "./frontend/actions/community_actions.js");
 /* harmony import */ var _actions_membership_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/membership_actions */ "./frontend/actions/membership_actions.js");
+/* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
+
 
 
 
@@ -4448,6 +4450,9 @@ var mdp = function mdp(dispatch) {
     },
     deletePost: function deletePost(postId) {
       return dispatch(Object(_actions_post_actions__WEBPACK_IMPORTED_MODULE_2__["deletePost"])(postId));
+    },
+    getCurrentUser: function getCurrentUser(userId) {
+      return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_5__["fetchCurrentUser"])(userId));
     }
   };
 };
