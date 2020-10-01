@@ -22,4 +22,4 @@ Platereon offers both creators and supporters a number of exciting features:
     * Customize your membership levels to offer perks for your supporters
     
 
- 
+ ![Posts](https://media2.giphy.com/media/mMxScwpJnzl9xiqKS2/giphy.gif)
