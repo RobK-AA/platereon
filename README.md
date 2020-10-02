@@ -20,6 +20,51 @@ Platereon offers both creators and supporters a number of exciting features:
   * Create engaging communities 
     * Share your content 
     * Customize your membership levels to offer perks for your supporters
-    
+  * Post engaging content in your communities
+    * Members of communities can see community posts
+    * Members can like and comment on posts
+  * Search for creators for more communities to join
+  
+## Posts
+ ![Posts](https://media2.giphy.com/media/mMxScwpJnzl9xiqKS2/giphy.gif)
 
+```
+render() {
+    const { title, body, imageUrls, communityId, videoUrl } = this.state;
+    let filledOut = (body.length > 0 && title.length > 0) && communityId > 0;
+    
+    const textPost = this.props.location.pathname.includes('text');
+    const imagePost = this.props.location.pathname.includes('images');
+    const videoPost = this.props.location.pathname.includes('video');
+    
+    imagePost
+      ? (filledOut =
+          body.length > 0 &&
+          title.length > 0 &&
+          imageUrls.length > 0 &&
+          communityId > 0)
+      : videoPost ? 
+          (filledOut =
+            body.length > 0 &&
+            title.length > 0 &&
+            videoUrl.length > 0 && 
+            (videoUrl.includes('youtube') && videoUrl.includes('watch?')) &&
+            communityId > 0) :
+            (filledOut = (body.length > 0 && title.length > 0) && communityId > 0);
+  ...
+  ```
+## Search
+ ![Search](https://media3.giphy.com/media/34e8OEmx5EUng8cyv7/giphy.gif)
  
+```
+def self.search(search)
+    if search
+      where(["lower(short_description) LIKE ? 
+        OR lower(description) LIKE ? 
+        OR lower(name) LIKE ?", 
+        "%#{search.downcase}%", "%#{search.downcase}%", "%#{search.downcase}%"])
+    else
+      all
+    end
+end
+  ```
