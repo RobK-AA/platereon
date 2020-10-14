@@ -53,6 +53,31 @@ render() {
             (filledOut = (body.length > 0 && title.length > 0) && communityId > 0);
   ...
   ```
+  ### Image Uploads
+  ```
+addPhoto(e) {
+    e.preventDefault();
+    const profilePhoto = new FileReader();
+    const photo = e.target.files[0];
+
+    profilePhoto.onloadend = () => {
+      let newPhotoUrl = this.state.profilePhotoUrl;
+      newPhotoUrl = profilePhoto.result
+
+      let newPhoto = this.state.profilePhoto;
+      newPhoto = photo;
+
+      this.setState({ profilePhotoUrl: newPhotoUrl, profilePhoto: newPhoto });
+    }
+
+    if (photo) {
+
+      profilePhoto.readAsDataURL(photo);
+    } else {
+      alert("Please choose another file type")
+    }
+  }
+  ```
 ## Search
  ![Search](https://media3.giphy.com/media/34e8OEmx5EUng8cyv7/giphy.gif)
  
@@ -68,3 +93,4 @@ def self.search(search)
     end
 end
   ```
+
