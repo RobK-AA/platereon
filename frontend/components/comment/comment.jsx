@@ -11,12 +11,16 @@ class Comment extends React.Component {
     const { comment } = this.props;
     const createdAt = comment.created_at;
     let date = new Moment(createdAt);
+    let months = `${parseInt(date.fromNow())}m`;
+    let weeks = `${parseInt(date.fromNow())}w`;
     let days = `${parseInt(date.fromNow())}d`;
     let hours = `${parseInt(date.fromNow())}h`;
     let minutes = `${parseInt(date.fromNow())}m`;
     let seconds = `${parseInt(date.fromNow())}s`;
     let time = days;
 
+    if (date.fromNow().includes("month")) time = months;
+    if (date.fromNow().includes("week")) time = weeks;
     if (date.fromNow().includes("day")) time = days;
     if (date.fromNow().includes("hour")) time = hours;
     if (date.fromNow().includes("minute")) time = minutes;

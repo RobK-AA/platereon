@@ -5,7 +5,6 @@ class Api::SessionsController < ApplicationController
       params[:user][:email],
       params[:user][:password]
     )
-    
     if @user
       @posts = @user.posts_in_communities_joined
       login!(@user)
@@ -16,9 +15,7 @@ class Api::SessionsController < ApplicationController
   end
 
   def destroy
-
     @user = current_user
-
     if @user
       logout!
     else

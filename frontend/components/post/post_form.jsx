@@ -188,9 +188,10 @@ class PostForm extends React.Component {
     let filledOut = (body.length > 0 && title.length > 0) && communityId > 0;
     
     const textPost = this.props.location.pathname.includes('text');
+    const linkPost = this.props.location.pathname.includes("link");
+
     const imagePost = this.props.location.pathname.includes('images');
     const videoPost = this.props.location.pathname.includes('video');
-    const linkPost = this.props.location.pathname.includes("link");
     
     imagePost
       ? (filledOut =

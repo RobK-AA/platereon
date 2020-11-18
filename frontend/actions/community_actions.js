@@ -49,13 +49,10 @@ export const fetchCommunity = communityId => dispatch => {
 };
 
 export const createCommunity = community => dispatch => {
-  
   return CommunityApiUtil.createCommunity(community).then(
     community => {
-      
       dispatch(receiveCommunity(community))
     }, errors => {
-      
     dispatch(receiveErrors(errors.responseJSON))
   })
 };

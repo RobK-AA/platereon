@@ -946,11 +946,15 @@ var Comment = /*#__PURE__*/function (_React$Component) {
       var comment = this.props.comment;
       var createdAt = comment.created_at;
       var date = new moment__WEBPACK_IMPORTED_MODULE_1___default.a(createdAt);
+      var months = "".concat(parseInt(date.fromNow()), "m");
+      var weeks = "".concat(parseInt(date.fromNow()), "w");
       var days = "".concat(parseInt(date.fromNow()), "d");
       var hours = "".concat(parseInt(date.fromNow()), "h");
       var minutes = "".concat(parseInt(date.fromNow()), "m");
       var seconds = "".concat(parseInt(date.fromNow()), "s");
       var time = days;
+      if (date.fromNow().includes("month")) time = months;
+      if (date.fromNow().includes("week")) time = weeks;
       if (date.fromNow().includes("day")) time = days;
       if (date.fromNow().includes("hour")) time = hours;
       if (date.fromNow().includes("minute")) time = minutes;
@@ -4260,9 +4264,9 @@ var PostForm = /*#__PURE__*/function (_React$Component) {
           videoUrl = _this$state2.videoUrl;
       var filledOut = body.length > 0 && title.length > 0 && communityId > 0;
       var textPost = this.props.location.pathname.includes('text');
+      var linkPost = this.props.location.pathname.includes("link");
       var imagePost = this.props.location.pathname.includes('images');
       var videoPost = this.props.location.pathname.includes('video');
-      var linkPost = this.props.location.pathname.includes("link");
       imagePost ? filledOut = body.length > 0 && title.length > 0 && imageUrls.length > 0 && communityId > 0 : videoPost ? filledOut = body.length > 0 && title.length > 0 && videoUrl.length > 0 && videoUrl.includes('youtube') && videoUrl.includes('watch?') && communityId > 0 : filledOut = body.length > 0 && title.length > 0 && communityId > 0;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "text-form1"

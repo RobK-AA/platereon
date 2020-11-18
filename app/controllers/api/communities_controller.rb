@@ -1,12 +1,8 @@
 class Api::CommunitiesController < ApplicationController
 
-  # before_action :require_logged_in, only: [:show]
-
   def index
     @communities = Community.search(params[:search])
                             .with_attached_background_image
-                          
-    # @users = @communities.map { |community| community.creator.with_attached_profile_photo }
   end
 
   def create

@@ -32,7 +32,6 @@ class ProfileForm extends React.Component {
     }
 
     if (photo) {
-
       profilePhoto.readAsDataURL(photo);
     } else {
       alert("Please choose another file type")
@@ -138,7 +137,12 @@ class ProfileForm extends React.Component {
                                         <div className="profile-photo-right4">
                                           <label className="profile-photo-right5" htmlFor="profile-photo">
                                             <div className="photo-input">
-                                              <input onChange={this.addPhoto} id="profile-photo" className="photo-input1" type="file"/>
+                                              <input 
+                                                onChange={this.addPhoto} 
+                                                id="profile-photo" 
+                                                className="photo-input1" 
+                                                type="file"
+                                              />
                                             </div>
                                             <div className="photo-input2">
                                               <div className="photo-input3">
